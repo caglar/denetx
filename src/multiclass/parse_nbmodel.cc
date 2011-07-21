@@ -1,3 +1,6 @@
+#include "parse_nbmodel.h"
+#include "attrobs.h"
+#include "../parse_arfheader.h"
 /*
  * parse_nbmodel.cc
  *
@@ -34,7 +37,7 @@
  *      The ordering of the data for numeric will be:
  *       attNo,0,classNo,sumOfWeights,sumOfValues,mean,standardDev
  *      The ordering of the data for nominal attributes will be:
- *       attNo,1,classNom,
+ *       attNo,1,classNom,attVal,weight
  */
 
 static string seperator = "%==%";
