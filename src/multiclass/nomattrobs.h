@@ -53,8 +53,7 @@ public:
     observeAttributeClass(float attVal, int classVal, float weight)
     {
         int attValInt = (int) attVal;
-        DVec valDist = attValDistPerClass[classVal];
-        valDist[attValInt] += weight;
+        add_to_val(attValInt, attValDistPerClass[classVal], weight);
         totalWeightObserved += weight;
     }
 

@@ -19,7 +19,7 @@
  *      |                                |
  *      |Att Dist Per Class              |
  *      |________________________________|
- *      |att_no class_val0 ... class_valN|
+ *      |att_no,attType,...              |
  *      |.                               |
  *      |.                               |
  *      |.                               |
@@ -27,7 +27,16 @@
  *
  *      Write the observed class distributions and
  *      attribute statistics to a model file.
+ *
+ *      For numeric attributes: followings are saved for each class:
+ *       sumOfWeights, sumOfValues, mean, standardDev
+ *
+ *      The ordering of the data for numeric will be:
+ *       attNo,0,classNo,sumOfWeights,sumOfValues,mean,standardDev
+ *      The ordering of the data for nominal attributes will be:
+ *       attNo,1,classNom,
  */
+
 static string seperator = "%==%";
 
 static void
