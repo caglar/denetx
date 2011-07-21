@@ -1,12 +1,20 @@
 #include "parse_nbmodel.h"
 #include "attrobs.h"
+#include "estimator.h"
+
 #include "../parse_arfheader.h"
+
 /*
  * parse_nbmodel.cc
  *
  *  Created on: Jul 20, 2011
  *      Author: caglar
  */
+#define NUMERIC 0
+#define NOMINAL 1
+
+static string seperator = "%==%";
+
 /**
  * File Structure
  *      ++++++++++++++++++++++++++++++++++
@@ -39,24 +47,39 @@
  *      The ordering of the data for nominal attributes will be:
  *       attNo,1,classNom,attVal,weight
  */
-
-static string seperator = "%==%";
-
 static void
 createModelFileContent(Dvec observedClassDist,
         vector<AttributeClassObserver *> attributeObservers,
-        string& model_file_content)
+        arfheader *arfHeader, string& model_file_content)
 {
+    vector<arfcategory> arfCats = arfHeader->categories;
     for (int i = 0; i < observedClassDist.size(); i++) {
         model_file_content += i + " " + observedClassDist[i] + "\n";
     }
-
     model_file_content += seperator + "\n";
+    for (int i = 0; i < arfCats.size(); i++) {
+        if (arfCats[i].name == "nominal") {
+            NomAttrObserver *nomAttrObs = attributeObservers[i];
+            vector<DVec> attValDistPerClass =
+                    nomAttrObs->getattValDistPerClass();
+            unsigned int classSize = attValDistPerClass.size();
 
-    for (int i = 0; i < attributeObservers.size(); i++) {
-        model_file_content += i + " " + model_file_content[i];
+            for (auto j = 0; j < classSize; j++) {
+                unsigned int valSize = attValDistPerClass[j].size();
+                for (auto n = 0; n < valSize; n++) {
+                    model_file_content += i + " " + NOMINAL + " "
+                            + j + " " + n + " " + attValDistPerClass[j][n] + "\n";
+                }
+            }
+        }
+        else if (arfCats[i].name == "numeric") {
+            NumAttrObserver *numAttrObs = attributeObservers[i];
+            vector<NormalEstimator *> attValDistPerClass = numAttrObs->getAttValDistPerClass();
+            for (int i = 0; i < attValDistPerClass.size(); i++) {
+                model_file_content += i + " " + NUMERIC + attValDistPerClass[i]->get();
+            }
+        }
     }
-
 }
 
 void
@@ -65,7 +88,6 @@ readModelFile(Dvec observedClassDist,
         string nb_model_file)
 {
     string model_file_content = "";
-
 }
 
 void

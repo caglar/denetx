@@ -28,7 +28,8 @@ protected:
 
 public:
 
-    NomAttrObserver() : totalWeightObserved(0), missingWeightObserved(0), binaryOnly(false)
+    NomAttrObserver() :
+        totalWeightObserved(0), missingWeightObserved(0), binaryOnly(false)
     {
     }
 
@@ -47,6 +48,12 @@ public:
     isBinary()
     {
         return binaryOnly;
+    }
+
+    vector<DVec>
+    getattValDistPerClass()
+    {
+        return this->attValDistPerClass;
     }
 
     void
