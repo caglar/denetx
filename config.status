@@ -448,7 +448,7 @@ Copyright (C) 2010 Free Software Foundation, Inc.
 This config.status script is free software; the Free Software Foundation
 gives unlimited permission to copy, distribute and modify it."
 
-ac_pwd='/home/caglar/Codes/c++/myprojs/denetX'
+ac_pwd='/home/caglar/Codes/c++/myprojs/googleproj/denetx'
 srcdir='.'
 INSTALL='/usr/bin/install -c'
 MKDIR_P='/bin/mkdir -p'
@@ -657,7 +657,7 @@ S["CXXFLAGS"]=""
 S["CXX"]="g++"
 S["am__untar"]="${AMTAR} xf -"
 S["am__tar"]="${AMTAR} chof - \"$$tardir\""
-S["AMTAR"]="${SHELL} /home/caglar/Codes/c++/myprojs/denetX/missing --run tar"
+S["AMTAR"]="${SHELL} /home/caglar/Codes/c++/myprojs/googleproj/denetx/missing --run tar"
 S["am__leading_dot"]="."
 S["SET_MAKE"]=""
 S["AWK"]="gawk"
@@ -665,12 +665,12 @@ S["mkdir_p"]="/bin/mkdir -p"
 S["MKDIR_P"]="/bin/mkdir -p"
 S["INSTALL_STRIP_PROGRAM"]="$(install_sh) -c -s"
 S["STRIP"]=""
-S["install_sh"]="${SHELL} /home/caglar/Codes/c++/myprojs/denetX/install-sh"
-S["MAKEINFO"]="${SHELL} /home/caglar/Codes/c++/myprojs/denetX/missing --run makeinfo"
-S["AUTOHEADER"]="${SHELL} /home/caglar/Codes/c++/myprojs/denetX/missing --run autoheader"
-S["AUTOMAKE"]="${SHELL} /home/caglar/Codes/c++/myprojs/denetX/missing --run automake-1.11"
-S["AUTOCONF"]="${SHELL} /home/caglar/Codes/c++/myprojs/denetX/missing --run autoconf"
-S["ACLOCAL"]="${SHELL} /home/caglar/Codes/c++/myprojs/denetX/missing --run aclocal-1.11"
+S["install_sh"]="${SHELL} /home/caglar/Codes/c++/myprojs/googleproj/denetx/install-sh"
+S["MAKEINFO"]="${SHELL} /home/caglar/Codes/c++/myprojs/googleproj/denetx/missing --run makeinfo"
+S["AUTOHEADER"]="${SHELL} /home/caglar/Codes/c++/myprojs/googleproj/denetx/missing --run autoheader"
+S["AUTOMAKE"]="${SHELL} /home/caglar/Codes/c++/myprojs/googleproj/denetx/missing --run automake-1.11"
+S["AUTOCONF"]="${SHELL} /home/caglar/Codes/c++/myprojs/googleproj/denetx/missing --run autoconf"
+S["ACLOCAL"]="${SHELL} /home/caglar/Codes/c++/myprojs/googleproj/denetx/missing --run aclocal-1.11"
 S["VERSION"]="VERSION"
 S["PACKAGE"]="denetx"
 S["CYGPATH_W"]="echo"
