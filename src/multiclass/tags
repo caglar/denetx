@@ -1,0 +1,523 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ALNODE	ht.h	/^    ALNODE,$/;"	e	enum:NodeType
+ARRAYCOPY_H_	arraycopy.h	9;"	d
+ARRAYRESIZE_H	arrayresize.h	19;"	d
+ATTROBS_H_	attrobs.h	9;"	d
+ATTRSPLITSUGGEST	attrsplitsuggest.h	2;"	d
+ActiveLearningState	ht.h	/^      bool ActiveLearningState;$/;"	m	class:LearningNode	access:private
+ArrayLength	estimator.h	/^ArrayLength(const T a)$/;"	f	signature:(const T a)
+ArraySizeHelper	infogain.h	/^inline char (&ArraySizeHelper(T (&array)[N]))[N];$/;"	p	signature:(T (
+AttValue	split_test.h	/^      float AttValue;$/;"	m	class:NominalSplitTest	access:private
+AttValue	split_test.h	/^      float AttValue;$/;"	m	class:NumericSplitTest	access:private
+AttrSplitSuggestion	attrsplitsuggest.h	/^    AttrSplitSuggestion()$/;"	f	struct:AttrSplitSuggestion	access:public	signature:()
+AttrSplitSuggestion	attrsplitsuggest.h	/^    AttrSplitSuggestion(SplitTest *sTest, Matrix_t classDist, float mer) :$/;"	f	struct:AttrSplitSuggestion	access:public	signature:(SplitTest *sTest, Matrix_t classDist, float mer)
+AttrSplitSuggestion	attrsplitsuggest.h	/^struct AttrSplitSuggestion$/;"	s
+AttrSplitSuggestion::AttrSplitSuggestion	attrsplitsuggest.h	/^    AttrSplitSuggestion()$/;"	f	struct:AttrSplitSuggestion	access:public	signature:()
+AttrSplitSuggestion::AttrSplitSuggestion	attrsplitsuggest.h	/^    AttrSplitSuggestion(SplitTest *sTest, Matrix_t classDist, float mer) :$/;"	f	struct:AttrSplitSuggestion	access:public	signature:(SplitTest *sTest, Matrix_t classDist, float mer)
+AttrSplitSuggestion::merit	attrsplitsuggest.h	/^    float merit;$/;"	m	struct:AttrSplitSuggestion	access:public
+AttrSplitSuggestion::numSplits	attrsplitsuggest.h	/^    int numSplits;$/;"	m	struct:AttrSplitSuggestion	access:public
+AttrSplitSuggestion::operator <	attrsplitsuggest.h	/^    bool operator<(const AttrSplitSuggestion &rhs) const{$/;"	f	struct:AttrSplitSuggestion	access:public	signature:(const AttrSplitSuggestion &rhs) const
+AttrSplitSuggestion::operator ==	attrsplitsuggest.h	/^    bool operator==(const AttrSplitSuggestion &rhs) const {$/;"	f	struct:AttrSplitSuggestion	access:public	signature:(const AttrSplitSuggestion &rhs) const
+AttrSplitSuggestion::operator >	attrsplitsuggest.h	/^    bool operator>(const AttrSplitSuggestion &rhs) const {$/;"	f	struct:AttrSplitSuggestion	access:public	signature:(const AttrSplitSuggestion &rhs) const
+AttrSplitSuggestion::resultingClassDistribution	attrsplitsuggest.h	/^    Matrix_t resultingClassDistribution;$/;"	m	struct:AttrSplitSuggestion	access:public
+AttrSplitSuggestion::splitTest	attrsplitsuggest.h	/^    SplitTest *splitTest;$/;"	m	struct:AttrSplitSuggestion	access:public
+AttributeClassObserver	attrobs.h	/^class AttributeClassObserver {$/;"	c
+AttributeClassObserver::getBestEvaluatedSplitSuggestion	attrobs.h	/^    virtual AttrSplitSuggestion *getBestEvaluatedSplitSuggestion(float preSplitTest[], int attIndex, size_t splitTestSize) = 0;$/;"	p	class:AttributeClassObserver	access:public	signature:(float preSplitTest[], int attIndex, size_t splitTestSize)
+AttributeClassObserver::observeAttributeClass	attrobs.h	/^    virtual void observeAttributeClass(float attVal, int classVal, float weight) = 0;$/;"	p	class:AttributeClassObserver	access:public	signature:(float attVal, int classVal, float weight)
+AttributeClassObserver::probabilityOfAttributeValueGivenClass	attrobs.h	/^    virtual float probabilityOfAttributeValueGivenClass(float attVal, int classVal) = 0;$/;"	p	class:AttributeClassObserver	access:public	signature:(float attVal, int classVal)
+AttributeClassObserver::~AttributeClassObserver	attrobs.h	/^    ~AttributeClassObserver(){ }$/;"	f	class:AttributeClassObserver	access:public	signature:()
+AttributeObservers	ht.h	/^      vector <AttributeClassObserver *> AttributeObservers;$/;"	m	class:LearningNode	access:private
+DVEC_H_	dvec.h	9;"	d
+DVec	dvec.h	/^typedef boost::multi_array<float, 1> DVec;$/;"	t
+DiscreteEstimator	estimator.h	/^          DiscreteEstimator(int noOfSymbols)$/;"	f	class:est::DiscreteEstimator	access:public	signature:(int noOfSymbols)
+DiscreteEstimator	estimator.h	/^    class DiscreteEstimator : Estimator$/;"	c	namespace:est	inherits:Estimator
+ESTIMATOR_H_	estimator.h	10;"	d
+EqualsPassesTest	split_test.h	/^      bool EqualsPassesTest;$/;"	m	class:NumericSplitTest	access:private
+Estimator	estimator.h	/^    class Estimator$/;"	c	namespace:est
+FLIN_H_	flin.h	20;"	d
+FNODE	ht.h	/^    FNODE,$/;"	e	enum:NodeType
+FoundNode	ht.h	/^      FoundNode (Node* node, SplitNode* sparent, int pBranch): hNode(node), sParent(sparent), parentBranch(pBranch)$/;"	f	class:FoundNode	access:public	signature:(Node* node, SplitNode* sparent, int pBranch)
+FoundNode	ht.h	/^      FoundNode()$/;"	f	class:FoundNode	access:public	signature:()
+FoundNode	ht.h	/^class FoundNode$/;"	c
+FoundNode::FoundNode	ht.h	/^      FoundNode (Node* node, SplitNode* sparent, int pBranch): hNode(node), sParent(sparent), parentBranch(pBranch)$/;"	f	class:FoundNode	access:public	signature:(Node* node, SplitNode* sparent, int pBranch)
+FoundNode::FoundNode	ht.h	/^      FoundNode()$/;"	f	class:FoundNode	access:public	signature:()
+FoundNode::getType	ht.h	/^          getType()$/;"	f	class:FoundNode	access:public	signature:()
+FoundNode::hNode	ht.h	/^      Node* hNode;$/;"	m	class:FoundNode	access:public
+FoundNode::parentBranch	ht.h	/^      int parentBranch;$/;"	m	class:FoundNode	access:public
+FoundNode::sParent	ht.h	/^      SplitNode* sParent;$/;"	m	class:FoundNode	access:public
+GRACE_PERIOD	ht.h	/^const int GRACE_PERIOD = 200;$/;"	v
+HNODE	ht.h	/^    HNODE,$/;"	e	enum:NodeType
+HNode	ht.h	/^      HNode (float *classObservations, int numOfObservations) : Node(classObservations, numOfObservations)$/;"	f	class:HNode	access:public	signature:(float *classObservations, int numOfObservations)
+HNode	ht.h	/^class HNode: public Node$/;"	c	inherits:Node
+HNode::HNode	ht.h	/^      HNode (float *classObservations, int numOfObservations) : Node(classObservations, numOfObservations)$/;"	f	class:HNode	access:public	signature:(float *classObservations, int numOfObservations)
+HNode::filterInstanceToLeaf	ht.h	/^          filterInstanceToLeaf(SplitNode* parent, int parentBranch)$/;"	f	class:HNode	access:public	signature:(SplitNode* parent, int parentBranch)
+HTNB_H_	htnb.h	9;"	d
+HT_H_	ht.h	9;"	d
+HoeffdingTree	ht.h	/^      HoeffdingTree (arfheader *arfHeader)$/;"	f	class:HoeffdingTree	access:public	signature:(arfheader *arfHeader)
+HoeffdingTree	ht.h	/^class HoeffdingTree$/;"	c
+HoeffdingTree::HoeffdingTree	ht.h	/^      HoeffdingTree (arfheader *arfHeader)$/;"	f	class:HoeffdingTree	access:public	signature:(arfheader *arfHeader)
+HoeffdingTree::activeLeafNodeCount	ht.h	/^      int activeLeafNodeCount;$/;"	m	class:HoeffdingTree	access:protected
+HoeffdingTree::arfHeader	ht.h	/^      arfheader *arfHeader;$/;"	m	class:HoeffdingTree	access:protected
+HoeffdingTree::attemptToSplit	ht.h	/^          attemptToSplit(LearningNode *lNode, SplitNode *sNode, int parentIndex)$/;"	f	class:HoeffdingTree	access:protected	signature:(LearningNode *lNode, SplitNode *sNode, int parentIndex)
+HoeffdingTree::deactivateLearningNode	ht.h	/^          deactivateLearningNode(LearningNode *toDeactivate, SplitNode *parent, int parentBranch)$/;"	f	class:HoeffdingTree	access:protected	signature:(LearningNode *toDeactivate, SplitNode *parent, int parentBranch)
+HoeffdingTree::decisionNodeCount	ht.h	/^      int decisionNodeCount;$/;"	m	class:HoeffdingTree	access:protected
+HoeffdingTree::getClassVotesForInstance	ht.h	/^          getClassVotesForInstance(example *ex){$/;"	f	class:HoeffdingTree	access:public	signature:(example *ex)
+HoeffdingTree::inactiveLeafCount	ht.h	/^      int inactiveLeafCount;$/;"	m	class:HoeffdingTree	access:protected
+HoeffdingTree::resetLearning	ht.h	/^          resetLearning()$/;"	f	class:HoeffdingTree	access:public	signature:()
+HoeffdingTree::trainOnInstance	ht.h	/^          trainOnInstance(example *ex, size_t thread_num)$/;"	f	class:HoeffdingTree	access:public	signature:(example *ex, size_t thread_num)
+HoeffdingTree::treeRoot	ht.h	/^      HNode *treeRoot;$/;"	m	class:HoeffdingTree	access:protected
+ILNODE	ht.h	/^    ILNODE,$/;"	e	enum:NodeType
+INFOGAIN_H_	infogain.h	9;"	d
+KernelEstimator	estimator.h	/^          KernelEstimator(float precision)$/;"	f	class:est::KernelEstimator	access:public	signature:(float precision)
+KernelEstimator	estimator.h	/^    class KernelEstimator : Estimator$/;"	c	namespace:est	inherits:Estimator
+LOGPI	statistics.cc	/^static const float LOGPI = 1.14472988584940017414;$/;"	v	file:
+LearningNode	ht.h	/^      LearningNode (float* initClassObservations, int noOfObservations, arfheader *arfHead, bool learningState) :$/;"	f	class:LearningNode	access:public	signature:(float* initClassObservations, int noOfObservations, arfheader *arfHead, bool learningState)
+LearningNode	ht.h	/^class LearningNode : public HNode$/;"	c	inherits:HNode
+LearningNode::ActiveLearningState	ht.h	/^      bool ActiveLearningState;$/;"	m	class:LearningNode	access:private
+LearningNode::AttributeObservers	ht.h	/^      vector <AttributeClassObserver *> AttributeObservers;$/;"	m	class:LearningNode	access:private
+LearningNode::LearningNode	ht.h	/^      LearningNode (float* initClassObservations, int noOfObservations, arfheader *arfHead, bool learningState) :$/;"	f	class:LearningNode	access:public	signature:(float* initClassObservations, int noOfObservations, arfheader *arfHead, bool learningState)
+LearningNode::WeightAtLastSplitEval	ht.h	/^      float WeightAtLastSplitEval;$/;"	m	class:LearningNode	access:private
+LearningNode::arfHeader	ht.h	/^      arfheader *arfHeader;$/;"	m	class:LearningNode	access:private
+LearningNode::disableAttribute	ht.h	/^          disableAttribute(int attIndex)$/;"	f	class:LearningNode	access:public	signature:(int attIndex)
+LearningNode::getBestSplitSuggestions	ht.h	/^          getBestSplitSuggestions()$/;"	f	class:LearningNode	access:public	signature:()
+LearningNode::getType	ht.h	/^          getType()$/;"	f	class:LearningNode	access:public	signature:()
+LearningNode::getWeightSeen	ht.h	/^          getWeightSeen()$/;"	f	class:LearningNode	access:public	signature:()
+LearningNode::getWeightSeenAtLastSplit	ht.h	/^          getWeightSeenAtLastSplit()$/;"	f	class:LearningNode	access:public	signature:()
+LearningNode::initAdaptiveWeights	ht.h	/^          initAdaptiveWeights ()$/;"	f	class:LearningNode	access:private	signature:()
+LearningNode::learnFromInstance	ht.h	/^          learnFromInstance (example *ex, HoeffdingTree* ht, size_t thread_num)$/;"	f	class:LearningNode	access:public	signature:(example *ex, HoeffdingTree* ht, size_t thread_num)
+LearningNode::mCorrectWeight	ht.h	/^      float mCorrectWeight;$/;"	m	class:LearningNode	access:private
+LearningNode::nbCorrectWeight	ht.h	/^      float nbCorrectWeight;$/;"	m	class:LearningNode	access:private
+LearningNode::setUseNBPrediction	ht.h	/^          setUseNBPrediction(bool nbPred)$/;"	f	class:LearningNode	access:public	signature:(bool nbPred)
+LearningNode::setWeightSeenAtLastSplitEval	ht.h	/^          setWeightSeenAtLastSplitEval(float weight)$/;"	f	class:LearningNode	access:public	signature:(float weight)
+LearningNode::useNBPrediction	ht.h	/^      bool useNBPrediction;$/;"	m	class:LearningNode	access:private
+MACHEP	statistics.cc	/^static const float MACHEP = 1.11022302462515654042E-16;$/;"	v	file:
+MAXGAM	statistics.cc	/^static const float MAXGAM = 171.624376956302725;$/;"	v	file:
+MAXLOG	statistics.cc	/^static const float MAXLOG = 7.09782712893383996732E2;$/;"	v	file:
+MAX_ERROR	estimator.h	/^          static const float MAX_ERROR = 0.01;$/;"	m	class:est::KernelEstimator	access:private
+MINFRACVAL	infogain.cc	/^const float MINFRACVAL = 0.01;$/;"	v
+MINLOG	statistics.cc	/^static const float MINLOG = -7.451332191019412076235E2;$/;"	v	file:
+MINVAL	infogain.cc	/^const float MINVAL = 1.6009E-16;$/;"	v
+MUTILS_H_	mutils.h	9;"	d
+Matrix_t	dvec.h	/^typedef boost::multi_array<float,2> Matrix_t;$/;"	t
+Matrix_t	flin.h	/^typedef boost::multi_array<float,2> Matrix_t;$/;"	t
+NB_H_	nb.h	9;"	d
+NOMATTROBS_H_	nomattrobs.h	9;"	d
+NORMAL_CONSTANT	estimator.h	/^          float NORMAL_CONSTANT ;$/;"	m	class:est::NormalEstimator	access:private
+NUMATTROBS_H_	numattrobs.h	9;"	d
+NoOfSymbs	estimator.h	/^          int NoOfSymbs;$/;"	m	class:est::DiscreteEstimator	access:private
+Node	ht.h	/^      Node (float* classObservations, int numOfObservations)$/;"	f	class:Node	access:public	signature:(float* classObservations, int numOfObservations)
+Node	ht.h	/^class Node {$/;"	c
+Node::Node	ht.h	/^      Node (float* classObservations, int numOfObservations)$/;"	f	class:Node	access:public	signature:(float* classObservations, int numOfObservations)
+Node::filterInstanceToLeaf	ht.h	/^          filterInstanceToLeaf(feature *f,$/;"	f	class:Node	access:public	signature:(feature *f, SplitNode *parent, int parentBranch)
+Node::getClassVotes	ht.h	/^          getClassVotes (example *ex, int noOfClasses)$/;"	f	class:Node	access:public	signature:(example *ex, int noOfClasses)
+Node::getNoOfObservations	ht.h	/^          getNoOfObservations(){$/;"	f	class:Node	access:public	signature:()
+Node::getObservedClassDist	ht.h	/^          getObservedClassDist()$/;"	f	class:Node	access:public	signature:()
+Node::getType	ht.h	/^          getType()$/;"	f	class:Node	access:public	signature:()
+Node::get_num_non_zero	ht.h	/^         get_num_non_zero (float * vec) {$/;"	f	class:Node	access:public	signature:(float * vec)
+Node::isLeaf	ht.h	/^          isLeaf()$/;"	f	class:Node	access:public	signature:()
+Node::noOfObservations	ht.h	/^      int noOfObservations;$/;"	m	class:Node	access:protected
+Node::observedClassDist	ht.h	/^      float* observedClassDist;$/;"	m	class:Node	access:protected
+Node::observedClassDistributionIsPure	ht.h	/^          observedClassDistributionIsPure()$/;"	f	class:Node	access:public	signature:()
+Node::~Node	ht.h	/^      ~Node()$/;"	f	class:Node	access:public	signature:()
+NodeType	ht.h	/^enum NodeType {$/;"	g
+NomAttrObserver	nomattrobs.h	/^      NomAttrObserver(){$/;"	f	class:NomAttrObserver	access:public	signature:()
+NomAttrObserver	nomattrobs.h	/^class NomAttrObserver : public AttributeClassObserver$/;"	c	inherits:AttributeClassObserver
+NomAttrObserver::NomAttrObserver	nomattrobs.h	/^      NomAttrObserver(){$/;"	f	class:NomAttrObserver	access:public	signature:()
+NomAttrObserver::attValDistPerClass	nomattrobs.h	/^      vector<DVec> attValDistPerClass;$/;"	m	class:NomAttrObserver	access:protected
+NomAttrObserver::binaryOnly	nomattrobs.h	/^      bool binaryOnly;$/;"	m	class:NomAttrObserver	access:protected
+NomAttrObserver::getBestEvaluatedSplitSuggestion	nomattrobs.h	/^          getBestEvaluatedSplitSuggestion(float preSplitDist[], int attIndex, size_t splitTestSize)$/;"	f	class:NomAttrObserver	access:public	signature:(float preSplitDist[], int attIndex, size_t splitTestSize)
+NomAttrObserver::getClassDistsResultingFromBinarySplit	nomattrobs.h	/^          getClassDistsResultingFromBinarySplit(int valIndex) {$/;"	f	class:NomAttrObserver	access:public	signature:(int valIndex)
+NomAttrObserver::getClassDistsResultingFromMultiwaySplit	nomattrobs.h	/^          getClassDistsResultingFromMultiwaySplit($/;"	f	class:NomAttrObserver	access:public	signature:( int maxAttValsObserved)
+NomAttrObserver::getMaxAttValsObserved	nomattrobs.h	/^          getMaxAttValsObserved()$/;"	f	class:NomAttrObserver	access:public	signature:()
+NomAttrObserver::getTotalClassWeightsObserved	nomattrobs.h	/^          getTotalClassWeightsObserved()$/;"	f	class:NomAttrObserver	access:public	signature:()
+NomAttrObserver::isBinary	nomattrobs.h	/^          isBinary()$/;"	f	class:NomAttrObserver	access:public	signature:()
+NomAttrObserver::missingWeightObserved	nomattrobs.h	/^      float missingWeightObserved;$/;"	m	class:NomAttrObserver	access:protected
+NomAttrObserver::observeAttributeClass	nomattrobs.h	/^          observeAttributeClass(float attVal, int classVal, float weight)$/;"	f	class:NomAttrObserver	access:public	signature:(float attVal, int classVal, float weight)
+NomAttrObserver::probabilityOfAttributeValueGivenClass	nomattrobs.h	/^          probabilityOfAttributeValueGivenClass(float attVal, int classVal)$/;"	f	class:NomAttrObserver	access:public	signature:(float attVal, int classVal)
+NomAttrObserver::setBinaryOnly	nomattrobs.h	/^          setBinaryOnly(bool bFlag)$/;"	f	class:NomAttrObserver	access:public	signature:(bool bFlag)
+NomAttrObserver::totalWeightObserved	nomattrobs.h	/^      float totalWeightObserved;$/;"	m	class:NomAttrObserver	access:protected
+NominalSplitTest	split_test.h	/^      NominalSplitTest(bool isMultiWay)$/;"	f	class:NominalSplitTest	access:public	signature:(bool isMultiWay)
+NominalSplitTest	split_test.h	/^      NominalSplitTest(bool isMultiWay, float attValue)$/;"	f	class:NominalSplitTest	access:public	signature:(bool isMultiWay, float attValue)
+NominalSplitTest	split_test.h	/^class NominalSplitTest : public SplitTest {$/;"	c	inherits:SplitTest
+NominalSplitTest::AttValue	split_test.h	/^      float AttValue;$/;"	m	class:NominalSplitTest	access:private
+NominalSplitTest::NominalSplitTest	split_test.h	/^      NominalSplitTest(bool isMultiWay)$/;"	f	class:NominalSplitTest	access:public	signature:(bool isMultiWay)
+NominalSplitTest::NominalSplitTest	split_test.h	/^      NominalSplitTest(bool isMultiWay, float attValue)$/;"	f	class:NominalSplitTest	access:public	signature:(bool isMultiWay, float attValue)
+NominalSplitTest::branchForInstance	split_test.h	/^          branchForInstance (feature *f)$/;"	f	class:NominalSplitTest	access:public	signature:(feature *f)
+NominalSplitTest::misMultiWay	split_test.h	/^      bool misMultiWay;$/;"	m	class:NominalSplitTest	access:private
+NominalSplitTest::nominalBinaryBranch	split_test.h	/^          nominalBinaryBranch (feature *f)$/;"	f	class:NominalSplitTest	access:public	signature:(feature *f)
+NominalSplitTest::nominalMultiwayBranch	split_test.h	/^          nominalMultiwayBranch (feature *f)$/;"	f	class:NominalSplitTest	access:public	signature:(feature *f)
+NormalEstimator	estimator.h	/^          NormalEstimator(float precision)$/;"	f	class:est::NormalEstimator	access:public	signature:(float precision)
+NormalEstimator	estimator.h	/^    class NormalEstimator : Estimator$/;"	c	namespace:est	inherits:Estimator
+NumAttrObserver	numattrobs.h	/^      NumAttrObserver (unsigned int numBins_)$/;"	f	class:NumAttrObserver	access:public	signature:(unsigned int numBins_)
+NumAttrObserver	numattrobs.h	/^      NumAttrObserver() :$/;"	f	class:NumAttrObserver	access:public	signature:()
+NumAttrObserver	numattrobs.h	/^class NumAttrObserver : public AttributeClassObserver$/;"	c	inherits:AttributeClassObserver
+NumAttrObserver::NumAttrObserver	numattrobs.h	/^      NumAttrObserver (unsigned int numBins_)$/;"	f	class:NumAttrObserver	access:public	signature:(unsigned int numBins_)
+NumAttrObserver::NumAttrObserver	numattrobs.h	/^      NumAttrObserver() :$/;"	f	class:NumAttrObserver	access:public	signature:()
+NumAttrObserver::attValDistPerClass	numattrobs.h	/^      vector<NormalEstimator *> attValDistPerClass;$/;"	m	class:NumAttrObserver	access:private
+NumAttrObserver::getBestEvaluatedSplitSuggestion	numattrobs.h	/^          getBestEvaluatedSplitSuggestion(float preSplitDist[], int attIndex, size_t splitTestSize)$/;"	f	class:NumAttrObserver	access:public	signature:(float preSplitDist[], int attIndex, size_t splitTestSize)
+NumAttrObserver::getClassDistsResultingFromBinarySplit	numattrobs.h	/^          getClassDistsResultingFromBinarySplit(float splitValue)$/;"	f	class:NumAttrObserver	access:public	signature:(float splitValue)
+NumAttrObserver::getSplitSuggestions	numattrobs.h	/^          getSplitSuggestions()$/;"	f	class:NumAttrObserver	access:public	signature:()
+NumAttrObserver::maxValueObservedPerClass	numattrobs.h	/^      DVec maxValueObservedPerClass;$/;"	m	class:NumAttrObserver	access:private
+NumAttrObserver::minValueObservedPerClass	numattrobs.h	/^      DVec minValueObservedPerClass;$/;"	m	class:NumAttrObserver	access:private
+NumAttrObserver::numBins	numattrobs.h	/^      unsigned int numBins;$/;"	m	class:NumAttrObserver	access:private
+NumAttrObserver::observeAttributeClass	numattrobs.h	/^          observeAttributeClass(float attVal, int classVal, float weight)$/;"	f	class:NumAttrObserver	access:public	signature:(float attVal, int classVal, float weight)
+NumAttrObserver::probabilityOfAttributeValueGivenClass	numattrobs.h	/^          probabilityOfAttributeValueGivenClass(float attVal, int classVal)$/;"	f	class:NumAttrObserver	access:public	signature:(float attVal, int classVal)
+NumericSplitTest	split_test.h	/^      NumericSplitTest()$/;"	f	class:NumericSplitTest	access:public	signature:()
+NumericSplitTest	split_test.h	/^class NumericSplitTest : public SplitTest {$/;"	c	inherits:SplitTest
+NumericSplitTest::AttValue	split_test.h	/^      float AttValue;$/;"	m	class:NumericSplitTest	access:private
+NumericSplitTest::EqualsPassesTest	split_test.h	/^      bool EqualsPassesTest;$/;"	m	class:NumericSplitTest	access:private
+NumericSplitTest::NumericSplitTest	split_test.h	/^      NumericSplitTest()$/;"	f	class:NumericSplitTest	access:public	signature:()
+NumericSplitTest::branchForInstance	split_test.h	/^          branchForInstance(feature *f)$/;"	f	class:NumericSplitTest	access:public	signature:(feature *f)
+NumericSplitTest::numericBinaryBranch	split_test.h	/^          numericBinaryBranch (feature *f)$/;"	f	class:NumericSplitTest	access:public	signature:(feature *f)
+NumericSplitTest::numericBinaryTest	split_test.h	/^          numericBinaryTest (feature *f)$/;"	f	class:NumericSplitTest	access:public	signature:(feature *f)
+P	statistics.cc	/^const static float P[] =$/;"	v	file:
+Q	statistics.cc	/^const static float Q[] =$/;"	v	file:
+R	statistics.cc	/^const static float R[] =$/;"	v	file:
+REMOVE_POOR_ATTR	ht.h	/^const bool REMOVE_POOR_ATTR = true;$/;"	v
+S	statistics.cc	/^const static float S[] =$/;"	v	file:
+SMALL	estimator.h	/^          static const float SMALL = 1e-6;$/;"	m	class:est::KernelEstimator	access:private
+SNODE	ht.h	/^    SNODE$/;"	e	enum:NodeType
+SPLIT_CONFIDENCE	ht.h	/^const float SPLIT_CONFIDENCE = 0.0000001;$/;"	v
+SPLIT_TEST	split_test.h	2;"	d
+SQRTH	statistics.cc	/^static const float SQRTH = 7.07106781186547524401E-1;$/;"	v	file:
+SQTPI	statistics.cc	/^static const float SQTPI = 2.50662827463100050242E0;$/;"	v	file:
+STATISTICS_H_	statistics.h	8;"	d
+SplitNode	ht.h	/^      SplitNode (SplitTest* sTest, float* classObservations, int noOfObservations):$/;"	f	class:SplitNode	access:public	signature:(SplitTest* sTest, float* classObservations, int noOfObservations)
+SplitNode	ht.h	/^class SplitNode : public Node$/;"	c	inherits:Node
+SplitNode::SplitNode	ht.h	/^      SplitNode (SplitTest* sTest, float* classObservations, int noOfObservations):$/;"	f	class:SplitNode	access:public	signature:(SplitTest* sTest, float* classObservations, int noOfObservations)
+SplitNode::children	ht.h	/^      vector <Node *>children;$/;"	m	class:SplitNode	access:protected
+SplitNode::filterInstanceToLeaf	ht.h	/^          filterInstanceToLeaf(feature *f,$/;"	f	class:SplitNode	access:public	signature:(feature *f, SplitNode *parent, int parentBranch)
+SplitNode::getChild	ht.h	/^          getChild(int index)$/;"	f	class:SplitNode	access:public	signature:(int index)
+SplitNode::getType	ht.h	/^          getType()$/;"	f	class:SplitNode	access:public	signature:()
+SplitNode::instanceChildIndex	ht.h	/^          instanceChildIndex (feature *f)$/;"	f	class:SplitNode	access:public	signature:(feature *f)
+SplitNode::isLeaf	ht.h	/^          isLeaf()$/;"	f	class:SplitNode	access:public	signature:()
+SplitNode::numChildren	ht.h	/^          numChildren()$/;"	f	class:SplitNode	access:public	signature:()
+SplitNode::setChild	ht.h	/^          setChild(int index, Node* child)$/;"	f	class:SplitNode	access:public	signature:(int index, Node* child)
+SplitNode::splitTest	ht.h	/^      SplitTest* splitTest;$/;"	m	class:SplitNode	access:protected
+SplitTest	split_test.h	/^      SplitTest()$/;"	f	class:SplitTest	access:public	signature:()
+SplitTest	split_test.h	/^class SplitTest {$/;"	c
+SplitTest::SplitTest	split_test.h	/^      SplitTest()$/;"	f	class:SplitTest	access:public	signature:()
+SplitTest::branchForInstance	split_test.h	/^          branchForInstance (feature *f) = 0;$/;"	p	class:SplitTest	access:public	signature:(feature *f)
+SplitTest::isNom	split_test.h	/^      bool isNom;$/;"	m	class:SplitTest	access:private
+SplitTest::mNoOfBranches	split_test.h	/^      int mNoOfBranches;$/;"	m	class:SplitTest	access:private
+SplitTest::~SplitTest	split_test.h	/^      virtual ~SplitTest(){ }$/;"	f	class:SplitTest	access:public	signature:()
+T	statistics.cc	/^const static float T[] =$/;"	v	file:
+TIE_THRESHOLD	ht.h	/^const float TIE_THRESHOLD = 0.05;$/;"	v
+U	statistics.cc	/^const static float U[] =$/;"	v	file:
+Vector_t	flin.h	/^typedef boost::multi_array<float, 1> Vector_t;$/;"	t
+WeightAtLastSplitEval	ht.h	/^      float WeightAtLastSplitEval;$/;"	m	class:LearningNode	access:private
+activeLeafNodeCount	ht.h	/^      int activeLeafNodeCount;$/;"	m	class:HoeffdingTree	access:protected
+addValue	estimator.h	/^              addValue(float data, float weight) = 0;$/;"	p	class:est::Estimator	access:public	signature:(float data, float weight)
+addValue	estimator.h	/^              addValue(float data, float weight)$/;"	f	class:est::DiscreteEstimator	access:public	signature:(float data, float weight)
+addValue	estimator.h	/^              addValue(float data, float weight)$/;"	f	class:est::KernelEstimator	access:public	signature:(float data, float weight)
+addValue	estimator.h	/^              addValue(float data, float weight)$/;"	f	class:est::NormalEstimator	access:public	signature:(float data, float weight)
+add_to_val	dvec.cc	/^add_to_val (int i, DVec& dVec, float val) $/;"	f	signature:(int i, DVec& dVec, float val)
+add_to_val	dvec.h	/^add_to_val(int i, DVec& dVec, float val);$/;"	p	signature:(int i, DVec& dVec, float val)
+arfHeader	ht.h	/^      arfheader *arfHeader;$/;"	m	class:HoeffdingTree	access:protected
+arfHeader	ht.h	/^      arfheader *arfHeader;$/;"	m	class:LearningNode	access:private
+arfHeader	htnb.h	/^  arfheader* arfHeader;$/;"	m	struct:htnb_thread_params	access:public
+arfHeader	nb.h	/^  arfheader* arfHeader;$/;"	m	struct:nb_thread_params	access:public
+arrayResize	arrayresize.cc	/^arrayResize(T arr[], const size_t oldSize, const size_t newSize, const T defaultVal)$/;"	f	signature:(T arr[], const size_t oldSize, const size_t newSize, const T defaultVal)
+arrayResize	arrayresize.h	/^arrayResize(T arr[], const size_t oldSize, const size_t newSize, const T defaultVal);$/;"	p	signature:(T arr[], const size_t oldSize, const size_t newSize, const T defaultVal)
+arraysize	infogain.h	16;"	d
+arrcpy	arraycopy.h	/^namespace arrcpy$/;"	n
+arrcpy::dArraycopy	arraycopy.cc	/^arrcpy::dArraycopy(float src[], int srcPos, float dest[], int destPos,$/;"	f	class:arrcpy	signature:(float src[], int srcPos, float dest[], int destPos, size_t size)
+arrcpy::dArraycopy	arraycopy.h	/^            dArraycopy(float src[], int srcPos, float dest[], int dstPos,$/;"	p	namespace:arrcpy	signature:(float src[], int srcPos, float dest[], int dstPos, size_t size)
+arrcpy::dArraycpy	arraycopy.cc	/^arrcpy::dArraycpy(float dst[], float src[], size_t size)$/;"	f	class:arrcpy	signature:(float dst[], float src[], size_t size)
+arrcpy::dArraycpy	arraycopy.h	/^    dArraycpy(float dst[], float src[], size_t size);$/;"	p	namespace:arrcpy	signature:(float dst[], float src[], size_t size)
+attValDistPerClass	nomattrobs.h	/^      vector<DVec> attValDistPerClass;$/;"	m	class:NomAttrObserver	access:protected
+attValDistPerClass	numattrobs.h	/^      vector<NormalEstimator *> attValDistPerClass;$/;"	m	class:NumAttrObserver	access:private
+attemptToSplit	ht.h	/^          attemptToSplit(LearningNode *lNode, SplitNode *sNode, int parentIndex)$/;"	f	class:HoeffdingTree	access:protected	signature:(LearningNode *lNode, SplitNode *sNode, int parentIndex)
+attributeObservers	htnb.cc	/^static vector<AttributeClassObserver *> attributeObservers;$/;"	v	file:
+attributeObservers	nb.cc	/^static vector<AttributeClassObserver *> attributeObservers;$/;"	v	file:
+binaryOnly	nomattrobs.h	/^      bool binaryOnly;$/;"	m	class:NomAttrObserver	access:protected
+branchForInstance	split_test.h	/^          branchForInstance (feature *f) = 0;$/;"	p	class:SplitTest	access:public	signature:(feature *f)
+branchForInstance	split_test.h	/^          branchForInstance (feature *f)$/;"	f	class:NominalSplitTest	access:public	signature:(feature *f)
+branchForInstance	split_test.h	/^          branchForInstance(feature *f)$/;"	f	class:NumericSplitTest	access:public	signature:(feature *f)
+children	ht.h	/^      vector <Node *>children;$/;"	m	class:SplitNode	access:protected
+computeEntropy	infogain.cc	/^computeEntropy(Matrix_t dist)$/;"	f	signature:(Matrix_t dist)
+computeEntropy	infogain.cc	/^computeEntropy(boost::multi_array<float,1>dist)$/;"	f	signature:(boost::multi_array<float,1>dist)
+computeEntropy	infogain.cc	/^computeEntropy(float (&dist)[N])$/;"	f	signature:(float (&dist)[N])
+computeEntropy	infogain.cc	/^computeEntropy(float dist[], size_t N)$/;"	f	signature:(float dist[], size_t N)
+computeEntropy	infogain.h	/^computeEntropy(Matrix_t dist);$/;"	p	signature:(Matrix_t dist)
+computeEntropy	infogain.h	/^computeEntropy(boost::multi_array<float,1>dist);$/;"	p	signature:(boost::multi_array<float,1>dist)
+computeEntropy	infogain.h	/^computeEntropy(float dist[N]);$/;"	p	signature:(float dist[N])
+computeEntropy	infogain.h	/^computeEntropy(float dist[], size_t N);$/;"	p	signature:(float dist[], size_t N)
+computeHoeffdingBound	hoeffding_bound.cc	/^computeHoeffdingBound (float range, float confidence, float n) $/;"	f	signature:(float range, float confidence, float n)
+computeHoeffdingBound	hoeffding_bound.h	/^computeHoeffdingBound (float range, float confidence, float n);$/;"	p	signature:(float range, float confidence, float n)
+copy_array_elements	dvec.cc	/^copy_array_elements (DVec &dvec, const float *val, size_t array_size)$/;"	f	signature:(DVec &dvec, const float *val, size_t array_size)
+copy_array_elements	dvec.h	/^copy_array_elements(DVec &dvec, const float *val, size_t array_size);$/;"	p	signature:(DVec &dvec, const float *val, size_t array_size)
+copy_dvec_to_array	dvec.cc	/^copy_dvec_to_array (const DVec &dvec, float *val)$/;"	f	signature:(const DVec &dvec, float *val)
+copy_dvec_to_array	dvec.h	/^copy_dvec_to_array(const DVec &dvec, float *val);$/;"	p	signature:(const DVec &dvec, float *val)
+copy_dvec_to_stl_ds	dvec.cc	/^copy_dvec_to_stl_ds(const DVec &dvec, T &vec)$/;"	f	signature:(const DVec &dvec, T &vec)
+copy_dvec_to_stl_ds	dvec.h	/^copy_dvec_to_stl_ds (const DVec &dvec, T &vec);$/;"	p	signature:(const DVec &dvec, T &vec)
+copy_stl_ds_to_dvec	dvec.cc	/^copy_stl_ds_to_dvec (DVec &dvec, const T &vec)$/;"	f	signature:(DVec &dvec, const T &vec)
+copy_stl_ds_to_dvec	dvec.h	/^copy_stl_ds_to_dvec (DVec &dvec, const T &vec);$/;"	p	signature:(DVec &dvec, const T &vec)
+dArraycopy	arraycopy.cc	/^arrcpy::dArraycopy(float src[], int srcPos, float dest[], int destPos,$/;"	f	class:arrcpy	signature:(float src[], int srcPos, float dest[], int destPos, size_t size)
+dArraycopy	arraycopy.h	/^            dArraycopy(float src[], int srcPos, float dest[], int dstPos,$/;"	p	namespace:arrcpy	signature:(float src[], int srcPos, float dest[], int dstPos, size_t size)
+dArraycpy	arraycopy.cc	/^arrcpy::dArraycpy(float dst[], float src[], size_t size)$/;"	f	class:arrcpy	signature:(float dst[], float src[], size_t size)
+dArraycpy	arraycopy.h	/^    dArraycpy(float dst[], float src[], size_t size);$/;"	p	namespace:arrcpy	signature:(float dst[], float src[], size_t size)
+deactivateLearningNode	ht.h	/^          deactivateLearningNode(LearningNode *toDeactivate, SplitNode *parent, int parentBranch)$/;"	f	class:HoeffdingTree	access:protected	signature:(LearningNode *toDeactivate, SplitNode *parent, int parentBranch)
+decisionNodeCount	ht.h	/^      int decisionNodeCount;$/;"	m	class:HoeffdingTree	access:protected
+destroy_htnb	htnb.cc	/^destroy_htnb()$/;"	f	signature:()
+destroy_htnb	htnb.h	/^destroy_htnb();$/;"	p	signature:()
+destroy_nb	nb.cc	/^destroy_nb()$/;"	f	signature:()
+destroy_nb	nb.h	/^destroy_nb();$/;"	p	signature:()
+disableAttribute	ht.h	/^          disableAttribute(int attIndex)$/;"	f	class:LearningNode	access:public	signature:(int attIndex)
+erf	statistics.cc	/^erf(float x)$/;"	f	signature:(float x)
+erfc	statistics.cc	/^erfc(float a)$/;"	f	signature:(float a)
+erfce	statistics.cc	/^erfce(float x)$/;"	f	file:	signature:(float x)
+est	estimator.h	/^namespace est$/;"	n
+est::DiscreteEstimator	estimator.h	/^    class DiscreteEstimator : Estimator$/;"	c	namespace:est	inherits:Estimator
+est::DiscreteEstimator::DiscreteEstimator	estimator.h	/^          DiscreteEstimator(int noOfSymbols)$/;"	f	class:est::DiscreteEstimator	access:public	signature:(int noOfSymbols)
+est::DiscreteEstimator::NoOfSymbs	estimator.h	/^          int NoOfSymbs;$/;"	m	class:est::DiscreteEstimator	access:private
+est::DiscreteEstimator::addValue	estimator.h	/^              addValue(float data, float weight)$/;"	f	class:est::DiscreteEstimator	access:public	signature:(float data, float weight)
+est::DiscreteEstimator::getNoOfSymbols	estimator.h	/^              getNoOfSymbols()$/;"	f	class:est::DiscreteEstimator	access:public	signature:()
+est::DiscreteEstimator::getProbability	estimator.h	/^              getProbability(float data)$/;"	f	class:est::DiscreteEstimator	access:public	signature:(float data)
+est::DiscreteEstimator::mCounts	estimator.h	/^          float *mCounts;$/;"	m	class:est::DiscreteEstimator	access:private
+est::DiscreteEstimator::mSumOfCounts	estimator.h	/^          float mSumOfCounts;$/;"	m	class:est::DiscreteEstimator	access:private
+est::Estimator	estimator.h	/^    class Estimator$/;"	c	namespace:est
+est::Estimator::addValue	estimator.h	/^              addValue(float data, float weight) = 0;$/;"	p	class:est::Estimator	access:public	signature:(float data, float weight)
+est::Estimator::getProbability	estimator.h	/^              getProbability(float data) = 0;$/;"	p	class:est::Estimator	access:public	signature:(float data)
+est::Estimator::~Estimator	estimator.h	/^              ~Estimator()$/;"	f	class:est::Estimator	access:public	signature:()
+est::KernelEstimator	estimator.h	/^    class KernelEstimator : Estimator$/;"	c	namespace:est	inherits:Estimator
+est::KernelEstimator::KernelEstimator	estimator.h	/^          KernelEstimator(float precision)$/;"	f	class:est::KernelEstimator	access:public	signature:(float precision)
+est::KernelEstimator::MAX_ERROR	estimator.h	/^          static const float MAX_ERROR = 0.01;$/;"	m	class:est::KernelEstimator	access:private
+est::KernelEstimator::SMALL	estimator.h	/^          static const float SMALL = 1e-6;$/;"	m	class:est::KernelEstimator	access:private
+est::KernelEstimator::addValue	estimator.h	/^              addValue(float data, float weight)$/;"	f	class:est::KernelEstimator	access:public	signature:(float data, float weight)
+est::KernelEstimator::findNearestValue	estimator.h	/^              findNearestValue(float key)$/;"	f	class:est::KernelEstimator	access:private	signature:(float key)
+est::KernelEstimator::getProbability	estimator.h	/^              getProbability(float data)$/;"	f	class:est::KernelEstimator	access:public	signature:(float data)
+est::KernelEstimator::mAllWeightsOne	estimator.h	/^          bool mAllWeightsOne;$/;"	m	class:est::KernelEstimator	access:private
+est::KernelEstimator::mNumValues	estimator.h	/^          int mNumValues;$/;"	m	class:est::KernelEstimator	access:private
+est::KernelEstimator::mPrecision	estimator.h	/^          float mPrecision;$/;"	m	class:est::KernelEstimator	access:private
+est::KernelEstimator::mStandardDev	estimator.h	/^          float mStandardDev;$/;"	m	class:est::KernelEstimator	access:private
+est::KernelEstimator::mSumOfWeights	estimator.h	/^          float mSumOfWeights;$/;"	m	class:est::KernelEstimator	access:private
+est::KernelEstimator::mValues	estimator.h	/^          float *mValues;$/;"	m	class:est::KernelEstimator	access:private
+est::KernelEstimator::mWeights	estimator.h	/^          float *mWeights;$/;"	m	class:est::KernelEstimator	access:private
+est::KernelEstimator::roundPrecise	estimator.h	/^              roundPrecise(float num)$/;"	f	class:est::KernelEstimator	access:public	signature:(float num)
+est::NormalEstimator	estimator.h	/^    class NormalEstimator : Estimator$/;"	c	namespace:est	inherits:Estimator
+est::NormalEstimator::NORMAL_CONSTANT	estimator.h	/^          float NORMAL_CONSTANT ;$/;"	m	class:est::NormalEstimator	access:private
+est::NormalEstimator::NormalEstimator	estimator.h	/^          NormalEstimator(float precision)$/;"	f	class:est::NormalEstimator	access:public	signature:(float precision)
+est::NormalEstimator::addValue	estimator.h	/^              addValue(float data, float weight)$/;"	f	class:est::NormalEstimator	access:public	signature:(float data, float weight)
+est::NormalEstimator::getEqualToWeight	estimator.h	/^              getEqualToWeight(float val)$/;"	f	class:est::NormalEstimator	access:public	signature:(float val)
+est::NormalEstimator::getGreaterThanWeight	estimator.h	/^              getGreaterThanWeight(float val, float equalToWeight, float lessThanWeight)$/;"	f	class:est::NormalEstimator	access:public	signature:(float val, float equalToWeight, float lessThanWeight)
+est::NormalEstimator::getLessThanWeight	estimator.h	/^              getLessThanWeight(float val, float equalToWeight)$/;"	f	class:est::NormalEstimator	access:public	signature:(float val, float equalToWeight)
+est::NormalEstimator::getProbability	estimator.h	/^              getProbability(float data)$/;"	f	class:est::NormalEstimator	access:public	signature:(float data)
+est::NormalEstimator::getTotalObsWeights	estimator.h	/^              getTotalObsWeights()$/;"	f	class:est::NormalEstimator	access:public	signature:()
+est::NormalEstimator::mMean	estimator.h	/^          float mMean;$/;"	m	class:est::NormalEstimator	access:private
+est::NormalEstimator::mPrecision	estimator.h	/^          float mPrecision;$/;"	m	class:est::NormalEstimator	access:private
+est::NormalEstimator::mStandardDev	estimator.h	/^          float mStandardDev;$/;"	m	class:est::NormalEstimator	access:private
+est::NormalEstimator::mSumOfValues	estimator.h	/^          float mSumOfValues;$/;"	m	class:est::NormalEstimator	access:private
+est::NormalEstimator::mSumOfValuesSq	estimator.h	/^          float mSumOfValuesSq;$/;"	m	class:est::NormalEstimator	access:private
+est::NormalEstimator::mSumOfWeights	estimator.h	/^          float mSumOfWeights;$/;"	m	class:est::NormalEstimator	access:private
+est::NormalEstimator::probabilityDensity	estimator.h	/^              probabilityDensity(float value)$/;"	f	class:est::NormalEstimator	access:public	signature:(float value)
+est::NormalEstimator::roundPrecise	estimator.h	/^              roundPrecise(float num)$/;"	f	class:est::NormalEstimator	access:public	signature:(float num)
+filterInstanceToLeaf	ht.h	/^          filterInstanceToLeaf(SplitNode* parent, int parentBranch)$/;"	f	class:HNode	access:public	signature:(SplitNode* parent, int parentBranch)
+filterInstanceToLeaf	ht.h	/^          filterInstanceToLeaf(feature *f,$/;"	f	class:Node	access:public	signature:(feature *f, SplitNode *parent, int parentBranch)
+filterInstanceToLeaf	ht.h	/^          filterInstanceToLeaf(feature *f,$/;"	f	class:SplitNode	access:public	signature:(feature *f, SplitNode *parent, int parentBranch)
+findNearestValue	estimator.h	/^              findNearestValue(float key)$/;"	f	class:est::KernelEstimator	access:private	signature:(float key)
+finish_example	htnb.cc	/^finish_example(example* ec) {$/;"	f	file:	signature:(example* ec)
+finish_example	htnb.cc	/^finish_example(example* ec);$/;"	p	file:	signature:(example* ec)
+finish_example	nb.cc	/^finish_example(example* ec) {$/;"	f	file:	signature:(example* ec)
+finish_example	nb.cc	/^finish_example(example* ec);$/;"	p	file:	signature:(example* ec)
+fsum	mutils.cc	/^fsum(Vector_t vec)$/;"	f	signature:(Vector_t vec)
+fsum	mutils.cc	/^fsum(float(&vec)[N])$/;"	f	signature:(float(&vec)[N])
+fsum	mutils.h	/^fsum(Vector_t vec);$/;"	p	signature:(Vector_t vec)
+fsum	mutils.h	/^fsum(float(&vec)[N]);$/;"	p	signature:(float(&vec)[N])
+getBestEvaluatedSplitSuggestion	attrobs.h	/^    virtual AttrSplitSuggestion *getBestEvaluatedSplitSuggestion(float preSplitTest[], int attIndex, size_t splitTestSize) = 0;$/;"	p	class:AttributeClassObserver	access:public	signature:(float preSplitTest[], int attIndex, size_t splitTestSize)
+getBestEvaluatedSplitSuggestion	nomattrobs.h	/^          getBestEvaluatedSplitSuggestion(float preSplitDist[], int attIndex, size_t splitTestSize)$/;"	f	class:NomAttrObserver	access:public	signature:(float preSplitDist[], int attIndex, size_t splitTestSize)
+getBestEvaluatedSplitSuggestion	numattrobs.h	/^          getBestEvaluatedSplitSuggestion(float preSplitDist[], int attIndex, size_t splitTestSize)$/;"	f	class:NumAttrObserver	access:public	signature:(float preSplitDist[], int attIndex, size_t splitTestSize)
+getBestSplitSuggestions	ht.h	/^          getBestSplitSuggestions()$/;"	f	class:LearningNode	access:public	signature:()
+getChild	ht.h	/^          getChild(int index)$/;"	f	class:SplitNode	access:public	signature:(int index)
+getClassDistsResultingFromBinarySplit	nomattrobs.h	/^          getClassDistsResultingFromBinarySplit(int valIndex) {$/;"	f	class:NomAttrObserver	access:public	signature:(int valIndex)
+getClassDistsResultingFromBinarySplit	numattrobs.h	/^          getClassDistsResultingFromBinarySplit(float splitValue)$/;"	f	class:NumAttrObserver	access:public	signature:(float splitValue)
+getClassDistsResultingFromMultiwaySplit	nomattrobs.h	/^          getClassDistsResultingFromMultiwaySplit($/;"	f	class:NomAttrObserver	access:public	signature:( int maxAttValsObserved)
+getClassVotes	ht.h	/^          getClassVotes (example *ex, int noOfClasses)$/;"	f	class:Node	access:public	signature:(example *ex, int noOfClasses)
+getClassVotesForInstance	ht.h	/^          getClassVotesForInstance(example *ex){$/;"	f	class:HoeffdingTree	access:public	signature:(example *ex)
+getEqualToWeight	estimator.h	/^              getEqualToWeight(float val)$/;"	f	class:est::NormalEstimator	access:public	signature:(float val)
+getGreaterThanWeight	estimator.h	/^              getGreaterThanWeight(float val, float equalToWeight, float lessThanWeight)$/;"	f	class:est::NormalEstimator	access:public	signature:(float val, float equalToWeight, float lessThanWeight)
+getLessThanWeight	estimator.h	/^              getLessThanWeight(float val, float equalToWeight)$/;"	f	class:est::NormalEstimator	access:public	signature:(float val, float equalToWeight)
+getMaxAttValsObserved	nomattrobs.h	/^          getMaxAttValsObserved()$/;"	f	class:NomAttrObserver	access:public	signature:()
+getMeritOfSplit	infogain.cc	/^getMeritOfSplit(float (&preSplitDist)[N], Matrix_t& postSplitDists)$/;"	f	signature:(float (&preSplitDist)[N], Matrix_t& postSplitDists)
+getMeritOfSplit	infogain.cc	/^getMeritOfSplit(float preSplitDist[], Matrix_t& postSplitDists, size_t preSplitDistSize)$/;"	f	signature:(float preSplitDist[], Matrix_t& postSplitDists, size_t preSplitDistSize)
+getMeritOfSplit	infogain.h	/^getMeritOfSplit(float (&preSplitDist)[N], Matrix_t& postSplitDists);$/;"	p	signature:(float (&preSplitDist)[N], Matrix_t& postSplitDists)
+getMeritOfSplit	infogain.h	/^getMeritOfSplit(float preSplitDist[], Matrix_t& postSplitDists, size_t preSplitDistSize);$/;"	p	signature:(float preSplitDist[], Matrix_t& postSplitDists, size_t preSplitDistSize)
+getNoOfObservations	ht.h	/^          getNoOfObservations(){$/;"	f	class:Node	access:public	signature:()
+getNoOfSymbols	estimator.h	/^              getNoOfSymbols()$/;"	f	class:est::DiscreteEstimator	access:public	signature:()
+getObservedClassDist	ht.h	/^          getObservedClassDist()$/;"	f	class:Node	access:public	signature:()
+getProbability	estimator.h	/^              getProbability(float data) = 0;$/;"	p	class:est::Estimator	access:public	signature:(float data)
+getProbability	estimator.h	/^              getProbability(float data)$/;"	f	class:est::DiscreteEstimator	access:public	signature:(float data)
+getProbability	estimator.h	/^              getProbability(float data)$/;"	f	class:est::KernelEstimator	access:public	signature:(float data)
+getProbability	estimator.h	/^              getProbability(float data)$/;"	f	class:est::NormalEstimator	access:public	signature:(float data)
+getRangeOfMerit	infogain.cc	/^getRangeOfMerit(float (&preSplitDist)[N])$/;"	f	signature:(float (&preSplitDist)[N])
+getRangeOfMerit	infogain.cc	/^getRangeOfMerit(float preSplitDist[], size_t N)$/;"	f	signature:(float preSplitDist[], size_t N)
+getRangeOfMerit	infogain.h	/^getRangeOfMerit(float (&preSplitDist)[N]);$/;"	p	signature:(float (&preSplitDist)[N])
+getRangeOfMerit	infogain.h	/^getRangeOfMerit(float preSplitDist[]);$/;"	p	signature:(float preSplitDist[])
+getSplitSuggestions	numattrobs.h	/^          getSplitSuggestions()$/;"	f	class:NumAttrObserver	access:public	signature:()
+getTotalClassWeightsObserved	nomattrobs.h	/^          getTotalClassWeightsObserved()$/;"	f	class:NomAttrObserver	access:public	signature:()
+getTotalObsWeights	estimator.h	/^              getTotalObsWeights()$/;"	f	class:est::NormalEstimator	access:public	signature:()
+getType	ht.h	/^          getType()$/;"	f	class:FoundNode	access:public	signature:()
+getType	ht.h	/^          getType()$/;"	f	class:LearningNode	access:public	signature:()
+getType	ht.h	/^          getType()$/;"	f	class:Node	access:public	signature:()
+getType	ht.h	/^          getType()$/;"	f	class:SplitNode	access:public	signature:()
+getWeightSeen	ht.h	/^          getWeightSeen()$/;"	f	class:LearningNode	access:public	signature:()
+getWeightSeenAtLastSplit	ht.h	/^          getWeightSeenAtLastSplit()$/;"	f	class:LearningNode	access:public	signature:()
+get_num_non_zero	dvec.cc	/^get_num_non_zero (const DVec & dvec)$/;"	f	signature:(const DVec & dvec)
+get_num_non_zero	dvec.h	/^get_num_non_zero (const DVec & dvec);$/;"	p	signature:(const DVec & dvec)
+get_num_non_zero	ht.h	/^         get_num_non_zero (float * vec) {$/;"	f	class:Node	access:public	signature:(float * vec)
+hNode	ht.h	/^      Node* hNode;$/;"	m	class:FoundNode	access:public
+htnb_predict	htnb.cc	/^htnb_predict(example* ex, size_t thread_num, htnb_thread_params* params)$/;"	f	signature:(example* ex, size_t thread_num, htnb_thread_params* params)
+htnb_predict	htnb.h	/^htnb_predict(example* ex, size_t thread_num, htnb_thread_params* params);$/;"	p	signature:(example* ex, size_t thread_num, htnb_thread_params* params)
+htnb_thread	htnb.cc	/^htnb_thread(void *in)$/;"	f	signature:(void *in)
+htnb_thread	htnb.h	/^htnb_thread(void *in);$/;"	p	signature:(void *in)
+htnb_thread_params	htnb.h	/^struct htnb_thread_params$/;"	s
+htnb_thread_params::arfHeader	htnb.h	/^  arfheader* arfHeader;$/;"	m	struct:htnb_thread_params	access:public
+htnb_thread_params::predictions	htnb.h	/^  float* predictions;$/;"	m	struct:htnb_thread_params	access:public
+htnb_thread_params::thread_num	htnb.h	/^  size_t thread_num;$/;"	m	struct:htnb_thread_params	access:public
+htnb_thread_params::vars	htnb.h	/^  htnb_vars* vars;$/;"	m	struct:htnb_thread_params	access:public
+htnb_train_on_example	htnb.cc	/^htnb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num)$/;"	f	signature:(example* ex, arfheader *arfHeader, size_t thread_num)
+htnb_train_on_example	htnb.h	/^htnb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num);$/;"	p	signature:(example* ex, arfheader *arfHeader, size_t thread_num)
+htnb_vars	htnb.h	/^  htnb_vars()$/;"	f	struct:htnb_vars	access:public	signature:()
+htnb_vars	htnb.h	/^struct htnb_vars$/;"	s
+htnb_vars::htnb_vars	htnb.h	/^  htnb_vars()$/;"	f	struct:htnb_vars	access:public	signature:()
+htnb_vars::init	htnb.h	/^  void init()$/;"	f	struct:htnb_vars	access:public	signature:()
+htnb_vars::power_t	htnb.h	/^  float power_t;$/;"	m	struct:htnb_vars	access:public
+inactiveLeafCount	ht.h	/^      int inactiveLeafCount;$/;"	m	class:HoeffdingTree	access:protected
+init	htnb.h	/^  void init()$/;"	f	struct:htnb_vars	access:public	signature:()
+init	nb.h	/^  void init()$/;"	f	struct:nb_vars	access:public	signature:()
+initAdaptiveWeights	ht.h	/^          initAdaptiveWeights ()$/;"	f	class:LearningNode	access:private	signature:()
+instanceChildIndex	ht.h	/^          instanceChildIndex (feature *f)$/;"	f	class:SplitNode	access:public	signature:(feature *f)
+isBinary	nomattrobs.h	/^          isBinary()$/;"	f	class:NomAttrObserver	access:public	signature:()
+isLeaf	ht.h	/^          isLeaf()$/;"	f	class:Node	access:public	signature:()
+isLeaf	ht.h	/^          isLeaf()$/;"	f	class:SplitNode	access:public	signature:()
+isNom	split_test.h	/^      bool isNom;$/;"	m	class:SplitTest	access:private
+learnFromInstance	ht.h	/^          learnFromInstance (example *ex, HoeffdingTree* ht, size_t thread_num)$/;"	f	class:LearningNode	access:public	signature:(example *ex, HoeffdingTree* ht, size_t thread_num)
+mAllWeightsOne	estimator.h	/^          bool mAllWeightsOne;$/;"	m	class:est::KernelEstimator	access:private
+mCorrectWeight	ht.h	/^      float mCorrectWeight;$/;"	m	class:LearningNode	access:private
+mCounts	estimator.h	/^          float *mCounts;$/;"	m	class:est::DiscreteEstimator	access:private
+mMean	estimator.h	/^          float mMean;$/;"	m	class:est::NormalEstimator	access:private
+mNoOfBranches	split_test.h	/^      int mNoOfBranches;$/;"	m	class:SplitTest	access:private
+mNumValues	estimator.h	/^          int mNumValues;$/;"	m	class:est::KernelEstimator	access:private
+mPrecision	estimator.h	/^          float mPrecision;$/;"	m	class:est::KernelEstimator	access:private
+mPrecision	estimator.h	/^          float mPrecision;$/;"	m	class:est::NormalEstimator	access:private
+mStandardDev	estimator.h	/^          float mStandardDev;$/;"	m	class:est::KernelEstimator	access:private
+mStandardDev	estimator.h	/^          float mStandardDev;$/;"	m	class:est::NormalEstimator	access:private
+mSumOfCounts	estimator.h	/^          float mSumOfCounts;$/;"	m	class:est::DiscreteEstimator	access:private
+mSumOfValues	estimator.h	/^          float mSumOfValues;$/;"	m	class:est::NormalEstimator	access:private
+mSumOfValuesSq	estimator.h	/^          float mSumOfValuesSq;$/;"	m	class:est::NormalEstimator	access:private
+mSumOfWeights	estimator.h	/^          float mSumOfWeights;$/;"	m	class:est::KernelEstimator	access:private
+mSumOfWeights	estimator.h	/^          float mSumOfWeights;$/;"	m	class:est::NormalEstimator	access:private
+mValues	estimator.h	/^          float *mValues;$/;"	m	class:est::KernelEstimator	access:private
+mWeights	estimator.h	/^          float *mWeights;$/;"	m	class:est::KernelEstimator	access:private
+main	tests/infogain_test.cc	/^int main () $/;"	f	signature:()
+maxValueObservedPerClass	numattrobs.h	/^      DVec maxValueObservedPerClass;$/;"	m	class:NumAttrObserver	access:private
+max_index	dvec.cc	/^max_index (const DVec& dvec)$/;"	f	signature:(const DVec& dvec)
+max_index	dvec.h	/^max_index(const DVec& dvec);$/;"	p	signature:(const DVec& dvec)
+max_val	dvec.cc	/^max_val (const DVec& dvec)$/;"	f	signature:(const DVec& dvec)
+max_val	dvec.h	/^max_val(const DVec& dvec);$/;"	p	signature:(const DVec& dvec)
+merit	attrsplitsuggest.h	/^    float merit;$/;"	m	struct:AttrSplitSuggestion	access:public
+minValueObservedPerClass	numattrobs.h	/^      DVec minValueObservedPerClass;$/;"	m	class:NumAttrObserver	access:private
+min_index	dvec.cc	/^min_index (const DVec& dvec)$/;"	f	signature:(const DVec& dvec)
+min_index	dvec.h	/^min_index(const DVec& dvec);$/;"	p	signature:(const DVec& dvec)
+min_val	dvec.cc	/^min_val (const DVec& dvec)$/;"	f	signature:(const DVec& dvec)
+min_val	dvec.h	/^min_val(const DVec& dvec);$/;"	p	signature:(const DVec& dvec)
+misMultiWay	split_test.h	/^      bool misMultiWay;$/;"	m	class:NominalSplitTest	access:private
+missingWeightObserved	nomattrobs.h	/^      float missingWeightObserved;$/;"	m	class:NomAttrObserver	access:protected
+naive_bayes_predict	nb.cc	/^naive_bayes_predict(example* ex, size_t thread_num, nb_thread_params* params)$/;"	f	signature:(example* ex, size_t thread_num, nb_thread_params* params)
+naive_bayes_predict	nb.h	/^naive_bayes_predict(example* ex, size_t thread_num, nb_thread_params* params);$/;"	p	signature:(example* ex, size_t thread_num, nb_thread_params* params)
+nbCorrectWeight	ht.h	/^      float nbCorrectWeight;$/;"	m	class:LearningNode	access:private
+nb_thread	nb.cc	/^nb_thread(void *in)$/;"	f	signature:(void *in)
+nb_thread	nb.h	/^nb_thread(void *in);$/;"	p	signature:(void *in)
+nb_thread_params	nb.h	/^struct nb_thread_params$/;"	s
+nb_thread_params::arfHeader	nb.h	/^  arfheader* arfHeader;$/;"	m	struct:nb_thread_params	access:public
+nb_thread_params::predictions	nb.h	/^  float* predictions;$/;"	m	struct:nb_thread_params	access:public
+nb_thread_params::thread_num	nb.h	/^  size_t thread_num;$/;"	m	struct:nb_thread_params	access:public
+nb_thread_params::vars	nb.h	/^  nb_vars* vars;$/;"	m	struct:nb_thread_params	access:public
+nb_train_on_example	nb.cc	/^nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num)$/;"	f	signature:(example* ex, arfheader *arfHeader, size_t thread_num)
+nb_train_on_example	nb.h	/^nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num);$/;"	p	signature:(example* ex, arfheader *arfHeader, size_t thread_num)
+nb_vars	nb.h	/^  nb_vars()$/;"	f	struct:nb_vars	access:public	signature:()
+nb_vars	nb.h	/^struct nb_vars$/;"	s
+nb_vars::init	nb.h	/^  void init()$/;"	f	struct:nb_vars	access:public	signature:()
+nb_vars::nb_vars	nb.h	/^  nb_vars()$/;"	f	struct:nb_vars	access:public	signature:()
+nb_vars::power_t	nb.h	/^  float power_t;$/;"	m	struct:nb_vars	access:public
+noOfObservations	ht.h	/^      int noOfObservations;$/;"	m	class:Node	access:protected
+nominalBinaryBranch	split_test.h	/^          nominalBinaryBranch (feature *f)$/;"	f	class:NominalSplitTest	access:public	signature:(feature *f)
+nominalMultiwayBranch	split_test.h	/^          nominalMultiwayBranch (feature *f)$/;"	f	class:NominalSplitTest	access:public	signature:(feature *f)
+normalProbability	statistics.cc	/^normalProbability(float a)$/;"	f	signature:(float a)
+normalProbability	statistics.h	/^float normalProbability(float a);$/;"	p	signature:(float a)
+normalize	dvec.cc	/^normalize (DVec& dvec)$/;"	f	signature:(DVec& dvec)
+normalize	dvec.h	/^normalize(DVec& dvec);$/;"	p	signature:(DVec& dvec)
+numBins	numattrobs.h	/^      unsigned int numBins;$/;"	m	class:NumAttrObserver	access:private
+numChildren	ht.h	/^          numChildren()$/;"	f	class:SplitNode	access:public	signature:()
+numSplits	attrsplitsuggest.h	/^    int numSplits;$/;"	m	struct:AttrSplitSuggestion	access:public
+numSubsetsGreaterThanFrac	infogain.cc	/^numSubsetsGreaterThanFrac(Matrix_t distributions, float minFrac)$/;"	f	signature:(Matrix_t distributions, float minFrac)
+numSubsetsGreaterThanFrac	infogain.h	/^numSubsetsGreaterThanFrac(Matrix_t distributions, float minFrac);$/;"	p	signature:(Matrix_t distributions, float minFrac)
+num_threads	htnb.cc	/^static size_t num_threads;$/;"	v	file:
+num_threads	nb.cc	/^static size_t num_threads;$/;"	v	file:
+numericBinaryBranch	split_test.h	/^          numericBinaryBranch (feature *f)$/;"	f	class:NumericSplitTest	access:public	signature:(feature *f)
+numericBinaryTest	split_test.h	/^          numericBinaryTest (feature *f)$/;"	f	class:NumericSplitTest	access:public	signature:(feature *f)
+observeAttributeClass	attrobs.h	/^    virtual void observeAttributeClass(float attVal, int classVal, float weight) = 0;$/;"	p	class:AttributeClassObserver	access:public	signature:(float attVal, int classVal, float weight)
+observeAttributeClass	nomattrobs.h	/^          observeAttributeClass(float attVal, int classVal, float weight)$/;"	f	class:NomAttrObserver	access:public	signature:(float attVal, int classVal, float weight)
+observeAttributeClass	numattrobs.h	/^          observeAttributeClass(float attVal, int classVal, float weight)$/;"	f	class:NumAttrObserver	access:public	signature:(float attVal, int classVal, float weight)
+observedClassDist	ht.h	/^      float* observedClassDist;$/;"	m	class:Node	access:protected
+observedClassDist	htnb.cc	/^static DVec observedClassDist;$/;"	v	file:
+observedClassDist	nb.cc	/^static DVec observedClassDist;$/;"	v	file:
+observedClassDistributionIsPure	ht.h	/^          observedClassDistributionIsPure()$/;"	f	class:Node	access:public	signature:()
+operator <	attrsplitsuggest.h	/^    bool operator<(const AttrSplitSuggestion &rhs) const{$/;"	f	struct:AttrSplitSuggestion	access:public	signature:(const AttrSplitSuggestion &rhs) const
+operator ==	attrsplitsuggest.h	/^    bool operator==(const AttrSplitSuggestion &rhs) const {$/;"	f	struct:AttrSplitSuggestion	access:public	signature:(const AttrSplitSuggestion &rhs) const
+operator >	attrsplitsuggest.h	/^    bool operator>(const AttrSplitSuggestion &rhs) const {$/;"	f	struct:AttrSplitSuggestion	access:public	signature:(const AttrSplitSuggestion &rhs) const
+p1evl	statistics.cc	/^p1evl(float x, const float coef[], int N)$/;"	f	signature:(float x, const float coef[], int N)
+p1evl	statistics.h	/^float p1evl(float x, float *coef, int N) ;$/;"	p	signature:(float x, float *coef, int N)
+parentBranch	ht.h	/^      int parentBranch;$/;"	m	class:FoundNode	access:public
+passers	htnb.cc	/^static htnb_thread_params** passers;$/;"	v	file:
+passers	nb.cc	/^static nb_thread_params** passers;$/;"	v	file:
+polevl	statistics.cc	/^polevl(float x, const float coef[], int N)$/;"	f	signature:(float x, const float coef[], int N)
+polevl	statistics.h	/^float polevl(float x, float *coef, int N);$/;"	p	signature:(float x, float *coef, int N)
+power_t	htnb.h	/^  float power_t;$/;"	m	struct:htnb_vars	access:public
+power_t	nb.h	/^  float power_t;$/;"	m	struct:nb_vars	access:public
+predictions	htnb.h	/^  float* predictions;$/;"	m	struct:htnb_thread_params	access:public
+predictions	nb.h	/^  float* predictions;$/;"	m	struct:nb_thread_params	access:public
+print_result	nb.h	/^void print_result(int f, float res, v_array<char> tag);$/;"	p	signature:(int f, float res, v_array<char> tag)
+probabilityDensity	estimator.h	/^              probabilityDensity(float value)$/;"	f	class:est::NormalEstimator	access:public	signature:(float value)
+probabilityOfAttributeValueGivenClass	attrobs.h	/^    virtual float probabilityOfAttributeValueGivenClass(float attVal, int classVal) = 0;$/;"	p	class:AttributeClassObserver	access:public	signature:(float attVal, int classVal)
+probabilityOfAttributeValueGivenClass	nomattrobs.h	/^          probabilityOfAttributeValueGivenClass(float attVal, int classVal)$/;"	f	class:NomAttrObserver	access:public	signature:(float attVal, int classVal)
+probabilityOfAttributeValueGivenClass	numattrobs.h	/^          probabilityOfAttributeValueGivenClass(float attVal, int classVal)$/;"	f	class:NumAttrObserver	access:public	signature:(float attVal, int classVal)
+resetLearning	ht.h	/^          resetLearning()$/;"	f	class:HoeffdingTree	access:public	signature:()
+resultingClassDistribution	attrsplitsuggest.h	/^    Matrix_t resultingClassDistribution;$/;"	m	struct:AttrSplitSuggestion	access:public
+roundPrecise	estimator.h	/^              roundPrecise(float num)$/;"	f	class:est::KernelEstimator	access:public	signature:(float num)
+roundPrecise	estimator.h	/^              roundPrecise(float num)$/;"	f	class:est::NormalEstimator	access:public	signature:(float num)
+sParent	ht.h	/^      SplitNode* sParent;$/;"	m	class:FoundNode	access:public
+scale_vals	dvec.cc	/^scale_vals (DVec& dvec, float sval)$/;"	f	signature:(DVec& dvec, float sval)
+scale_vals	dvec.h	/^scale_vals(DVec& dvec, float sval);$/;"	p	signature:(DVec& dvec, float sval)
+setBinaryOnly	nomattrobs.h	/^          setBinaryOnly(bool bFlag)$/;"	f	class:NomAttrObserver	access:public	signature:(bool bFlag)
+setChild	ht.h	/^          setChild(int index, Node* child)$/;"	f	class:SplitNode	access:public	signature:(int index, Node* child)
+setUseNBPrediction	ht.h	/^          setUseNBPrediction(bool nbPred)$/;"	f	class:LearningNode	access:public	signature:(bool nbPred)
+setWeightSeenAtLastSplitEval	ht.h	/^          setWeightSeenAtLastSplitEval(float weight)$/;"	f	class:LearningNode	access:public	signature:(float weight)
+setup_htnb	htnb.cc	/^setup_htnb(htnb_thread_params t)$/;"	f	signature:(htnb_thread_params t)
+setup_htnb	htnb.h	/^setup_htnb(htnb_thread_params t);$/;"	p	signature:(htnb_thread_params t)
+setup_nb	nb.cc	/^setup_nb(nb_thread_params t)$/;"	f	signature:(nb_thread_params t)
+setup_nb	nb.h	/^setup_nb(nb_thread_params t);$/;"	p	signature:(nb_thread_params t)
+splitTest	attrsplitsuggest.h	/^    SplitTest *splitTest;$/;"	m	struct:AttrSplitSuggestion	access:public
+splitTest	ht.h	/^      SplitTest* splitTest;$/;"	m	class:SplitNode	access:protected
+sum_of_vals	dvec.cc	/^sum_of_vals (DVec& dvec)$/;"	f	signature:(DVec& dvec)
+sum_of_vals	dvec.h	/^sum_of_vals(DVec& dvec);$/;"	p	signature:(DVec& dvec)
+thread_num	htnb.h	/^  size_t thread_num;$/;"	m	struct:htnb_thread_params	access:public
+thread_num	nb.h	/^  size_t thread_num;$/;"	m	struct:nb_thread_params	access:public
+threads	htnb.cc	/^static pthread_t* threads;$/;"	v	file:
+threads	nb.cc	/^static pthread_t* threads;$/;"	v	file:
+totalWeightObserved	nomattrobs.h	/^      float totalWeightObserved;$/;"	m	class:NomAttrObserver	access:protected
+trainOnInstance	ht.h	/^          trainOnInstance(example *ex, size_t thread_num)$/;"	f	class:HoeffdingTree	access:public	signature:(example *ex, size_t thread_num)
+treeRoot	ht.h	/^      HNode *treeRoot;$/;"	m	class:HoeffdingTree	access:protected
+useNBPrediction	ht.h	/^      bool useNBPrediction;$/;"	m	class:LearningNode	access:private
+val_cmp	dvec.cc	/^val_cmp (const DVec::value_type& i1, const DVec::value_type& i2)$/;"	f	signature:(const DVec::value_type& i1, const DVec::value_type& i2)
+vars	htnb.h	/^  htnb_vars* vars;$/;"	m	struct:htnb_thread_params	access:public
+vars	nb.h	/^  nb_vars* vars;$/;"	m	struct:nb_thread_params	access:public
+~AttributeClassObserver	attrobs.h	/^    ~AttributeClassObserver(){ }$/;"	f	class:AttributeClassObserver	access:public	signature:()
+~Estimator	estimator.h	/^              ~Estimator()$/;"	f	class:est::Estimator	access:public	signature:()
+~Node	ht.h	/^      ~Node()$/;"	f	class:Node	access:public	signature:()
+~SplitTest	split_test.h	/^      virtual ~SplitTest(){ }$/;"	f	class:SplitTest	access:public	signature:()

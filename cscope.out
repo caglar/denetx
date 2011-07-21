@@ -1,0 +1,237 @@
+cscope 15 $HOME/Codes/c++/myprojs/denetX               0000001246
+	@config.h
+
+5 
+	#HAVE_ARPA_INET_H
+ 1
+
+	)
+
+8 
+	#HAVE_BZERO
+ 1
+
+	)
+
+11 
+	#HAVE_FCNTL_H
+ 1
+
+	)
+
+14 
+	#HAVE_FLOAT_H
+ 1
+
+	)
+
+17 
+	#HAVE_GETHOSTBYNAME
+ 1
+
+	)
+
+20 
+	#HAVE_GETTIMEOFDAY
+ 1
+
+	)
+
+23 
+	#HAVE_INTTYPES_H
+ 1
+
+	)
+
+30 
+	#HAVE_MALLOC
+ 1
+
+	)
+
+33 
+	#HAVE_MEMMOVE
+ 1
+
+	)
+
+36 
+	#HAVE_MEMORY_H
+ 1
+
+	)
+
+39 
+	#HAVE_MEMSET
+ 1
+
+	)
+
+42 
+	#HAVE_NETDB_H
+ 1
+
+	)
+
+45 
+	#HAVE_NETINET_IN_H
+ 1
+
+	)
+
+52 
+	#HAVE_REALLOC
+ 1
+
+	)
+
+55 
+	#HAVE_SELECT
+ 1
+
+	)
+
+58 
+	#HAVE_SOCKET
+ 1
+
+	)
+
+64 
+	#HAVE_STDBOOL_H
+ 1
+
+	)
+
+67 
+	#HAVE_STDINT_H
+ 1
+
+	)
+
+70 
+	#HAVE_STDLIB_H
+ 1
+
+	)
+
+73 
+	#HAVE_STRCHR
+ 1
+
+	)
+
+76 
+	#HAVE_STRDUP
+ 1
+
+	)
+
+79 
+	#HAVE_STRINGS_H
+ 1
+
+	)
+
+82 
+	#HAVE_STRING_H
+ 1
+
+	)
+
+85 
+	#HAVE_STRTOUL
+ 1
+
+	)
+
+88 
+	#HAVE_SYS_SOCKET_H
+ 1
+
+	)
+
+91 
+	#HAVE_SYS_STAT_H
+ 1
+
+	)
+
+94 
+	#HAVE_SYS_TIME_H
+ 1
+
+	)
+
+97 
+	#HAVE_SYS_TYPES_H
+ 1
+
+	)
+
+100 
+	#HAVE_UNISTD_H
+ 1
+
+	)
+
+103 
+	#HAVE__BOOL
+ 1
+
+	)
+
+106 
+	#PACKAGE_BUGREPORT
+ "ÿgÏr@uÏkbim.gov.Œ"
+
+	)
+
+109 
+	#PACKAGE_NAME
+ "d’‘X"
+
+	)
+
+112 
+	#PACKAGE_STRING
+ "d’‘X VERSION"
+
+	)
+
+115 
+	#PACKAGE_TARNAME
+ "d’‘x"
+
+	)
+
+118 
+	#PACKAGE_URL
+ ""
+
+	)
+
+121 
+	#PACKAGE_VERSION
+ "VERSION"
+
+	)
+
+124 
+	#STDC_HEADERS
+ 1
+
+	)
+
+133 #iâdeà
+__ýlu¥lus
+
+
+	@
+1
+.
+1
+/usr/include
+1
+9
+config.h

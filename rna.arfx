@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<arfheader>
+  <relation name="traffic_classification_test"/>
+  <features>
+    <feature name="f0" fid="1" type="numeric" />
+    <feature name="f1" fid="2" type="numeric" />
+    <feature name="f2" fid="3" type="numeric" />
+    <feature name="f3" fid="4" type="numeric" />
+    <feature name="f4" fid="5" type="numeric" />
+    <feature name="f5" fid="6" type="numeric" />
+    <feature name="f6" fid="7" type="numeric" />
+    <feature name="f7" fid="8" type="numeric" />
+  </features>
+  <classes>
+    <class name="rna" val="0"/>
+    <class name="mrna" val="1"/>
+  </classes>
+</arfheader>

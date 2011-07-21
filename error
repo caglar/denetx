@@ -1,0 +1,274 @@
+In file included from multiclass/htnb.h:14,
+                 from multiclass/htnb.cc:16:
+multiclass/../parse_arfheader.h: In constructor ‘arfheader::arfheader()’:
+multiclass/../parse_arfheader.h:50: warning: ‘arfheader::features’ should be initialized in the member initialization list
+multiclass/../parse_arfheader.h:50: warning: ‘arfheader::categories’ should be initialized in the member initialization list
+In file included from multiclass/htnb.cc:16:
+multiclass/htnb.h: In constructor ‘htnb_vars::htnb_vars()’:
+multiclass/htnb.h:19: warning: ‘htnb_vars::power_t’ should be initialized in the member initialization list
+In file included from multiclass/attrsplitsuggest.h:6,
+                 from multiclass/attrobs.h:11,
+                 from multiclass/htnb.cc:18:
+multiclass/split_test.h: In constructor ‘NominalSplitTest::NominalSplitTest(bool)’:
+multiclass/split_test.h:32: warning: ‘NominalSplitTest::misMultiWay’ should be initialized in the member initialization list
+multiclass/split_test.h:32: warning: ‘NominalSplitTest::AttValue’ should be initialized in the member initialization list
+multiclass/split_test.h: In constructor ‘NumericSplitTest::NumericSplitTest()’:
+multiclass/split_test.h:68: warning: ‘NumericSplitTest::EqualsPassesTest’ should be initialized in the member initialization list
+multiclass/split_test.h:68: warning: ‘NumericSplitTest::AttValue’ should be initialized in the member initialization list
+In file included from multiclass/attrobs.h:11,
+                 from multiclass/htnb.cc:18:
+multiclass/attrsplitsuggest.h: At global scope:
+multiclass/attrsplitsuggest.h:12: warning: ‘struct AttrSplitSuggestion’ has pointer data members
+multiclass/attrsplitsuggest.h:12: warning:   but does not override ‘AttrSplitSuggestion(const AttrSplitSuggestion&)’
+multiclass/attrsplitsuggest.h: In constructor ‘AttrSplitSuggestion::AttrSplitSuggestion(Matrix_t, SplitTest*, float)’:
+multiclass/attrsplitsuggest.h:18: warning: ‘AttrSplitSuggestion::resultingClassDistribution’ should be initialized in the member initialization list
+multiclass/attrsplitsuggest.h:18: warning: ‘AttrSplitSuggestion::splitTest’ should be initialized in the member initialization list
+multiclass/attrsplitsuggest.h:18: warning: ‘AttrSplitSuggestion::merit’ should be initialized in the member initialization list
+multiclass/attrsplitsuggest.h:18: warning: ‘AttrSplitSuggestion::numSplits’ should be initialized in the member initialization list
+multiclass/attrsplitsuggest.h: In constructor ‘AttrSplitSuggestion::AttrSplitSuggestion()’:
+multiclass/attrsplitsuggest.h:26: warning: ‘AttrSplitSuggestion::resultingClassDistribution’ should be initialized in the member initialization list
+multiclass/attrsplitsuggest.h:26: warning: ‘AttrSplitSuggestion::splitTest’ should be initialized in the member initialization list
+multiclass/attrsplitsuggest.h:26: warning: ‘AttrSplitSuggestion::merit’ should be initialized in the member initialization list
+multiclass/attrsplitsuggest.h:26: warning: ‘AttrSplitSuggestion::numSplits’ should be initialized in the member initialization list
+multiclass/attrsplitsuggest.h: In member function ‘AttrSplitSuggestion& AttrSplitSuggestion::operator=(const AttrSplitSuggestion&)’:
+multiclass/attrsplitsuggest.h:43: warning: no return statement in function returning non-void
+In file included from multiclass/htnb.cc:18:
+multiclass/attrobs.h: At global scope:
+multiclass/attrobs.h:13: warning: ‘class AttributeClassObserver’ has virtual functions and accessible non-virtual destructor
+In file included from multiclass/numattrobs.h:14,
+                 from multiclass/htnb.cc:19:
+multiclass/estimator.h: In constructor ‘est::NormalEstimator::NormalEstimator(float)’:
+multiclass/estimator.h:71: warning: ‘est::NormalEstimator::mSumOfWeights’ should be initialized in the member initialization list
+multiclass/estimator.h:71: warning: ‘est::NormalEstimator::mSumOfValues’ should be initialized in the member initialization list
+multiclass/estimator.h:71: warning: ‘est::NormalEstimator::mSumOfValuesSq’ should be initialized in the member initialization list
+multiclass/estimator.h:71: warning: ‘est::NormalEstimator::mMean’ should be initialized in the member initialization list
+multiclass/estimator.h:71: warning: ‘est::NormalEstimator::mStandardDev’ should be initialized in the member initialization list
+multiclass/estimator.h:71: warning: ‘est::NormalEstimator::mPrecision’ should be initialized in the member initialization list
+multiclass/estimator.h:71: warning: ‘est::NormalEstimator::NORMAL_CONSTANT’ should be initialized in the member initialization list
+In file included from multiclass/numattrobs.h:14,
+                 from multiclass/htnb.cc:19:
+multiclass/estimator.h: At global scope:
+multiclass/estimator.h:179: warning: ‘class est::KernelEstimator’ has pointer data members
+multiclass/estimator.h:179: warning:   but does not override ‘est::KernelEstimator(const est::KernelEstimator&)’
+multiclass/estimator.h:179: warning:   or ‘operator=(const est::KernelEstimator&)’
+multiclass/estimator.h: In constructor ‘est::KernelEstimator::KernelEstimator(float)’:
+multiclass/estimator.h:228: warning: ‘est::KernelEstimator::mValues’ should be initialized in the member initialization list
+multiclass/estimator.h:228: warning: ‘est::KernelEstimator::mWeights’ should be initialized in the member initialization list
+multiclass/estimator.h:228: warning: ‘est::KernelEstimator::mNumValues’ should be initialized in the member initialization list
+multiclass/estimator.h:228: warning: ‘est::KernelEstimator::mSumOfWeights’ should be initialized in the member initialization list
+multiclass/estimator.h:228: warning: ‘est::KernelEstimator::mStandardDev’ should be initialized in the member initialization list
+multiclass/estimator.h:228: warning: ‘est::KernelEstimator::mPrecision’ should be initialized in the member initialization list
+multiclass/estimator.h:228: warning: ‘est::KernelEstimator::mAllWeightsOne’ should be initialized in the member initialization list
+multiclass/estimator.h: At global scope:
+multiclass/estimator.h:361: warning: ‘class est::DiscreteEstimator’ has pointer data members
+multiclass/estimator.h:361: warning:   but does not override ‘est::DiscreteEstimator(const est::DiscreteEstimator&)’
+multiclass/estimator.h:361: warning:   or ‘operator=(const est::DiscreteEstimator&)’
+multiclass/estimator.h: In constructor ‘est::DiscreteEstimator::DiscreteEstimator(int)’:
+multiclass/estimator.h:368: warning: ‘est::DiscreteEstimator::mCounts’ should be initialized in the member initialization list
+multiclass/estimator.h:368: warning: ‘est::DiscreteEstimator::mSumOfCounts’ should be initialized in the member initialization list
+multiclass/estimator.h:368: warning: ‘est::DiscreteEstimator::NoOfSymbs’ should be initialized in the member initialization list
+In file included from multiclass/htnb.cc:19:
+multiclass/numattrobs.h: At global scope:
+multiclass/numattrobs.h:29: warning: ‘class NumAttrObserver’ has virtual functions and accessible non-virtual destructor
+multiclass/numattrobs.h: In constructor ‘NumAttrObserver::NumAttrObserver()’:
+multiclass/numattrobs.h:37: warning: ‘NumAttrObserver::minValueObservedPerClass’ should be initialized in the member initialization list
+multiclass/numattrobs.h:37: warning: ‘NumAttrObserver::maxValueObservedPerClass’ should be initialized in the member initialization list
+multiclass/numattrobs.h:37: warning: ‘NumAttrObserver::attValDistPerClass’ should be initialized in the member initialization list
+multiclass/numattrobs.h: In constructor ‘NumAttrObserver::NumAttrObserver(unsigned int)’:
+multiclass/numattrobs.h:42: warning: ‘NumAttrObserver::numBins’ should be initialized in the member initialization list
+multiclass/numattrobs.h:42: warning: ‘NumAttrObserver::minValueObservedPerClass’ should be initialized in the member initialization list
+multiclass/numattrobs.h:42: warning: ‘NumAttrObserver::maxValueObservedPerClass’ should be initialized in the member initialization list
+multiclass/numattrobs.h:42: warning: ‘NumAttrObserver::attValDistPerClass’ should be initialized in the member initialization list
+In file included from multiclass/htnb.cc:20:
+multiclass/nomattrobs.h: At global scope:
+multiclass/nomattrobs.h:21: warning: ‘class NomAttrObserver’ has virtual functions and accessible non-virtual destructor
+multiclass/nomattrobs.h: In constructor ‘NomAttrObserver::NomAttrObserver()’:
+multiclass/nomattrobs.h:28: warning: ‘NomAttrObserver::totalWeightObserved’ should be initialized in the member initialization list
+multiclass/nomattrobs.h:28: warning: ‘NomAttrObserver::missingWeightObserved’ should be initialized in the member initialization list
+multiclass/nomattrobs.h:28: warning: ‘NomAttrObserver::attValDistPerClass’ should be initialized in the member initialization list
+multiclass/nomattrobs.h:28: warning: ‘NomAttrObserver::binaryOnly’ should be initialized in the member initialization list
+multiclass/nomattrobs.h: In member function ‘Matrix_t NomAttrObserver::getClassDistsResultingFromMultiwaySplit(int)’:
+multiclass/nomattrobs.h:85: warning: comparison between signed and unsigned integer expressions
+multiclass/nomattrobs.h:88: warning: comparison between signed and unsigned integer expressions
+multiclass/nomattrobs.h: In member function ‘Matrix_t NomAttrObserver::getClassDistsResultingFromBinarySplit(int)’:
+multiclass/nomattrobs.h:111: warning: comparison between signed and unsigned integer expressions
+In file included from multiclass/htnb.cc:21:
+multiclass/ht.h: At global scope:
+multiclass/ht.h:46: warning: ‘class Node’ has pointer data members
+multiclass/ht.h:46: warning:   but does not override ‘Node(const Node&)’
+multiclass/ht.h:46: warning:   or ‘operator=(const Node&)’
+multiclass/ht.h:46: warning: ‘class Node’ has virtual functions and accessible non-virtual destructor
+multiclass/ht.h: In constructor ‘Node::Node(float*, int)’:
+multiclass/ht.h:52: warning: ‘Node::observedClassDist’ should be initialized in the member initialization list
+multiclass/ht.h:52: warning: ‘Node::noOfObservations’ should be initialized in the member initialization list
+multiclass/ht.h: At global scope:
+multiclass/ht.h:83: warning: unused parameter ‘ex’
+multiclass/ht.h:119: warning: unused parameter ‘f’
+multiclass/ht.h:119: warning: unused parameter ‘parent’
+multiclass/ht.h:119: warning: unused parameter ‘parentBranch’
+multiclass/ht.h: In constructor ‘FoundNode::FoundNode()’:
+multiclass/ht.h:131: warning: ‘FoundNode::hNode’ should be initialized in the member initialization list
+multiclass/ht.h:131: warning: ‘FoundNode::sParent’ should be initialized in the member initialization list
+multiclass/ht.h:131: warning: ‘FoundNode::parentBranch’ should be initialized in the member initialization list
+multiclass/ht.h: At global scope:
+multiclass/ht.h:150: warning: ‘class SplitNode’ has pointer data members
+multiclass/ht.h:150: warning:   but does not override ‘SplitNode(const SplitNode&)’
+multiclass/ht.h:150: warning:   or ‘operator=(const SplitNode&)’
+multiclass/ht.h:150: warning: ‘class SplitNode’ has virtual functions and accessible non-virtual destructor
+multiclass/ht.h: In constructor ‘SplitNode::SplitNode(SplitTest*, float*, int)’:
+multiclass/ht.h:156: warning: ‘SplitNode::splitTest’ should be initialized in the member initialization list
+multiclass/ht.h:156: warning: ‘SplitNode::children’ should be initialized in the member initialization list
+multiclass/ht.h: At global scope:
+multiclass/ht.h:217: warning: ‘class HNode’ has virtual functions and accessible non-virtual destructor
+multiclass/ht.h:233: warning: ‘class LearningNode’ has pointer data members
+multiclass/ht.h:233: warning:   but does not override ‘LearningNode(const LearningNode&)’
+multiclass/ht.h:233: warning:   or ‘operator=(const LearningNode&)’
+multiclass/ht.h:233: warning: ‘class LearningNode’ has virtual functions and accessible non-virtual destructor
+multiclass/ht.h: In constructor ‘LearningNode::LearningNode(float*, int, arfheader*, bool)’:
+multiclass/ht.h:249: warning: ‘LearningNode::WeightAtLastSplitEval’ should be initialized in the member initialization list
+multiclass/ht.h:249: warning: ‘LearningNode::AttributeObservers’ should be initialized in the member initialization list
+multiclass/ht.h:249: warning: ‘LearningNode::useNBPrediction’ should be initialized in the member initialization list
+multiclass/ht.h:249: warning: ‘LearningNode::mCorrectWeight’ should be initialized in the member initialization list
+multiclass/ht.h:249: warning: ‘LearningNode::nbCorrectWeight’ should be initialized in the member initialization list
+In file included from multiclass/htnb.cc:21:
+multiclass/ht.h: At global scope:
+multiclass/ht.h:258: warning: unused parameter ‘ht’
+multiclass/ht.h: In member function ‘std::vector<AttrSplitSuggestion*, std::allocator<AttrSplitSuggestion*> > LearningNode::getBestSplitSuggestions()’:
+multiclass/ht.h:329: warning: comparison between signed and unsigned integer expressions
+multiclass/ht.h: In constructor ‘HoeffdingTree::HoeffdingTree(arfheader*)’:
+multiclass/ht.h:419: warning: ‘HoeffdingTree::treeRoot’ should be initialized in the member initialization list
+multiclass/ht.h:419: warning: ‘HoeffdingTree::decisionNodeCount’ should be initialized in the member initialization list
+multiclass/ht.h:419: warning: ‘HoeffdingTree::activeLeafNodeCount’ should be initialized in the member initialization list
+multiclass/ht.h:419: warning: ‘HoeffdingTree::inactiveLeafCount’ should be initialized in the member initialization list
+multiclass/ht.h:419: warning: ‘HoeffdingTree::arfHeader’ should be initialized in the member initialization list
+multiclass/htnb.cc: In function ‘void* htnb_thread(void*)’:
+multiclass/htnb.cc:71: warning: suggest braces around empty body in an ‘else’ statement
+multiclass/htnb.cc: In function ‘float* htnb_predict(example*, size_t, htnb_thread_params*)’:
+multiclass/htnb.cc:92: warning: suggest parentheses around assignment used as truth value
+multiclass/htnb.cc:91: warning: unused variable ‘attSize’
+multiclass/htnb.cc:81: warning: address of local variable ‘classVotes’ returned
+multiclass/htnb.cc:82: warning: unused variable ‘stride’
+In file included from multiclass/../example.h:7,
+                 from multiclass/htnb.h:12,
+multiclass/htnb.cc: In function ‘void htnb_train_on_example(example*, arfheader*, size_t)’:
+multiclass/htnb.cc:112: warning: ‘type’ may be used uninitialized in this function
+multiclass/statistics.cc:188: warning: ‘float erfce(float)’ defined but not used
+multiclass/dvec.cc: In function ‘float sum_of_vals(DVec&)’:
+multiclass/dvec.cc:118: warning: comparison between signed and unsigned integer expressions
+multiclass/dvec.cc: In function ‘void scale_vals(DVec&, float)’:
+multiclass/dvec.cc:127: warning: comparison between signed and unsigned integer expressions
+multiclass/dvec.cc: In function ‘int get_num_non_zero(const DVec&)’:
+multiclass/dvec.cc:137: warning: comparison between signed and unsigned integer expressions
+In file included from multiclass/nb.h:14,
+                 from multiclass/nb.cc:17:
+multiclass/../parse_arfheader.h: In constructor ‘arfheader::arfheader()’:
+multiclass/../parse_arfheader.h:50: warning: ‘arfheader::features’ should be initialized in the member initialization list
+multiclass/../parse_arfheader.h:50: warning: ‘arfheader::categories’ should be initialized in the member initialization list
+In file included from multiclass/../parser.h:11,
+                 from multiclass/nb.h:15,
+                 from multiclass/nb.cc:17:
+In file included from multiclass/nb.cc:17:
+multiclass/nb.h: In constructor ‘nb_vars::nb_vars()’:
+multiclass/nb.h:22: warning: ‘nb_vars::power_t’ should be initialized in the member initialization list
+In file included from multiclass/attrsplitsuggest.h:6,
+                 from multiclass/attrobs.h:11,
+                 from multiclass/nb.cc:19:
+multiclass/split_test.h: In constructor ‘NominalSplitTest::NominalSplitTest(bool)’:
+multiclass/split_test.h:32: warning: ‘NominalSplitTest::misMultiWay’ should be initialized in the member initialization list
+multiclass/split_test.h:32: warning: ‘NominalSplitTest::AttValue’ should be initialized in the member initialization list
+multiclass/split_test.h: In constructor ‘NumericSplitTest::NumericSplitTest()’:
+multiclass/split_test.h:68: warning: ‘NumericSplitTest::EqualsPassesTest’ should be initialized in the member initialization list
+multiclass/split_test.h:68: warning: ‘NumericSplitTest::AttValue’ should be initialized in the member initialization list
+In file included from multiclass/attrobs.h:11,
+                 from multiclass/nb.cc:19:
+multiclass/attrsplitsuggest.h: At global scope:
+multiclass/attrsplitsuggest.h:12: warning: ‘struct AttrSplitSuggestion’ has pointer data members
+multiclass/attrsplitsuggest.h:12: warning:   but does not override ‘AttrSplitSuggestion(const AttrSplitSuggestion&)’
+multiclass/attrsplitsuggest.h: In constructor ‘AttrSplitSuggestion::AttrSplitSuggestion(Matrix_t, SplitTest*, float)’:
+multiclass/attrsplitsuggest.h:18: warning: ‘AttrSplitSuggestion::resultingClassDistribution’ should be initialized in the member initialization list
+multiclass/attrsplitsuggest.h:18: warning: ‘AttrSplitSuggestion::splitTest’ should be initialized in the member initialization list
+multiclass/attrsplitsuggest.h:18: warning: ‘AttrSplitSuggestion::merit’ should be initialized in the member initialization list
+multiclass/attrsplitsuggest.h:18: warning: ‘AttrSplitSuggestion::numSplits’ should be initialized in the member initialization list
+multiclass/attrsplitsuggest.h: In constructor ‘AttrSplitSuggestion::AttrSplitSuggestion()’:
+multiclass/attrsplitsuggest.h:26: warning: ‘AttrSplitSuggestion::resultingClassDistribution’ should be initialized in the member initialization list
+multiclass/attrsplitsuggest.h:26: warning: ‘AttrSplitSuggestion::splitTest’ should be initialized in the member initialization list
+multiclass/attrsplitsuggest.h:26: warning: ‘AttrSplitSuggestion::merit’ should be initialized in the member initialization list
+multiclass/attrsplitsuggest.h:26: warning: ‘AttrSplitSuggestion::numSplits’ should be initialized in the member initialization list
+multiclass/attrsplitsuggest.h: In member function ‘AttrSplitSuggestion& AttrSplitSuggestion::operator=(const AttrSplitSuggestion&)’:
+multiclass/attrsplitsuggest.h:43: warning: no return statement in function returning non-void
+In file included from multiclass/nb.cc:19:
+multiclass/attrobs.h: At global scope:
+multiclass/attrobs.h:13: warning: ‘class AttributeClassObserver’ has virtual functions and accessible non-virtual destructor
+In file included from multiclass/numattrobs.h:14,
+                 from multiclass/nb.cc:20:
+multiclass/estimator.h: In constructor ‘est::NormalEstimator::NormalEstimator(float)’:
+multiclass/estimator.h:71: warning: ‘est::NormalEstimator::mSumOfWeights’ should be initialized in the member initialization list
+multiclass/estimator.h:71: warning: ‘est::NormalEstimator::mSumOfValues’ should be initialized in the member initialization list
+multiclass/estimator.h:71: warning: ‘est::NormalEstimator::mSumOfValuesSq’ should be initialized in the member initialization list
+multiclass/estimator.h:71: warning: ‘est::NormalEstimator::mMean’ should be initialized in the member initialization list
+multiclass/estimator.h:71: warning: ‘est::NormalEstimator::mStandardDev’ should be initialized in the member initialization list
+multiclass/estimator.h:71: warning: ‘est::NormalEstimator::mPrecision’ should be initialized in the member initialization list
+multiclass/estimator.h:71: warning: ‘est::NormalEstimator::NORMAL_CONSTANT’ should be initialized in the member initialization list
+In file included from multiclass/numattrobs.h:14,
+                 from multiclass/nb.cc:20:
+multiclass/estimator.h: At global scope:
+multiclass/estimator.h:179: warning: ‘class est::KernelEstimator’ has pointer data members
+multiclass/estimator.h:179: warning:   but does not override ‘est::KernelEstimator(const est::KernelEstimator&)’
+multiclass/estimator.h:179: warning:   or ‘operator=(const est::KernelEstimator&)’
+multiclass/estimator.h: In constructor ‘est::KernelEstimator::KernelEstimator(float)’:
+multiclass/estimator.h:228: warning: ‘est::KernelEstimator::mValues’ should be initialized in the member initialization list
+multiclass/estimator.h:228: warning: ‘est::KernelEstimator::mWeights’ should be initialized in the member initialization list
+multiclass/estimator.h:228: warning: ‘est::KernelEstimator::mNumValues’ should be initialized in the member initialization list
+multiclass/estimator.h:228: warning: ‘est::KernelEstimator::mSumOfWeights’ should be initialized in the member initialization list
+multiclass/estimator.h:228: warning: ‘est::KernelEstimator::mStandardDev’ should be initialized in the member initialization list
+multiclass/estimator.h:228: warning: ‘est::KernelEstimator::mPrecision’ should be initialized in the member initialization list
+multiclass/estimator.h:228: warning: ‘est::KernelEstimator::mAllWeightsOne’ should be initialized in the member initialization list
+multiclass/estimator.h: At global scope:
+multiclass/estimator.h:361: warning: ‘class est::DiscreteEstimator’ has pointer data members
+multiclass/estimator.h:361: warning:   but does not override ‘est::DiscreteEstimator(const est::DiscreteEstimator&)’
+multiclass/estimator.h:361: warning:   or ‘operator=(const est::DiscreteEstimator&)’
+multiclass/estimator.h: In constructor ‘est::DiscreteEstimator::DiscreteEstimator(int)’:
+multiclass/estimator.h:368: warning: ‘est::DiscreteEstimator::mCounts’ should be initialized in the member initialization list
+multiclass/estimator.h:368: warning: ‘est::DiscreteEstimator::mSumOfCounts’ should be initialized in the member initialization list
+multiclass/estimator.h:368: warning: ‘est::DiscreteEstimator::NoOfSymbs’ should be initialized in the member initialization list
+In file included from multiclass/nb.cc:20:
+multiclass/numattrobs.h: At global scope:
+multiclass/numattrobs.h:29: warning: ‘class NumAttrObserver’ has virtual functions and accessible non-virtual destructor
+multiclass/numattrobs.h: In constructor ‘NumAttrObserver::NumAttrObserver()’:
+multiclass/numattrobs.h:37: warning: ‘NumAttrObserver::minValueObservedPerClass’ should be initialized in the member initialization list
+multiclass/numattrobs.h:37: warning: ‘NumAttrObserver::maxValueObservedPerClass’ should be initialized in the member initialization list
+multiclass/numattrobs.h:37: warning: ‘NumAttrObserver::attValDistPerClass’ should be initialized in the member initialization list
+multiclass/numattrobs.h: In constructor ‘NumAttrObserver::NumAttrObserver(unsigned int)’:
+multiclass/numattrobs.h:42: warning: ‘NumAttrObserver::numBins’ should be initialized in the member initialization list
+multiclass/numattrobs.h:42: warning: ‘NumAttrObserver::minValueObservedPerClass’ should be initialized in the member initialization list
+multiclass/numattrobs.h:42: warning: ‘NumAttrObserver::maxValueObservedPerClass’ should be initialized in the member initialization list
+multiclass/numattrobs.h:42: warning: ‘NumAttrObserver::attValDistPerClass’ should be initialized in the member initialization list
+In file included from multiclass/nb.cc:21:
+multiclass/nomattrobs.h: At global scope:
+multiclass/nomattrobs.h:21: warning: ‘class NomAttrObserver’ has virtual functions and accessible non-virtual destructor
+multiclass/nomattrobs.h: In constructor ‘NomAttrObserver::NomAttrObserver()’:
+multiclass/nomattrobs.h:28: warning: ‘NomAttrObserver::totalWeightObserved’ should be initialized in the member initialization list
+multiclass/nomattrobs.h:28: warning: ‘NomAttrObserver::missingWeightObserved’ should be initialized in the member initialization list
+multiclass/nomattrobs.h:28: warning: ‘NomAttrObserver::attValDistPerClass’ should be initialized in the member initialization list
+multiclass/nomattrobs.h:28: warning: ‘NomAttrObserver::binaryOnly’ should be initialized in the member initialization list
+multiclass/nomattrobs.h: In member function ‘Matrix_t NomAttrObserver::getClassDistsResultingFromMultiwaySplit(int)’:
+multiclass/nomattrobs.h:85: warning: comparison between signed and unsigned integer expressions
+multiclass/nomattrobs.h:88: warning: comparison between signed and unsigned integer expressions
+multiclass/nomattrobs.h: In member function ‘Matrix_t NomAttrObserver::getClassDistsResultingFromBinarySplit(int)’:
+multiclass/nomattrobs.h:111: warning: comparison between signed and unsigned integer expressions
+multiclass/nb.cc: In function ‘void* nb_thread(void*)’:
+multiclass/nb.cc:70: warning: suggest braces around empty body in an ‘else’ statement
+multiclass/nb.cc: In function ‘float* naive_bayes_predict(example*, size_t, nb_thread_params*)’:
+multiclass/nb.cc:87: warning: comparison between signed and unsigned integer expressions
+multiclass/nb.cc:91: warning: suggest parentheses around assignment used as truth value
+multiclass/nb.cc:90: warning: unused variable ‘attSize’
+multiclass/nb.cc:80: warning: address of local variable ‘classVotes’ returned
+multiclass/nb.cc:81: warning: unused variable ‘stride’
+multiclass/nb.cc: In function ‘void nb_train_on_example(example*, arfheader*, size_t)’:
+multiclass/nb.cc:108: warning: suggest parentheses around assignment used as truth value
+multiclass/nb.cc: In function ‘void setup_nb(nb_thread_params)’:
+multiclass/nb.cc:144: warning: comparison between signed and unsigned integer expressions
+multiclass/nb.cc: In function ‘void destroy_nb()’:
+multiclass/nb.cc:155: warning: comparison between signed and unsigned integer expressions
+multiclass/nb.cc: In function ‘void nb_train_on_example(example*, arfheader*, size_t)’:
+multiclass/nb.cc:111: warning: ‘type’ may be used uninitialized in this function

@@ -1,0 +1,179 @@
+[../src/multiclass/arraycopy.cc:6]: (debug) Include file: "cstring" not found.
+[../src/multiclass/arraycopy.h:10]: (debug) Include file: "cstddef" not found.
+[../src/multiclass/arraycopy.cc:13]: (error) Using sizeof for array given as function argument returns the size of pointer.
+[../src/multiclass/arraycopy.cc:22]: (error) Using sizeof for array given as function argument returns the size of pointer.
+[../src/multiclass/dvec.cc:7]: (debug) Include file: "cstdlib" not found.
+[../src/multiclass/dvec.cc:8]: (debug) Include file: "cfloat" not found.
+[../src/multiclass/dvec.cc:10]: (debug) Include file: "iostream" not found.
+[../src/multiclass/dvec.cc:11]: (debug) Include file: "algorithm" not found.
+[../src/multiclass/dvec.cc:12]: (debug) Include file: "map" not found.
+[../src/multiclass/dvec.cc:13]: (debug) Include file: "boost/multi_array.hpp" not found.
+[../src/multiclass/dvec.h:10]: (debug) Include file: "boost/multi_array.hpp" not found.
+[../src/multiclass/hoeffding_bound.cc:18]: (debug) Include file: "cmath" not found.
+[../src/multiclass/mutils.h:10]: (debug) Include file: "cstdlib" not found.
+[../src/multiclass/flin.h:22]: (debug) Include file: "boost/multi_array.hpp" not found.
+[../src/multiclass/htnb.cc:7]: (debug) Include file: "fstream" not found.
+[../src/multiclass/htnb.cc:8]: (debug) Include file: "float.h" not found.
+[../src/multiclass/htnb.cc:9]: (debug) Include file: "netdb.h" not found.
+[../src/multiclass/htnb.cc:10]: (debug) Include file: "cstring" not found.
+[../src/multiclass/htnb.cc:11]: (debug) Include file: "cstdio" not found.
+[../src/multiclass/htnb.cc:13]: (debug) Include file: "vector" not found.
+[../src/multiclass/htnb.h:11]: (debug) Include file: "math.h" not found.
+[../src/parse_arfheader.h:11]: (debug) Include file: "vector" not found.
+[../src/parse_arfheader.h:12]: (debug) Include file: "string" not found.
+[../src/parse_arfheader.h:13]: (debug) Include file: "stdint.h" not found.
+[../src/parse_arfheader.h:14]: (debug) Include file: "map" not found.
+[../src/multiclass/attrsplitsuggest.h:4]: (debug) Include file: "algorithm" not found.
+[../src/multiclass/split_test.h:4]: (debug) Include file: "cmath" not found.
+[../src/multiclass/numattrobs.h:11]: (debug) Include file: "cfloat" not found.
+[../src/multiclass/estimator.h:12]: (debug) Include file: "cmath" not found.
+[../src/multiclass/estimator.h:13]: (debug) Include file: "algorithm" not found.
+[../src/multiclass/infogain.h:11]: (debug) Include file: "cstring" not found.
+[../src/multiclass/numattrobs.h:22]: (debug) Include file: "algorithm" not found.
+[../src/multiclass/nomattrobs.h:11]: (debug) Include file: "vector" not found.
+[../src/multiclass/nomattrobs.h:12]: (debug) Include file: "boost/multi_array.hpp" not found.
+[../src/multiclass/ht.h:11]: (debug) Include file: "algorithm" not found.
+[../src/multiclass/ht.h:12]: (debug) Include file: "vector" not found.
+[../src/timsort.h:21]: (debug) Include file: "cstdlib" not found.
+[../src/timsort.h:22]: (debug) Include file: "cstdio" not found.
+[../src/timsort.h:23]: (debug) Include file: "cstring" not found.
+[../src/timsort.h:24]: (debug) Include file: "cstdint" not found.
+[../src/timsort.h:26]: (debug) Include file: "algorithm" not found.
+[../src/multiclass/attrobs.h:15] -> [../src/parse_regressor.h:14]: (style) Variable 'weight' hides typedef with same name
+[../src/multiclass/estimator.h:34] -> [../src/parse_regressor.h:14]: (style) Variable 'weight' hides typedef with same name
+[../src/multiclass/estimator.h:91] -> [../src/parse_regressor.h:14]: (style) Function parameter 'weight' hides typedef with same name
+[../src/multiclass/estimator.h:257] -> [../src/parse_regressor.h:14]: (style) Function parameter 'weight' hides typedef with same name
+[../src/multiclass/estimator.h:380] -> [../src/parse_regressor.h:14]: (style) Function parameter 'weight' hides typedef with same name
+[../src/multiclass/numattrobs.h:48] -> [../src/parse_regressor.h:14]: (style) Function parameter 'weight' hides typedef with same name
+[../src/multiclass/nomattrobs.h:47] -> [../src/parse_regressor.h:14]: (style) Function parameter 'weight' hides typedef with same name
+[../src/multiclass/ht.h:262] -> [../src/parse_regressor.h:14]: (style) Variable 'weight' hides typedef with same name
+[../src/multiclass/ht.h:302] -> [../src/parse_regressor.h:14]: (style) Function parameter 'weight' hides typedef with same name
+[../src/multiclass/flin.h:24] -> [../src/multiclass/dvec.h:12]: (style) Typedef 'Matrix_t' hides typedef with same name
+[../src/multiclass/htnb.cc:82]: (style) Variable 'stride' is assigned a value that is never used
+[../src/multiclass/htnb.cc:91]: (style) Variable 'attSize' is assigned a value that is never used
+[../src/multiclass/htnb.cc:112]: (information) The scope of the variable type can be reduced
+[../src/multiclass/htnb.cc:103]: (error) Returning pointer to local array variable
+[../src/multiclass/htnb.h:19]: (warning) Member variable 'htnb_vars::power_t' is not initialised in the constructor.
+[../src/multiclass/estimator.h:71]: (warning) Member variable 'NormalEstimator::mSumOfWeights' is not initialised in the constructor.
+[../src/multiclass/estimator.h:71]: (warning) Member variable 'NormalEstimator::mSumOfValues' is not initialised in the constructor.
+[../src/multiclass/estimator.h:71]: (warning) Member variable 'NormalEstimator::mSumOfValuesSq' is not initialised in the constructor.
+[../src/multiclass/estimator.h:71]: (warning) Member variable 'NormalEstimator::mMean' is not initialised in the constructor.
+[../src/multiclass/ht.h:131]: (warning) Member variable 'FoundNode::parentBranch' is not initialised in the constructor.
+[../src/multiclass/ht.h:249]: (warning) Member variable 'LearningNode::WeightAtLastSplitEval' is not initialised in the constructor.
+[../src/multiclass/ht.h:419]: (warning) Member variable 'HoeffdingTree::treeRoot' is not initialised in the constructor.
+[../src/multiclass/ht.h:419]: (warning) Member variable 'HoeffdingTree::decisionNodeCount' is not initialised in the constructor.
+[../src/multiclass/ht.h:419]: (warning) Member variable 'HoeffdingTree::activeLeafNodeCount' is not initialised in the constructor.
+[../src/multiclass/ht.h:419]: (warning) Member variable 'HoeffdingTree::inactiveLeafCount' is not initialised in the constructor.
+[../src/multiclass/attrsplitsuggest.h:38]: (style) 'operator=' should return reference to self
+[../src/multiclass/estimator.h:184]: (error) Memory leak: KernelEstimator::mValues
+[../src/multiclass/estimator.h:186]: (error) Memory leak: KernelEstimator::mWeights
+[../src/multiclass/estimator.h:363]: (error) Memory leak: DiscreteEstimator::mCounts
+[../src/multiclass/htnb.cc:118]: (error) Uninitialized variable: type
+[../src/multiclass/infogain.cc:7]: (debug) Include file: "boost/multi_array.hpp" not found.
+[../src/multiclass/infogain.cc:11]: (debug) Include file: "cmath" not found.
+[../src/multiclass/dvec.h:12] -> [../src/multiclass/flin.h:24]: (style) Typedef 'Matrix_t' hides typedef with same name
+[../src/multiclass/nb.cc:8]: (debug) Include file: "fstream" not found.
+[../src/multiclass/nb.cc:9]: (debug) Include file: "float.h" not found.
+[../src/multiclass/nb.cc:10]: (debug) Include file: "netdb.h" not found.
+[../src/multiclass/nb.cc:11]: (debug) Include file: "cstring" not found.
+[../src/multiclass/nb.cc:12]: (debug) Include file: "cstdio" not found.
+[../src/multiclass/nb.cc:14]: (debug) Include file: "vector" not found.
+[../src/multiclass/nb.h:11]: (debug) Include file: "math.h" not found.
+[../src/multiclass/nb.cc:111]: (information) The scope of the variable type can be reduced
+[../src/multiclass/nb.h:22]: (warning) Member variable 'nb_vars::power_t' is not initialised in the constructor.
+[../src/multiclass/estimator.h:134]: (information) Technically the member function 'est::NormalEstimator::getTotalObsWeights' can be const.
+[../src/multiclass/estimator.h:168]: (information) Technically the member function 'est::NormalEstimator::getGreaterThanWeight' can be const.
+[../src/multiclass/estimator.h:396]: (information) Technically the member function 'est::DiscreteEstimator::getNoOfSymbols' can be const.
+[../src/multiclass/nomattrobs.h:41]: (information) Technically the member function 'NomAttrObserver::isBinary' can be const.
+[../src/multiclass/nomattrobs.h:63]: (information) Technically the member function 'NomAttrObserver::getTotalClassWeightsObserved' can be const.
+[../src/multiclass/nb.cc:117]: (error) Uninitialized variable: type
+[../src/multiclass/statistics.cc:10]: (debug) Include file: "cmath" not found.
+[../src/multiclass/statistics.cc:11]: (debug) Include file: "stdio.h" not found.
+[../src/multiclass/tests/infogain_test.cc:0]: (debug) Include file: "iostream" not found.
+[../src/multisource.cc:3]: (debug) Include file: "sys/types.h" not found.
+[../src/multisource.cc:4]: (debug) Include file: "sys/socket.h" not found.
+[../src/multisource.cc:5]: (debug) Include file: "errno.h" not found.
+[../src/multisource.cc:6]: (debug) Include file: "stdio.h" not found.
+[../src/network.cc:0]: (debug) Include file: "sys/socket.h" not found.
+[../src/network.cc:1]: (debug) Include file: "netinet/in.h" not found.
+[../src/network.cc:2]: (debug) Include file: "netinet/tcp.h" not found.
+[../src/network.cc:3]: (debug) Include file: "errno.h" not found.
+[../src/network.cc:4]: (debug) Include file: "netdb.h" not found.
+[../src/network.cc:5]: (debug) Include file: "strings.h" not found.
+[../src/network.cc:6]: (debug) Include file: "stdlib.h" not found.
+[../src/network.cc:7]: (debug) Include file: "string.h" not found.
+[../src/network.cc:9]: (debug) Include file: "string" not found.
+[../src/network.cc:10]: (debug) Include file: "iostream" not found.
+[../src/network.cc:28]: (style) Found obsolete function 'gethostbyname'. It is recommended that new applications use the 'getnameinfo' function
+[../src/network.cc:31]: (style) Found obsolete function 'gethostbyname'. It is recommended that new applications use the 'getnameinfo' function
+[../src/offset_tree.cc:13]: (debug) Include file: "math.h" not found.
+[../src/offset_tree.cc:14]: (debug) Include file: "iostream" not found.
+[../src/offset_tree.cc:15]: (debug) Include file: "fstream" not found.
+[../src/offset_tree.cc:16]: (debug) Include file: "float.h" not found.
+[../src/offset_tree.cc:17]: (debug) Include file: "pthread.h" not found.
+[../src/offset_tree.cc:18]: (debug) Include file: "time.h" not found.
+[../src/offset_tree.cc:19]: (debug) Include file: "boost/program_options.hpp" not found.
+[../src/parse_args.h:10]: (debug) Include file: "boost/program_options.hpp" not found.
+[../src/offset_tree.cc:313]: (style) Variable 'numpasses' is not assigned a value
+[../src/offset_tree.cc:314]: (style) Variable 'eta_decay' is not assigned a value
+[../src/offset_tree.cc:173]: (style) struct or union member 'node::level' is never used
+[../src/parse_arfheader.cc:7]: (debug) Include file: "iostream" not found.
+[../src/parse_arfheader.cc:8]: (debug) Include file: "cstring" not found.
+[../src/parse_arfheader.cc:9]: (debug) Include file: "tinyxml.h" not found.
+[../src/parse_args.cc:5]: (debug) Include file: "stdio.h" not found.
+[../src/parse_args.cc:6]: (debug) Include file: "float.h" not found.
+[../src/parse_args.cc:256]: (performance) Prefer prefix ++/-- operators for non-primitive types.
+[../src/parse_args.cc:276]: (performance) Prefer prefix ++/-- operators for non-primitive types.
+[../src/parse_args.cc:284]: (performance) Prefer prefix ++/-- operators for non-primitive types.
+[../src/parse_example.cc:6]: (debug) Include file: "math.h" not found.
+[../src/parse_example.cc:7]: (debug) Include file: "ctype.h" not found.
+[../src/parse_example.cc:8]: (debug) Include file: "cstring" not found.
+[../src/parse_primitives.cc:7]: (debug) Include file: "string.h" not found.
+[../src/parse_primitives.cc:8]: (debug) Include file: "iostream" not found.
+[../src/parse_regressor.cc:6]: (debug) Include file: "fstream" not found.
+[../src/parse_regressor.cc:7]: (debug) Include file: "iostream" not found.
+[../src/parse_regressor.cc:10]: (debug) Include file: "unistd.h" not found.
+[../src/parse_regressor.cc:11]: (debug) Include file: "stdlib.h" not found.
+[../src/parse_regressor.cc:12]: (debug) Include file: "stdint.h" not found.
+[../src/parse_regressor.cc:13]: (debug) Include file: "math.h" not found.
+[../src/parse_regressor.cc:244]: (performance) Prefer prefix ++/-- operators for non-primitive types.
+[../src/parse_regressor.cc:259]: (performance) Prefer prefix ++/-- operators for non-primitive types.
+[../src/parser.cc:6]: (debug) Include file: "netdb.h" not found.
+[../src/parser.cc:7]: (debug) Include file: "netinet/tcp.h" not found.
+[../src/parser.cc:9]: (debug) Include file: "errno.h" not found.
+[../src/parser.cc:10]: (debug) Include file: "stdio.h" not found.
+[../src/parser.cc:11]: (debug) Include file: "cstdlib" not found.
+[../src/parser.cc:13]: (debug) Include file: "boost/program_options.hpp" not found.
+[../src/comp_io.h:12]: (information) Include file: "zlib.h" not found.
+[../src/example.h:12] -> [../src/parse_regressor.h:14]: (style) Variable 'weight' hides typedef with same name
+[../src/parser.cc:608]: (performance) Prefer prefix ++/-- operators for non-primitive types.
+[../src/sender.cc:0]: (debug) Include file: "pthread.h" not found.
+[../src/sender.cc:1]: (debug) Include file: "vector" not found.
+[../src/sender.cc:2]: (debug) Include file: "netdb.h" not found.
+[../src/sender.cc:87]: (performance) Prefer prefix ++/-- operators for non-primitive types.
+[../src/simple_label.cc:0]: (debug) Include file: "float.h" not found.
+[../src/utils.cc:12]: (debug) Include file: "stdio.h" not found.
+[../src/utils.cc:13]: (debug) Include file: "stdlib.h" not found.
+[../src/utils.cc:14]: (debug) Include file: "jemalloc/jemalloc.h" not found.
+[../src/utils.cc:15]: (debug) Include file: "stdarg.h" not found.
+[../src/utils.cc:16]: (debug) Include file: "sys/syslog.h" not found.
+[../src/utils.cc:17]: (debug) Include file: "string.h" not found.
+[../src/utils.cc:18]: (debug) Include file: "sys/time.h" not found.
+[../src/utils.cc:19]: (debug) Include file: "assert.h" not found.
+[../src/utils.cc:20]: (debug) Include file: "math.h" not found.
+[../src/utils.cc:105]: (style) Variable 'read' is assigned a value that is never used
+[../src/utils.cc:132]: (style) Variable 'read' is assigned a value that is never used
+[../src/utils.cc:105]: (information) The scope of the variable read can be reduced
+[../src/utils.cc:132]: (information) The scope of the variable read can be reduced
+[../src/utils.cc:60]: (error) Resource leak: p
+[../src/utils.cc:81]: (error) Resource leak: p
+[../src/utils.cc:94]: (error) Resource leak: f
+[../src/vw.cc:6]: (debug) Include file: "math.h" not found.
+[../src/vw.cc:7]: (debug) Include file: "float.h" not found.
+[../src/vw.cc:8]: (debug) Include file: "pthread.h" not found.
+[../src/vw.cc:9]: (debug) Include file: "time.h" not found.
+[../src/vw.cc:10]: (debug) Include file: "sys/socket.h" not found.
+[../src/vw.cc:11]: (debug) Include file: "arpa/inet.h" not found.
+[../src/vw.cc:12]: (debug) Include file: "cstdio" not found.
+[../src/vw.cc:14]: (debug) Include file: "iostream" not found.
+[../src/vw.cc:15]: (debug) Include file: "fstream" not found.

@@ -1,0 +1,138 @@
+/*
+ * dvec.cc
+ *
+ *  Created on: Apr 26, 2011
+ *      Author: caglar
+ */
+
+#include <cstdlib>
+#include <iostream>
+#include <algorithm>
+#include <map>
+#include <boost/multi_array.hpp>
+
+#include "dvec.h"
+
+void
+copy_array_elements(DVec &dvec, float *val, size_t array_size)
+{
+  for (size_t i = 0; i < array_size; i++)
+  {
+    dvec.insert(pair<int, float>(i, val[i]));
+  }
+}
+
+void
+copy_dvec_to_array(DVec &dvec, float *val)
+{
+  std::transform(dvec.begin(), dvec.end(), val, extract_second());
+}
+
+void
+copy_dvec_to_marray(DVec &dvec, const boost::multi_array<float,1> &vec)
+{
+  std::transform(dvec.begin(), dvec.end(), vec.begin(), extract_second());
+}
+
+void
+copy_marray_to_dvec(DVec &dvec, boost::multi_array<float,1> &vec)
+{
+  std::transform(vec.begin(), vec.end(), dvec.begin(), extract_second());
+}
+
+void
+resize_dvec(DVec &dvec, size_t new_size)
+{
+  for (size_t i = (dvec.size() - 1); i < new_size; i++) 
+  {
+    dvec.insert(pair<int,float>(i, 0.0));
+  }
+}
+
+bool
+val_cmp(DVec::value_type& i1, DVec::value_type& i2)
+{
+  return i1.second < i2.second;
+}
+
+int
+max_index(DVec& dvec)
+{
+  return max_element(dvec.begin(), dvec.end(), val_cmp)->second;
+}
+
+void
+add_to_val(int i, DVec& dVec, float val) 
+{
+  dVec[i] += val;
+}
+
+int
+max_val (DVec& dvec)
+{
+  return max_element(dvec.begin(), dvec.end(), val_cmp)->second;
+}
+
+int
+min_index (DVec& dvec)
+{
+  return max_element(dvec.begin(), dvec.end(), val_cmp)->first;
+}
+
+int
+min_val (DVec& dvec)
+{
+  return min_element(dvec.begin(), dvec.end(), val_cmp)->second;
+}
+
+float
+sum_of_vals (DVec& dvec)
+{
+  float sum = 0;
+  DVec::iterator itr;
+  for (itr = dvec.begin(); itr != dvec.end(); itr++) 
+  {
+    sum += itr->second;
+  }
+  return sum;
+}
+
+void
+scale_vals (DVec& dvec, float sval)
+{
+  DVec::iterator itr;
+  for (itr = dvec.begin(); itr != dvec.end(); itr++) 
+  {
+    (*itr).second = (itr->second / sval);
+  }
+}
+
+int
+get_num_non_zero (DVec & dvec)
+{
+  DVec::iterator itr;
+  int noOfNonZero = 0;
+  for (itr = dvec.begin(); itr != dvec.end(); itr++)
+  {
+    if ((*itr).second != 0.0)
+    {
+      noOfNonZero++;
+    }
+  }
+  return noOfNonZero;
+}
+
+void
+normalize (DVec& dvec)
+{
+  int count = 0;
+  DVec::iterator itr;
+  if (!dvec.empty())
+  {
+    float sum = sum_of_vals(dvec);
+    if (sum != 0)
+    {
+      scale_vals(dvec, sum);
+    }
+  }
+}

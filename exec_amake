@@ -1,0 +1,2 @@
+#!/bin/bash --debugger
+autoscan && aclocal && autoheader && autoupdate && autoconf && automake -a -c

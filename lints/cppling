@@ -1,0 +1,147 @@
+../src/multiclass/htnb.h(0):  No copyright message found.  You should have a line: "Copyright [year] <Copyright Owner>"  [legal/copyright] [5]
+../src/multiclass/htnb.h(8):  #ifndef header guard has wrong style, please use: SRC_MULTICLASS_HTNB_H_  [build/header_guard] [5]
+../src/multiclass/htnb.h(51):  #endif line should be "#endif  // SRC_MULTICLASS_HTNB_H_"  [build/header_guard] [5]
+../src/multiclass/htnb.h(20):  You don't need a ; after a }  [readability/braces] [4]
+Done processing ../src/multiclass/htnb.h
+Total errors found: 4
+../src/multiclass/split_test.h(0):  No copyright message found.  You should have a line: "Copyright [year] <Copyright Owner>"  [legal/copyright] [5]
+../src/multiclass/split_test.h(1):  #ifndef header guard has wrong style, please use: SRC_MULTICLASS_SPLIT_TEST_H_  [build/header_guard] [5]
+../src/multiclass/split_test.h(100):  #endif line should be "#endif  // SRC_MULTICLASS_SPLIT_TEST_H_"  [build/header_guard] [5]
+../src/multiclass/split_test.h(32):  Single-argument constructors should be marked explicit.  [runtime/explicit] [5]
+Done processing ../src/multiclass/split_test.h
+Total errors found: 4
+../src/multiclass/dvec.h(0):  No copyright message found.  You should have a line: "Copyright [year] <Copyright Owner>"  [legal/copyright] [5]
+../src/multiclass/dvec.h(8):  #ifndef header guard has wrong style, please use: SRC_MULTICLASS_DVEC_H_  [build/header_guard] [5]
+../src/multiclass/dvec.h(56):  #endif line should be "#endif  // SRC_MULTICLASS_DVEC_H_"  [build/header_guard] [5]
+../src/multiclass/dvec.h(16):  Is this a non-const reference? If so, make const or use a pointer.  [runtime/references] [2]
+../src/multiclass/dvec.h(19):  Is this a non-const reference? If so, make const or use a pointer.  [runtime/references] [2]
+../src/multiclass/dvec.h(45):  Is this a non-const reference? If so, make const or use a pointer.  [runtime/references] [2]
+../src/multiclass/dvec.h(48):  Is this a non-const reference? If so, make const or use a pointer.  [runtime/references] [2]
+../src/multiclass/dvec.h(51):  Is this a non-const reference? If so, make const or use a pointer.  [runtime/references] [2]
+Done processing ../src/multiclass/dvec.h
+Total errors found: 8
+../src/multiclass/infogain.h(0):  No copyright message found.  You should have a line: "Copyright [year] <Copyright Owner>"  [legal/copyright] [5]
+../src/multiclass/infogain.h(8):  #ifndef header guard has wrong style, please use: SRC_MULTICLASS_INFOGAIN_H_  [build/header_guard] [5]
+../src/multiclass/infogain.h(44):  #endif line should be "#endif  // SRC_MULTICLASS_INFOGAIN_H_"  [build/header_guard] [5]
+../src/multiclass/infogain.h(12):  Include the directory when naming .h files  [build/include] [4]
+../src/multiclass/infogain.h(23):  Is this a non-const reference? If so, make const or use a pointer.  [runtime/references] [2]
+Done processing ../src/multiclass/infogain.h
+Total errors found: 5
+../src/multiclass/estimator.h(0):  No copyright message found.  You should have a line: "Copyright [year] <Copyright Owner>"  [legal/copyright] [5]
+../src/multiclass/estimator.h(9):  #ifndef header guard has wrong style, please use: SRC_MULTICLASS_ESTIMATOR_H_  [build/header_guard] [5]
+../src/multiclass/estimator.h(403):  #endif line should be "#endif  // SRC_MULTICLASS_ESTIMATOR_H_"  [build/header_guard] [5]
+../src/multiclass/estimator.h(14):  Include the directory when naming .h files  [build/include] [4]
+../src/multiclass/estimator.h(15):  Include the directory when naming .h files  [build/include] [4]
+../src/multiclass/estimator.h(26):  The class Estimator probably needs a virtual destructor due to having virtual method(s), one declared at line 35.  [runtime/virtual] [4]
+../src/multiclass/estimator.h(71):  Single-argument constructors should be marked explicit.  [runtime/explicit] [5]
+../src/multiclass/estimator.h(228):  Single-argument constructors should be marked explicit.  [runtime/explicit] [5]
+../src/multiclass/estimator.h(268):  Using sizeof(type).  Use sizeof(varname) instead if possible  [runtime/sizeof] [1]
+../src/multiclass/estimator.h(270):  Using sizeof(type).  Use sizeof(varname) instead if possible  [runtime/sizeof] [1]
+../src/multiclass/estimator.h(275):  If an else has a brace on one side, it should have it on both  [readability/braces] [5]
+../src/multiclass/estimator.h(280):  Using sizeof(type).  Use sizeof(varname) instead if possible  [runtime/sizeof] [1]
+../src/multiclass/estimator.h(282):  Using sizeof(type).  Use sizeof(varname) instead if possible  [runtime/sizeof] [1]
+../src/multiclass/estimator.h(286):  Using sizeof(type).  Use sizeof(varname) instead if possible  [runtime/sizeof] [1]
+../src/multiclass/estimator.h(288):  Using sizeof(type).  Use sizeof(varname) instead if possible  [runtime/sizeof] [1]
+../src/multiclass/estimator.h(301):  If an else has a brace on one side, it should have it on both  [readability/braces] [5]
+../src/multiclass/estimator.h(368):  Single-argument constructors should be marked explicit.  [runtime/explicit] [5]
+../src/multiclass/estimator.h(382):  Using C-style cast.  Use static_cast<int>(...) instead  [readability/casting] [4]
+../src/multiclass/estimator.h(392):  Using C-style cast.  Use static_cast<int>(...) instead  [readability/casting] [4]
+Done processing ../src/multiclass/estimator.h
+Total errors found: 19
+../src/multiclass/arraycopy.h(0):  No copyright message found.  You should have a line: "Copyright [year] <Copyright Owner>"  [legal/copyright] [5]
+../src/multiclass/arraycopy.h(8):  #ifndef header guard has wrong style, please use: SRC_MULTICLASS_ARRAYCOPY_H_  [build/header_guard] [5]
+../src/multiclass/arraycopy.h(20):  #endif line should be "#endif  // SRC_MULTICLASS_ARRAYCOPY_H_"  [build/header_guard] [5]
+Done processing ../src/multiclass/arraycopy.h
+Total errors found: 3
+../src/multiclass/attrobs.h(0):  No copyright message found.  You should have a line: "Copyright [year] <Copyright Owner>"  [legal/copyright] [5]
+../src/multiclass/attrobs.h(8):  #ifndef header guard has wrong style, please use: SRC_MULTICLASS_ATTROBS_H_  [build/header_guard] [5]
+../src/multiclass/attrobs.h(20):  #endif line should be "#endif  // SRC_MULTICLASS_ATTROBS_H_"  [build/header_guard] [5]
+../src/multiclass/attrobs.h(11):  Include the directory when naming .h files  [build/include] [4]
+../src/multiclass/attrobs.h(13):  The class AttributeClassObserver probably needs a virtual destructor due to having virtual method(s), one declared at line 17.  [runtime/virtual] [4]
+Done processing ../src/multiclass/attrobs.h
+Total errors found: 5
+../src/multiclass/attrsplitsuggest.h(0):  No copyright message found.  You should have a line: "Copyright [year] <Copyright Owner>"  [legal/copyright] [5]
+../src/multiclass/attrsplitsuggest.h(1):  #ifndef header guard has wrong style, please use: SRC_MULTICLASS_ATTRSPLITSUGGEST_H_  [build/header_guard] [5]
+../src/multiclass/attrsplitsuggest.h(58):  #endif line should be "#endif  // SRC_MULTICLASS_ATTRSPLITSUGGEST_H_"  [build/header_guard] [5]
+../src/multiclass/attrsplitsuggest.h(6):  Include the directory when naming .h files  [build/include] [4]
+../src/multiclass/attrsplitsuggest.h(7):  Include the directory when naming .h files  [build/include] [4]
+Done processing ../src/multiclass/attrsplitsuggest.h
+Total errors found: 5
+../src/multiclass/numattrobs.h(0):  No copyright message found.  You should have a line: "Copyright [year] <Copyright Owner>"  [legal/copyright] [5]
+../src/multiclass/numattrobs.h(8):  #ifndef header guard has wrong style, please use: SRC_MULTICLASS_NUMATTROBS_H_  [build/header_guard] [5]
+../src/multiclass/numattrobs.h(170):  #endif line should be "#endif  // SRC_MULTICLASS_NUMATTROBS_H_"  [build/header_guard] [5]
+../src/multiclass/numattrobs.h(13):  Include the directory when naming .h files  [build/include] [4]
+../src/multiclass/numattrobs.h(14):  Include the directory when naming .h files  [build/include] [4]
+../src/multiclass/numattrobs.h(15):  Include the directory when naming .h files  [build/include] [4]
+../src/multiclass/numattrobs.h(16):  Include the directory when naming .h files  [build/include] [4]
+../src/multiclass/numattrobs.h(17):  Include the directory when naming .h files  [build/include] [4]
+../src/multiclass/numattrobs.h(22):  Found C++ system header after other header. Should be: numattrobs.h, c system, c++ system, other.  [build/include_order] [4]
+../src/multiclass/numattrobs.h(42):  Single-argument constructors should be marked explicit.  [runtime/explicit] [5]
+../src/multiclass/numattrobs.h(58):  If an else has a brace on one side, it should have it on both  [readability/braces] [5]
+../src/multiclass/numattrobs.h(96):  Using sizeof(type).  Use sizeof(varname) instead if possible  [runtime/sizeof] [1]
+../src/multiclass/numattrobs.h(96):  Using C-style cast.  Use reinterpret_cast<float *>(...) instead  [readability/casting] [4]
+../src/multiclass/numattrobs.h(34):  Add #include <vector> for vector<>  [build/include_what_you_use] [4]
+Done processing ../src/multiclass/numattrobs.h
+Total errors found: 14
+../src/multiclass/nomattrobs.h(0):  No copyright message found.  You should have a line: "Copyright [year] <Copyright Owner>"  [legal/copyright] [5]
+../src/multiclass/nomattrobs.h(8):  #ifndef header guard has wrong style, please use: SRC_MULTICLASS_NOMATTROBS_H_  [build/header_guard] [5]
+../src/multiclass/nomattrobs.h(167):  #endif line should be "#endif  // SRC_MULTICLASS_NOMATTROBS_H_"  [build/header_guard] [5]
+../src/multiclass/nomattrobs.h(12):  Found C system header after C++ system header. Should be: nomattrobs.h, c system, c++ system, other.  [build/include_order] [4]
+../src/multiclass/nomattrobs.h(14):  Include the directory when naming .h files  [build/include] [4]
+../src/multiclass/nomattrobs.h(15):  Include the directory when naming .h files  [build/include] [4]
+../src/multiclass/nomattrobs.h(16):  Include the directory when naming .h files  [build/include] [4]
+../src/multiclass/nomattrobs.h(17):  Include the directory when naming .h files  [build/include] [4]
+../src/multiclass/nomattrobs.h(49):  Using C-style cast.  Use static_cast<int>(...) instead  [readability/casting] [4]
+../src/multiclass/nomattrobs.h(59):  Using C-style cast.  Use static_cast<int>(...) instead  [readability/casting] [4]
+Done processing ../src/multiclass/nomattrobs.h
+Total errors found: 10
+../src/multiclass/mutils.h(0):  No copyright message found.  You should have a line: "Copyright [year] <Copyright Owner>"  [legal/copyright] [5]
+../src/multiclass/mutils.h(8):  #ifndef header guard has wrong style, please use: SRC_MULTICLASS_MUTILS_H_  [build/header_guard] [5]
+../src/multiclass/mutils.h(26):  #endif line should be "#endif  // SRC_MULTICLASS_MUTILS_H_"  [build/header_guard] [5]
+../src/multiclass/mutils.h(11):  Include the directory when naming .h files  [build/include] [4]
+../src/multiclass/mutils.h(15):  Using deprecated casting style.  Use static_cast<float>(...) instead  [readability/casting] [4]
+Done processing ../src/multiclass/mutils.h
+Total errors found: 5
+../src/multiclass/ht.h(0):  No copyright message found.  You should have a line: "Copyright [year] <Copyright Owner>"  [legal/copyright] [5]
+../src/multiclass/ht.h(8):  #ifndef header guard has wrong style, please use: SRC_MULTICLASS_HT_H_  [build/header_guard] [5]
+../src/multiclass/ht.h(482):  #endif line should be "#endif  // SRC_MULTICLASS_HT_H_"  [build/header_guard] [5]
+../src/multiclass/ht.h(14):  Include the directory when naming .h files  [build/include] [4]
+../src/multiclass/ht.h(15):  Include the directory when naming .h files  [build/include] [4]
+../src/multiclass/ht.h(16):  Include the directory when naming .h files  [build/include] [4]
+../src/multiclass/ht.h(17):  Include the directory when naming .h files  [build/include] [4]
+../src/multiclass/ht.h(46):  The class Node probably needs a virtual destructor due to having virtual method(s), one declared at line 118.  [runtime/virtual] [4]
+../src/multiclass/ht.h(260):  Using C-style cast.  Use reinterpret_cast<label_data *>(...) instead  [readability/casting] [4]
+../src/multiclass/ht.h(271):  Using C-style cast.  Use reinterpret_cast<AttributeClassObserver *>(...) instead  [readability/casting] [4]
+../src/multiclass/ht.h(394):  Do not use dynamic_cast<>.  If you need to cast within a class hierarchy, use static_cast<> to upcast.  Google doesn't support RTTI.  [runtime/rtti] [5]
+../src/multiclass/ht.h(419):  Single-argument constructors should be marked explicit.  [runtime/explicit] [5]
+../src/multiclass/ht.h(432):  Do not use dynamic_cast<>.  If you need to cast within a class hierarchy, use static_cast<> to upcast.  Google doesn't support RTTI.  [runtime/rtti] [5]
+../src/multiclass/ht.h(435):  Do not use dynamic_cast<>.  If you need to cast within a class hierarchy, use static_cast<> to upcast.  Google doesn't support RTTI.  [runtime/rtti] [5]
+../src/multiclass/ht.h(445):  Do not use dynamic_cast<>.  If you need to cast within a class hierarchy, use static_cast<> to upcast.  Google doesn't support RTTI.  [runtime/rtti] [5]
+../src/multiclass/ht.h(462):  Do not use dynamic_cast<>.  If you need to cast within a class hierarchy, use static_cast<> to upcast.  Google doesn't support RTTI.  [runtime/rtti] [5]
+Done processing ../src/multiclass/ht.h
+Total errors found: 16
+../src/multiclass/flin.h(0):  No copyright message found.  You should have a line: "Copyright [year] <Copyright Owner>"  [legal/copyright] [5]
+../src/multiclass/flin.h(19):  #ifndef header guard has wrong style, please use: SRC_MULTICLASS_FLIN_H_  [build/header_guard] [5]
+../src/multiclass/flin.h(27):  #endif line should be "#endif  // SRC_MULTICLASS_FLIN_H_"  [build/header_guard] [5]
+Done processing ../src/multiclass/flin.h
+Total errors found: 3
+../src/multiclass/nb.h(0):  No copyright message found.  You should have a line: "Copyright [year] <Copyright Owner>"  [legal/copyright] [5]
+../src/multiclass/nb.h(8):  #ifndef header guard has wrong style, please use: SRC_MULTICLASS_NB_H_  [build/header_guard] [5]
+../src/multiclass/nb.h(53):  #endif line should be "#endif  // SRC_MULTICLASS_NB_H_"  [build/header_guard] [5]
+../src/multiclass/nb.h(23):  You don't need a ; after a }  [readability/braces] [4]
+Done processing ../src/multiclass/nb.h
+Total errors found: 4
+../src/multiclass/statistics.h(0):  No copyright message found.  You should have a line: "Copyright [year] <Copyright Owner>"  [legal/copyright] [5]
+../src/multiclass/statistics.h(7):  #ifndef header guard has wrong style, please use: SRC_MULTICLASS_STATISTICS_H_  [build/header_guard] [5]
+../src/multiclass/statistics.h(14):  #endif line should be "#endif  // SRC_MULTICLASS_STATISTICS_H_"  [build/header_guard] [5]
+Done processing ../src/multiclass/statistics.h
+Total errors found: 3
+../src/multiclass/arrayresize.h(0):  No copyright message found.  You should have a line: "Copyright [year] <Copyright Owner>"  [legal/copyright] [5]
+../src/multiclass/arrayresize.h(18):  #ifndef header guard has wrong style, please use: SRC_MULTICLASS_ARRAYRESIZE_H_  [build/header_guard] [5]
+../src/multiclass/arrayresize.h(25):  #endif line should be "#endif  // SRC_MULTICLASS_ARRAYRESIZE_H_"  [build/header_guard] [5]
+Done processing ../src/multiclass/arrayresize.h
+Total errors found: 3
+../src/multiclass/hoeffding_bound.h(0):  No copyright message found.  You should have a line: "Copyright [year] <Copyright Owner>"  [legal/copyright] [5]
+../src/multiclass/hoeffding_bound.h(0):  No #ifndef header guard found, suggested CPP variable is: SRC_MULTICLASS_HOEFFDING_BOUND_H_  [build/header_guard] [5]
+Done processing ../src/multiclass/hoeffding_bound.h
+Total errors found: 2

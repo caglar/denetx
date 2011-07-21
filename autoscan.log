@@ -1,0 +1,32 @@
+autoscan: warning: missing AC_TYPE_INT64_T wanted by: 
+	src/timsort.h:57
+	src/timsort.h:58
+	src/timsort.h:86
+	src/timsort.h:89
+	src/timsort.h:101
+	src/timsort.h:142
+	src/timsort.h:145
+	src/timsort.h:152
+	src/timsort.h:171
+	src/timsort.h:171
+	src/timsort.h:183
+	src/timsort.h:184
+	src/timsort.h:194
+	src/timsort.h:270
+	src/timsort.h:271
+	src/timsort.h:275
+	src/timsort.h:276
+	src/timsort.h:277
+	src/timsort.h:303
+	src/timsort.h:304
+	src/timsort.h:305
+	src/timsort.h:310
+	src/timsort.h:387
+	src/timsort.h:388
+	src/timsort.h:389
+	src/timsort.h:441
+	src/timsort.h:442
+autoscan: warning: missing AC_TYPE_UINT64_T wanted by: 
+	src/timsort.h:39
+	src/timsort.h:223
+	src/timsort.h:228
