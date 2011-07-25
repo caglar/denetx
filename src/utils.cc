@@ -15,6 +15,8 @@
 #include <jemalloc/jemalloc.h>
 #include <stdarg.h>
 #include <sys/syslog.h>
+#include <sys/stat.h>
+#include <stdio.h>
 #include <string.h>
 #include <sys/time.h>
 #include <assert.h>
@@ -40,6 +42,16 @@ c_log(const char *format, ...)
         syslog(LOG_ALERT,
                 "utils.c: Illegal format input is given to the c_log function.");
     }
+}
+
+bool
+c_does_file_exist(const char *filename)
+{
+    bool flag = true;
+    struct stat fileStat;
+    if(stat(filename, &fileStat) < 0)
+        flag = false;
+    return flag;
 }
 
 void

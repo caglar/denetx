@@ -121,6 +121,13 @@ writeModelFile(DVec &observedClassDist,
         arfheader *arfHeader, string nb_model_file)
 {
     string modelFileContent = "";
+
+    string tmpFileName = nb_model_file + ".tmp";
+
+    if (c_does_file_exist(nb_model_file.c_str())) {
+        rename(nb_model_file.c_str(), tmpFileName.c_str());
+    }
+
     createModelFileContent(observedClassDist, attributeObservers, arfHeader,
             modelFileContent);
     const char *mModelFileContent = modelFileContent.c_str();

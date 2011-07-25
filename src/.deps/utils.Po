@@ -16,12 +16,13 @@ utils.o: utils.cc /usr/include/stdio.h /usr/include/features.h \
  /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h \
  /usr/include/alloca.h /usr/local/include/jemalloc/jemalloc.h \
  /usr/local/include/jemalloc/jemalloc_defs.h /usr/include/sys/syslog.h \
- /usr/include/bits/syslog-path.h /usr/include/string.h \
- /usr/include/sys/time.h /usr/include/assert.h /usr/include/math.h \
- /usr/include/bits/huge_val.h /usr/include/bits/huge_valf.h \
- /usr/include/bits/huge_vall.h /usr/include/bits/inf.h \
- /usr/include/bits/nan.h /usr/include/bits/mathdef.h \
- /usr/include/bits/mathcalls.h /usr/include/ctype.h utils.h
+ /usr/include/bits/syslog-path.h /usr/include/sys/stat.h \
+ /usr/include/bits/stat.h /usr/include/string.h /usr/include/sys/time.h \
+ /usr/include/assert.h /usr/include/math.h /usr/include/bits/huge_val.h \
+ /usr/include/bits/huge_valf.h /usr/include/bits/huge_vall.h \
+ /usr/include/bits/inf.h /usr/include/bits/nan.h \
+ /usr/include/bits/mathdef.h /usr/include/bits/mathcalls.h \
+ /usr/include/ctype.h utils.h
 
 /usr/include/stdio.h:
 
@@ -94,6 +95,10 @@ utils.o: utils.cc /usr/include/stdio.h /usr/include/features.h \
 /usr/include/sys/syslog.h:
 
 /usr/include/bits/syslog-path.h:
+
+/usr/include/sys/stat.h:
+
+/usr/include/bits/stat.h:
 
 /usr/include/string.h:
 

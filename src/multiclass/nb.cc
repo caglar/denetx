@@ -5,7 +5,7 @@
  *      Author: caglar
  *
  */
-
+#include <string>
 #include <fstream>
 #include <float.h>
 #include <netdb.h>
@@ -18,6 +18,7 @@
 #include "nb.h"
 #include "numattrobs.h"
 #include "nomattrobs.h"
+#include "parse_nbmodel.h"
 
 #include "../parse_example.h"
 #include "../constant.h"
@@ -52,13 +53,15 @@ nb_thread(void *in)
 
     //  printf("No of categories is: %d\n", params->arfHeader->no_of_categories);
 
-    if ( (params->vars->observedClassDist.size() != no_of_cats) && (no_of_cats > 0)){
+    if ((params->vars->observedClassDist.size() != no_of_cats) && (no_of_cats
+            > 0)) {
         //params->vars->observedClassDist.empty();
         //params->vars->observedClassDist.
         params->vars->observedClassDist.resize(boost::extents[no_of_cats]);
     }
 
-    if (params->vars->attributeObservers.size() != no_of_feats && (no_of_feats > 0)) {
+    if (params->vars->attributeObservers.size() != no_of_feats && (no_of_feats
+            > 0)) {
         params->vars->attributeObservers.resize(no_of_feats);
     }
 
@@ -162,7 +165,8 @@ nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
 
         if (params->vars->attributeObservers[*i] == NULL) {
             if (!(arfHeader->features).empty()) {
-                type[thread_num] = ((fType) (arfHeader->features[f.weight_index]).type);
+                type[thread_num]
+                        = ((fType) (arfHeader->features[f.weight_index]).type);
             }
             if (type[thread_num] == NUMERIC) {
                 NumAttrObserver *numAttObs = new NumAttrObserver(
@@ -176,7 +180,7 @@ nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
             }
             else {
                 std::cerr << "Unsupported type" << std::endl;
-                exit(EXIT_FAILURE);
+                exit( EXIT_FAILURE);
             }
         }
 
@@ -208,11 +212,28 @@ setup_nb(nb_thread_params t)
     threads = (pthread_t *) c_calloc(num_threads, sizeof(pthread_t));
     passers = (nb_thread_params **) c_calloc(num_threads,
             sizeof(nb_thread_params *));
-    //t.vars->observedClassDist.resize(boost::extents[(t.arfHeader)->no_of_categories]);
+    std::string nbModelFile = global.nb_model_file;
+    bool mFileFlag = false;
+    DVec observedClassDist;
+    vector<AttributeClassObserver *> attributeObservers;
+
+    if (nbModelFile.size() > 0) {
+        if (c_does_file_exist(nbModelFile.c_str()) && c_get_file_size(
+                nbModelFile.c_str()) > 0) {
+            readModelFile(observedClassDist, attributeObservers, t.arfHeader,
+                    nbModelFile);
+            mFileFlag = true;
+        }
+    }
+
     for (size_t i = 0; i < num_threads; i++) {
         passers[i] = (nb_thread_params *) c_calloc(1, sizeof(nb_thread_params));
         *(passers[i]) = t;
         passers[i]->thread_num = i;
+        if (mFileFlag) {
+            passers[i]->vars->attributeObservers = attributeObservers;
+            passers[i]->vars->observedClassDist = observedClassDist;
+        }
         pthread_create(&threads[i], NULL, nb_thread, (void *) passers[i]);
     }
 }
@@ -220,7 +241,12 @@ setup_nb(nb_thread_params t)
 void
 destroy_nb()
 {
-
+    std::string nbModelFile = global.nb_model_file;
+    if (nbModelFile.size() > 0) {
+        writeModelFile(passers[0]->vars->observedClassDist,
+                passers[0]->vars->attributeObservers, passers[0]->arfHeader,
+                nbModelFile);
+    }
     for (size_t i = 0; i < num_threads; i++) {
         pthread_join(threads[i], NULL);
         c_free(passers[i]);

@@ -27,6 +27,8 @@ do{if (!(x)) { \
  */
 void
 c_log(IN const char * format, ...);
+bool
+c_does_file_exist(const char *filename);
 void
 c_write_file(IN const char *filename, IN void *buf, IN size_t size);
 void
