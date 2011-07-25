@@ -567,7 +567,8 @@ nb.o: multiclass/nb.cc \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/complex \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/tr1_impl/complex \
  multiclass/./attrobs.h multiclass/./attrsplitsuggest.h \
- multiclass/./split_test.h multiclass/./flin.h multiclass/numattrobs.h \
+ multiclass/./split_test.h example.h multiclass/./flin.h \
+ multiclass/./../utils.h multiclass/numattrobs.h \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/cfloat \
  multiclass/dvec.h multiclass/estimator.h multiclass/statistics.h \
  multiclass/arraycopy.h multiclass/infogain.h multiclass/flin.h \
@@ -1865,7 +1866,11 @@ multiclass/./attrsplitsuggest.h:
 
 multiclass/./split_test.h:
 
+example.h:
+
 multiclass/./flin.h:
+
+multiclass/./../utils.h:
 
 multiclass/numattrobs.h:
 

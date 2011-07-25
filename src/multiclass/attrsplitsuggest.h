@@ -5,7 +5,7 @@
 
 #include "split_test.h"
 #include "flin.h"
-
+#include "../utils.h"
 using std::copy;
 
 struct AttrSplitSuggestion

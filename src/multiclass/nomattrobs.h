@@ -28,7 +28,8 @@ protected:
 
 public:
 
-    NomAttrObserver() : totalWeightObserved(0), missingWeightObserved(0), binaryOnly(false)
+    NomAttrObserver() :
+        totalWeightObserved(0), missingWeightObserved(0), binaryOnly(false)
     {
     }
 
@@ -49,12 +50,17 @@ public:
         return binaryOnly;
     }
 
+    vector<DVec>
+    getattValDistPerClass()
+    {
+        return this->attValDistPerClass;
+    }
+
     void
     observeAttributeClass(float attVal, int classVal, float weight)
     {
         int attValInt = (int) attVal;
-        DVec valDist = attValDistPerClass[classVal];
-        valDist[attValInt] += weight;
+        add_to_val(attValInt, attValDistPerClass[classVal], weight);
         totalWeightObserved += weight;
     }
 

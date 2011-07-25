@@ -19,6 +19,7 @@
 #include <sys/time.h>
 #include <assert.h>
 #include <math.h>
+#include <ctype.h>
 #include "utils.h"
 
 #define MAX_CHAR_LINE 200
@@ -214,7 +215,7 @@ c_malloc(size_t size)
             ret = malloc(1);
         if (!ret) {
             syslog(LOG_CRIT, "Out of memory, malloc failed");
-            exit(EXIT_FAILURE);
+            exit( EXIT_FAILURE);
         }
     }
 #ifdef XMALLOC_POISON
@@ -228,7 +229,7 @@ c_free(void *buf)
 {
     if (buf == NULL) {
         syslog(LOG_CRIT, "utils.c: c_free function recieved an illegal buffer");
-        exit(EXIT_FAILURE);
+        exit( EXIT_FAILURE);
     }
     else
         free(buf);
@@ -241,7 +242,7 @@ c_array_free(char **buf, size_t size)
         if (buf == NULL) {
             syslog(LOG_CRIT,
                     "utils.c: c_free function recieved an illegal buffer");
-            exit(EXIT_FAILURE);
+            exit( EXIT_FAILURE);
         }
         else {
             free(buf);
@@ -255,11 +256,11 @@ c_memset(void *buf, int c, size_t size)
 {
     if (buf == NULL) {
         syslog(LOG_CRIT, "utils.c: c_memset buff recieved is null");
-        exit(EXIT_FAILURE);
+        exit( EXIT_FAILURE);
     }
     if (c <= 0) {
         syslog(LOG_CRIT, "utils.c: c_memset buff recieved is null");
-        exit(EXIT_FAILURE);
+        exit( EXIT_FAILURE);
     }
     if (buf != NULL && c > 0) {
         memset(buf, c, size);
@@ -271,15 +272,15 @@ c_memcpy(void *dest, const void * src, size_t size)
 {
     if (dest == NULL) {
         syslog(LOG_CRIT, "utils.c: c_memcpy dest recieved is null");
-        exit(EXIT_FAILURE);
+        exit( EXIT_FAILURE);
     }
     if (src == NULL) {
         syslog(LOG_CRIT, "utils.c: c_memcpy src recieved is null");
-        exit(EXIT_FAILURE);
+        exit( EXIT_FAILURE);
     }
     if (size <= 0) {
         syslog(LOG_CRIT, "utils.c: c_memcpy size recieved is null");
-        exit(EXIT_FAILURE);
+        exit( EXIT_FAILURE);
     }
     if (dest != NULL && src != NULL && size > 0) {
         //memset(buf, c, size);
@@ -301,7 +302,7 @@ c_realloc(void *ptr, size_t size)
             ret = realloc(ptr, 1);
         if (!ret) {
             syslog(LOG_CRIT, "Out of memory, realloc failed");
-            exit(EXIT_FAILURE);
+            exit( EXIT_FAILURE);
         }
     }
     return ret;
@@ -354,6 +355,14 @@ c_strlen(const char *str)
 char *
 c_strtok_r(char *str1, const char *str2, char **str3)
 {
+    if (str1 == NULL) {
+        syslog(LOG_WARNING, "String in c_strtok_r should not be empty");
+        return "";
+    }
+    if (str2 == NULL) {
+        syslog(LOG_WARNING, "Delimiter string in c_strtok_r should not be empty");
+        return "";
+    }
     char *token = (char *) strtok_r(str1, str2, str3);
     return token;
 }
@@ -361,10 +370,10 @@ c_strtok_r(char *str1, const char *str2, char **str3)
 char *
 c_strtok(char * str, const char * delimiters)
 {
-    assert( str != NULL );
-    assert( delimiters != NULL );
+    assert(str != NULL);
+    assert(delimiters != NULL);
     char *result = strtok(str, delimiters);
-    assert( result!= NULL );
+    assert(result != NULL);
     return result;
 }
 
@@ -377,10 +386,15 @@ c_strcpy(char *destination, const char *source)
         strcpy(destination, source);
     }
     else {
-        destination = (char *) c_realloc((void *) destination,
-                sizeof(source) + 1);
         if (destination == NULL) {
-            syslog(LOG_CRIT, "Not enough memory c_strcpy failed.");
+            destination = (char *) c_malloc(sizeof(*source) + 1);
+        }
+        else {
+            destination = (char *) c_realloc((void *) destination,
+                    sizeof(*source) + 1);
+            if (destination == NULL) {
+                syslog(LOG_CRIT, "Not enough memory c_strcpy failed.");
+            }
         }
     }
     return destination;
@@ -410,6 +424,52 @@ c_contains(const char *s1, const char *s2)
         }
     }
     return result;
+}
+
+char *
+c_trim(char *str)
+{
+    size_t len = 0;
+    char *frontp = str - 1;
+    char *endp = NULL;
+
+    if (str == NULL)
+        return NULL;
+
+    if (str[0] == '\0')
+        return str;
+
+    len = strlen(str);
+    endp = str + len;
+
+    /* Move the front and back pointers to address
+     * the first non-whitespace characters from
+     * each end.
+     */
+    while (isspace(*(++frontp)))
+        ;
+    while (isspace(*(--endp)) && endp != frontp)
+        ;
+
+    if (str + len - 1 != endp)
+        *(endp + 1) = '\0';
+    else if (frontp != str && endp == frontp)
+        *str = '\0';
+
+    /* Shift the string so that it starts at str so
+     * that if it's dynamically allocated, we can
+     * still free it on the returned pointer.  Note
+     * the reuse of endp to mean the front of the
+     * string buffer now.
+     */
+    endp = str;
+    if (frontp != str) {
+        while (*frontp)
+            *endp++ = *frontp++;
+        *endp = '\0';
+    }
+
+    return str;
 }
 
 bool
