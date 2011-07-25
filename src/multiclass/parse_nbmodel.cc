@@ -1,11 +1,13 @@
-#include <string>
+#include <stdlib.h>
+#include <sstream>
+#include <fcntl.h>
+#include <syslog.h>
 
 #include "parse_nbmodel.h"
-#include "attrobs.h"
 #include "estimator.h"
 #include "utils.h"
-
-#include "../parse_arfheader.h"
+#include "nomattrobs.h"
+#include "numattrobs.h"
 
 /*
  * parse_nbmodel.cc
@@ -16,7 +18,6 @@
 #define NUMERIC 0
 #define NOMINAL 1
 
-using std::string;
 using est::NormalEstimator;
 
 static string seperator = "%==%";
@@ -53,19 +54,24 @@ static string seperator = "%==%";
  *      The ordering of the data for nominal attributes will be:
  *       attNo,1,classNo,attVal,weight
  */
+
 static void
-createModelFileContent(Dvec &observedClassDist,
+createModelFileContent(DVec &observedClassDist,
         vector<AttributeClassObserver *> &attributeObservers,
         arfheader *arfHeader, string& model_file_content)
 {
     vector<arfcategory> arfCats = arfHeader->categories;
-    for (int i = 0; i < observedClassDist.size(); i++) {
-        model_file_content += i + " " + observedClassDist[i] + "\n";
+    std::stringstream str_stream;
+    for (unsigned int i = 0; i < observedClassDist.size(); i++) {
+        str_stream << i << " " << observedClassDist[i] << std::endl;
+        //model_file_content += modp_uitoa10(i) + " " + modp_dtoa(observedClassDist[i]) + "\n";
+        model_file_content += str_stream.str();
     }
     model_file_content += seperator + "\n";
-    for (int i = 0; i < arfCats.size(); i++) {
+    for (auto i = 0; i < arfCats.size(); i++) {
         if (arfCats[i].name == "nominal") {
-            NomAttrObserver *nomAttrObs = attributeObservers[i];
+            NomAttrObserver *nomAttrObs =
+                    dynamic_cast<NomAttrObserver *> (attributeObservers[i]);
             vector<DVec> attValDistPerClass =
                     nomAttrObs->getattValDistPerClass();
             unsigned int classSize = attValDistPerClass.size();
@@ -73,40 +79,44 @@ createModelFileContent(Dvec &observedClassDist,
             for (auto j = 0; j < classSize; j++) {
                 unsigned int valSize = attValDistPerClass[j].size();
                 for (auto n = 0; n < valSize; n++) {
-                    model_file_content += i + " " + NOMINAL + " " + j + " " + n
-                            + " " + attValDistPerClass[j][n] + "\n";
+                    str_stream << i << " " << NOMINAL << " " << j << " " << n
+                            << " " << attValDistPerClass[j][n] << std::endl;
+                    model_file_content = str_stream.str();
+                    //model_file_content += i + " " + NOMINAL + " " + j + " " + n
+                    //+ " " + attValDistPerClass[j][n] + "\n";
                 }
             }
         }
         else if (arfCats[i].name == "numeric") {
-            NumAttrObserver *numAttrObs = attributeObservers[i];
+            NumAttrObserver *numAttrObs =
+                    dynamic_cast<NumAttrObserver *> (attributeObservers[i]);
             vector<NormalEstimator *> attValDistPerClass =
                     numAttrObs->getAttValDistPerClass();
-            NormalEstimator *nEstimator = attValDistPerClass[j];
 
-            for (int j = 0; j < attValDistPerClass.size(); j++) {
-                model_file_content += i + " " + NUMERIC + " " + j + " "
-                        + nEstimator->getSumOfWeights() + " "
-                        + nEstimator->getSumOfValues() + " "
-                        + nEstimator->getSumOfValuesSq() + " "
-                        + nEstimator->getMean() + " "
-                        + nEstimator->getStandardDev();
+            NormalEstimator *nEstimator =
+                    dynamic_cast<NormalEstimator *> (attValDistPerClass[i]);
+
+            for (auto j = 0; j < attValDistPerClass.size(); j++) {
+                str_stream << i << " " << NUMERIC << " " << j << " "
+                        << nEstimator->getSumOfWeights() << " "
+                        << nEstimator->getSumOfValues() << " "
+                        << nEstimator->getSumOfValuesSq() << " "
+                        << nEstimator->getMean() << " "
+                        << nEstimator->getStandardDev() << std::endl;
+                model_file_content += str_stream.str();
+                /*model_file_content += i + " " + NUMERIC + " " + j + " "
+                 + nEstimator->getSumOfWeights() + " "
+                 + nEstimator->getSumOfValues() + " "
+                 + nEstimator->getSumOfValuesSq() + " "
+                 + nEstimator->getMean() + " "
+                 + nEstimator->getStandardDev();*/
             }
         }
     }
 }
 
 void
-readModelFile(Dvec &observedClassDist,
-        vector<AttributeClassObserver *> &attributeObservers,
-        string nb_model_file)
-{
-    string model_file_content = "";
-
-}
-
-void
-writeModelFile(Dvec &observedClassDist,
+writeModelFile(DVec &observedClassDist,
         vector<AttributeClassObserver *> &attributeObservers,
         arfheader *arfHeader, string nb_model_file)
 {
@@ -114,5 +124,191 @@ writeModelFile(Dvec &observedClassDist,
     createModelFileContent(observedClassDist, attributeObservers, arfHeader,
             modelFileContent);
     const char *mModelFileContent = modelFileContent.c_str();
-    c_write_file(nb_model_file, mModelFileContent, sizeof(*mModelFileContent));
+    c_write_file(nb_model_file.c_str(), (void *) mModelFileContent,
+            sizeof(*mModelFileContent));
+}
+
+const int MAX_SIZE = 1024;
+
+static
+void
+parseObservedClassDistModelLine(DVec &observedClassDist, char *line)
+{
+    char * rest;
+    char * ptr;
+    c_strcpy(ptr, line);
+    int classVal;
+    float weight;
+    char *token;
+    for (int i = 0;; token = NULL, i++) {
+        token = strtok_r(ptr, " ", &rest);
+        if (token == NULL)
+            break;
+        if (i == 0) {
+            classVal = atoi(token);
+        }
+        if (i == 1) {
+            weight = atof(token);
+            observedClassDist[classVal] = weight;
+        }
+        ptr = rest; // rest contains the left over part..assign it to ptr...and start tokenizing again.
+    }
+}
+
+static int attNo;
+
+static AttributeClassObserver *
+parseAttributeObserverModelLine(char *line, size_t no_of_classes)
+{
+    AttributeClassObserver *attObserver = NULL;
+    NormalEstimator *nEst = NULL;
+    char * rest;
+    char * ptr;
+    char *token;
+    c_strcpy(ptr, line);
+
+    unsigned short int isNominal = 0;
+    int classNo;
+    //For nominals
+    int attVal;
+    double weight = 0.0;
+
+    //For numerics:
+    double sumOfWeights, sumOfValues, sumOfValuesSq, mean, standardDev;
+
+    for (int i = 0;; token = NULL, i++) {
+        token = strtok_r(ptr, " ", &rest);
+        if (token == NULL)
+            break;
+        if (i == 0) {
+            attNo = atoi(token);
+        }
+        else {
+            if (i == 1) {
+                isNominal = atoi(token);
+            }
+            else {
+                if (isNominal) {
+                    switch (i) {
+                    case 2:
+                        attObserver = new NomAttrObserver();
+                        classNo = atoi(token);
+                        break;
+                    case 3:
+                        attVal = atoi(token);
+                        break;
+                    case 4:
+                        classNo = atoi(token);
+                        break;
+                    case 5:
+                        weight = atof(token);
+                        ((NomAttrObserver *) attObserver)->observeAttributeClass(
+                                (float) attVal, classNo, weight);
+                        break;
+                    default:
+                        break;
+                    }
+                }
+                else {
+                    //sumOfWeights,sumOfValues,sumOfValuesSq,mean,standardDev
+                    switch (i) {
+                    case 2:
+                        attObserver = new NumAttrObserver(no_of_classes);
+                        classNo = atoi(token);
+                        break;
+                    case 3:
+                        sumOfWeights = atof(token);
+                        break;
+                    case 4:
+                        sumOfValues = atof(token);
+                        break;
+                    case 5:
+                        sumOfValuesSq = atof(token);
+                        break;
+                    case 6:
+                        mean = atof(token);
+                        break;
+                    case 7:
+                        standardDev = atof(token);
+                        nEst = new NormalEstimator(no_of_classes);
+                        nEst->setMean(mean);
+                        nEst->setStandardDev(standardDev);
+                        nEst->setSumOfValues(sumOfValues);
+                        nEst->setSumOfWeights(sumOfWeights);
+                        nEst->setSumOfWeights(sumOfValuesSq);
+                        ((NumAttrObserver *) attObserver)->addNewValDist(nEst,
+                                classNo);
+                        break;
+                    default:
+                        break;
+                    }
+                }
+            }
+        }
+        ptr = rest; // rest contains the left over part..assign it to ptr...and start tokenizing again.
+    }
+    return attObserver;
+}
+
+void
+readModelFile(DVec &observedClassDist,
+        vector<AttributeClassObserver *> &attributeObservers,
+        arfheader *arfHeader, string nb_model_file)
+{
+    const char *filePath = nb_model_file.c_str();
+    char *contents = new char[MAX_SIZE];
+    flock fl =
+        { F_WRLCK, SEEK_SET, 0, 0, 0 };
+    int fd;
+    bool attrStartFlag = false;
+    const char *pSeperator = seperator.c_str();
+
+    if ((fd = open(filePath, O_RDWR)) == -1) {
+        syslog(LOG_ALERT, "Can't open the file :%s\n", filePath);
+        exit( EXIT_FAILURE);
+    }
+
+    fl.l_pid = getpid();
+    if (fcntl(fd, F_SETLKW, &fl) == -1) {
+        perror("fcntl");
+        exit( EXIT_FAILURE);
+    }
+
+    FILE *fp;
+    fp = fopen(filePath, "r");
+    if (!fp) {
+        syslog(LOG_ALERT, "Can not read the file: %s\n", filePath);
+        exit( EXIT_FAILURE);
+    }
+
+    while (fgets(contents, MAX_SIZE, fp) != NULL) {
+        contents = c_trim(contents);
+        if (!attrStartFlag) {
+            if (strcmp(contents, pSeperator) == 0) {
+                attrStartFlag = true;
+                attributeObservers.assign(
+                        attNo,
+                        parseAttributeObserverModelLine(c_trim(contents),
+                                arfHeader->no_of_categories));
+            }
+            else {
+                parseObservedClassDistModelLine(observedClassDist,
+                        c_trim(contents));
+            }
+        }
+        else {
+            attributeObservers.assign(
+                    attNo,
+                    parseAttributeObserverModelLine(c_trim(contents),
+                            arfHeader->no_of_categories));
+        }
+    }
+    fl.l_type = F_UNLCK; /* set to unlock same region */
+    if (fcntl(fd, F_SETLK, &fl) == -1) {
+        syslog(LOG_ALERT, "Can not unlock file %s\n", filePath);
+        exit(1);
+    }
+    fclose(fp);
+    close(fd);
+
 }

@@ -61,7 +61,7 @@ am_denetX_OBJECTS = lda.$(OBJEXT) parser.$(OBJEXT) \
 	parse_primitives.$(OBJEXT) float_cmp.$(OBJEXT) vw.$(OBJEXT) \
 	main.$(OBJEXT) infogain.$(OBJEXT) arraycopy.$(OBJEXT) \
 	htnb.$(OBJEXT) statistics.$(OBJEXT) mutils.$(OBJEXT) \
-	dvec.$(OBJEXT) nb.$(OBJEXT)
+	dvec.$(OBJEXT) parse_nbmodel.$(OBJEXT) nb.$(OBJEXT)
 denetX_OBJECTS = $(am_denetX_OBJECTS)
 denetX_LDADD = $(LDADD)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)
@@ -185,7 +185,7 @@ DEBUG_FLAGS = -g -ggdb -DNDEBUG -fno-inline -Weffc++
 # for debug purposes
 AM_CXXFLAGS = -W -Wall $(STD) $(ARCH) $(OPTIM_FLAGS) $(DEBUG_FLAGS) -D_FILE_OFFSET_BITS=64 -I $(BOOST_INCLUDE) #-ltcmalloc
 AM_LDFLAGS = $(LIBS) -DUSE_RESTRICT
-denetX_SOURCES = lda.cc parser.cc sparse_dense.cc  cache.cc gd.cc parse_regressor.cc unique_sort.cc loss_functions.cc cg.cc global_data.cc multisource.cc parse_args.cc utils.cc sender.cc  hash.cc message_relay.cc network.cc parse_example.cc parse_arfheader.cc simple_label.cc delay_ring.cc io.cc noop.cc parse_primitives.cc float_cmp.cc vw.cc main.cc  multiclass/infogain.cc multiclass/arraycopy.cc multiclass/htnb.cc multiclass/statistics.cc multiclass/mutils.cc multiclass/dvec.cc  multiclass/nb.cc timsort.h multiclass/ht.h
+denetX_SOURCES = lda.cc parser.cc sparse_dense.cc cache.cc gd.cc parse_regressor.cc unique_sort.cc loss_functions.cc cg.cc global_data.cc multisource.cc parse_args.cc utils.cc sender.cc  hash.cc message_relay.cc network.cc parse_example.cc parse_arfheader.cc simple_label.cc delay_ring.cc io.cc noop.cc parse_primitives.cc float_cmp.cc vw.cc main.cc  multiclass/infogain.cc multiclass/arraycopy.cc multiclass/htnb.cc multiclass/statistics.cc multiclass/mutils.cc multiclass/dvec.cc multiclass/parse_nbmodel.cc multiclass/nb.cc timsort.h multiclass/ht.h
 active_interactor_SOURCES = active_interactor.cc utils.cc
 
 #offset_tree_SOURCES= utils.cc hash.cc io.cc parse_regressor.cc parse_primitives.cc cache.cc sparse_dense.cc parse_example.cc parse_args.cc gd.cc parser.cc offset_tree.cc loss_functions.cc offset_tree.cc
@@ -299,6 +299,7 @@ include ./$(DEPDIR)/noop.Po
 include ./$(DEPDIR)/parse_arfheader.Po
 include ./$(DEPDIR)/parse_args.Po
 include ./$(DEPDIR)/parse_example.Po
+include ./$(DEPDIR)/parse_nbmodel.Po
 include ./$(DEPDIR)/parse_primitives.Po
 include ./$(DEPDIR)/parse_regressor.Po
 include ./$(DEPDIR)/parser.Po
@@ -407,6 +408,20 @@ dvec.obj: multiclass/dvec.cc
 #	source='multiclass/dvec.cc' object='dvec.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o dvec.obj `if test -f 'multiclass/dvec.cc'; then $(CYGPATH_W) 'multiclass/dvec.cc'; else $(CYGPATH_W) '$(srcdir)/multiclass/dvec.cc'; fi`
+
+parse_nbmodel.o: multiclass/parse_nbmodel.cc
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT parse_nbmodel.o -MD -MP -MF $(DEPDIR)/parse_nbmodel.Tpo -c -o parse_nbmodel.o `test -f 'multiclass/parse_nbmodel.cc' || echo '$(srcdir)/'`multiclass/parse_nbmodel.cc
+	$(am__mv) $(DEPDIR)/parse_nbmodel.Tpo $(DEPDIR)/parse_nbmodel.Po
+#	source='multiclass/parse_nbmodel.cc' object='parse_nbmodel.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o parse_nbmodel.o `test -f 'multiclass/parse_nbmodel.cc' || echo '$(srcdir)/'`multiclass/parse_nbmodel.cc
+
+parse_nbmodel.obj: multiclass/parse_nbmodel.cc
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT parse_nbmodel.obj -MD -MP -MF $(DEPDIR)/parse_nbmodel.Tpo -c -o parse_nbmodel.obj `if test -f 'multiclass/parse_nbmodel.cc'; then $(CYGPATH_W) 'multiclass/parse_nbmodel.cc'; else $(CYGPATH_W) '$(srcdir)/multiclass/parse_nbmodel.cc'; fi`
+	$(am__mv) $(DEPDIR)/parse_nbmodel.Tpo $(DEPDIR)/parse_nbmodel.Po
+#	source='multiclass/parse_nbmodel.cc' object='parse_nbmodel.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o parse_nbmodel.obj `if test -f 'multiclass/parse_nbmodel.cc'; then $(CYGPATH_W) 'multiclass/parse_nbmodel.cc'; else $(CYGPATH_W) '$(srcdir)/multiclass/parse_nbmodel.cc'; fi`
 
 nb.o: multiclass/nb.cc
 	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT nb.o -MD -MP -MF $(DEPDIR)/nb.Tpo -c -o nb.o `test -f 'multiclass/nb.cc' || echo '$(srcdir)/'`multiclass/nb.cc

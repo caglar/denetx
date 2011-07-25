@@ -19,6 +19,7 @@
 #include <sys/time.h>
 #include <assert.h>
 #include <math.h>
+#include <ctype.h>
 #include "utils.h"
 
 #define MAX_CHAR_LINE 200
@@ -354,6 +355,14 @@ c_strlen(const char *str)
 char *
 c_strtok_r(char *str1, const char *str2, char **str3)
 {
+    if (str1 == NULL) {
+        syslog(LOG_WARNING, "String in c_strtok_r should not be empty");
+        return "";
+    }
+    if (str2 == NULL) {
+        syslog(LOG_WARNING, "Delimiter string in c_strtok_r should not be empty");
+        return "";
+    }
     char *token = (char *) strtok_r(str1, str2, str3);
     return token;
 }
@@ -377,10 +386,15 @@ c_strcpy(char *destination, const char *source)
         strcpy(destination, source);
     }
     else {
-        destination = (char *) c_realloc((void *) destination,
-                sizeof(source) + 1);
         if (destination == NULL) {
-            syslog(LOG_CRIT, "Not enough memory c_strcpy failed.");
+            destination = (char *) c_malloc(sizeof(*source) + 1);
+        }
+        else {
+            destination = (char *) c_realloc((void *) destination,
+                    sizeof(*source) + 1);
+            if (destination == NULL) {
+                syslog(LOG_CRIT, "Not enough memory c_strcpy failed.");
+            }
         }
     }
     return destination;
@@ -410,6 +424,52 @@ c_contains(const char *s1, const char *s2)
         }
     }
     return result;
+}
+
+char *
+c_trim(char *str)
+{
+    size_t len = 0;
+    char *frontp = str - 1;
+    char *endp = NULL;
+
+    if (str == NULL)
+        return NULL;
+
+    if (str[0] == '\0')
+        return str;
+
+    len = strlen(str);
+    endp = str + len;
+
+    /* Move the front and back pointers to address
+     * the first non-whitespace characters from
+     * each end.
+     */
+    while (isspace(*(++frontp)))
+        ;
+    while (isspace(*(--endp)) && endp != frontp)
+        ;
+
+    if (str + len - 1 != endp)
+        *(endp + 1) = '\0';
+    else if (frontp != str && endp == frontp)
+        *str = '\0';
+
+    /* Shift the string so that it starts at str so
+     * that if it's dynamically allocated, we can
+     * still free it on the returned pointer.  Note
+     * the reuse of endp to mean the front of the
+     * string buffer now.
+     */
+    endp = str;
+    if (frontp != str) {
+        while (*frontp)
+            *endp++ = *frontp++;
+        *endp = '\0';
+    }
+
+    return str;
 }
 
 bool

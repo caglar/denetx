@@ -9,7 +9,7 @@
 #ifndef ESTIMATOR_H_
 #define ESTIMATOR_H_
 
-#include <cmath>
+#include <math.h>
 #include <algorithm>
 #include "statistics.h"
 #include "arraycopy.h"
@@ -107,6 +107,35 @@ namespace est
             return this->mStandardDev;
         }
 
+        void
+        setSumOfWeights(float sumWeights)
+        {
+            this->mSumOfWeights = sumWeights;
+        }
+
+        void
+        setSumOfValues(float sumValues)
+        {
+            this->mSumOfValues = sumValues;
+        }
+
+        void
+        setSumOfValuesSq(float sumOfVals)
+        {
+            this->mSumOfValuesSq = sumOfVals;
+        }
+
+        void
+        setMean(float mean)
+        {
+            this->mMean = mean;
+        }
+
+        void
+        setStandardDev(float stdDev)
+        {
+            this->mStandardDev = stdDev;
+        }
         /**
          * Add a new data value to the current estimator.
          *
@@ -341,7 +370,7 @@ namespace est
             mSumOfWeights += weight;
             float range = mValues[mNumValues - 1] - mValues[0];
             if (range > 0) {
-                mStandardDev = std::max(range / sqrt(mSumOfWeights),
+                mStandardDev = std::max(static_cast<float>(range / sqrt(mSumOfWeights)),
                 // allow at most 3 sds within one interval
                         mPrecision / (2 * 3));
             }

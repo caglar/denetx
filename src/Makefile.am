@@ -15,7 +15,7 @@ AM_CXXFLAGS= -W -Wall $(STD) $(ARCH) $(OPTIM_FLAGS) $(DEBUG_FLAGS) -D_FILE_OFFSE
 AM_LDFLAGS= $(LIBS) -DUSE_RESTRICT
 
 bin_PROGRAMS= denetX active_interactor
-denetX_SOURCES= lda.cc parser.cc sparse_dense.cc  cache.cc gd.cc parse_regressor.cc unique_sort.cc loss_functions.cc cg.cc global_data.cc multisource.cc parse_args.cc utils.cc sender.cc  hash.cc message_relay.cc network.cc parse_example.cc parse_arfheader.cc simple_label.cc delay_ring.cc io.cc noop.cc parse_primitives.cc float_cmp.cc vw.cc main.cc  multiclass/infogain.cc multiclass/arraycopy.cc multiclass/htnb.cc multiclass/statistics.cc multiclass/mutils.cc multiclass/dvec.cc  multiclass/nb.cc timsort.h multiclass/ht.h
+denetX_SOURCES= lda.cc parser.cc sparse_dense.cc cache.cc gd.cc parse_regressor.cc unique_sort.cc loss_functions.cc cg.cc global_data.cc multisource.cc parse_args.cc utils.cc sender.cc  hash.cc message_relay.cc network.cc parse_example.cc parse_arfheader.cc simple_label.cc delay_ring.cc io.cc noop.cc parse_primitives.cc float_cmp.cc vw.cc main.cc  multiclass/infogain.cc multiclass/arraycopy.cc multiclass/htnb.cc multiclass/statistics.cc multiclass/mutils.cc multiclass/dvec.cc multiclass/parse_nbmodel.cc multiclass/nb.cc timsort.h multiclass/ht.h
 
 active_interactor_SOURCES= active_interactor.cc utils.cc
 

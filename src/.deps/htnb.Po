@@ -566,17 +566,17 @@ htnb.o: multiclass/htnb.cc \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/tr1_impl/cmath \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/tr1_impl/complex \
  multiclass/attrobs.h multiclass/attrsplitsuggest.h \
- multiclass/split_test.h multiclass/flin.h multiclass/numattrobs.h \
+ multiclass/split_test.h example.h multiclass/flin.h \
+ multiclass/../utils.h multiclass/numattrobs.h \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/cfloat \
  multiclass/estimator.h multiclass/statistics.h multiclass/arraycopy.h \
- multiclass/infogain.h multiclass/../utils.h multiclass/../float_cmp.h \
- multiclass/nomattrobs.h multiclass/ht.h multiclass/hoeffding_bound.h \
- multiclass/arrayresize.h multiclass/../timsort.h \
- multiclass/../parse_example.h multiclass/../parser.h \
- multiclass/../constant.h multiclass/../sparse_dense.h \
- multiclass/../parse_example.h multiclass/../cache.h \
- multiclass/../multisource.h multiclass/../simple_label.h \
- multiclass/../delay_ring.h
+ multiclass/infogain.h multiclass/../float_cmp.h multiclass/nomattrobs.h \
+ multiclass/ht.h multiclass/hoeffding_bound.h multiclass/arrayresize.h \
+ multiclass/../timsort.h multiclass/../parse_example.h \
+ multiclass/../parser.h multiclass/../constant.h \
+ multiclass/../sparse_dense.h multiclass/../parse_example.h \
+ multiclass/../cache.h multiclass/../multisource.h \
+ multiclass/../simple_label.h multiclass/../delay_ring.h
 
 /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/fstream:
 
@@ -1862,7 +1862,11 @@ multiclass/attrsplitsuggest.h:
 
 multiclass/split_test.h:
 
+example.h:
+
 multiclass/flin.h:
+
+multiclass/../utils.h:
 
 multiclass/numattrobs.h:
 
@@ -1875,8 +1879,6 @@ multiclass/statistics.h:
 multiclass/arraycopy.h:
 
 multiclass/infogain.h:
-
-multiclass/../utils.h:
 
 multiclass/../float_cmp.h:
 

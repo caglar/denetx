@@ -61,6 +61,12 @@ public:
     }
 
     void
+    addNewValDist(NormalEstimator *valDist, int classNo)
+    {
+        attValDistPerClass[classNo] = valDist;
+    }
+
+    void
     observeAttributeClass(float attVal, int classVal, float weight)
     {
         NormalEstimator *valDist = attValDistPerClass[classVal];

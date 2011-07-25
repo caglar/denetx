@@ -86,6 +86,8 @@ char *
 c_strtok_r(IN char *str1, IN const char *str2, IN char **str3);
 bool
 c_contains(const char *s1, const char *s2);
+char*
+c_trim(char *str);
 
 /*
  *  Math related Functions
