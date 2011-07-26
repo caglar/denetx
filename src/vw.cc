@@ -125,12 +125,12 @@ vw_nb(size_t num_threads, parser *p, po::variables_map vm)
     else {
         std::cerr << "file name is: " << global.arfxml_path.c_str() << endl;
         std::cerr << "Error arfxml path is empty." << std::endl;
-        exit(EXIT_FAILURE);
+        exit( EXIT_FAILURE);
     }
 
     if (arfHead == NULL) {
         std::cerr << "arfXML file is empty!" << std::endl;
-        exit(EXIT_FAILURE);
+        exit( EXIT_FAILURE);
     }
 
     float* predictions = reinterpret_cast<float *> (c_malloc(
@@ -162,16 +162,3 @@ vw_nb(size_t num_threads, parser *p, po::variables_map vm)
             || global.backprop || global.corrective || global.delayed_global))
         destroy_relay();
 }
-
-/*
- nb_vars* get_nbvars()
- {
-
- gd_vars *vars = (gd_vars*) c_malloc(sizeof(gd_vars));
- po::options_description desc("VW options");
- po::variables_map vm = parse_args(argc, argv, desc, *vars,
- regressor1, p,
- final_regressor_name);
- return vars;
- }
- */
