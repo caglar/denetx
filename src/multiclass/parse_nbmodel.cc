@@ -175,16 +175,20 @@ parseAttributeObserverModelLine(char *line, size_t no_of_classes)
     char * rest;
     char * ptr;
     char *token;
-    c_strcpy(ptr, line);
 
     unsigned short int isNominal = 0;
-    int classNo;
+    int classNo = 0;
+
     //For nominals
-    int attVal;
+    int attVal = 0;
     double weight = 0.0;
 
     //For numerics:
-    double sumOfWeights, sumOfValues, sumOfValuesSq, mean, standardDev;
+    double sumOfWeights = 0.0, sumOfValues = 0.0, sumOfValuesSq = 0.0, mean = 0.0, standardDev = 0.0;
+
+    ptr = "";
+
+    c_strcpy(ptr, line);
 
     for (int i = 0;; token = NULL, i++) {
         token = strtok_r(ptr, " ", &rest);

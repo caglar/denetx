@@ -205,9 +205,9 @@ static nb_thread_params **passers;
 static size_t num_threads;
 
 bool
-setup_nb(nb_thread_params t)
+setup_nb (nb_thread_params t)
 {
-
+    bool setupFlag = false;
     num_threads = t.thread_num;
     threads = (pthread_t *) c_calloc(num_threads, sizeof(pthread_t));
     passers = (nb_thread_params **) c_calloc(num_threads,
@@ -242,13 +242,13 @@ void
 destroy_nb()
 {
     std::string nbModelFile = global.nb_model_file;
-    if (nbModelFile.size() > 0 && ) {
+    /*if (nbModelFile.size() > 0) {
         cout << "No of observed examples: " << passers[0]->vars->noOfObservedExamples << endl;
         scale_vals(passers[0]->vars->observedClassDist, passers[0]->vars->noOfObservedExamples);
         writeModelFile(passers[0]->vars->observedClassDist,
                 passers[0]->vars->attributeObservers, passers[0]->arfHeader,
                 nbModelFile);
-    }
+    }*/
     for (size_t i = 0; i < num_threads; i++) {
         pthread_join(threads[i], NULL);
         c_free(passers[i]);
