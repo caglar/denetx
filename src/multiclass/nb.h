@@ -18,32 +18,35 @@
 #include "./dvec.h"
 #include "./attrobs.h"
 
-void print_result(int f, float res, v_array<char> tag);
+void
+print_result(int f, float res, v_array<char> tag);
 
 struct nb_vars
 {
-  DVec observedClassDist;
-  size_t noOfObservedExamples;
-  vector<AttributeClassObserver *> attributeObservers;
-  float power_t;
+    DVec observedClassDist;
+    size_t noOfObservedExamples;
+    vector<AttributeClassObserver *> attributeObservers;
+    float power_t;
 
-  nb_vars() : observedClassDist(boost::extents[2]), attributeObservers(0), power_t(0)
-  {
+    nb_vars() :
+        observedClassDist(boost::extents[2]), attributeObservers(0), power_t(0)
+    {
 
-  }
+    }
 
-  void init()
-  {
-    power_t = 0.;
-  }
+    void
+    init()
+    {
+        power_t = 0.;
+    }
 };
 
 struct nb_thread_params
 {
-  nb_vars* vars;
-  arfheader* arfHeader;
-  size_t thread_num;
-  float* predictions;
+    nb_vars* vars;
+    arfheader* arfHeader;
+    size_t thread_num;
+    float* predictions;
 };
 
 void*
@@ -53,7 +56,8 @@ float*
 naive_bayes_predict(example* ex, size_t thread_num, nb_thread_params* params);
 
 void
-nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num, nb_thread_params* params);
+nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
+        nb_thread_params* params);
 
 void
 setup_nb(nb_thread_params t);

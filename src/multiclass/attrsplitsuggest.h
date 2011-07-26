@@ -15,19 +15,21 @@ struct AttrSplitSuggestion
     float merit;
     int numSplits;
 
-    AttrSplitSuggestion(Matrix_t classDist, SplitTest *sTest, float mer)
+    AttrSplitSuggestion(Matrix_t classDist, SplitTest *sTest, float mer) :
+        resultingClassDistribution(classDist), merit(mer), numSplits(0)
     {
-        resultingClassDistribution = classDist;
+        //resultingClassDistribution = classDist;
         copy(sTest, sTest + sizeof(*sTest), this->splitTest);
-        this->merit = mer;
+        //this->merit = mer;
 
     }
 
-    AttrSplitSuggestion()
+    AttrSplitSuggestion() :
+        merit(0.0), numSplits(0.0), splitTest(NULL)
     {
-        merit = 0.0;
-        numSplits = 0;
-        splitTest = NULL;
+        /*merit = 0.0;
+         numSplits = 0;
+         splitTest = NULL;*/
     }
 
     ~AttrSplitSuggestion()
@@ -35,22 +37,31 @@ struct AttrSplitSuggestion
         c_free(splitTest);
     }
 
-    AttrSplitSuggestion& operator=(const AttrSplitSuggestion &other) {
+    AttrSplitSuggestion&
+    operator=(const AttrSplitSuggestion &other)
+    {
         this->resultingClassDistribution = other.resultingClassDistribution;
-        copy(other.splitTest, other.splitTest + sizeof(*other.splitTest), this->splitTest);
+        copy(other.splitTest, other.splitTest + sizeof(*other.splitTest),
+                this->splitTest);
         this->merit = other.merit;
         this->numSplits = other.numSplits;
     }
 
-    bool operator<(const AttrSplitSuggestion &rhs) const{
-        return(merit < rhs.merit);
+    bool
+    operator<(const AttrSplitSuggestion &rhs) const
+    {
+        return (merit < rhs.merit);
     }
 
-    bool operator>(const AttrSplitSuggestion &rhs) const {
+    bool
+    operator>(const AttrSplitSuggestion &rhs) const
+    {
         return (merit > rhs.merit);
     }
 
-    bool operator==(const AttrSplitSuggestion &rhs) const {
+    bool
+    operator==(const AttrSplitSuggestion &rhs) const
+    {
         return (merit == rhs.merit);
     }
 };

@@ -72,7 +72,7 @@ createModelFileContent(DVec &observedClassDist,
     model_file_content += seperator + "\n";
 
     for (auto i = 0; i < arfAtts.size(); i++) {
-        if (arfAtts[i].type == NUMERIC) {
+        if (arfAtts[i].type == NOMINAL) {
             NomAttrObserver *nomAttrObs =
                     dynamic_cast<NomAttrObserver *> (attributeObservers[i]);
 

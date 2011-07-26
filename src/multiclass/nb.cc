@@ -152,8 +152,7 @@ nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
     fType type[thread_num];
     pthread_mutex_lock(&trainMutex);
 
-    label_data *ld = (label_data *) c_malloc(
-            sizeof(*((label_data *) ex->ld)));
+    label_data *ld = (label_data *) c_malloc(sizeof(*((label_data *) ex->ld)));
 
     ld->label = ((label_data *) ex->ld)->label;
     ld->weight = ((label_data *) ex->ld)->weight;
@@ -162,11 +161,8 @@ nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
     params->vars->noOfObservedExamples++;
     cout << "File value is: " << params->vars->noOfObservedExamples << endl;
 
-
     for (size_t *i = (ex->indices.begin); i != (ex->indices.end); i++) {
-        //AttributeClassObserver *obs = attributeObservers[*i];
-        //cout << "OK!" << endl;
-        //cout << "i: " << *i << endl;
+
         feature f = ex->atomics[*i][thread_num];
 
         if (params->vars->attributeObservers[*i] == NULL) {
@@ -205,7 +201,7 @@ static nb_thread_params **passers;
 static size_t num_threads;
 
 void
-setup_nb (nb_thread_params t)
+setup_nb(nb_thread_params t)
 {
     bool setupFlag = false;
     num_threads = t.thread_num;
@@ -242,15 +238,15 @@ void
 destroy_nb()
 {
     std::string nbModelFile = global.nb_model_file;
-    /*if (nbModelFile.size() > 0) {
-        cout << "No of observed examples: " << passers[0]->vars->noOfObservedExamples << endl;
-        scale_vals(passers[0]->vars->observedClassDist, passers[0]->vars->noOfObservedExamples);
-        writeModelFile(passers[0]->vars->observedClassDist,
-                passers[0]->vars->attributeObservers, passers[0]->arfHeader,
-                nbModelFile);
-    }*/
     for (size_t i = 0; i < num_threads; i++) {
         pthread_join(threads[i], NULL);
+        if (nbModelFile.size() > 0 && i == 0) {
+             cout << "No of observed examples: " << passers[0]->vars->noOfObservedExamples << endl;
+             scale_vals(passers[0]->vars->observedClassDist, passers[0]->vars->noOfObservedExamples);
+             writeModelFile(passers[0]->vars->observedClassDist,
+             passers[0]->vars->attributeObservers, passers[0]->arfHeader,
+             nbModelFile);
+        }
         c_free(passers[i]);
     }
 
