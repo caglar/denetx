@@ -45,18 +45,13 @@ nb_thread(void *in)
     size_t no_of_feats = params->arfHeader->no_of_features;
 
     printf("No of cats: %u, no of feats: %u \n", no_of_cats, no_of_feats);
-    // pthread_mutex_lock(&initMutex);
 
     if (params->vars == NULL) {
         params->vars = (nb_vars *) c_malloc(sizeof(nb_vars));
     }
 
-    //  printf("No of categories is: %d\n", params->arfHeader->no_of_categories);
-
     if ((params->vars->observedClassDist.size() != no_of_cats) && (no_of_cats
             > 0)) {
-        //params->vars->observedClassDist.empty();
-        //params->vars->observedClassDist.
         params->vars->observedClassDist.resize(boost::extents[no_of_cats]);
     }
 
@@ -157,6 +152,17 @@ nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
     fType type[thread_num];
     pthread_mutex_lock(&trainMutex);
 
+    label_data *ld = (label_data *) c_malloc(
+            sizeof(*((label_data *) ex->ld)));
+
+    ld->label = ((label_data *) ex->ld)->label;
+    ld->weight = ((label_data *) ex->ld)->weight;
+    add_to_val(ld->label, params->vars->observedClassDist, ld->weight);
+
+    params->vars->noOfObservedExamples++;
+    cout << "File value is: " << params->vars->noOfObservedExamples << endl;
+
+
     for (size_t *i = (ex->indices.begin); i != (ex->indices.end); i++) {
         //AttributeClassObserver *obs = attributeObservers[*i];
         //cout << "OK!" << endl;
@@ -184,12 +190,6 @@ nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
             }
         }
 
-        label_data *ld = (label_data *) c_malloc(
-                sizeof(*((label_data *) ex->ld)));
-
-        ld->label = ((label_data *) ex->ld)->label;
-        ld->weight = ((label_data *) ex->ld)->weight;
-
         if (type[thread_num] == NUMERIC)
             (dynamic_cast<NumAttrObserver *> (params->vars->attributeObservers[*i]))->observeAttributeClass(
                     f.x, ld->label, ex->global_weight);
@@ -204,7 +204,7 @@ static pthread_t *threads;
 static nb_thread_params **passers;
 static size_t num_threads;
 
-void
+bool
 setup_nb(nb_thread_params t)
 {
 
@@ -242,7 +242,9 @@ void
 destroy_nb()
 {
     std::string nbModelFile = global.nb_model_file;
-    if (nbModelFile.size() > 0) {
+    if (nbModelFile.size() > 0 && ) {
+        cout << "No of observed examples: " << passers[0]->vars->noOfObservedExamples << endl;
+        scale_vals(passers[0]->vars->observedClassDist, passers[0]->vars->noOfObservedExamples);
         writeModelFile(passers[0]->vars->observedClassDist,
                 passers[0]->vars->attributeObservers, passers[0]->arfHeader,
                 nbModelFile);

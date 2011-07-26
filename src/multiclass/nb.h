@@ -23,6 +23,7 @@ void print_result(int f, float res, v_array<char> tag);
 struct nb_vars
 {
   DVec observedClassDist;
+  size_t noOfObservedExamples;
   vector<AttributeClassObserver *> attributeObservers;
   float power_t;
 
@@ -30,6 +31,7 @@ struct nb_vars
   {
 
   }
+
   void init()
   {
     power_t = 0.;

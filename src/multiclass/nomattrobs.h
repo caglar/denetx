@@ -16,12 +16,13 @@
 #include "flin.h"
 #include "infogain.h"
 
+using std::vector;
+
 //Nominal Attribute class observer
 class NomAttrObserver : public AttributeClassObserver
 {
 protected:
     vector<DVec> attValDistPerClass;
-
     float totalWeightObserved;
     float missingWeightObserved;
     bool binaryOnly;
@@ -31,6 +32,12 @@ public:
     NomAttrObserver() :
         totalWeightObserved(0), missingWeightObserved(0), binaryOnly(false)
     {
+    }
+
+    NomAttrObserver(unsigned int noOfClasses) :
+        totalWeightObserved(0), missingWeightObserved(0), binaryOnly(false)
+    {
+        attValDistPerClass.resize(noOfClasses);
     }
 
     ~NomAttrObserver()
@@ -53,7 +60,7 @@ public:
     vector<DVec>
     getattValDistPerClass()
     {
-        return this->attValDistPerClass;
+        return attValDistPerClass;
     }
 
     void
@@ -94,6 +101,7 @@ public:
     getClassDistsResultingFromMultiwaySplit(int maxAttValsObserved)
     {
         DVec *resultingDists = new DVec[maxAttValsObserved];
+
         for (auto i = 0; i < this->attValDistPerClass.size(); i++) {
             DVec attValDist = this->attValDistPerClass[i];
             if (!attValDist.empty()) {

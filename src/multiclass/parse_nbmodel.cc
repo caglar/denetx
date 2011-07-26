@@ -1,22 +1,22 @@
-#include <stdlib.h>
-#include <sstream>
-#include <fcntl.h>
-#include <syslog.h>
-
-#include "parse_nbmodel.h"
-#include "estimator.h"
-#include "utils.h"
-#include "nomattrobs.h"
-#include "numattrobs.h"
-
 /*
  * parse_nbmodel.cc
  *
  *  Created on: Jul 20, 2011
  *      Author: caglar
  */
-#define NUMERIC 0
-#define NOMINAL 1
+
+#include <stdlib.h>
+#include <sstream>
+#include <fcntl.h>
+#include <syslog.h>
+#include <map>
+
+#include "parse_nbmodel.h"
+#include "parse_arfheader.h"
+#include "estimator.h"
+#include "utils.h"
+#include "nomattrobs.h"
+#include "numattrobs.h"
 
 using est::NormalEstimator;
 
@@ -60,22 +60,26 @@ createModelFileContent(DVec &observedClassDist,
         vector<AttributeClassObserver *> &attributeObservers,
         arfheader *arfHeader, string& model_file_content)
 {
-    vector<arfcategory> arfCats = arfHeader->categories;
+    std::map<uint32_t, arffeature> arfAtts = arfHeader->features;
+    model_file_content = "";
     std::stringstream str_stream;
+
     for (unsigned int i = 0; i < observedClassDist.size(); i++) {
         str_stream << i << " " << observedClassDist[i] << std::endl;
         //model_file_content += modp_uitoa10(i) + " " + modp_dtoa(observedClassDist[i]) + "\n";
         model_file_content += str_stream.str();
     }
     model_file_content += seperator + "\n";
-    for (auto i = 0; i < arfCats.size(); i++) {
-        if (arfCats[i].name == "nominal") {
+
+    for (auto i = 0; i < arfAtts.size(); i++) {
+        if (arfAtts[i].type == NUMERIC) {
             NomAttrObserver *nomAttrObs =
                     dynamic_cast<NomAttrObserver *> (attributeObservers[i]);
+
             vector<DVec> attValDistPerClass =
                     nomAttrObs->getattValDistPerClass();
-            unsigned int classSize = attValDistPerClass.size();
 
+            unsigned int classSize = attValDistPerClass.size();
             for (auto j = 0; j < classSize; j++) {
                 unsigned int valSize = attValDistPerClass[j].size();
                 for (auto n = 0; n < valSize; n++) {
@@ -87,7 +91,7 @@ createModelFileContent(DVec &observedClassDist,
                 }
             }
         }
-        else if (arfCats[i].name == "numeric") {
+        else if (arfAtts[i].type == NUMERIC) {
             NumAttrObserver *numAttrObs =
                     dynamic_cast<NumAttrObserver *> (attributeObservers[i]);
             vector<NormalEstimator *> attValDistPerClass =
@@ -104,12 +108,6 @@ createModelFileContent(DVec &observedClassDist,
                         << nEstimator->getMean() << " "
                         << nEstimator->getStandardDev() << std::endl;
                 model_file_content += str_stream.str();
-                /*model_file_content += i + " " + NUMERIC + " " + j + " "
-                 + nEstimator->getSumOfWeights() + " "
-                 + nEstimator->getSumOfValues() + " "
-                 + nEstimator->getSumOfValuesSq() + " "
-                 + nEstimator->getMean() + " "
-                 + nEstimator->getStandardDev();*/
             }
         }
     }
@@ -120,9 +118,13 @@ writeModelFile(DVec &observedClassDist,
         vector<AttributeClassObserver *> &attributeObservers,
         arfheader *arfHeader, string nb_model_file)
 {
-    string modelFileContent = "";
 
+    string modelFileContent = "";
     string tmpFileName = nb_model_file + ".tmp";
+    printf("ObservedClassDist val 0: %f, ObservedClassDist val 1: %f",
+            observedClassDist[0], observedClassDist[1]);
+    printf("tmpFileName: %s, nbmodelfile: %s\n", tmpFileName.c_str(),
+            nb_model_file.c_str());
 
     if (c_does_file_exist(nb_model_file.c_str())) {
         rename(nb_model_file.c_str(), tmpFileName.c_str());
@@ -143,10 +145,11 @@ parseObservedClassDistModelLine(DVec &observedClassDist, char *line)
 {
     char * rest;
     char * ptr;
-    c_strcpy(ptr, line);
     int classVal;
     float weight;
     char *token;
+    c_strcpy(ptr, line);
+
     for (int i = 0;; token = NULL, i++) {
         token = strtok_r(ptr, " ", &rest);
         if (token == NULL)

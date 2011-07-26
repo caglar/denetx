@@ -49,7 +49,7 @@ c_does_file_exist(const char *filename)
 {
     bool flag = true;
     struct stat fileStat;
-    if(stat(filename, &fileStat) < 0)
+    if (stat(filename, &fileStat) < 0)
         flag = false;
     return flag;
 }
@@ -372,7 +372,8 @@ c_strtok_r(char *str1, const char *str2, char **str3)
         return "";
     }
     if (str2 == NULL) {
-        syslog(LOG_WARNING, "Delimiter string in c_strtok_r should not be empty");
+        syslog(LOG_WARNING,
+                "Delimiter string in c_strtok_r should not be empty");
         return "";
     }
     char *token = (char *) strtok_r(str1, str2, str3);
