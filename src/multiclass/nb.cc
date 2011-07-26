@@ -204,7 +204,7 @@ static pthread_t *threads;
 static nb_thread_params **passers;
 static size_t num_threads;
 
-bool
+void
 setup_nb (nb_thread_params t)
 {
     bool setupFlag = false;
