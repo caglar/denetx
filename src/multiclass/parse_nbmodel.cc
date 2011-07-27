@@ -20,7 +20,7 @@
 
 using est::NormalEstimator;
 
-static string seperator = "%==%";
+static const string SEPERATOR = "%==%";
 
 /**
  * File Structure
@@ -66,48 +66,54 @@ createModelFileContent(DVec &observedClassDist,
 
     for (unsigned int i = 0; i < observedClassDist.size(); i++) {
         str_stream << i << " " << observedClassDist[i] << std::endl;
-        //model_file_content += modp_uitoa10(i) + " " + modp_dtoa(observedClassDist[i]) + "\n";
         model_file_content += str_stream.str();
     }
-    model_file_content += seperator + "\n";
 
-    for (auto i = 0; i < arfAtts.size(); i++) {
-        if (arfAtts[i].type == NOMINAL) {
-            NomAttrObserver *nomAttrObs =
-                    dynamic_cast<NomAttrObserver *> (attributeObservers[i]);
+    model_file_content = model_file_content + SEPERATOR + "\n";
 
-            vector<DVec> attValDistPerClass =
-                    nomAttrObs->getattValDistPerClass();
+    for (auto i = 0; i < arfHeader->no_of_features; i++) {
+        if (attributeObservers[i] != NULL) {
+            if (arfAtts[i].type == NOMINAL) {
+                NomAttrObserver *nomAttrObs =
+                        dynamic_cast<NomAttrObserver *> (attributeObservers[i]);
 
-            unsigned int classSize = attValDistPerClass.size();
-            for (auto j = 0; j < classSize; j++) {
-                unsigned int valSize = attValDistPerClass[j].size();
-                for (auto n = 0; n < valSize; n++) {
-                    str_stream << i << " " << NOMINAL << " " << j << " " << n
-                            << " " << attValDistPerClass[j][n] << std::endl;
-                    model_file_content = str_stream.str();
-                    //model_file_content += i + " " + NOMINAL + " " + j + " " + n
-                    //+ " " + attValDistPerClass[j][n] + "\n";
+                vector<DVec> attValDistPerClass =
+                        nomAttrObs->getattValDistPerClass();
+
+                unsigned int classSize = attValDistPerClass.size();
+                for (auto j = 0; j < classSize; j++) {
+                    unsigned int valSize = attValDistPerClass[j].size();
+                    for (auto n = 0; n < valSize; n++) {
+                        str_stream << i << " " << NOMINAL << " " << j << " "
+                                << n << " " << attValDistPerClass[j][n]
+                                << std::endl;
+                        model_file_content = str_stream.str();
+                        //model_file_content += i + " " + NOMINAL + " " + j + " " + n
+                        //+ " " + attValDistPerClass[j][n] + "\n";
+                    }
                 }
             }
-        }
-        else if (arfAtts[i].type == NUMERIC) {
-            NumAttrObserver *numAttrObs =
-                    dynamic_cast<NumAttrObserver *> (attributeObservers[i]);
-            vector<NormalEstimator *> attValDistPerClass =
-                    numAttrObs->getAttValDistPerClass();
+            else if (arfAtts[i].type == NUMERIC) {
+                NumAttrObserver *numAttrObs =
+                        dynamic_cast<NumAttrObserver *> (attributeObservers[i]);
+                vector<NormalEstimator *> attValDistPerClass =
+                        numAttrObs->getAttValDistPerClass();
 
-            NormalEstimator *nEstimator =
-                    dynamic_cast<NormalEstimator *> (attValDistPerClass[i]);
-
-            for (auto j = 0; j < attValDistPerClass.size(); j++) {
-                str_stream << i << " " << NUMERIC << " " << j << " "
-                        << nEstimator->getSumOfWeights() << " "
-                        << nEstimator->getSumOfValues() << " "
-                        << nEstimator->getSumOfValuesSq() << " "
-                        << nEstimator->getMean() << " "
-                        << nEstimator->getStandardDev() << std::endl;
-                model_file_content += str_stream.str();
+                for (auto j = 0; j < attValDistPerClass.size(); j++) {
+                    printf("cnt val: %d\n", j);
+                    NormalEstimator *nEstimator =
+                            (NormalEstimator *) attValDistPerClass[j];
+                    str_stream << i << " " << NUMERIC << " " << j << " "
+                            << nEstimator->getSumOfWeights() << " "
+                            << nEstimator->getSumOfValues() << " "
+                            << nEstimator->getSumOfValuesSq() << " "
+                            << nEstimator->getMean() << " "
+                            << nEstimator->getStandardDev() << std::endl;
+                    model_file_content += str_stream.str();
+                    printf("Size of string is: %u\n",
+                            model_file_content.capacity());
+                    printf("Mon string: %s\n", model_file_content.c_str());
+                }
             }
         }
     }
@@ -184,7 +190,8 @@ parseAttributeObserverModelLine(char *line, size_t no_of_classes)
     double weight = 0.0;
 
     //For numerics:
-    double sumOfWeights = 0.0, sumOfValues = 0.0, sumOfValuesSq = 0.0, mean = 0.0, standardDev = 0.0;
+    double sumOfWeights = 0.0, sumOfValues = 0.0, sumOfValuesSq = 0.0, mean =
+            0.0, standardDev = 0.0;
 
     ptr = "";
 
@@ -275,7 +282,7 @@ readModelFile(DVec &observedClassDist,
         { F_WRLCK, SEEK_SET, 0, 0, 0 };
     int fd;
     bool attrStartFlag = false;
-    const char *pSeperator = seperator.c_str();
+    const char *pSeperator = SEPERATOR.c_str();
 
     if ((fd = open(filePath, O_RDWR)) == -1) {
         syslog(LOG_ALERT, "Can't open the file :%s\n", filePath);
@@ -324,5 +331,4 @@ readModelFile(DVec &observedClassDist,
     }
     fclose(fp);
     close(fd);
-
 }

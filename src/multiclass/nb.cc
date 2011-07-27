@@ -159,12 +159,10 @@ nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
     add_to_val(ld->label, params->vars->observedClassDist, ld->weight);
 
     params->vars->noOfObservedExamples++;
-    cout << "File value is: " << params->vars->noOfObservedExamples << endl;
+    //cout << "File value is: " << params->vars->noOfObservedExamples << endl;
 
     for (size_t *i = (ex->indices.begin); i != (ex->indices.end); i++) {
-
         feature f = ex->atomics[*i][thread_num];
-
         if (params->vars->attributeObservers[*i] == NULL) {
             if (!(arfHeader->features).empty()) {
                 type[thread_num]
@@ -241,11 +239,13 @@ destroy_nb()
     for (size_t i = 0; i < num_threads; i++) {
         pthread_join(threads[i], NULL);
         if (nbModelFile.size() > 0 && i == 0) {
-             cout << "No of observed examples: " << passers[0]->vars->noOfObservedExamples << endl;
-             scale_vals(passers[0]->vars->observedClassDist, passers[0]->vars->noOfObservedExamples);
-             writeModelFile(passers[0]->vars->observedClassDist,
-             passers[0]->vars->attributeObservers, passers[0]->arfHeader,
-             nbModelFile);
+            cout << "No of observed examples: "
+                    << passers[0]->vars->noOfObservedExamples << endl;
+            scale_vals(passers[0]->vars->observedClassDist,
+                    passers[0]->vars->noOfObservedExamples);
+            writeModelFile(passers[0]->vars->observedClassDist,
+                    passers[0]->vars->attributeObservers,
+                    passers[0]->arfHeader, nbModelFile);
         }
         c_free(passers[i]);
     }
