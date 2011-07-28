@@ -65,7 +65,7 @@ createModelFileContent(DVec &observedClassDist,
     std::stringstream str_stream;
 
     for (unsigned int i = 0; i < observedClassDist.size(); i++) {
-//        str_stream.flush();
+        //        str_stream.flush();
         str_stream << i << " " << observedClassDist[i] << std::endl;
         //model_file_content += str_stream.str();
     }
@@ -103,20 +103,19 @@ createModelFileContent(DVec &observedClassDist,
                 vector<NormalEstimator *> attValDistPerClass =
                         numAttrObs->getAttValDistPerClass();
 
-                for (auto j = 0; j < attValDistPerClass.size(); j++) {
+                for (auto j = 0; j < arfHeader->no_of_categories; j++) {
                     printf("cnt val: %d\n", j);
-                    NormalEstimator *nEstimator =
-                            (NormalEstimator *) attValDistPerClass[j];
-                    str_stream << i << " " << NUMERIC << " " << j << " "
-                            << nEstimator->getSumOfWeights() << " "
-                            << nEstimator->getSumOfValues() << " "
-                            << nEstimator->getSumOfValuesSq() << " "
-                            << nEstimator->getMean() << " "
-                            << nEstimator->getStandardDev() << std::endl;
-//                    model_file_content += str_stream.str();
-                   /* printf("Size of string is: %u\n",
-                            model_file_content.capacity());
-                    printf("Mon string: %s\n", model_file_content.c_str());*/
+                    NormalEstimator
+                            *nEstimator =
+                                    dynamic_cast<NormalEstimator *> (attValDistPerClass[j]);
+                    if (nEstimator != NULL) {
+                        str_stream << i << " " << NUMERIC << " " << j << " "
+                                << nEstimator->getSumOfWeights() << " "
+                                << nEstimator->getSumOfValues() << " "
+                                << nEstimator->getSumOfValuesSq() << " "
+                                << nEstimator->getMean() << " "
+                                << nEstimator->getStandardDev() << std::endl;
+                    }
                 }
             }
         }

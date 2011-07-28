@@ -149,7 +149,7 @@ void
 nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
         nb_thread_params* params)
 {
-    fType type[thread_num];
+    fType type;
     pthread_mutex_lock(&trainMutex);
 
     label_data *ld = (label_data *) c_malloc(sizeof(*((label_data *) ex->ld)));
@@ -164,20 +164,17 @@ nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
         int j = 0;
         for (feature *f = ex->subsets[*i][thread_num]; f
                 != ex->subsets[*i][thread_num + 1]; f++) {
-            printf("feature x val: %f\n", f->x);
+            //printf("feature x val: %f\n", f->x);
             //feature f = ex->atomics[*i][thread_num];
-
+            if (!(arfHeader->features).empty())
+                type = ((fType) (arfHeader->features[f->weight_index]).type);
             if (params->vars->attributeObservers[j] == NULL) {
-                if (!(arfHeader->features).empty()) {
-                    type[thread_num]
-                            = ((fType) (arfHeader->features[f->weight_index]).type);
-                }
-                if (type[thread_num] == NUMERIC) {
+                if (type == NUMERIC) {
                     NumAttrObserver *numAttObs = new NumAttrObserver(
                             arfHeader->no_of_categories);
                     params->vars->attributeObservers[j] = numAttObs;
                 }
-                else if (type[thread_num] == NOMINAL) {
+                else if (type == NOMINAL) {
                     cerr << "WTF!!!" << endl;
                     NomAttrObserver *nomAttObs = new NomAttrObserver();
                     params->vars->attributeObservers[j] = nomAttObs;
@@ -188,10 +185,10 @@ nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
                 }
             }
 
-            if (type[thread_num] == NUMERIC)
+            if (type == NUMERIC)
                 (dynamic_cast<NumAttrObserver *> (params->vars->attributeObservers[j]))->observeAttributeClass(
                         f->x, ld->label, ex->global_weight);
-            else if (type[thread_num] == NOMINAL)
+            else if (type == NOMINAL)
                 (dynamic_cast<NomAttrObserver *> (params->vars->attributeObservers[j]))->observeAttributeClass(
                         f->x, ld->label, ex->global_weight);
             j++;
@@ -237,6 +234,7 @@ setup_nb(nb_thread_params t)
         pthread_create(&threads[i], NULL, nb_thread, (void *) passers[i]);
     }
 }
+pthread_mutex_t createModelFileMutex = PTHREAD_MUTEX_INITIALIZER;
 
 void
 destroy_nb()
@@ -244,6 +242,7 @@ destroy_nb()
     std::string nbModelFile = global.nb_model_file;
     for (size_t i = 0; i < num_threads; i++) {
         pthread_join(threads[i], NULL);
+        //pthread_mutex_lock(&createModelFileMutex);
         if (nbModelFile.size() > 0 && i == 0) {
             cout << "No of observed examples: "
                     << passers[0]->vars->noOfObservedExamples << endl;
@@ -253,6 +252,7 @@ destroy_nb()
                     passers[0]->vars->attributeObservers,
                     passers[0]->arfHeader, nbModelFile);
         }
+//        pthread_mutex_unlock(&createModelFileMutex);
         c_free(passers[i]);
     }
 

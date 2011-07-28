@@ -9,6 +9,7 @@
 #define NUMATTROBS_H_
 
 #include <cfloat>
+#include <stdio.h>
 
 #include "dvec.h"
 #include "estimator.h"
@@ -65,6 +66,7 @@ public:
     {
         attValDistPerClass[classNo] = valDist;
     }
+
     /*
      *@param attVal the attribute's float value
      *@param classVal the label that the example belongs to
@@ -73,11 +75,10 @@ public:
     void
     observeAttributeClass(float attVal, int classVal, float weight)
     {
-        NormalEstimator *valDist = attValDistPerClass[classVal];
-        if (valDist == NULL) {
+        printf("Class val is: %d\n", classVal);
+        if (attValDistPerClass[classVal] == NULL) {
             float defaultPrecision = 0.001;
-            valDist = new NormalEstimator(defaultPrecision);
-            attValDistPerClass[classVal] = valDist;
+            attValDistPerClass[classVal] = new NormalEstimator(defaultPrecision); //= valDist;
             minValueObservedPerClass[classVal] = attVal;
             maxValueObservedPerClass[classVal] = attVal;
         }
@@ -89,7 +90,7 @@ public:
                 maxValueObservedPerClass[classVal] = attVal;
             }
         }
-        valDist->addValue(attVal, weight);
+        attValDistPerClass[classVal]->addValue(attVal, weight);
     }
 
     float

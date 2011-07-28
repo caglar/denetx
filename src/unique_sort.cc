@@ -15,8 +15,7 @@ void unique_features(v_array<feature> &features)
   if (features.empty())
     return;
   feature* last = features.begin;
-  for (feature* current = features.begin+1; 
-       current != features.end; current++)
+  for (feature* current = features.begin + 1; current != features.end; current++)
     if (current->weight_index != last->weight_index) 
       *(++last) = *current;
   features.end = ++last;

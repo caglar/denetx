@@ -77,6 +77,15 @@ namespace est
             mStandardDev = mPrecision / (2 * 3);
         }
 
+        explicit
+        NormalEstimator() :
+            mSumOfWeights(0), mSumOfValues(0), mSumOfValuesSq(0),
+                    mPrecision(0.1)
+        {
+            NORMAL_CONSTANT = sqrt(2 * M_PI);
+            mStandardDev = mPrecision / (2 * 3);
+        }
+
         float
         getSumOfWeights()
         {
@@ -105,6 +114,12 @@ namespace est
         getStandardDev()
         {
             return this->mStandardDev;
+        }
+
+        void
+        setPrecision(float precision)
+        {
+            this->mPrecision = precision;
         }
 
         void
@@ -154,6 +169,7 @@ namespace est
             if (weight == 0) {
                 return;
             }
+
             data = roundPrecise(data);
             mSumOfWeights += weight;
             mSumOfValues += data * weight;
@@ -370,8 +386,9 @@ namespace est
             mSumOfWeights += weight;
             float range = mValues[mNumValues - 1] - mValues[0];
             if (range > 0) {
-                mStandardDev = std::max(static_cast<float>(range / sqrt(mSumOfWeights)),
-                // allow at most 3 sds within one interval
+                mStandardDev = std::max(
+                        static_cast<float> (range / sqrt(mSumOfWeights)),
+                        // allow at most 3 sds within one interval
                         mPrecision / (2 * 3));
             }
         }
