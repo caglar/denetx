@@ -65,11 +65,14 @@ createModelFileContent(DVec &observedClassDist,
     std::stringstream str_stream;
 
     for (unsigned int i = 0; i < observedClassDist.size(); i++) {
+//        str_stream.flush();
         str_stream << i << " " << observedClassDist[i] << std::endl;
-        model_file_content += str_stream.str();
+        //model_file_content += str_stream.str();
     }
 
-    model_file_content = model_file_content + SEPERATOR + "\n";
+    str_stream << SEPERATOR << std::endl;
+
+    //model_file_content = model_file_content + SEPERATOR + "\n";
 
     for (auto i = 0; i < arfHeader->no_of_features; i++) {
         if (attributeObservers[i] != NULL) {
@@ -84,10 +87,11 @@ createModelFileContent(DVec &observedClassDist,
                 for (auto j = 0; j < classSize; j++) {
                     unsigned int valSize = attValDistPerClass[j].size();
                     for (auto n = 0; n < valSize; n++) {
+                        //str_stream.flush();
                         str_stream << i << " " << NOMINAL << " " << j << " "
                                 << n << " " << attValDistPerClass[j][n]
                                 << std::endl;
-                        model_file_content = str_stream.str();
+                        //model_file_content = str_stream.str();
                         //model_file_content += i + " " + NOMINAL + " " + j + " " + n
                         //+ " " + attValDistPerClass[j][n] + "\n";
                     }
@@ -109,14 +113,15 @@ createModelFileContent(DVec &observedClassDist,
                             << nEstimator->getSumOfValuesSq() << " "
                             << nEstimator->getMean() << " "
                             << nEstimator->getStandardDev() << std::endl;
-                    model_file_content += str_stream.str();
-                    printf("Size of string is: %u\n",
+//                    model_file_content += str_stream.str();
+                   /* printf("Size of string is: %u\n",
                             model_file_content.capacity());
-                    printf("Mon string: %s\n", model_file_content.c_str());
+                    printf("Mon string: %s\n", model_file_content.c_str());*/
                 }
             }
         }
     }
+    model_file_content = str_stream.str();
 }
 
 void
@@ -150,11 +155,11 @@ void
 parseObservedClassDistModelLine(DVec &observedClassDist, char *line)
 {
     char * rest;
-    char * ptr;
+    char * ptr = (char *) c_malloc(sizeof *line);
     int classVal;
     float weight;
     char *token;
-    c_strcpy(ptr, line);
+    c_strcpy(ptr, c_trim(line));
 
     for (int i = 0;; token = NULL, i++) {
         token = strtok_r(ptr, " ", &rest);

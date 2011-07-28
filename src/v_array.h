@@ -51,11 +51,19 @@ template<class T>
         {
             return begin[i];
         }
+
         unsigned int
         index()
         {
             return end - begin;
         }
+
+        unsigned int
+        length()
+        {
+            return (end - begin);
+        }
+
         void
         erase()
         {

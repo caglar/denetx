@@ -65,7 +65,11 @@ public:
     {
         attValDistPerClass[classNo] = valDist;
     }
-
+    /*
+     *@param attVal the attribute's float value
+     *@param classVal the label that the example belongs to
+     *@param the weight of the example
+     */
     void
     observeAttributeClass(float attVal, int classVal, float weight)
     {

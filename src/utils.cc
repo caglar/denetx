@@ -17,7 +17,8 @@
 #include <sys/syslog.h>
 #include <sys/stat.h>
 #include <stdio.h>
-#include <string.h>
+//#include <string.h>
+#include <cstring>
 #include <sys/time.h>
 #include <assert.h>
 #include <math.h>

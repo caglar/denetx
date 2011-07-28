@@ -160,36 +160,42 @@ nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
 
     params->vars->noOfObservedExamples++;
     //cout << "File value is: " << params->vars->noOfObservedExamples << endl;
+    for (size_t *i = (ex->indices.begin); i != (ex->indices.end); ++i) {
+        int j = 0;
+        for (feature *f = ex->subsets[*i][thread_num]; f
+                != ex->subsets[*i][thread_num + 1]; f++) {
+            printf("feature x val: %f\n", f->x);
+            //feature f = ex->atomics[*i][thread_num];
 
-    for (size_t *i = (ex->indices.begin); i != (ex->indices.end); i++) {
-        feature f = ex->atomics[*i][thread_num];
-        if (params->vars->attributeObservers[*i] == NULL) {
-            if (!(arfHeader->features).empty()) {
-                type[thread_num]
-                        = ((fType) (arfHeader->features[f.weight_index]).type);
+            if (params->vars->attributeObservers[j] == NULL) {
+                if (!(arfHeader->features).empty()) {
+                    type[thread_num]
+                            = ((fType) (arfHeader->features[f->weight_index]).type);
+                }
+                if (type[thread_num] == NUMERIC) {
+                    NumAttrObserver *numAttObs = new NumAttrObserver(
+                            arfHeader->no_of_categories);
+                    params->vars->attributeObservers[j] = numAttObs;
+                }
+                else if (type[thread_num] == NOMINAL) {
+                    cerr << "WTF!!!" << endl;
+                    NomAttrObserver *nomAttObs = new NomAttrObserver();
+                    params->vars->attributeObservers[j] = nomAttObs;
+                }
+                else {
+                    std::cerr << "Unsupported type" << std::endl;
+                    exit( EXIT_FAILURE);
+                }
             }
-            if (type[thread_num] == NUMERIC) {
-                NumAttrObserver *numAttObs = new NumAttrObserver(
-                        arfHeader->no_of_categories);
-                params->vars->attributeObservers[*i] = numAttObs;
-            }
-            else if (type[thread_num] == NOMINAL) {
-                cerr << "WTF!!!" << endl;
-                NomAttrObserver *nomAttObs = new NomAttrObserver();
-                params->vars->attributeObservers[*i] = nomAttObs;
-            }
-            else {
-                std::cerr << "Unsupported type" << std::endl;
-                exit( EXIT_FAILURE);
-            }
+
+            if (type[thread_num] == NUMERIC)
+                (dynamic_cast<NumAttrObserver *> (params->vars->attributeObservers[j]))->observeAttributeClass(
+                        f->x, ld->label, ex->global_weight);
+            else if (type[thread_num] == NOMINAL)
+                (dynamic_cast<NomAttrObserver *> (params->vars->attributeObservers[j]))->observeAttributeClass(
+                        f->x, ld->label, ex->global_weight);
+            j++;
         }
-
-        if (type[thread_num] == NUMERIC)
-            (dynamic_cast<NumAttrObserver *> (params->vars->attributeObservers[*i]))->observeAttributeClass(
-                    f.x, ld->label, ex->global_weight);
-        else if (type[thread_num] == NOMINAL)
-            (dynamic_cast<NomAttrObserver *> (params->vars->attributeObservers[*i]))->observeAttributeClass(
-                    f.x, ld->label, ex->global_weight);
     }
     pthread_mutex_unlock(&trainMutex);
 }
@@ -201,7 +207,7 @@ static size_t num_threads;
 void
 setup_nb(nb_thread_params t)
 {
-    bool setupFlag = false;
+    //bool setupFlag = false;
     num_threads = t.thread_num;
     threads = (pthread_t *) c_calloc(num_threads, sizeof(pthread_t));
     passers = (nb_thread_params **) c_calloc(num_threads,
