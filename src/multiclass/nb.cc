@@ -191,6 +191,18 @@ nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
             else if (type == NOMINAL)
                 (dynamic_cast<NomAttrObserver *> (params->vars->attributeObservers[j]))->observeAttributeClass(
                         f->x, ld->label, ex->global_weight);
+            //cout << "Sum of Vals: " << (dynamic_cast<NormalEstimator *>(((dynamic_cast<NumAttrObserver *> (params->vars->attributeObservers[j]))->getAttValDistPerClass())[0]))->getSumOfValues() << endl;
+            /*cout << "Sum of Vals: "
+                    << (dynamic_cast<NormalEstimator *> (((dynamic_cast<NumAttrObserver *> (params->vars->attributeObservers[j]))->getAttValDistPerClass())[0]))->getSumOfValues()
+                    << endl;
+                    */
+            NumAttrObserver
+                    * numObs =
+                            dynamic_cast<NumAttrObserver *> (params->vars->attributeObservers[j]);
+            std::vector<NormalEstimator *> nEsts = (vector<NormalEstimator *>) numObs->getAttValDistPerClass();
+            cout << "Sum of Vals: "
+                    << nEsts[0]->getSumOfValues()
+                    <<endl;
             j++;
         }
     }
@@ -228,6 +240,7 @@ setup_nb(nb_thread_params t)
         *(passers[i]) = t;
         passers[i]->thread_num = i;
         if (mFileFlag) {
+            cout << " File flag: hey!" << endl;
             passers[i]->vars->attributeObservers = attributeObservers;
             passers[i]->vars->observedClassDist = observedClassDist;
         }
@@ -240,9 +253,9 @@ void
 destroy_nb()
 {
     std::string nbModelFile = global.nb_model_file;
+
     for (size_t i = 0; i < num_threads; i++) {
         pthread_join(threads[i], NULL);
-        //pthread_mutex_lock(&createModelFileMutex);
         if (nbModelFile.size() > 0 && i == 0) {
             cout << "No of observed examples: "
                     << passers[0]->vars->noOfObservedExamples << endl;
@@ -252,7 +265,6 @@ destroy_nb()
                     passers[0]->vars->attributeObservers,
                     passers[0]->arfHeader, nbModelFile);
         }
-//        pthread_mutex_unlock(&createModelFileMutex);
         c_free(passers[i]);
     }
 
