@@ -134,6 +134,7 @@ writeModelFile(DVec const &observedClassDist,
     string tmpFileName = nb_model_file + ".tmp";
     printf("ObservedClassDist val 0: %f, ObservedClassDist val 1: %f",
             observedClassDist[0], observedClassDist[1]);
+
     printf("tmpFileName: %s, nbmodelfile: %s\n", tmpFileName.c_str(),
             nb_model_file.c_str());
 
@@ -143,6 +144,7 @@ writeModelFile(DVec const &observedClassDist,
 
     createModelFileContent(observedClassDist, attributeObservers, arfHeader,
             modelFileContent);
+
     const char *mModelFileContent = modelFileContent.c_str();
     c_write_file(nb_model_file.c_str(), (void *) mModelFileContent,
             sizeof(*mModelFileContent));

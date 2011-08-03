@@ -43,6 +43,7 @@ nb_thread(void *in)
     nb_thread_params* params = static_cast<nb_thread_params*> (in);
     size_t thread_num = params->thread_num;
     example* ec = NULL;
+    pthread_mutex_lock(&initMutex);
     size_t no_of_cats = params->arfHeader->no_of_categories;
     size_t no_of_feats = params->arfHeader->no_of_features;
 
@@ -62,7 +63,7 @@ nb_thread(void *in)
         params->vars->attributeObservers.resize(no_of_feats);
     }
 
-    //pthread_mutex_unlock(&initMutex);
+    pthread_mutex_unlock(&initMutex);
 
     while (true) {
         //this is a poor man's select operation.
@@ -153,7 +154,6 @@ nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
 {
     fType type;
     pthread_mutex_lock(&trainMutex);
-
     label_data *ld = (label_data *) c_malloc(sizeof(*((label_data *) ex->ld)));
 
     ld->label = ((label_data *) ex->ld)->label;
@@ -164,6 +164,7 @@ nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
     //cout << "File value is: " << params->vars->noOfObservedExamples << endl;
     for (size_t *i = (ex->indices.begin); i != (ex->indices.end); ++i) {
         int j = 0;
+        std::cout << "Thread id: " << (unsigned long)pthread_self() << std::endl;
         for (feature *f = ex->subsets[*i][thread_num]; f
                 != ex->subsets[*i][thread_num + 1]; f++) {
             if (!(arfHeader->features).empty())
@@ -197,12 +198,12 @@ nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
              << (dynamic_cast<NormalEstimator *> (((dynamic_cast<NumAttrObserver *> (params->vars->attributeObservers[j]))->getAttValDistPerClass())[0]))->getSumOfValues()
              << endl;
              */
-            NumAttrObserver
+          /*  NumAttrObserver
                     * numObs =
                             dynamic_cast<NumAttrObserver *> (params->vars->attributeObservers[j]);
             std::vector<NormalEstimator *> nEsts = (std::vector<
                     NormalEstimator *>) numObs->getAttValDistPerClass();
-            cout << "Sum of Vals: " << nEsts[0]->getSumOfValues() << endl;
+            cout << "Sum of Vals: " << nEsts[0]->getSumOfValues() << endl;*/
             j++;
         }
     }
