@@ -461,7 +461,7 @@ dvec.o: multiclass/dvec.cc \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/sstream \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/sstream.tcc \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/tr1_impl/complex \
- multiclass/dvec.h multiclass/../float_cmp.h
+ multiclass/dvec.h float_cmp.h
 
 /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/cstdlib:
 
@@ -1483,4 +1483,4 @@ dvec.o: multiclass/dvec.cc \
 
 multiclass/dvec.h:
 
-multiclass/../float_cmp.h:
+float_cmp.h:

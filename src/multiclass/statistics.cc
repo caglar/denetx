@@ -5,11 +5,11 @@
  *      Author: caglar
  *      This code is based on cephes: http://www.netlib.org/cephes/
  */
-
-#include "statistics.h"
-#include "arraycopy.h"
 #include <cmath>
 #include <stdio.h>
+
+#include "multiclass/statistics.h"
+#include "multiclass/arraycopy.h"
 
 /** Some important constants */
 static const float SQRTH = 7.07106781186547524401E-1;

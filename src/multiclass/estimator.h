@@ -10,9 +10,11 @@
 #define ESTIMATOR_H_
 
 #include <math.h>
+
 #include <algorithm>
-#include "statistics.h"
-#include "arraycopy.h"
+
+#include "multiclass/statistics.h"
+#include "multiclass/arraycopy.h"
 
 template<typename T>
     int
@@ -70,16 +72,15 @@ namespace est
          */
         explicit
         NormalEstimator(float precision) :
-            mSumOfWeights(0), mSumOfValues(0), mSumOfValuesSq(0)
+            mSumOfWeights(0), mSumOfValues(0), mSumOfValuesSq(0), mMean(0.0)
         {
             NORMAL_CONSTANT = sqrt(2 * M_PI);
             mPrecision = precision;
             mStandardDev = mPrecision / (2 * 3);
         }
 
-        explicit
         NormalEstimator() :
-            mSumOfWeights(0), mSumOfValues(0), mSumOfValuesSq(0),
+            mSumOfWeights(0), mSumOfValues(0), mSumOfValuesSq(0), mMean(0.0),
                     mPrecision(0.1)
         {
             NORMAL_CONSTANT = sqrt(2 * M_PI);

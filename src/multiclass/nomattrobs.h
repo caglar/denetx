@@ -11,10 +11,10 @@
 #include <vector>
 #include <boost/multi_array.hpp>
 
-#include "dvec.h"
-#include "attrobs.h"
-#include "flin.h"
-#include "infogain.h"
+#include "multiclass/dvec.h"
+#include "multiclass/attrobs.h"
+#include "multiclass/flin.h"
+#include "multiclass/infogain.h"
 
 using std::vector;
 
@@ -66,7 +66,7 @@ public:
     void
     observeAttributeClass(float attVal, int classVal, float weight)
     {
-        int attValInt = (int) attVal;
+        int attValInt = static_cast<int> (attVal);
         add_to_val(attValInt, attValDistPerClass[classVal], weight);
         totalWeightObserved += weight;
     }
@@ -75,7 +75,7 @@ public:
     probabilityOfAttributeValueGivenClass(float attVal, int classVal)
     {
         DVec obs = attValDistPerClass[classVal];
-        return (obs[(int) attVal] + 1.0) / (sum_of_vals(obs) + obs.size());
+        return (obs[static_cast<int> (attVal)] + 1.0) / (sum_of_vals(obs) + obs.size());
     }
 
     float

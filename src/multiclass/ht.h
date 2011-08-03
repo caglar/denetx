@@ -11,18 +11,17 @@
 #include <algorithm>
 #include <vector>
 
-#include "dvec.h"
-#include "attrsplitsuggest.h"
-#include "hoeffding_bound.h"
-#include "arrayresize.h"
+#include "multiclass/dvec.h"
+#include "multiclass/attrsplitsuggest.h"
+#include "multiclass/hoeffding_bound.h"
+#include "multiclass/arrayresize.h"
 
 //Temprorily don't use this:
-#include "../timsort.h"
-//
+#include "timsort.h"
 
-#include "../utils.h"
-#include "../example.h"
-#include "../parse_arfheader.h"
+#include "utils.h"
+#include "example.h"
+#include "parse_arfheader.h"
 
 using std::vector;
 using std::stable_sort;

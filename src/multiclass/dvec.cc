@@ -13,8 +13,8 @@
 #include <map>
 #include <boost/multi_array.hpp>
 
-#include "dvec.h"
-#include "../float_cmp.h"
+#include "multiclass/dvec.h"
+#include "float_cmp.h"
 
 using std::copy;
 using std::max_element;

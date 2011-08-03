@@ -11,18 +11,20 @@
 #include <cfloat>
 #include <stdio.h>
 
-#include "dvec.h"
-#include "estimator.h"
-#include "infogain.h"
-#include "split_test.h"
-#include "flin.h"
-
-#include "../utils.h"
-#include "../float_cmp.h"
-
 #include <algorithm>
+#include <vector>
+
+#include "multiclass/dvec.h"
+#include "multiclass/estimator.h"
+#include "multiclass/infogain.h"
+#include "multiclass/split_test.h"
+#include "multiclass/flin.h"
+
+#include "utils.h"
+#include "float_cmp.h"
 
 using est::NormalEstimator;
+using std::vector;
 
 //Gaussian Numeric Attribute Observer
 class NumAttrObserver : public AttributeClassObserver
@@ -36,6 +38,7 @@ private:
 
 public:
 
+    explicit
     NumAttrObserver(unsigned int noOfClasses) :
         mNoOfClasses(noOfClasses), numBins(100)
     {
@@ -78,7 +81,8 @@ public:
         printf("Class val is: %d\n", classVal);
         if (attValDistPerClass[classVal] == NULL) {
             float defaultPrecision = 0.001;
-            attValDistPerClass[classVal] = new NormalEstimator(defaultPrecision);
+            attValDistPerClass[classVal]
+                    = new NormalEstimator(defaultPrecision);
             minValueObservedPerClass[classVal] = attVal;
             maxValueObservedPerClass[classVal] = attVal;
         }

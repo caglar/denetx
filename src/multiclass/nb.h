@@ -11,12 +11,12 @@
 #include <vector>
 #include <cmath>
 
-#include "../example.h"
-#include "../parse_regressor.h"
-#include "../parse_arfheader.h"
-#include "../parser.h"
-#include "./dvec.h"
-#include "./attrobs.h"
+#include "example.h"
+#include "parse_regressor.h"
+#include "parse_arfheader.h"
+#include "parser.h"
+#include "multiclass/dvec.h"
+#include "multiclass/attrobs.h"
 
 void
 print_result(int f, float res, v_array<char> tag);

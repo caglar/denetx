@@ -10,11 +10,12 @@
  *       Revision:  none
  *       Compiler:  gcc
  *
- *         Author:  YOUR NAME (), 
+ *         Author:  Caglar Gulcehre (caglar@ulakbim.gov.tr),
  *        Company:  
  *
  * =====================================================================================
  */
+#include "multiclass/arrayresize.h"
 
 template <class T>
 T*

@@ -11,12 +11,13 @@
 #include <syslog.h>
 #include <map>
 
-#include "parse_nbmodel.h"
-#include "parse_arfheader.h"
-#include "estimator.h"
 #include "utils.h"
-#include "nomattrobs.h"
-#include "numattrobs.h"
+#include "parse_arfheader.h"
+
+#include "multiclass/parse_nbmodel.h"
+#include "multiclass/estimator.h"
+#include "multiclass/nomattrobs.h"
+#include "multiclass/numattrobs.h"
 
 using est::NormalEstimator;
 
@@ -56,8 +57,8 @@ static const string SEPERATOR = "%==%";
  */
 
 static void
-createModelFileContent(DVec &observedClassDist,
-        vector<AttributeClassObserver *> &attributeObservers,
+createModelFileContent(DVec const &observedClassDist,
+        vector<AttributeClassObserver *> const &attributeObservers,
         arfheader *arfHeader, string& model_file_content)
 {
     std::map<uint32_t, arffeature> arfAtts = arfHeader->features;
@@ -124,8 +125,8 @@ createModelFileContent(DVec &observedClassDist,
 }
 
 void
-writeModelFile(DVec &observedClassDist,
-        vector<AttributeClassObserver *> &attributeObservers,
+writeModelFile(DVec const &observedClassDist,
+        vector<AttributeClassObserver *> const &attributeObservers,
         arfheader *arfHeader, string nb_model_file)
 {
 
@@ -155,7 +156,7 @@ parseObservedClassDistModelLine(DVec &observedClassDist, char *line)
 {
     char * rest;
     char * ptr = (char *) c_malloc(sizeof *line);
-    int classVal;
+    int classVal = -1;
     float weight;
     char *token;
     c_strcpy(ptr, c_trim(line));

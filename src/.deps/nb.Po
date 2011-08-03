@@ -1,14 +1,12 @@
 nb.o: multiclass/nb.cc \
- /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/string \
+ /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/vector \
+ /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/stl_algobase.h \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/i686-pc-linux-gnu/bits/c++config.h \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/i686-pc-linux-gnu/bits/os_defines.h \
  /usr/include/features.h /usr/include/bits/predefs.h \
  /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
  /usr/include/gnu/stubs.h /usr/include/gnu/stubs-32.h \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/i686-pc-linux-gnu/bits/cpu_defines.h \
- /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/stringfwd.h \
- /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/char_traits.h \
- /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/stl_algobase.h \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/cstddef \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/include/stddef.h \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/functexcept.h \
@@ -25,6 +23,20 @@ nb.o: multiclass/nb.cc \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/stl_iterator_base_funcs.h \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/stl_iterator.h \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/debug/debug.h \
+ /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/allocator.h \
+ /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/i686-pc-linux-gnu/bits/c++allocator.h \
+ /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/ext/new_allocator.h \
+ /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/new \
+ /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/exception \
+ /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/stl_construct.h \
+ /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/stl_uninitialized.h \
+ /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/stl_vector.h \
+ /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/initializer_list \
+ /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/stl_bvector.h \
+ /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/vector.tcc \
+ /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/string \
+ /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/stringfwd.h \
+ /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/char_traits.h \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/postypes.h \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/cwchar \
  /usr/include/wchar.h /usr/include/stdio.h \
@@ -34,11 +46,6 @@ nb.o: multiclass/nb.cc \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/cstdint \
  /usr/include/stdint.h \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/tr1_impl/cstdint \
- /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/allocator.h \
- /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/i686-pc-linux-gnu/bits/c++allocator.h \
- /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/ext/new_allocator.h \
- /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/new \
- /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/exception \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/localefwd.h \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/i686-pc-linux-gnu/bits/c++locale.h \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/clocale \
@@ -64,7 +71,6 @@ nb.o: multiclass/nb.cc \
  /usr/include/bits/environments.h /usr/include/bits/confname.h \
  /usr/include/getopt.h \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/i686-pc-linux-gnu/bits/atomic_word.h \
- /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/initializer_list \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/ext/string_conversions.h \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/cstdlib \
  /usr/include/stdlib.h /usr/include/bits/waitflags.h \
@@ -117,12 +123,6 @@ nb.o: multiclass/nb.cc \
  /usr/include/bits/siginfo.h /usr/include/bits/netdb.h \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/cstring \
  /usr/include/string.h multiclass/nb.h \
- /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/vector \
- /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/stl_construct.h \
- /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/stl_uninitialized.h \
- /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/stl_vector.h \
- /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/stl_bvector.h \
- /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/vector.tcc \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/cmath \
  /usr/include/math.h /usr/include/bits/huge_val.h \
  /usr/include/bits/huge_valf.h /usr/include/bits/huge_vall.h \
@@ -130,9 +130,8 @@ nb.o: multiclass/nb.cc \
  /usr/include/bits/mathdef.h /usr/include/bits/mathcalls.h \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/cmath.tcc \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/tr1_impl/cmath \
- multiclass/../example.h multiclass/../v_array.h multiclass/../utils.h \
- /usr/include/sys/time.h multiclass/../parse_regressor.h \
- multiclass/../loss_functions.h /usr/include/boost/program_options.hpp \
+ example.h v_array.h utils.h /usr/include/sys/time.h parse_regressor.h \
+ loss_functions.h /usr/include/boost/program_options.hpp \
  /usr/include/boost/program_options/options_description.hpp \
  /usr/include/boost/program_options/config.hpp \
  /usr/include/boost/config.hpp /usr/include/boost/config/user.hpp \
@@ -391,14 +390,12 @@ nb.o: multiclass/nb.cc \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/iterator \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/stream_iterator.h \
  /usr/include/boost/program_options/variables_map.hpp \
- /usr/include/boost/program_options/version.hpp \
- multiclass/../parse_arfheader.h multiclass/../parser.h \
- multiclass/../io.h /usr/include/fcntl.h /usr/include/bits/fcntl.h \
+ /usr/include/boost/program_options/version.hpp parse_arfheader.h \
+ parser.h io.h /usr/include/fcntl.h /usr/include/bits/fcntl.h \
  /usr/include/bits/stat.h \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/iostream \
- multiclass/../global_data.h multiclass/../parse_regressor.h \
- multiclass/../parse_primitives.h multiclass/../example.h \
- multiclass/./dvec.h /usr/include/boost/multi_array.hpp \
+ global_data.h parse_regressor.h parse_primitives.h example.h \
+ multiclass/dvec.h /usr/include/boost/multi_array.hpp \
  /usr/include/boost/multi_array/base.hpp \
  /usr/include/boost/multi_array/extent_range.hpp \
  /usr/include/boost/multi_array/extent_gen.hpp \
@@ -566,21 +563,19 @@ nb.o: multiclass/nb.cc \
  /usr/include/boost/type_traits/is_complex.hpp \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/complex \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/tr1_impl/complex \
- multiclass/./attrobs.h multiclass/./attrsplitsuggest.h \
- multiclass/./split_test.h example.h multiclass/./flin.h \
- multiclass/./../utils.h multiclass/numattrobs.h \
+ multiclass/attrobs.h multiclass/attrsplitsuggest.h \
+ multiclass/split_test.h multiclass/flin.h multiclass/../utils.h \
+ multiclass/numattrobs.h \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/cfloat \
- multiclass/dvec.h multiclass/estimator.h multiclass/statistics.h \
- multiclass/arraycopy.h multiclass/infogain.h multiclass/flin.h \
- multiclass/split_test.h multiclass/../utils.h multiclass/../float_cmp.h \
- multiclass/nomattrobs.h multiclass/attrobs.h multiclass/parse_nbmodel.h \
- multiclass/../parse_example.h multiclass/../parser.h \
- multiclass/../constant.h multiclass/../sparse_dense.h \
- multiclass/../parse_example.h multiclass/../cache.h \
- multiclass/../multisource.h multiclass/../simple_label.h \
- multiclass/../delay_ring.h
+ multiclass/estimator.h multiclass/statistics.h multiclass/arraycopy.h \
+ multiclass/infogain.h utils.h float_cmp.h multiclass/nomattrobs.h \
+ multiclass/parse_nbmodel.h parse_example.h parser.h constant.h \
+ sparse_dense.h parse_example.h cache.h multisource.h simple_label.h \
+ delay_ring.h
 
-/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/string:
+/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/vector:
+
+/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/stl_algobase.h:
 
 /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/i686-pc-linux-gnu/bits/c++config.h:
 
@@ -599,12 +594,6 @@ nb.o: multiclass/nb.cc \
 /usr/include/gnu/stubs-32.h:
 
 /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/i686-pc-linux-gnu/bits/cpu_defines.h:
-
-/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/stringfwd.h:
-
-/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/char_traits.h:
-
-/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/stl_algobase.h:
 
 /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/cstddef:
 
@@ -638,6 +627,34 @@ nb.o: multiclass/nb.cc \
 
 /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/debug/debug.h:
 
+/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/allocator.h:
+
+/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/i686-pc-linux-gnu/bits/c++allocator.h:
+
+/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/ext/new_allocator.h:
+
+/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/new:
+
+/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/exception:
+
+/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/stl_construct.h:
+
+/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/stl_uninitialized.h:
+
+/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/stl_vector.h:
+
+/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/initializer_list:
+
+/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/stl_bvector.h:
+
+/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/vector.tcc:
+
+/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/string:
+
+/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/stringfwd.h:
+
+/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/char_traits.h:
+
 /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/postypes.h:
 
 /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/cwchar:
@@ -659,16 +676,6 @@ nb.o: multiclass/nb.cc \
 /usr/include/stdint.h:
 
 /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/tr1_impl/cstdint:
-
-/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/allocator.h:
-
-/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/i686-pc-linux-gnu/bits/c++allocator.h:
-
-/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/ext/new_allocator.h:
-
-/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/new:
-
-/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/exception:
 
 /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/localefwd.h:
 
@@ -739,8 +746,6 @@ nb.o: multiclass/nb.cc \
 /usr/include/getopt.h:
 
 /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/i686-pc-linux-gnu/bits/atomic_word.h:
-
-/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/initializer_list:
 
 /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/ext/string_conversions.h:
 
@@ -882,18 +887,6 @@ nb.o: multiclass/nb.cc \
 
 multiclass/nb.h:
 
-/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/vector:
-
-/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/stl_construct.h:
-
-/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/stl_uninitialized.h:
-
-/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/stl_vector.h:
-
-/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/stl_bvector.h:
-
-/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/vector.tcc:
-
 /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/cmath:
 
 /usr/include/math.h:
@@ -916,17 +909,17 @@ multiclass/nb.h:
 
 /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/tr1_impl/cmath:
 
-multiclass/../example.h:
+example.h:
 
-multiclass/../v_array.h:
+v_array.h:
 
-multiclass/../utils.h:
+utils.h:
 
 /usr/include/sys/time.h:
 
-multiclass/../parse_regressor.h:
+parse_regressor.h:
 
-multiclass/../loss_functions.h:
+loss_functions.h:
 
 /usr/include/boost/program_options.hpp:
 
@@ -1480,11 +1473,11 @@ multiclass/../loss_functions.h:
 
 /usr/include/boost/program_options/version.hpp:
 
-multiclass/../parse_arfheader.h:
+parse_arfheader.h:
 
-multiclass/../parser.h:
+parser.h:
 
-multiclass/../io.h:
+io.h:
 
 /usr/include/fcntl.h:
 
@@ -1494,15 +1487,15 @@ multiclass/../io.h:
 
 /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/iostream:
 
-multiclass/../global_data.h:
+global_data.h:
 
-multiclass/../parse_regressor.h:
+parse_regressor.h:
 
-multiclass/../parse_primitives.h:
+parse_primitives.h:
 
-multiclass/../example.h:
+example.h:
 
-multiclass/./dvec.h:
+multiclass/dvec.h:
 
 /usr/include/boost/multi_array.hpp:
 
@@ -1860,23 +1853,19 @@ multiclass/./dvec.h:
 
 /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/tr1_impl/complex:
 
-multiclass/./attrobs.h:
+multiclass/attrobs.h:
 
-multiclass/./attrsplitsuggest.h:
+multiclass/attrsplitsuggest.h:
 
-multiclass/./split_test.h:
+multiclass/split_test.h:
 
-example.h:
+multiclass/flin.h:
 
-multiclass/./flin.h:
-
-multiclass/./../utils.h:
+multiclass/../utils.h:
 
 multiclass/numattrobs.h:
 
 /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/cfloat:
-
-multiclass/dvec.h:
 
 multiclass/estimator.h:
 
@@ -1886,34 +1875,28 @@ multiclass/arraycopy.h:
 
 multiclass/infogain.h:
 
-multiclass/flin.h:
+utils.h:
 
-multiclass/split_test.h:
-
-multiclass/../utils.h:
-
-multiclass/../float_cmp.h:
+float_cmp.h:
 
 multiclass/nomattrobs.h:
 
-multiclass/attrobs.h:
-
 multiclass/parse_nbmodel.h:
 
-multiclass/../parse_example.h:
+parse_example.h:
 
-multiclass/../parser.h:
+parser.h:
 
-multiclass/../constant.h:
+constant.h:
 
-multiclass/../sparse_dense.h:
+sparse_dense.h:
 
-multiclass/../parse_example.h:
+parse_example.h:
 
-multiclass/../cache.h:
+cache.h:
 
-multiclass/../multisource.h:
+multisource.h:
 
-multiclass/../simple_label.h:
+simple_label.h:
 
-multiclass/../delay_ring.h:
+delay_ring.h:

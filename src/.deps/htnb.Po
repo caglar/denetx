@@ -126,13 +126,12 @@ htnb.o: multiclass/htnb.cc \
  multiclass/htnb.h /usr/include/math.h /usr/include/bits/huge_val.h \
  /usr/include/bits/huge_valf.h /usr/include/bits/huge_vall.h \
  /usr/include/bits/inf.h /usr/include/bits/nan.h \
- /usr/include/bits/mathdef.h /usr/include/bits/mathcalls.h \
- multiclass/../example.h multiclass/../v_array.h multiclass/../utils.h \
- /usr/include/sys/time.h multiclass/../parser.h multiclass/../io.h \
+ /usr/include/bits/mathdef.h /usr/include/bits/mathcalls.h example.h \
+ v_array.h utils.h /usr/include/sys/time.h parser.h io.h \
  /usr/include/fcntl.h /usr/include/bits/fcntl.h /usr/include/bits/stat.h \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/iostream \
- multiclass/../global_data.h multiclass/../parse_regressor.h \
- multiclass/../loss_functions.h /usr/include/boost/program_options.hpp \
+ global_data.h parse_regressor.h loss_functions.h \
+ /usr/include/boost/program_options.hpp \
  /usr/include/boost/program_options/options_description.hpp \
  /usr/include/boost/program_options/config.hpp \
  /usr/include/boost/config.hpp /usr/include/boost/config/user.hpp \
@@ -391,9 +390,8 @@ htnb.o: multiclass/htnb.cc \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/iterator \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/stream_iterator.h \
  /usr/include/boost/program_options/variables_map.hpp \
- /usr/include/boost/program_options/version.hpp \
- multiclass/../parse_primitives.h multiclass/../example.h \
- multiclass/../parse_arfheader.h multiclass/dvec.h \
+ /usr/include/boost/program_options/version.hpp parse_primitives.h \
+ example.h parse_arfheader.h multiclass/dvec.h \
  /usr/include/boost/multi_array.hpp \
  /usr/include/boost/multi_array/base.hpp \
  /usr/include/boost/multi_array/extent_range.hpp \
@@ -566,17 +564,14 @@ htnb.o: multiclass/htnb.cc \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/tr1_impl/cmath \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/tr1_impl/complex \
  multiclass/attrobs.h multiclass/attrsplitsuggest.h \
- multiclass/split_test.h example.h multiclass/flin.h \
- multiclass/../utils.h multiclass/numattrobs.h \
+ multiclass/split_test.h multiclass/flin.h multiclass/../utils.h \
+ multiclass/numattrobs.h \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/cfloat \
  multiclass/estimator.h multiclass/statistics.h multiclass/arraycopy.h \
- multiclass/infogain.h multiclass/../float_cmp.h multiclass/nomattrobs.h \
+ multiclass/infogain.h utils.h float_cmp.h multiclass/nomattrobs.h \
  multiclass/ht.h multiclass/hoeffding_bound.h multiclass/arrayresize.h \
- multiclass/../timsort.h multiclass/../parse_example.h \
- multiclass/../parser.h multiclass/../constant.h \
- multiclass/../sparse_dense.h multiclass/../parse_example.h \
- multiclass/../cache.h multiclass/../multisource.h \
- multiclass/../simple_label.h multiclass/../delay_ring.h
+ timsort.h parse_example.h parser.h constant.h sparse_dense.h \
+ parse_example.h cache.h multisource.h simple_label.h delay_ring.h
 
 /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/fstream:
 
@@ -908,17 +903,17 @@ multiclass/htnb.h:
 
 /usr/include/bits/mathcalls.h:
 
-multiclass/../example.h:
+example.h:
 
-multiclass/../v_array.h:
+v_array.h:
 
-multiclass/../utils.h:
+utils.h:
 
 /usr/include/sys/time.h:
 
-multiclass/../parser.h:
+parser.h:
 
-multiclass/../io.h:
+io.h:
 
 /usr/include/fcntl.h:
 
@@ -928,11 +923,11 @@ multiclass/../io.h:
 
 /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/iostream:
 
-multiclass/../global_data.h:
+global_data.h:
 
-multiclass/../parse_regressor.h:
+parse_regressor.h:
 
-multiclass/../loss_functions.h:
+loss_functions.h:
 
 /usr/include/boost/program_options.hpp:
 
@@ -1486,11 +1481,11 @@ multiclass/../loss_functions.h:
 
 /usr/include/boost/program_options/version.hpp:
 
-multiclass/../parse_primitives.h:
+parse_primitives.h:
 
-multiclass/../example.h:
+example.h:
 
-multiclass/../parse_arfheader.h:
+parse_arfheader.h:
 
 multiclass/dvec.h:
 
@@ -1862,8 +1857,6 @@ multiclass/attrsplitsuggest.h:
 
 multiclass/split_test.h:
 
-example.h:
-
 multiclass/flin.h:
 
 multiclass/../utils.h:
@@ -1880,7 +1873,9 @@ multiclass/arraycopy.h:
 
 multiclass/infogain.h:
 
-multiclass/../float_cmp.h:
+utils.h:
+
+float_cmp.h:
 
 multiclass/nomattrobs.h:
 
@@ -1890,22 +1885,22 @@ multiclass/hoeffding_bound.h:
 
 multiclass/arrayresize.h:
 
-multiclass/../timsort.h:
+timsort.h:
 
-multiclass/../parse_example.h:
+parse_example.h:
 
-multiclass/../parser.h:
+parser.h:
 
-multiclass/../constant.h:
+constant.h:
 
-multiclass/../sparse_dense.h:
+sparse_dense.h:
 
-multiclass/../parse_example.h:
+parse_example.h:
 
-multiclass/../cache.h:
+cache.h:
 
-multiclass/../multisource.h:
+multisource.h:
 
-multiclass/../simple_label.h:
+simple_label.h:
 
-multiclass/../delay_ring.h:
+delay_ring.h:

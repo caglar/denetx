@@ -9,9 +9,10 @@
 #define HTNB_H_
 
 #include <math.h>
-#include "../example.h"
-#include "../parser.h"
-#include "../parse_arfheader.h"
+
+#include "example.h"
+#include "parser.h"
+#include "parse_arfheader.h"
 
 struct htnb_vars
 {

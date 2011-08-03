@@ -9,7 +9,7 @@
 #define INFOGAIN_H_
 
 #include <cstring>
-#include "flin.h"
+#include "multiclass/flin.h"
 
 template <typename T, size_t N>
 inline char (&ArraySizeHelper(T (&array)[N]))[N];

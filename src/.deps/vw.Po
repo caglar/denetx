@@ -393,9 +393,8 @@ vw.o: vw.cc /usr/include/math.h /usr/include/features.h \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/cmath \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/cmath.tcc \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/tr1_impl/cmath \
- multiclass/../example.h multiclass/../parse_regressor.h \
- multiclass/../parse_arfheader.h multiclass/../parser.h \
- multiclass/./dvec.h /usr/include/boost/multi_array.hpp \
+ example.h parse_regressor.h parse_arfheader.h parser.h multiclass/dvec.h \
+ /usr/include/boost/multi_array.hpp \
  /usr/include/boost/multi_array/base.hpp \
  /usr/include/boost/multi_array/extent_range.hpp \
  /usr/include/boost/multi_array/extent_gen.hpp \
@@ -563,9 +562,9 @@ vw.o: vw.cc /usr/include/math.h /usr/include/features.h \
  /usr/include/boost/type_traits/is_complex.hpp \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/complex \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/tr1_impl/complex \
- multiclass/./attrobs.h multiclass/./attrsplitsuggest.h \
- multiclass/./split_test.h example.h multiclass/./flin.h \
- multiclass/./../utils.h parse_arfheader.h
+ multiclass/attrobs.h multiclass/attrsplitsuggest.h \
+ multiclass/split_test.h multiclass/flin.h multiclass/../utils.h \
+ parse_arfheader.h
 
 /usr/include/math.h:
 
@@ -1507,15 +1506,15 @@ multiclass/nb.h:
 
 /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/tr1_impl/cmath:
 
-multiclass/../example.h:
+example.h:
 
-multiclass/../parse_regressor.h:
+parse_regressor.h:
 
-multiclass/../parse_arfheader.h:
+parse_arfheader.h:
 
-multiclass/../parser.h:
+parser.h:
 
-multiclass/./dvec.h:
+multiclass/dvec.h:
 
 /usr/include/boost/multi_array.hpp:
 
@@ -1873,16 +1872,14 @@ multiclass/./dvec.h:
 
 /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/tr1_impl/complex:
 
-multiclass/./attrobs.h:
+multiclass/attrobs.h:
 
-multiclass/./attrsplitsuggest.h:
+multiclass/attrsplitsuggest.h:
 
-multiclass/./split_test.h:
+multiclass/split_test.h:
 
-example.h:
+multiclass/flin.h:
 
-multiclass/./flin.h:
-
-multiclass/./../utils.h:
+multiclass/../utils.h:
 
 parse_arfheader.h:

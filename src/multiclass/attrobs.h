@@ -8,7 +8,7 @@
 #ifndef ATTROBS_H_
 #define ATTROBS_H_
 
-#include "attrsplitsuggest.h"
+#include "multiclass/attrsplitsuggest.h"
 
 class AttributeClassObserver
 {

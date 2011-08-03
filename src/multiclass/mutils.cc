@@ -4,7 +4,7 @@
  *  Created on: Apr 22, 2011
  *      Author: caglar
  */
-#include "mutils.h"
+#include "multiclass/mutils.h"
 
 template<size_t N>
 inline float

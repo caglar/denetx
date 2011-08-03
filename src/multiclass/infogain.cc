@@ -6,11 +6,11 @@
  */
 
 #include <boost/multi_array.hpp>
-
-#include "infogain.h"
-#include "mutils.h"
 #include <cmath>
-#include "dvec.h" // For matrix_t
+
+#include "multiclass/infogain.h"
+#include "multiclass/mutils.h"
+#include "multiclass/dvec.h" // For matrix_t
 
 const float MINVAL = 1.6009E-16;
 const float MINFRACVAL = 0.01;

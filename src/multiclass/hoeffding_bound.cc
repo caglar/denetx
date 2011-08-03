@@ -17,7 +17,7 @@
  */
 
 #include <cmath>
-#include "mutils.h"
+#include "multiclass/mutils.h"
 
 float 
 computeHoeffdingBound (float range, float confidence, float n) 

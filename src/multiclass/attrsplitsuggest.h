@@ -3,9 +3,10 @@
 
 #include <algorithm>
 
-#include "split_test.h"
-#include "flin.h"
+#include "multiclass/split_test.h"
+#include "multiclass/flin.h"
 #include "../utils.h"
+
 using std::copy;
 
 struct AttrSplitSuggestion

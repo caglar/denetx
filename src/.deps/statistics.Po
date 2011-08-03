@@ -1,14 +1,11 @@
-statistics.o: multiclass/statistics.cc multiclass/statistics.h \
- multiclass/arraycopy.h \
- /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/cstddef \
+statistics.o: multiclass/statistics.cc \
+ /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/cmath \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/i686-pc-linux-gnu/bits/c++config.h \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/i686-pc-linux-gnu/bits/os_defines.h \
  /usr/include/features.h /usr/include/bits/predefs.h \
  /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
  /usr/include/gnu/stubs.h /usr/include/gnu/stubs-32.h \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/i686-pc-linux-gnu/bits/cpu_defines.h \
- /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/include/stddef.h \
- /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/cmath \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/cpp_type_traits.h \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/ext/type_traits.h \
  /usr/include/math.h /usr/include/bits/huge_val.h \
@@ -17,17 +14,16 @@ statistics.o: multiclass/statistics.cc multiclass/statistics.h \
  /usr/include/bits/mathdef.h /usr/include/bits/mathcalls.h \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/cmath.tcc \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/tr1_impl/cmath \
- /usr/include/stdio.h /usr/include/bits/types.h \
- /usr/include/bits/typesizes.h /usr/include/libio.h \
- /usr/include/_G_config.h /usr/include/wchar.h \
+ /usr/include/stdio.h \
+ /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/include/stddef.h \
+ /usr/include/bits/types.h /usr/include/bits/typesizes.h \
+ /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/include/stdarg.h \
- /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+ /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+ multiclass/statistics.h multiclass/arraycopy.h \
+ /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/cstddef
 
-multiclass/statistics.h:
-
-multiclass/arraycopy.h:
-
-/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/cstddef:
+/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/cmath:
 
 /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/i686-pc-linux-gnu/bits/c++config.h:
 
@@ -46,10 +42,6 @@ multiclass/arraycopy.h:
 /usr/include/gnu/stubs-32.h:
 
 /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/i686-pc-linux-gnu/bits/cpu_defines.h:
-
-/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/include/stddef.h:
-
-/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/cmath:
 
 /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/bits/cpp_type_traits.h:
 
@@ -77,6 +69,8 @@ multiclass/arraycopy.h:
 
 /usr/include/stdio.h:
 
+/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/include/stddef.h:
+
 /usr/include/bits/types.h:
 
 /usr/include/bits/typesizes.h:
@@ -92,3 +86,9 @@ multiclass/arraycopy.h:
 /usr/include/bits/stdio_lim.h:
 
 /usr/include/bits/sys_errlist.h:
+
+multiclass/statistics.h:
+
+multiclass/arraycopy.h:
+
+/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/cstddef:

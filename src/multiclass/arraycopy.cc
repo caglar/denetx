@@ -5,7 +5,7 @@
  *      Author: caglar
  */
 #include <cstring>
-#include "arraycopy.h"
+#include "multiclass/arraycopy.h"
 
 void
 arrcpy::dArraycpy(float dst[], float src[], size_t size)

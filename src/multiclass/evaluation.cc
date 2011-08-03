@@ -1,4 +1,4 @@
-#include "evaluation.h"
+#include "multiclass/evaluation.h"
 
 DVec
 Evaluation::makeDistribution(int predictedClass)

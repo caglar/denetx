@@ -5,6 +5,8 @@
  *      Author: caglar
  *
  */
+
+#include <vector>
 #include <string>
 #include <fstream>
 #include <float.h>
@@ -15,20 +17,20 @@
 
 #include <pthread.h>
 
-#include "nb.h"
-#include "numattrobs.h"
-#include "nomattrobs.h"
-#include "parse_nbmodel.h"
+#include "multiclass/nb.h"
+#include "multiclass/numattrobs.h"
+#include "multiclass/nomattrobs.h"
+#include "multiclass/parse_nbmodel.h"
 
-#include "../parse_example.h"
-#include "../constant.h"
-#include "../sparse_dense.h"
-#include "../cache.h"
-#include "../multisource.h"
-#include "../simple_label.h"
-#include "../delay_ring.h"
-#include "../parse_arfheader.h"
-#include "../utils.h"
+#include "parse_example.h"
+#include "constant.h"
+#include "sparse_dense.h"
+#include "cache.h"
+#include "multisource.h"
+#include "simple_label.h"
+#include "delay_ring.h"
+#include "parse_arfheader.h"
+#include "utils.h"
 
 static void
 finish_example(example* ec);
@@ -185,10 +187,10 @@ nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
             }
 
             if (type == NUMERIC)
-                ((NumAttrObserver *) (params->vars->attributeObservers[j]))->observeAttributeClass(
+                (static_cast<NumAttrObserver *> (params->vars->attributeObservers[j]))->observeAttributeClass(
                         f->x, ld->label, ex->global_weight);
             else if (type == NOMINAL)
-                ((NomAttrObserver *) (params->vars->attributeObservers[j]))->observeAttributeClass(
+                (static_cast<NomAttrObserver *> (params->vars->attributeObservers[j]))->observeAttributeClass(
                         f->x, ld->label, ex->global_weight);
             //cout << "Sum of Vals: " << (dynamic_cast<NormalEstimator *>(((dynamic_cast<NumAttrObserver *> (params->vars->attributeObservers[j]))->getAttValDistPerClass())[0]))->getSumOfValues() << endl;
             /* cout << "Sum of Vals: "
@@ -198,9 +200,8 @@ nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
             NumAttrObserver
                     * numObs =
                             dynamic_cast<NumAttrObserver *> (params->vars->attributeObservers[j]);
-            std::vector<NormalEstimator *>
-                    nEsts =
-                            (vector<NormalEstimator *> ) numObs->getAttValDistPerClass();
+            std::vector<NormalEstimator *> nEsts = (std::vector<
+                    NormalEstimator *>) numObs->getAttValDistPerClass();
             cout << "Sum of Vals: " << nEsts[0]->getSumOfValues() << endl;
             j++;
         }
@@ -258,8 +259,10 @@ destroy_nb()
         if (nbModelFile.size() > 0 && i == 0) {
             cout << "No of observed examples: "
                     << passers[0]->vars->noOfObservedExamples << endl;
+
             scale_vals(passers[0]->vars->observedClassDist,
                     passers[0]->vars->noOfObservedExamples);
+
             writeModelFile(passers[0]->vars->observedClassDist,
                     passers[0]->vars->attributeObservers,
                     passers[0]->arfHeader, nbModelFile);

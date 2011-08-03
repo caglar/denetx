@@ -38,10 +38,10 @@ public:
         AttValue = attValue;
     }
 
-    NominalSplitTest(bool isMultiWay)
+    explicit
+    NominalSplitTest(bool isMultiWay) :
+        misMultiWay(isMultiWay), AttValue(0.0)
     {
-        misMultiWay = isMultiWay;
-        AttValue = 0.0;
     }
 
     int
@@ -76,10 +76,9 @@ private:
 
 public:
 
-    NumericSplitTest()
+    NumericSplitTest() :
+        EqualsPassesTest(false), AttValue(0.0)
     {
-        EqualsPassesTest = false;
-        AttValue = 0.0;
     }
 
     int

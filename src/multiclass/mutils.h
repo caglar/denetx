@@ -8,7 +8,7 @@
 #ifndef MUTILS_H_
 #define MUTILS_H_
 #include <cstdlib>
-#include "flin.h"
+#include "multiclass/flin.h"
 
 template<size_t N>
 inline float

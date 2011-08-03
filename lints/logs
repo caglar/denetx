@@ -1,0 +1,96 @@
+../src/multiclass/parse_nbmodel.h(11):  Include the directory when naming .h files  [build/include] [4]
+../src/multiclass/parse_nbmodel.h(12):  Found C++ system header after other header. Should be: parse_nbmodel.h, c system, c++ system, other.  [build/include_order] [4]
+../src/multiclass/parse_nbmodel.h(13):  Found C++ system header after other header. Should be: parse_nbmodel.h, c system, c++ system, other.  [build/include_order] [4]
+../src/multiclass/parse_nbmodel.h(14):  Include the directory when naming .h files  [build/include] [4]
+../src/multiclass/parse_nbmodel.h(21):  Is this a non-const reference? If so, make const or use a pointer.  [runtime/references] [2]
+../src/multiclass/parse_nbmodel.h(26):  Is this a non-const reference? If so, make const or use a pointer.  [runtime/references] [2]
+Done processing ../src/multiclass/parse_nbmodel.h
+Total errors found: 9
+../src/multiclass/evaluation.h(5):  Include the directory when naming .h files  [build/include] [4]
+Done processing ../src/multiclass/evaluation.h
+Total errors found: 4
+../src/multiclass/htnb.h(20):  You don't need a ; after a }  [readability/braces] [4]
+Done processing ../src/multiclass/htnb.h
+Total errors found: 4
+../src/multiclass/split_test.h(5):  Include the directory when naming .h files  [build/include] [4]
+../src/multiclass/split_test.h(7):  The class SplitTest probably needs a virtual destructor due to having virtual method(s), one declared at line 21.  [runtime/virtual] [4]
+../src/multiclass/split_test.h(41):  Single-argument constructors should be marked explicit.  [runtime/explicit] [5]
+../src/multiclass/split_test.h(53):  If an else has a brace on one side, it should have it on both  [readability/braces] [5]
+Done processing ../src/multiclass/split_test.h
+Total errors found: 7
+../src/multiclass/dvec.h(16):  Is this a non-const reference? If so, make const or use a pointer.  [runtime/references] [2]
+../src/multiclass/dvec.h(19):  Is this a non-const reference? If so, make const or use a pointer.  [runtime/references] [2]
+../src/multiclass/dvec.h(45):  Is this a non-const reference? If so, make const or use a pointer.  [runtime/references] [2]
+../src/multiclass/dvec.h(48):  Is this a non-const reference? If so, make const or use a pointer.  [runtime/references] [2]
+../src/multiclass/dvec.h(51):  Is this a non-const reference? If so, make const or use a pointer.  [runtime/references] [2]
+Done processing ../src/multiclass/dvec.h
+Total errors found: 8
+../src/multiclass/infogain.h(12):  Include the directory when naming .h files  [build/include] [4]
+../src/multiclass/infogain.h(23):  Is this a non-const reference? If so, make const or use a pointer.  [runtime/references] [2]
+Done processing ../src/multiclass/infogain.h
+Total errors found: 5
+../src/multiclass/estimator.h(14):  Include the directory when naming .h files  [build/include] [4]
+../src/multiclass/estimator.h(15):  Include the directory when naming .h files  [build/include] [4]
+../src/multiclass/estimator.h(26):  The class Estimator probably needs a virtual destructor due to having virtual method(s), one declared at line 35.  [runtime/virtual] [4]
+../src/multiclass/estimator.h(72):  Single-argument constructors should be marked explicit.  [runtime/explicit] [5]
+../src/multiclass/estimator.h(309):  Single-argument constructors should be marked explicit.  [runtime/explicit] [5]
+../src/multiclass/estimator.h(349):  Using sizeof(type).  Use sizeof(varname) instead if possible  [runtime/sizeof] [1]
+../src/multiclass/estimator.h(351):  Using sizeof(type).  Use sizeof(varname) instead if possible  [runtime/sizeof] [1]
+../src/multiclass/estimator.h(356):  If an else has a brace on one side, it should have it on both  [readability/braces] [5]
+../src/multiclass/estimator.h(361):  Using sizeof(type).  Use sizeof(varname) instead if possible  [runtime/sizeof] [1]
+../src/multiclass/estimator.h(363):  Using sizeof(type).  Use sizeof(varname) instead if possible  [runtime/sizeof] [1]
+../src/multiclass/estimator.h(367):  Using sizeof(type).  Use sizeof(varname) instead if possible  [runtime/sizeof] [1]
+../src/multiclass/estimator.h(369):  Using sizeof(type).  Use sizeof(varname) instead if possible  [runtime/sizeof] [1]
+../src/multiclass/estimator.h(382):  If an else has a brace on one side, it should have it on both  [readability/braces] [5]
+../src/multiclass/estimator.h(451):  Single-argument constructors should be marked explicit.  [runtime/explicit] [5]
+Done processing ../src/multiclass/estimator.h
+Done processing ../src/multiclass/arraycopy.h
+Total errors found: 3
+../src/multiclass/attrobs.h(11):  Include the directory when naming .h files  [build/include] [4]
+../src/multiclass/attrobs.h(13):  The class AttributeClassObserver probably needs a virtual destructor due to having virtual method(s), one declared at line 27.  [runtime/virtual] [4]
+Done processing ../src/multiclass/attrobs.h
+Total errors found: 5
+../src/multiclass/attrsplitsuggest.h(6):  Include the directory when naming .h files  [build/include] [4]
+../src/multiclass/attrsplitsuggest.h(7):  Include the directory when naming .h files  [build/include] [4]
+Done processing ../src/multiclass/attrsplitsuggest.h
+Total errors found: 5
+../src/multiclass/numattrobs.h(12):  Found C system header after C++ system header. Should be: numattrobs.h, c system, c++ system, other.  [build/include_order] [4]
+../src/multiclass/numattrobs.h(14):  Include the directory when naming .h files  [build/include] [4]
+../src/multiclass/numattrobs.h(15):  Include the directory when naming .h files  [build/include] [4]
+../src/multiclass/numattrobs.h(16):  Include the directory when naming .h files  [build/include] [4]
+../src/multiclass/numattrobs.h(17):  Include the directory when naming .h files  [build/include] [4]
+../src/multiclass/numattrobs.h(18):  Include the directory when naming .h files  [build/include] [4]
+../src/multiclass/numattrobs.h(23):  Found C++ system header after other header. Should be: numattrobs.h, c system, c++ system, other.  [build/include_order] [4]
+../src/multiclass/numattrobs.h(39):  Single-argument constructors should be marked explicit.  [runtime/explicit] [5]
+../src/multiclass/numattrobs.h(85):  If an else has a brace on one side, it should have it on both  [readability/braces] [5]
+../src/multiclass/numattrobs.h(124):  Using sizeof(type).  Use sizeof(varname) instead if possible  [runtime/sizeof] [1]
+../src/multiclass/numattrobs.h(124):  Using C-style cast.  Use reinterpret_cast<float *>(...) instead  [readability/casting] [4]
+../src/multiclass/numattrobs.h(148):  If an else has a brace on one side, it should have it on both  [readability/braces] [5]
+../src/multiclass/numattrobs.h(58):  Add #include <vector> for vector<>  [build/include_what_you_use] [4]
+Done processing ../src/multiclass/numattrobs.h
+Total errors found: 16
+../src/multiclass/nomattrobs.h(12):  Found C system header after C++ system header. Should be: nomattrobs.h, c system, c++ system, other.  [build/include_order] [4]
+../src/multiclass/nomattrobs.h(14):  Include the directory when naming .h files  [build/include] [4]
+../src/multiclass/nomattrobs.h(15):  Include the directory when naming .h files  [build/include] [4]
+../src/multiclass/nomattrobs.h(16):  Include the directory when naming .h files  [build/include] [4]
+../src/multiclass/nomattrobs.h(17):  Include the directory when naming .h files  [build/include] [4]
+../src/multiclass/nomattrobs.h(37):  Single-argument constructors should be marked explicit.  [runtime/explicit] [5]
+../src/multiclass/nomattrobs.h(69):  Using C-style cast.  Use static_cast<int>(...) instead  [readability/casting] [4]
+../src/multiclass/nomattrobs.h(78):  Using C-style cast.  Use static_cast<int>(...) instead  [readability/casting] [4]
+../src/multiclass/nomattrobs.h(136):  If an else has a brace on one side, it should have it on both  [readability/braces] [5]
+Done processing ../src/multiclass/nomattrobs.h
+Total errors found: 12
+../src/multiclass/mutils.h(11):  Include the directory when naming .h files  [build/include] [4]
+../src/multiclass/mutils.h(15):  Using deprecated casting style.  Use static_cast<float>(...) instead  [readability/casting] [4]
+Done processing ../src/multiclass/mutils.h
+Total errors found: 5
+../src/multiclass/ht.h(46):  The class Node probably needs a virtual destructor due to having virtual method(s), one declared at line 118.  [runtime/virtual] [4]
+../src/multiclass/ht.h(260):  Using C-style cast.  Use reinterpret_cast<label_data *>(...) instead  [readability/casting] [4]
+../src/multiclass/ht.h(271):  Using C-style cast.  Use reinterpret_cast<AttributeClassObserver *>(...) instead  [readability/casting] [4]
+../src/multiclass/ht.h(394):  Do not use dynamic_cast<>.  If you need to cast within a class hierarchy, use static_cast<> to upcast.  Google doesn't support RTTI.  [runtime/rtti] [5]
+../src/multiclass/ht.h(419):  Single-argument constructors should be marked explicit.  [runtime/explicit] [5]
+../src/multiclass/ht.h(432):  Do not use dynamic_cast<>.  If you need to cast within a class hierarchy, use static_cast<> to upcast.  Google doesn't support RTTI.  [runtime/rtti] [5]
+../src/multiclass/ht.h(435):  Do not use dynamic_cast<>.  If you need to cast within a class hierarchy, use static_cast<> to upcast.  Google doesn't support RTTI.  [runtime/rtti] [5]
+../src/multiclass/ht.h(445):  Do not use dynamic_cast<>.  If you need to cast within a class hierarchy, use static_cast<> to upcast.  Google doesn't support RTTI.  [runtime/rtti] [5]
+../src/multiclass/ht.h(462):  Do not use dynamic_cast<>.  If you need to cast within a class hierarchy, use static_cast<> to upcast.  Google doesn't support RTTI.  [runtime/rtti] [5]
+Done processing ../src/multiclass/ht.h

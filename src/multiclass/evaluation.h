@@ -1,8 +1,9 @@
 #ifndef EVALUATION_H
 #define EVALUATION_H
 
-#include <cstdint>
-#include "dvec.h"
+#include <stdint.h>
+
+#include "multiclass/dvec.h"
 
 class Evaluation{
 protected:
