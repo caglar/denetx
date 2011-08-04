@@ -40,7 +40,7 @@ namespace est
 
     class NormalEstimator : Estimator
     {
-    private:
+    protected:
         /** The sum of the weights */
         float mSumOfWeights;
 
@@ -442,7 +442,7 @@ namespace est
 
     class DiscreteEstimator : Estimator
     {
-    private:
+    protected:
         float *mCounts;
         float mSumOfCounts;
         int NoOfSymbs;

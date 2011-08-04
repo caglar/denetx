@@ -164,7 +164,8 @@ nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
     //cout << "File value is: " << params->vars->noOfObservedExamples << endl;
     for (size_t *i = (ex->indices.begin); i != (ex->indices.end); ++i) {
         int j = 0;
-        std::cout << "Thread id: " << (unsigned long)pthread_self() << std::endl;
+        std::cout << "Thread id: " << (unsigned long) pthread_self()
+                << std::endl;
         for (feature *f = ex->subsets[*i][thread_num]; f
                 != ex->subsets[*i][thread_num + 1]; f++) {
             if (!(arfHeader->features).empty())
@@ -177,8 +178,8 @@ nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
                     params->vars->attributeObservers[j] = numAttObs;
                 }
                 else if (type == NOMINAL) {
-                    cerr << "WTF!!!" << endl;
                     NomAttrObserver *nomAttObs = new NomAttrObserver();
+                    cerr << "WTF!!!" << endl;
                     params->vars->attributeObservers[j] = nomAttObs;
                 }
                 else {
@@ -193,17 +194,18 @@ nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
             else if (type == NOMINAL)
                 (static_cast<NomAttrObserver *> (params->vars->attributeObservers[j]))->observeAttributeClass(
                         f->x, ld->label, ex->global_weight);
+
             //cout << "Sum of Vals: " << (dynamic_cast<NormalEstimator *>(((dynamic_cast<NumAttrObserver *> (params->vars->attributeObservers[j]))->getAttValDistPerClass())[0]))->getSumOfValues() << endl;
             /* cout << "Sum of Vals: "
              << (dynamic_cast<NormalEstimator *> (((dynamic_cast<NumAttrObserver *> (params->vars->attributeObservers[j]))->getAttValDistPerClass())[0]))->getSumOfValues()
              << endl;
              */
-          /*  NumAttrObserver
-                    * numObs =
-                            dynamic_cast<NumAttrObserver *> (params->vars->attributeObservers[j]);
-            std::vector<NormalEstimator *> nEsts = (std::vector<
-                    NormalEstimator *>) numObs->getAttValDistPerClass();
-            cout << "Sum of Vals: " << nEsts[0]->getSumOfValues() << endl;*/
+            /*  NumAttrObserver
+             * numObs =
+             dynamic_cast<NumAttrObserver *> (params->vars->attributeObservers[j]);
+             std::vector<NormalEstimator *> nEsts = (std::vector<
+             NormalEstimator *>) numObs->getAttValDistPerClass();
+             cout << "Sum of Vals: " << nEsts[0]->getSumOfValues() << endl;*/
             j++;
         }
     }

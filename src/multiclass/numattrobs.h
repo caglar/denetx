@@ -61,7 +61,8 @@ public:
     vector<NormalEstimator *>
     getAttValDistPerClass()
     {
-        this->attValDistPerClass;
+        printf("Inside class size: %d\n", attValDistPerClass.size());
+        return this->attValDistPerClass;
     }
 
     void

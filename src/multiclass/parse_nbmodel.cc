@@ -100,15 +100,16 @@ createModelFileContent(DVec const &observedClassDist,
             }
             else if (arfAtts[i].type == NUMERIC) {
                 NumAttrObserver *numAttrObs =
-                        dynamic_cast<NumAttrObserver *> (attributeObservers[i]);
+                        static_cast<NumAttrObserver *> (attributeObservers[i]);
                 vector<NormalEstimator *> attValDistPerClass =
                         numAttrObs->getAttValDistPerClass();
-
+                printf("size: %d\n", (numAttrObs->getAttValDistPerClass()).size());
                 for (auto j = 0; j < arfHeader->no_of_categories; j++) {
                     printf("cnt val: %d\n", j);
+                    printf("size: %d\n", attValDistPerClass.size());
                     NormalEstimator
                             *nEstimator =
-                                    dynamic_cast<NormalEstimator *> (attValDistPerClass[j]);
+                                    static_cast<NormalEstimator *> (attValDistPerClass[j]);
                     if (nEstimator != NULL) {
                         str_stream << i << " " << NUMERIC << " " << j << " "
                                 << nEstimator->getSumOfWeights() << " "
@@ -157,13 +158,14 @@ void
 parseObservedClassDistModelLine(DVec &observedClassDist, char *line)
 {
     char * rest;
-    char * ptr = (char *) c_malloc(sizeof *line);
+    //char * ptr = static_cast<char *>(c_malloc(sizeof(*line) + 1));
+    char ptr[c_strlen(line) + 1];
     int classVal = -1;
     float weight;
     char *token;
     c_strcpy(ptr, c_trim(line));
 
-    for (int i = 0;; token = NULL, i++) {
+    for (int i = 0; ; token = NULL, i++) {
         token = strtok_r(ptr, " ", &rest);
         if (token == NULL)
             break;
@@ -174,7 +176,8 @@ parseObservedClassDistModelLine(DVec &observedClassDist, char *line)
             weight = atof(token);
             observedClassDist[classVal] = weight;
         }
-        ptr = rest; // rest contains the left over part..assign it to ptr...and start tokenizing again.
+        //ptr = rest; // rest contains the left over part..assign it to ptr...and start tokenizing again.
+        c_strcpy(ptr, rest);
     }
 }
 
