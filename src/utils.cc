@@ -7,7 +7,7 @@
 
 /**
  * This file contains wrapper and utility functions
- * for safer and better performance
+ * for security and performance reasons
  */
 
 #include <stdio.h>
@@ -18,7 +18,7 @@
 #include <sys/stat.h>
 #include <stdio.h>
 //#include <string.h>
-#include <cstring>
+#include <string.h>
 #include <sys/time.h>
 #include <assert.h>
 #include <math.h>
@@ -308,8 +308,6 @@ c_realloc(void *ptr, size_t size)
     if (!ret && !size)
         ret = realloc(ptr, 1);
     if (!ret) {
-        // Clear the cache as the size of the item.
-        // release_pack_memory(size, -1);
         ret = realloc(ptr, size);
         if (!ret && !size)
             ret = realloc(ptr, 1);
@@ -453,7 +451,7 @@ c_trim(char *str)
     if (str[0] == '\0')
         return str;
 
-    len = strlen(str);
+    len = c_strlen(str);
     endp = str + len;
 
     /* Move the front and back pointers to address

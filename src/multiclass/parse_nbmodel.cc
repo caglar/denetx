@@ -73,8 +73,6 @@ createModelFileContent(DVec const &observedClassDist,
 
     str_stream << SEPERATOR << std::endl;
 
-    //model_file_content = model_file_content + SEPERATOR + "\n";
-
     for (auto i = 0; i < arfHeader->no_of_features; i++) {
         if (attributeObservers[i] != NULL) {
             if (arfAtts[i].type == NOMINAL) {
@@ -103,7 +101,8 @@ createModelFileContent(DVec const &observedClassDist,
                         static_cast<NumAttrObserver *> (attributeObservers[i]);
                 vector<NormalEstimator *> attValDistPerClass =
                         numAttrObs->getAttValDistPerClass();
-                printf("size: %d\n", (numAttrObs->getAttValDistPerClass()).size());
+                printf("size: %d\n",
+                        (numAttrObs->getAttValDistPerClass()).size());
                 for (auto j = 0; j < arfHeader->no_of_categories; j++) {
                     printf("cnt val: %d\n", j);
                     printf("size: %d\n", attValDistPerClass.size());
@@ -130,7 +129,6 @@ writeModelFile(DVec const &observedClassDist,
         vector<AttributeClassObserver *> const &attributeObservers,
         arfheader *arfHeader, string nb_model_file)
 {
-
     string modelFileContent = "";
     string tmpFileName = nb_model_file + ".tmp";
     printf("ObservedClassDist val 0: %f, ObservedClassDist val 1: %f",
@@ -158,33 +156,17 @@ void
 parseObservedClassDistModelLine(DVec &observedClassDist, char *line)
 {
     char * rest;
-    //char * ptr = static_cast<char *>(c_malloc(sizeof(*line) + 1));
-    char ptr[c_strlen(line) + 1];
     int classVal = -1;
     float weight;
-    char *token;
-    c_strcpy(ptr, c_trim(line));
-
-    for (int i = 0; ; token = NULL, i++) {
-        token = strtok_r(ptr, " ", &rest);
-        if (token == NULL)
-            break;
-        if (i == 0) {
-            classVal = atoi(token);
-        }
-        if (i == 1) {
-            weight = atof(token);
-            observedClassDist[classVal] = weight;
-        }
-        //ptr = rest; // rest contains the left over part..assign it to ptr...and start tokenizing again.
-        c_strcpy(ptr, rest);
-    }
+    classVal = strtol(line, &rest, 10);
+    weight = strtod(rest, NULL);
+    observedClassDist[classVal] = weight;
 }
 
 static int attNo;
 
 static AttributeClassObserver *
-parseAttributeObserverModelLine(char *line, size_t no_of_classes)
+parseAttributeObserverModelLine(const char *line, size_t no_of_classes)
 {
     AttributeClassObserver *attObserver = NULL;
     NormalEstimator *nEst = NULL;
@@ -203,8 +185,7 @@ parseAttributeObserverModelLine(char *line, size_t no_of_classes)
     double sumOfWeights = 0.0, sumOfValues = 0.0, sumOfValuesSq = 0.0, mean =
             0.0, standardDev = 0.0;
 
-    ptr = "";
-
+    ptr = new char[strlen(line) + 1];
     c_strcpy(ptr, line);
 
     for (int i = 0;; token = NULL, i++) {
@@ -300,6 +281,7 @@ readModelFile(DVec &observedClassDist,
     }
 
     fl.l_pid = getpid();
+
     if (fcntl(fd, F_SETLKW, &fl) == -1) {
         perror("fcntl");
         exit( EXIT_FAILURE);
@@ -314,8 +296,10 @@ readModelFile(DVec &observedClassDist,
 
     while (fgets(contents, MAX_SIZE, fp) != NULL) {
         contents = c_trim(contents);
+        printf("My contents: %s\n", contents);
         if (!attrStartFlag) {
-            if (strcmp(contents, pSeperator) == 0) {
+            //if (strcmp(c_trim(contents), pSeperator) == 0) {
+            if(c_contains(contents, pSeperator)) {
                 attrStartFlag = true;
                 attributeObservers.assign(
                         attNo,

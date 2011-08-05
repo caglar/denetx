@@ -43,6 +43,7 @@ nb_thread(void *in)
     nb_thread_params* params = static_cast<nb_thread_params*> (in);
     size_t thread_num = params->thread_num;
     example* ec = NULL;
+
     pthread_mutex_lock(&initMutex);
     size_t no_of_cats = params->arfHeader->no_of_categories;
     size_t no_of_feats = params->arfHeader->no_of_features;
@@ -89,6 +90,7 @@ nb_thread(void *in)
                 if (global.training && (ld->label != FLT_MAX)) {
                     nb_train_on_example(ec, params->arfHeader, thread_num,
                             params);
+
                     finish_example(ec);
                 }
                 else
@@ -102,7 +104,8 @@ nb_thread(void *in)
             return NULL;
         }
         else
-            ; //busywait when we have predicted on all examples but not yet trained on all.
+            ;
+        //busywait when we have predicted on all examples but not yet trained on all.
     }
     return NULL;
 }
@@ -110,13 +113,18 @@ nb_thread(void *in)
 float*
 naive_bayes_predict(example* ex, size_t thread_num, nb_thread_params* params)
 {
-    cout << "I am the predictor" << endl;
+    //cout << "I am the predictor" << endl;
     size_t voteSize = params->vars->observedClassDist.size();
     float *classVotes = new float[voteSize];
     //  size_t stride = global.stride;
     float observedClassSum = sum_of_vals(params->vars->observedClassDist);
     arfheader *arfHeader = params->arfHeader;
-    if (global.training) {
+
+    label_data *ld = (label_data *) c_malloc(sizeof(*((label_data *) ex->ld)));
+    ld->label = ((label_data *) ex->ld)->label;
+    ld->weight = ((label_data *) ex->ld)->weight;
+
+    if (global.training && (ld->label != FLT_MAX)) {
         cout << "Training" << endl;
         nb_train_on_example(ex, arfHeader, thread_num, params);
     }
@@ -131,15 +139,17 @@ naive_bayes_predict(example* ex, size_t thread_num, nb_thread_params* params)
                     = (params->vars->observedClassDist[classIndex]
                             / observedClassSum);
             //      int attSize = arfHeader->no_of_features;
+            int c = 0;
             for (size_t *i = (ex->indices.begin); i != (ex->indices.end); i++) {
                 AttributeClassObserver *obs =
-                        params->vars->attributeObservers[*i];
+                        params->vars->attributeObservers[c];
                 feature f = ex->atomics[*i][thread_num];
                 if ((obs != NULL) && !(isnan(f.x))) {
                     classVotes[classIndex]
                             *= obs->probabilityOfAttributeValueGivenClass(f.x,
                                     classIndex);
                 }
+                c++;
             }
         }
     }
@@ -152,6 +162,7 @@ void
 nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
         nb_thread_params* params)
 {
+
     fType type;
     pthread_mutex_lock(&trainMutex);
     label_data *ld = (label_data *) c_malloc(sizeof(*((label_data *) ex->ld)));
@@ -161,7 +172,6 @@ nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
     add_to_val(ld->label, params->vars->observedClassDist, ld->weight);
 
     params->vars->noOfObservedExamples++;
-    //cout << "File value is: " << params->vars->noOfObservedExamples << endl;
     for (size_t *i = (ex->indices.begin); i != (ex->indices.end); ++i) {
         int j = 0;
         std::cout << "Thread id: " << (unsigned long) pthread_self()
@@ -194,18 +204,6 @@ nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
             else if (type == NOMINAL)
                 (static_cast<NomAttrObserver *> (params->vars->attributeObservers[j]))->observeAttributeClass(
                         f->x, ld->label, ex->global_weight);
-
-            //cout << "Sum of Vals: " << (dynamic_cast<NormalEstimator *>(((dynamic_cast<NumAttrObserver *> (params->vars->attributeObservers[j]))->getAttValDistPerClass())[0]))->getSumOfValues() << endl;
-            /* cout << "Sum of Vals: "
-             << (dynamic_cast<NormalEstimator *> (((dynamic_cast<NumAttrObserver *> (params->vars->attributeObservers[j]))->getAttValDistPerClass())[0]))->getSumOfValues()
-             << endl;
-             */
-            /*  NumAttrObserver
-             * numObs =
-             dynamic_cast<NumAttrObserver *> (params->vars->attributeObservers[j]);
-             std::vector<NormalEstimator *> nEsts = (std::vector<
-             NormalEstimator *>) numObs->getAttValDistPerClass();
-             cout << "Sum of Vals: " << nEsts[0]->getSumOfValues() << endl;*/
             j++;
         }
     }
@@ -226,8 +224,9 @@ setup_nb(nb_thread_params t)
             sizeof(nb_thread_params *));
     std::string nbModelFile = global.nb_model_file;
     bool mFileFlag = false;
-    DVec observedClassDist;
-    vector<AttributeClassObserver *> attributeObservers;
+    DVec observedClassDist(boost::extents[t.arfHeader->no_of_categories]);
+    vector<AttributeClassObserver *> attributeObservers(
+            t.arfHeader->no_of_features);
 
     if (nbModelFile.size() > 0) {
         if (c_does_file_exist(nbModelFile.c_str()) && c_get_file_size(
@@ -250,6 +249,7 @@ setup_nb(nb_thread_params t)
         pthread_create(&threads[i], NULL, nb_thread, (void *) passers[i]);
     }
 }
+
 pthread_mutex_t createModelFileMutex = PTHREAD_MUTEX_INITIALIZER;
 
 void

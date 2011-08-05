@@ -67,7 +67,7 @@ parse_args(int argc, char *argv[],
             "ignore", po::value<vector<unsigned char> >(),
             "ignore namespaces beginning with character <arg>")(
             "initial_pass_length",
-            po::value<size_t>(&global.pass_length)->default_value((size_t) -1),
+            po::value<size_t>(&global.pass_length)->default_value((size_t) - 1),
             "initial number of examples per pass")("initial_weight",
             po::value<float>(&global.initial_weight)->default_value(0.),
             "Set all weights to an initial value of 1.")("initial_regressor,i",
