@@ -69,7 +69,7 @@ double
 Evaluation::getRMSE()
 {
     return InvSqrt(
-            mSumSqrError / (mTotalClassifiedWeight - mUnclassifiedWeight));
+                   mSumSqrError / (mTotalClassifiedWeight - mUnclassifiedWeight));
 }
 
 void

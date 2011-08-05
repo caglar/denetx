@@ -116,6 +116,7 @@ naive_bayes_predict(example* ex, size_t thread_num, nb_thread_params* params)
     //cout << "I am the predictor" << endl;
     size_t voteSize = params->vars->observedClassDist.size();
     float *classVotes = new float[voteSize];
+    //DVec classVotes(boost::extents]);
     //  size_t stride = global.stride;
     float observedClassSum = sum_of_vals(params->vars->observedClassDist);
     arfheader *arfHeader = params->arfHeader;
@@ -138,18 +139,24 @@ naive_bayes_predict(example* ex, size_t thread_num, nb_thread_params* params)
             classVotes[classIndex]
                     = (params->vars->observedClassDist[classIndex]
                             / observedClassSum);
-            //      int attSize = arfHeader->no_of_features;
-            int c = 0;
             for (size_t *i = (ex->indices.begin); i != (ex->indices.end); i++) {
-                AttributeClassObserver *obs =
-                        params->vars->attributeObservers[c];
-                feature f = ex->atomics[*i][thread_num];
-                if ((obs != NULL) && !(isnan(f.x))) {
-                    classVotes[classIndex]
-                            *= obs->probabilityOfAttributeValueGivenClass(f.x,
-                                    classIndex);
+                int c = 0;
+                for (feature *f = ex->subsets[*i][thread_num]; f
+                        != ex->subsets[*i][thread_num + 1]; f++) {
+                    AttributeClassObserver *obs =
+                            params->vars->attributeObservers[c];
+                    feature f = ex->atomics[*i][thread_num];
+                    if ((obs != NULL) && !(isnan(f.x))) {
+                        classVotes[classIndex]
+                                *= obs->probabilityOfAttributeValueGivenClass(
+                                        f.x, classIndex);
+                    }
+                    c++;
+                    /*
+                     printf("Class label %f\n", ld->label);
+                     printf("Found label 0 %f\n", classVotes[0]);
+                     */
                 }
-                c++;
             }
         }
     }

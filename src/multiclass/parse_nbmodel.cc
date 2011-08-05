@@ -165,7 +165,8 @@ parseObservedClassDistModelLine(DVec &observedClassDist, char *line)
 
 static int attNo;
 
-static AttributeClassObserver *
+static
+AttributeClassObserver *
 parseAttributeObserverModelLine(const char *line, size_t no_of_classes)
 {
     AttributeClassObserver *attObserver = NULL;
@@ -197,7 +198,7 @@ parseAttributeObserverModelLine(const char *line, size_t no_of_classes)
         }
         else {
             if (i == 1) {
-                isNominal = atoi(token);
+                isNominal = (atoi(token)==0?1:0);
             }
             else {
                 if (isNominal) {
@@ -299,12 +300,13 @@ readModelFile(DVec &observedClassDist,
         printf("My contents: %s\n", contents);
         if (!attrStartFlag) {
             //if (strcmp(c_trim(contents), pSeperator) == 0) {
-            if(c_contains(contents, pSeperator)) {
+            if (c_contains(contents, pSeperator)) {
+                printf("Ben bir ceviz agaciyim");
                 attrStartFlag = true;
-                attributeObservers.assign(
+                /*attributeObservers.assign(
                         attNo,
                         parseAttributeObserverModelLine(c_trim(contents),
-                                arfHeader->no_of_categories));
+                                arfHeader->no_of_categories));*/
             }
             else {
                 parseObservedClassDistModelLine(observedClassDist,
