@@ -15,7 +15,7 @@ AC_PROG_CC
 AC_CHECK_LIB([tinyxml], [main])
 
 # Checks for header files.
-AC_CHECK_HEADERS([arpa/inet.h fcntl.h float.h netdb.h netinet/in.h stdint.h stdlib.h string.h strings.h sys/socket.h sys/time.h unistd.h])
+AC_CHECK_HEADERS([arpa/inet.h fcntl.h float.h netdb.h netinet/in.h stdint.h stdlib.h string.h strings.h sys/socket.h sys/time.h syslog.h unistd.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_HEADER_STDBOOL
@@ -30,10 +30,12 @@ AC_TYPE_UINT64_T
 # Checks for library functions.
 AC_FUNC_MALLOC
 AC_FUNC_REALLOC
-AC_CHECK_FUNCS([bzero gethostbyname gettimeofday memmove memset pow select socket sqrt strchr strdup strtoul])
+AC_FUNC_STRTOD
+AC_CHECK_FUNCS([bzero gethostbyname gettimeofday memmove memset pow select socket sqrt strchr strdup strtol strtoul])
 
 AC_CONFIG_FILES([Makefile
                  data/Makefile
                  man/Makefile
                  src/Makefile])
+AC_CONFIG_SUBDIRS([src/flows/nfcapd])
 AC_OUTPUT

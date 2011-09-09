@@ -21,6 +21,7 @@
 #include "multiclass/numattrobs.h"
 #include "multiclass/nomattrobs.h"
 #include "multiclass/parse_nbmodel.h"
+#include "multiclass/evaluation.h"
 
 #include "parse_example.h"
 #include "constant.h"
@@ -49,6 +50,10 @@ nb_thread(void *in)
     size_t no_of_feats = params->arfHeader->no_of_features;
 
     printf("No of cats: %u, no of feats: %u \n", no_of_cats, no_of_feats);
+
+    if (params->vars->eval == NULL) {
+        params->vars->eval = new Evaluation();
+    }
 
     if (params->vars == NULL) {
         params->vars = (nb_vars *) c_malloc(sizeof(nb_vars));
@@ -93,9 +98,13 @@ nb_thread(void *in)
 
                     finish_example(ec);
                 }
-                else
+                else {
                     params->predictions = naive_bayes_predict(ec, thread_num,
                             params);
+                    DVec predVec;
+                    copy_array_elements(predVec, params->predictions, no_of_cats);
+                    ((Evaluation *)params->vars->eval)->evaluateModel(ec, predVec);
+                }
             }
         }
         else if (thread_done(thread_num)) {
@@ -152,10 +161,6 @@ naive_bayes_predict(example* ex, size_t thread_num, nb_thread_params* params)
                                         f.x, classIndex);
                     }
                     c++;
-                    /*
-                     printf("Class label %f\n", ld->label);
-                     printf("Found label 0 %f\n", classVotes[0]);
-                     */
                 }
             }
         }
@@ -263,9 +268,10 @@ void
 destroy_nb()
 {
     std::string nbModelFile = global.nb_model_file;
-
+    Evaluation eval;
     for (size_t i = 0; i < num_threads; i++) {
         pthread_join(threads[i], NULL);
+        eval.joinEvaluation(passers[i]->vars->eval);
         if (nbModelFile.size() > 0 && i == 0) {
             cout << "No of observed examples: "
                     << passers[0]->vars->noOfObservedExamples << endl;
@@ -279,7 +285,7 @@ destroy_nb()
         }
         c_free(passers[i]);
     }
-
+    cout << "Error: " << eval.getError() << endl;
     c_free(threads);
     c_free(passers);
 }

@@ -46,7 +46,7 @@ vw(int argc, char *argv[])
 
     gd_vars *vars = reinterpret_cast<gd_vars*> (c_malloc(sizeof(gd_vars)));
 
-    po::options_description desc("VW options");
+    po::options_description desc("denetX options");
 
     po::variables_map vm = parse_args(argc, argv, desc, *vars, regressor1, p,
             final_regressor_name);
