@@ -75,7 +75,6 @@ template<size_t N>
 float
 computeEntropy(float (&dist)[N])
 {
- // size_t N = arraysize(N);
   float entropy = 0.0;
   float sum = 0.0;
   for (size_t i = 0; i < N; i++) {
@@ -90,7 +89,6 @@ computeEntropy(float (&dist)[N])
 float
 computeEntropy(float dist[], size_t N)
 {
- // size_t N = arraysize(N);
   float entropy = 0.0;
   float sum = 0.0;
   for (size_t i = 0; i < N; i++) {

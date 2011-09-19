@@ -17,6 +17,8 @@
  */
 #ifndef HOEFFDING_BOUND_H
 #define HOEFFDING_BOUND_H
+
 float
 computeHoeffdingBound (float range, float confidence, float n);
+
 #endif

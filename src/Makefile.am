@@ -5,7 +5,7 @@ BOOST_LIBRARY= /usr/local/lib
 STD= -std=c++0x
 ARCH= -march=native
 OPTIM_FLAGS= -O4 -ffast-math -fno-strict-aliasing -fomit-frame-pointer -funroll-loops -fmodulo-sched -foptimize-register-move -freciprocal-math -ffinite-math-only -fbranch-target-load-optimize
-DEBUG_FLAGS= -g -ggdb -DNDEBUG -fno-inline -Weffc++
+DEBUG_FLAGS= -g -ggdb -DNDEBUG -fno-inline 
 
 # for normal fast execution.
 #AM_CXXFLAGS= -W -Wall $(STD) $(ARCH) $(OPTIM_FLAGS) -D_FILE_OFFSET_BITS=64 -I $(BOOST_INCLUDE) #-ltcmalloc
