@@ -101,11 +101,11 @@ createModelFileContent(DVec const &observedClassDist,
                         static_cast<NumAttrObserver *> (attributeObservers[i]);
                 vector<NormalEstimator *> attValDistPerClass =
                         numAttrObs->getAttValDistPerClass();
-                printf("size: %d\n",
+                //printf("size: %d\n",\
                         (numAttrObs->getAttValDistPerClass()).size());
                 for (auto j = 0; j < arfHeader->no_of_categories; j++) {
-                    printf("cnt val: %d\n", j);
-                    printf("size: %d\n", attValDistPerClass.size());
+//                    printf("cnt val: %d\n", j);
+//                    printf("size: %d\n", attValDistPerClass.size());
                     NormalEstimator
                             *nEstimator =
                                     static_cast<NormalEstimator *> (attValDistPerClass[j]);
@@ -131,10 +131,10 @@ writeModelFile(DVec const &observedClassDist,
 {
     string modelFileContent = "";
     string tmpFileName = nb_model_file + ".tmp";
-    printf("ObservedClassDist val 0: %f, ObservedClassDist val 1: %f",
+//    printf("ObservedClassDist val 0: %f, ObservedClassDist val 1: %f",\
             observedClassDist[0], observedClassDist[1]);
 
-    printf("tmpFileName: %s, nbmodelfile: %s\n", tmpFileName.c_str(),
+ //   printf("tmpFileName: %s, nbmodelfile: %s\n", tmpFileName.c_str(),\
             nb_model_file.c_str());
 
     if (c_does_file_exist(nb_model_file.c_str())) {
@@ -297,11 +297,11 @@ readModelFile(DVec &observedClassDist,
 
     while (fgets(contents, MAX_SIZE, fp) != NULL) {
         contents = c_trim(contents);
-        printf("My contents: %s\n", contents);
+        //printf("My contents: %s\n", contents);
         if (!attrStartFlag) {
             //if (strcmp(c_trim(contents), pSeperator) == 0) {
             if (c_contains(contents, pSeperator)) {
-                printf("Ben bir ceviz agaciyim");
+          //      printf("Ben bir ceviz agaciyim");
                 attrStartFlag = true;
                 /*attributeObservers.assign(
                         attNo,
