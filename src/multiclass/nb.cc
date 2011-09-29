@@ -134,7 +134,7 @@ naive_bayes_predict(example* ex, size_t thread_num, nb_thread_params* params)
   
   cout << "I am the predictor " << no_of_preds << endl;
   
-  size_t voteSize = params->vars->observedClassDist.size();
+  size_t voteSize = params->vars->observedClassDist.size() - 1;
   float *classVotes = new float[voteSize];
 
   //DVec classVotes(boost::extents]);
