@@ -40,9 +40,15 @@ finish_example(example* ec);
 
 pthread_mutex_t initMutex = PTHREAD_MUTEX_INITIALIZER;
 
+/*
+ *NB thread function.
+ *Manages the multithreaded nb algorithm.
+ *@param in The threads parameter
+ */
 void *
 nb_thread(void *in)
 {
+
   nb_thread_params* params = static_cast<nb_thread_params*> (in);
   size_t thread_num = params->thread_num;
   example* ec = NULL;
@@ -72,7 +78,6 @@ nb_thread(void *in)
   }
 
   pthread_mutex_unlock(&initMutex);
-
   while (true) {
     cout << "Thread num: " << thread_num << endl;
     //this is a poor man's select operation.
@@ -126,11 +131,15 @@ float*
 naive_bayes_predict(example* ex, size_t thread_num, nb_thread_params* params)
 {
   no_of_preds++;
+  
   cout << "I am the predictor " << no_of_preds << endl;
+  
   size_t voteSize = params->vars->observedClassDist.size();
   float *classVotes = new float[voteSize];
+
   //DVec classVotes(boost::extents]);
-  //  size_t stride = global.stride;
+  //size_t stride = global.stride;
+
   float observedClassSum = sum_of_vals(params->vars->observedClassDist);
   arfheader *arfHeader = params->arfHeader;
 
@@ -139,10 +148,9 @@ naive_bayes_predict(example* ex, size_t thread_num, nb_thread_params* params)
   ld->weight = ((label_data *) ex->ld)->weight;
 
   if (global.training && (ld->label != FLT_MAX)) {
-    cout << "Training" << endl;
+    cout << "Predictor is in training" << endl;
     nb_train_on_example(ex, arfHeader, thread_num, params);
   }
-
   if (ex == NULL || arfHeader == NULL) {
     std::cerr << "Warning in nb.cc:77, ex or arfheader can't be null"
       << std::endl;
@@ -178,7 +186,6 @@ void
 nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
                     nb_thread_params* params)
 {
-
   fType type;
   pthread_mutex_lock(&trainMutex);
   label_data *ld = (label_data *) c_malloc(sizeof(*((label_data *) ex->ld)));
@@ -190,8 +197,6 @@ nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
   params->vars->noOfObservedExamples++;
   for (size_t *i = (ex->indices.begin); i != (ex->indices.end); ++i) {
     int j = 0;
-    //        std::cout << "Thread id: " << (unsigned long) pthread_self()\
-    << std::endl;
     for (feature *f = ex->subsets[*i][thread_num]; f
          != ex->subsets[*i][thread_num + 1]; f++) {
       if (!(arfHeader->features).empty())
@@ -210,20 +215,20 @@ nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
         }
         else {
           std::cerr << "Unsupported type" << std::endl;
-          exit( EXIT_FAILURE);
+          exit (EXIT_FAILURE);
         }
       }
 
       if (type == NUMERIC)
-        (static_cast<NumAttrObserver *> (params->vars->attributeObservers[j]))->observeAttributeClass(
+        (static_cast<NumAttrObserver *> (params->vars->attributeObservers[j]))->observeAttributeClass (
                                                                                                       f->x, ld->label, ex->global_weight);
       else if (type == NOMINAL)
-        (static_cast<NomAttrObserver *> (params->vars->attributeObservers[j]))->observeAttributeClass(
+        (static_cast<NomAttrObserver *> (params->vars->attributeObservers[j]))->observeAttributeClass (
                                                                                                       f->x, ld->label, ex->global_weight);
       j++;
     }
   }
-  pthread_mutex_unlock(&trainMutex);
+  pthread_mutex_unlock (&trainMutex);
 }
 
 static pthread_t *threads;
@@ -231,7 +236,7 @@ static nb_thread_params **passers;
 static size_t num_threads;
 
 void
-setup_nb(nb_thread_params t)
+setup_nb (nb_thread_params t)
 {
   //bool setupFlag = false;
   num_threads = t.thread_num;
@@ -240,14 +245,16 @@ setup_nb(nb_thread_params t)
                                            sizeof(nb_thread_params *));
   std::string nbModelFile = global.nb_model_file;
   bool mFileFlag = false;
-  DVec observedClassDist(boost::extents[t.arfHeader->no_of_categories]);
+  DVec observedClassDist (boost::extents[t.arfHeader->no_of_categories]);
   vector<AttributeClassObserver *> attributeObservers(
                                                       t.arfHeader->no_of_features);
 
   if (nbModelFile.size() > 0) {
     if (c_does_file_exist(nbModelFile.c_str()) && c_get_file_size(
                                                                   nbModelFile.c_str()) > 0) {
-      readModelFile(observedClassDist, attributeObservers, t.arfHeader,
+      readModelFile(observedClassDist,
+                    attributeObservers,
+                    t.arfHeader,
                     nbModelFile);
       mFileFlag = true;
     }
@@ -281,7 +288,7 @@ destroy_nb()
       cout << "No of observed examples: "
         << passers[0]->vars->noOfObservedExamples << endl;
 
-      scale_vals(passers[0]->vars->observedClassDist,
+      scale_vals (passers[0]->vars->observedClassDist,
                  passers[0]->vars->noOfObservedExamples);
 
       writeModelFile(passers[0]->vars->observedClassDist,

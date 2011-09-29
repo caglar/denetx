@@ -188,8 +188,6 @@ AM_CXXFLAGS = -W -Wall $(STD) $(ARCH) $(OPTIM_FLAGS) $(DEBUG_FLAGS) -D_FILE_OFFS
 AM_LDFLAGS = $(LIBS) -DUSE_RESTRICT
 denetX_SOURCES = lda.cc parser.cc sparse_dense.cc cache.cc gd.cc parse_regressor.cc unique_sort.cc loss_functions.cc cg.cc global_data.cc multisource.cc parse_args.cc utils.cc sender.cc  hash.cc message_relay.cc network.cc parse_example.cc parse_arfheader.cc simple_label.cc delay_ring.cc io.cc noop.cc parse_primitives.cc float_cmp.cc vw.cc main.cc  multiclass/infogain.cc multiclass/arraycopy.cc multiclass/htnb.cc multiclass/statistics.cc multiclass/mutils.cc multiclass/evaluation.cc multiclass/dvec.cc multiclass/parse_nbmodel.cc multiclass/nb.cc timsort.h multiclass/ht.h 
 active_interactor_SOURCES = active_interactor.cc utils.cc
-
-#offset_tree_SOURCES= utils.cc hash.cc io.cc parse_regressor.cc parse_primitives.cc cache.cc sparse_dense.cc parse_example.cc parse_args.cc gd.cc parser.cc offset_tree.cc loss_functions.cc offset_tree.cc
 METASOURCES = AUTO
 all: all-am
 
@@ -653,6 +651,12 @@ uninstall-am: uninstall-binPROGRAMS
 
 clean-local:
 	-rm -f *~
+
+.PHONY: move
+
+move:
+	-mv $(bin_PROGRAMS) ../build
+	-mv *.o ../build
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

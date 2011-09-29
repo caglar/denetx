@@ -19,8 +19,12 @@ denetX_SOURCES= lda.cc parser.cc sparse_dense.cc cache.cc gd.cc parse_regressor.
 
 active_interactor_SOURCES= active_interactor.cc utils.cc
 
-#offset_tree_SOURCES= utils.cc hash.cc io.cc parse_regressor.cc parse_primitives.cc cache.cc sparse_dense.cc parse_example.cc parse_args.cc gd.cc parser.cc offset_tree.cc loss_functions.cc offset_tree.cc
-
 METASOURCES= AUTO
 clean-local:
 	-rm -f *~
+
+.PHONY: move
+
+move:
+	-mv $(bin_PROGRAMS) ../build
+	-mv *.o ../build
