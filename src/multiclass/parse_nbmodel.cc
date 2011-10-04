@@ -66,7 +66,6 @@ createModelFileContent(DVec const &observedClassDist,
     std::stringstream str_stream;
 
     for (unsigned int i = 0; i < observedClassDist.size(); i++) {
-        //        str_stream.flush();
         str_stream << i << " " << observedClassDist[i] << std::endl;
         //model_file_content += str_stream.str();
     }
@@ -86,11 +85,9 @@ createModelFileContent(DVec const &observedClassDist,
                 for (auto j = 0; j < classSize; j++) {
                     unsigned int valSize = attValDistPerClass[j].size();
                     for (auto n = 0; n < valSize; n++) {
-                        //str_stream.flush();
                         str_stream << i << " " << NOMINAL << " " << j << " "
                                 << n << " " << attValDistPerClass[j][n]
                                 << std::endl;
-                        //model_file_content = str_stream.str();
                         //model_file_content += i + " " + NOMINAL + " " + j + " " + n
                         //+ " " + attValDistPerClass[j][n] + "\n";
                     }
@@ -131,10 +128,10 @@ writeModelFile(DVec const &observedClassDist,
 {
     string modelFileContent = "";
     string tmpFileName = nb_model_file + ".tmp";
-//    printf("ObservedClassDist val 0: %f, ObservedClassDist val 1: %f",\
-            observedClassDist[0], observedClassDist[1]);
+ //  printf("ObservedClassDist val 0: %f, ObservedClassDist val 1: %f",\
+          observedClassDist[0], observedClassDist[1]);
 
- //   printf("tmpFileName: %s, nbmodelfile: %s\n", tmpFileName.c_str(),\
+ // printf("tmpFileName: %s, nbmodelfile: %s\n", tmpFileName.c_str(),\
             nb_model_file.c_str());
 
     if (c_does_file_exist(nb_model_file.c_str())) {

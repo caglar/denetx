@@ -103,7 +103,6 @@ nb_thread(void *in)
         if (global.training && (ld->label != FLT_MAX)) {
           nb_train_on_example(ec, params->arfHeader, thread_num,
                               params);
-
           finish_example(ec);
         }
         else {
@@ -197,21 +196,25 @@ nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
   params->vars->noOfObservedExamples++;
   for (size_t *i = (ex->indices.begin); i != (ex->indices.end); ++i) {
     int j = 0;
-    for (feature *f = ex->subsets[*i][thread_num]; f
-         != ex->subsets[*i][thread_num + 1]; f++) {
+    for (feature *f = ex->subsets[*i][thread_num]; (f
+         != ex->subsets[*i][thread_num + 1] && j < arfHeader->no_of_features); f++) {
       if (!(arfHeader->features).empty())
         type = ((fType) (arfHeader->features[f->weight_index]).type);
 
       if (params->vars->attributeObservers[j] == NULL) {
         if (type == NUMERIC) {
-          NumAttrObserver *numAttObs = new NumAttrObserver(
+          //NumAttrObserver *numAttObs = new NumAttrObserver(
+          //                                                 arfHeader->no_of_categories);
+          //params->vars->attributeObservers[j] = numAttObs;
+          params->vars->attributeObservers[j] = new NumAttrObserver(
                                                            arfHeader->no_of_categories);
-          params->vars->attributeObservers[j] = numAttObs;
         }
         else if (type == NOMINAL) {
-          NomAttrObserver *nomAttObs = new NomAttrObserver();
-          cerr << "WTF!!!" << endl;
-          params->vars->attributeObservers[j] = nomAttObs;
+          //NomAttrObserver *nomAttObs = new NomAttrObserver();
+          //cerr << "WTF!!!" << endl;
+          //params->vars->attributeObservers[j] = nomAttObs;
+          params->vars->attributeObservers[j] = new NomAttrObserver(
+                                                           arfHeader->no_of_categories);
         }
         else {
           std::cerr << "Unsupported type" << std::endl;

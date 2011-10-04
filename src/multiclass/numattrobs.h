@@ -79,8 +79,8 @@ public:
     void
     observeAttributeClass(float attVal, int classVal, float weight)
     {
-//       printf("Class val is: %d\n", classVal);
         if (attValDistPerClass[classVal] == NULL) {
+            printf("Att Val %f  per class %d \n", attVal, classVal);
             float defaultPrecision = 0.001;
             attValDistPerClass[classVal]
                     = new NormalEstimator(defaultPrecision);
