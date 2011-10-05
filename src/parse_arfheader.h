@@ -15,7 +15,7 @@
 
 enum fType
 {
-    NOMINAL, NUMERIC, TIME
+    NOMINAL, NUMERIC, TIME, UNKNOWN
 };
 
 struct arffeature

@@ -64,7 +64,8 @@ nb_thread(void *in)
   }
 
   if (params->vars == NULL) {
-    params->vars = (nb_vars *) c_malloc(sizeof(nb_vars));
+//    params->vars = (nb_vars *) c_malloc(sizeof(nb_vars));
+     params->vars = (nb_vars *) c_malloc(sizeof(*(params->vars)));
   }
 
   if ((params->vars->observedClassDist.size() != no_of_cats) && (no_of_cats
@@ -78,9 +79,10 @@ nb_thread(void *in)
   }
 
   pthread_mutex_unlock(&initMutex);
+
   while (true) {
     cout << "Thread num: " << thread_num << endl;
-    //this is a poor man's select operation.
+    // this is a poor man's select operation.
     if ((ec = get_delay_example(thread_num)) != NULL)//nonblocking
     {
       nb_train_on_example(ec, params->arfHeader, thread_num, params);
@@ -120,8 +122,7 @@ nb_thread(void *in)
       return NULL;
     }
     else
-      ;
-    //busywait when we have predicted on all examples but not yet trained on all.
+      ;//busywait when we have predicted on all examples but not yet trained on all.
   }
   return NULL;
 }
@@ -130,14 +131,11 @@ float*
 naive_bayes_predict(example* ex, size_t thread_num, nb_thread_params* params)
 {
   no_of_preds++;
-  
+
   cout << "I am the predictor " << no_of_preds << endl;
-  
+
   size_t voteSize = params->vars->observedClassDist.size() - 1;
   float *classVotes = new float[voteSize];
-
-  //DVec classVotes(boost::extents]);
-  //size_t stride = global.stride;
 
   float observedClassSum = sum_of_vals(params->vars->observedClassDist);
   arfheader *arfHeader = params->arfHeader;
@@ -185,36 +183,34 @@ void
 nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
                     nb_thread_params* params)
 {
-  fType type;
+  fType type = UNKNOWN;
   pthread_mutex_lock(&trainMutex);
-  label_data *ld = (label_data *) c_malloc(sizeof(*((label_data *) ex->ld)));
 
+  label_data *ld = (label_data *) c_malloc(sizeof(*((label_data *) ex->ld)));
   ld->label = ((label_data *) ex->ld)->label;
   ld->weight = ((label_data *) ex->ld)->weight;
   add_to_val(ld->label, params->vars->observedClassDist, ld->weight);
-
   params->vars->noOfObservedExamples++;
+
   for (size_t *i = (ex->indices.begin); i != (ex->indices.end); ++i) {
-    int j = 0;
-    for (feature *f = ex->subsets[*i][thread_num]; (f
-         != ex->subsets[*i][thread_num + 1] && j < arfHeader->no_of_features); f++) {
+
+    //Count the number of features
+    int fCount = 0;
+
+    for (feature *f = ex->subsets[*i][thread_num];
+         (f != ex->subsets[*i][thread_num + 1] && fCount < arfHeader->no_of_features);
+         f++, fCount++) {
       if (!(arfHeader->features).empty())
         type = ((fType) (arfHeader->features[f->weight_index]).type);
 
-      if (params->vars->attributeObservers[j] == NULL) {
+      if (params->vars->attributeObservers[fCount] == NULL) {
         if (type == NUMERIC) {
-          //NumAttrObserver *numAttObs = new NumAttrObserver(
-          //                                                 arfHeader->no_of_categories);
-          //params->vars->attributeObservers[j] = numAttObs;
-          params->vars->attributeObservers[j] = new NumAttrObserver(
-                                                           arfHeader->no_of_categories);
+          params->vars->attributeObservers[fCount] = new NumAttrObserver(
+                                                                         arfHeader->no_of_categories);
         }
         else if (type == NOMINAL) {
-          //NomAttrObserver *nomAttObs = new NomAttrObserver();
-          //cerr << "WTF!!!" << endl;
-          //params->vars->attributeObservers[j] = nomAttObs;
-          params->vars->attributeObservers[j] = new NomAttrObserver(
-                                                           arfHeader->no_of_categories);
+          params->vars->attributeObservers[fCount] = new NomAttrObserver(
+                                                                         arfHeader->no_of_categories);
         }
         else {
           std::cerr << "Unsupported type" << std::endl;
@@ -223,12 +219,11 @@ nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
       }
 
       if (type == NUMERIC)
-        (static_cast<NumAttrObserver *> (params->vars->attributeObservers[j]))->observeAttributeClass (
-                                                                                                      f->x, ld->label, ex->global_weight);
+        (static_cast<NumAttrObserver *> (params->vars->attributeObservers[fCount]))->observeAttributeClass (
+                                                                                                            f->x, ld->label, ex->global_weight);
       else if (type == NOMINAL)
-        (static_cast<NomAttrObserver *> (params->vars->attributeObservers[j]))->observeAttributeClass (
-                                                                                                      f->x, ld->label, ex->global_weight);
-      j++;
+        (static_cast<NomAttrObserver *> (params->vars->attributeObservers[fCount]))->observeAttributeClass (
+                                                                                                            f->x, ld->label, ex->global_weight);
     }
   }
   pthread_mutex_unlock (&trainMutex);
@@ -241,7 +236,6 @@ static size_t num_threads;
 void
 setup_nb (nb_thread_params t)
 {
-  //bool setupFlag = false;
   num_threads = t.thread_num;
   threads = (pthread_t *) c_calloc(num_threads, sizeof(pthread_t));
   passers = (nb_thread_params **) c_calloc(num_threads,
@@ -268,7 +262,6 @@ setup_nb (nb_thread_params t)
     *(passers[i]) = t;
     passers[i]->thread_num = i;
     if (mFileFlag) {
-      //cout << " File flag: hey!" << endl;
       passers[i]->vars->attributeObservers = attributeObservers;
       passers[i]->vars->observedClassDist = observedClassDist;
     }
@@ -292,7 +285,7 @@ destroy_nb()
         << passers[0]->vars->noOfObservedExamples << endl;
 
       scale_vals (passers[0]->vars->observedClassDist,
-                 passers[0]->vars->noOfObservedExamples);
+                  passers[0]->vars->noOfObservedExamples);
 
       writeModelFile(passers[0]->vars->observedClassDist,
                      passers[0]->vars->attributeObservers,

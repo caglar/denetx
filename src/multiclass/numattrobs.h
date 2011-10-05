@@ -33,6 +33,7 @@ private:
     DVec minValueObservedPerClass;
     DVec maxValueObservedPerClass;
     vector<NormalEstimator *> attValDistPerClass;
+
     unsigned int mNoOfClasses;
     unsigned int numBins;
 
@@ -42,13 +43,13 @@ public:
     NumAttrObserver(unsigned int noOfClasses) :
         mNoOfClasses(noOfClasses), numBins(100)
     {
-        attValDistPerClass.resize(mNoOfClasses);
+        attValDistPerClass.resize(noOfClasses);
     }
 
     NumAttrObserver(unsigned int noOfClasses, unsigned int numBins_) :
         mNoOfClasses(noOfClasses), numBins(numBins_)
     {
-        attValDistPerClass.resize(mNoOfClasses);
+        attValDistPerClass.resize(noOfClasses);
     }
 
     ~NumAttrObserver()
@@ -61,7 +62,6 @@ public:
     vector<NormalEstimator *>
     getAttValDistPerClass()
     {
-        printf("Inside class size: %d\n", attValDistPerClass.size());
         return this->attValDistPerClass;
     }
 

@@ -1,6 +1,9 @@
 #!/bin/bash
+set -x
 `python arff2VWConverter.py \
-  /home/caglar/Documents/Datasets/GN3_TrafficClassification/gtvs/Day1.TCP.arff ../../../../test/datasets/gtvs/gtvs.train ../../../../gtvs.arfx`
+  /home/caglar/Documents/Datasets/GN3_TrafficClassification/gtvs/Day1.TCP.arff \
+  ../../../../test/datasets/gtvs/gtvs.train ../../../../test/arfx/gtvs.arfx`
+
 `python arff2VWConverter.py \
   /home/caglar/Documents/Datasets/GN3_TrafficClassification/gtvs/Day2.TCP.arff \
-  ../../../../test/datasets/gtvs/gtvs.test ../../../../gtvs2.arfx`
+  ../../../../test/datasets/gtvs/gtvs.test ../../../../test/arfx/gtvs2.arfx`

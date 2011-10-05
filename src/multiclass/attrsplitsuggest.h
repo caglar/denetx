@@ -31,11 +31,8 @@ struct AttrSplitSuggestion
     }
 
     AttrSplitSuggestion() :
-        merit(0.0), numSplits(0.0), splitTest(NULL)
+        splitTest(NULL), merit(0.0), numSplits(0.0)
     {
-        /*merit = 0.0;
-          numSplits = 0;
-          splitTest = NULL;*/
     }
 
     ~AttrSplitSuggestion()
@@ -51,6 +48,7 @@ struct AttrSplitSuggestion
                  this->splitTest);
             this->merit = other.merit;
             this->numSplits = other.numSplits;
+            return *this;
         }
 
     bool
