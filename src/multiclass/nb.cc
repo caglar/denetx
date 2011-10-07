@@ -53,7 +53,8 @@ nb_thread(void *in)
   size_t thread_num = params->thread_num;
   example* ec = NULL;
 
-  pthread_mutex_lock(&initMutex);
+//  pthread_mutex_lock(&initMutex);
+
   size_t no_of_cats = params->arfHeader->no_of_categories;
   size_t no_of_feats = params->arfHeader->no_of_features;
 
@@ -64,8 +65,7 @@ nb_thread(void *in)
   }
 
   if (params->vars == NULL) {
-//    params->vars = (nb_vars *) c_malloc(sizeof(nb_vars));
-     params->vars = (nb_vars *) c_malloc(sizeof(*(params->vars)));
+     params->vars = new nb_vars();
   }
 
   if ((params->vars->observedClassDist.size() != no_of_cats) && (no_of_cats
@@ -78,7 +78,7 @@ nb_thread(void *in)
     params->vars->attributeObservers.resize(no_of_feats);
   }
 
-  pthread_mutex_unlock(&initMutex);
+//  pthread_mutex_unlock(&initMutex);
 
   while (true) {
     cout << "Thread num: " << thread_num << endl;
@@ -184,7 +184,7 @@ nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
                     nb_thread_params* params)
 {
   fType type = UNKNOWN;
-  pthread_mutex_lock(&trainMutex);
+  //pthread_mutex_lock(&trainMutex);
 
   label_data *ld = (label_data *) c_malloc(sizeof(*((label_data *) ex->ld)));
   ld->label = ((label_data *) ex->ld)->label;
@@ -193,7 +193,6 @@ nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
   params->vars->noOfObservedExamples++;
 
   for (size_t *i = (ex->indices.begin); i != (ex->indices.end); ++i) {
-
     //Count the number of features
     int fCount = 0;
 
@@ -217,7 +216,6 @@ nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
           exit (EXIT_FAILURE);
         }
       }
-
       if (type == NUMERIC)
         (static_cast<NumAttrObserver *> (params->vars->attributeObservers[fCount]))->observeAttributeClass (
                                                                                                             f->x, ld->label, ex->global_weight);
@@ -226,7 +224,7 @@ nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
                                                                                                             f->x, ld->label, ex->global_weight);
     }
   }
-  pthread_mutex_unlock (&trainMutex);
+  //pthread_mutex_unlock (&trainMutex);
 }
 
 static pthread_t *threads;
@@ -238,8 +236,8 @@ setup_nb (nb_thread_params t)
 {
   num_threads = t.thread_num;
   threads = (pthread_t *) c_calloc(num_threads, sizeof(pthread_t));
-  passers = (nb_thread_params **) c_calloc(num_threads,
-                                           sizeof(nb_thread_params *));
+
+  passers = new nb_thread_params*[num_threads];
   std::string nbModelFile = global.nb_model_file;
   bool mFileFlag = false;
   DVec observedClassDist (boost::extents[t.arfHeader->no_of_categories]);
@@ -258,7 +256,7 @@ setup_nb (nb_thread_params t)
   }
 
   for (size_t i = 0; i < num_threads; i++) {
-    passers[i] = (nb_thread_params *) c_calloc(1, sizeof(nb_thread_params));
+    passers[i] = new nb_thread_params[1];
     *(passers[i]) = t;
     passers[i]->thread_num = i;
     if (mFileFlag) {

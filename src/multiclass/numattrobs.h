@@ -80,7 +80,6 @@ public:
     observeAttributeClass(float attVal, int classVal, float weight)
     {
         if (attValDistPerClass[classVal] == NULL) {
-            printf("Att Val %f  per class %d \n", attVal, classVal);
             float defaultPrecision = 0.001;
             attValDistPerClass[classVal]
                     = new NormalEstimator(defaultPrecision);
@@ -95,6 +94,7 @@ public:
                 maxValueObservedPerClass[classVal] = attVal;
             }
         }
+        printf("Att Val %f  per class %d size %u \n", attVal, classVal, sizeof(*attValDistPerClass[classVal]));
         attValDistPerClass[classVal]->addValue(attVal, weight);
     }
 
@@ -169,18 +169,6 @@ public:
         lhsDist = resultMatrix[0];
         rhsDist = resultMatrix[1];
 
-        /*
-         float *lhsDistArr = (float *) c_malloc(lhsDistSize * sizeof(float));
-         float *rhsDistArr = (float *) c_malloc(rhsDistSize * sizeof(float));
-
-         float **resultArray = new float*[lhsDistSize];
-
-         for (size_t siz = 0; siz < lhsDistSize; siz++)
-         resultArray[siz] = new float[rhsDistSize];
-
-         memmove(resultArray[0], lhsDistArr, lhsDistSize);
-         memmove(resultArray[1], rhsDistArr, rhsDistSize);
-         */
         return resultMatrix;
     }
 
