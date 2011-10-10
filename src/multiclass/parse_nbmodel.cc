@@ -96,7 +96,7 @@ createModelFileContent(DVec const &observedClassDist,
             else if (arfAtts[i].type == NUMERIC) {
                 NumAttrObserver *numAttrObs =
                         static_cast<NumAttrObserver *> (attributeObservers[i]);
-                vector<NormalEstimator *> attValDistPerClass =
+                vector<NormalEstimator> attValDistPerClass =
                         numAttrObs->getAttValDistPerClass();
                 //printf("size: %d\n",\
                         (numAttrObs->getAttValDistPerClass()).size());
@@ -104,15 +104,15 @@ createModelFileContent(DVec const &observedClassDist,
 //                    printf("cnt val: %d\n", j);
 //                    printf("size: %d\n", attValDistPerClass.size());
                     NormalEstimator
-                            *nEstimator =
-                                    static_cast<NormalEstimator *> (attValDistPerClass[j]);
-                    if (nEstimator != NULL) {
+                            nEstimator =
+                                    static_cast<NormalEstimator> (attValDistPerClass[j]);
+                    if (nEstimator.isInitialized()) {
                         str_stream << i << " " << NUMERIC << " " << j << " "
-                                << nEstimator->getSumOfWeights() << " "
-                                << nEstimator->getSumOfValues() << " "
-                                << nEstimator->getSumOfValuesSq() << " "
-                                << nEstimator->getMean() << " "
-                                << nEstimator->getStandardDev() << std::endl;
+                                << nEstimator.getSumOfWeights() << " "
+                                << nEstimator.getSumOfValues() << " "
+                                << nEstimator.getSumOfValuesSq() << " "
+                                << nEstimator.getMean() << " "
+                                << nEstimator.getStandardDev() << std::endl;
                     }
                 }
             }
@@ -246,7 +246,7 @@ parseAttributeObserverModelLine(const char *line, size_t no_of_classes)
                         nEst->setSumOfValues(sumOfValues);
                         nEst->setSumOfWeights(sumOfWeights);
                         nEst->setSumOfWeights(sumOfValuesSq);
-                        ((NumAttrObserver *) attObserver)->addNewValDist(nEst,
+                        ((NumAttrObserver *) attObserver)->addNewValDist(*nEst,
                                 classNo);
                         break;
                     default:

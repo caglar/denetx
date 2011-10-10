@@ -53,8 +53,6 @@ nb_thread(void *in)
   size_t thread_num = params->thread_num;
   example* ec = NULL;
 
-//  pthread_mutex_lock(&initMutex);
-
   size_t no_of_cats = params->arfHeader->no_of_categories;
   size_t no_of_feats = params->arfHeader->no_of_features;
 
@@ -78,8 +76,6 @@ nb_thread(void *in)
     params->vars->attributeObservers.resize(no_of_feats);
   }
 
-//  pthread_mutex_unlock(&initMutex);
-
   while (true) {
     cout << "Thread num: " << thread_num << endl;
     // this is a poor man's select operation.
@@ -97,12 +93,11 @@ nb_thread(void *in)
         delay_example(ec, 0);
       }
       else {
-        label_data *ld = (label_data *) c_malloc(
-                                                 sizeof(*((label_data *) ec->ld)));
-        ld->label = ((label_data *) ec->ld)->label;
-        ld->weight = ((label_data *) ec->ld)->weight;
+        label_data ld;
+        ld.label = (static_cast<label_data *> (ec->ld))->label;
+        ld.weight = (static_cast<label_data *> (ec->ld))->weight;
 
-        if (global.training && (ld->label != FLT_MAX)) {
+        if (global.training && (ld.label != FLT_MAX)) {
           nb_train_on_example(ec, params->arfHeader, thread_num,
                               params);
           finish_example(ec);
@@ -140,11 +135,11 @@ naive_bayes_predict(example* ex, size_t thread_num, nb_thread_params* params)
   float observedClassSum = sum_of_vals(params->vars->observedClassDist);
   arfheader *arfHeader = params->arfHeader;
 
-  label_data *ld = (label_data *) c_malloc(sizeof(*((label_data *) ex->ld)));
-  ld->label = ((label_data *) ex->ld)->label;
-  ld->weight = ((label_data *) ex->ld)->weight;
+  label_data ld;
+  ld.label = (static_cast<label_data *> (ex->ld))->label;
+  ld.weight = (static_cast<label_data *> (ex->ld))->weight;
 
-  if (global.training && (ld->label != FLT_MAX)) {
+  if (global.training && (ld.label != FLT_MAX)) {
     cout << "Predictor is in training" << endl;
     nb_train_on_example(ex, arfHeader, thread_num, params);
   }
@@ -184,12 +179,11 @@ nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
                     nb_thread_params* params)
 {
   fType type = UNKNOWN;
-  //pthread_mutex_lock(&trainMutex);
+  
+  label_data ld;
+  ld.label = (static_cast<label_data *> (ex->ld))->label;
+  ld.weight = (static_cast<label_data *> (ex->ld))->weight;
 
-  label_data *ld = (label_data *) c_malloc(sizeof(*((label_data *) ex->ld)));
-  ld->label = ((label_data *) ex->ld)->label;
-  ld->weight = ((label_data *) ex->ld)->weight;
-  add_to_val(ld->label, params->vars->observedClassDist, ld->weight);
   params->vars->noOfObservedExamples++;
 
   for (size_t *i = (ex->indices.begin); i != (ex->indices.end); ++i) {
@@ -217,11 +211,11 @@ nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
         }
       }
       if (type == NUMERIC)
-        (static_cast<NumAttrObserver *> (params->vars->attributeObservers[fCount]))->observeAttributeClass (
-                                                                                                            f->x, ld->label, ex->global_weight);
+        (dynamic_cast<NumAttrObserver *> (params->vars->attributeObservers[fCount]))->observeAttributeClass (
+                                                                                                            f->x, ld.label, ex->global_weight);
       else if (type == NOMINAL)
-        (static_cast<NomAttrObserver *> (params->vars->attributeObservers[fCount]))->observeAttributeClass (
-                                                                                                            f->x, ld->label, ex->global_weight);
+        (dynamic_cast<NomAttrObserver *> (params->vars->attributeObservers[fCount]))->observeAttributeClass (
+                                                                                                            f->x, ld.label, ex->global_weight);
     }
   }
   //pthread_mutex_unlock (&trainMutex);
@@ -235,9 +229,10 @@ void
 setup_nb (nb_thread_params t)
 {
   num_threads = t.thread_num;
-  threads = (pthread_t *) c_calloc(num_threads, sizeof(pthread_t));
-
+//  threads = (pthread_t *) c_calloc(num_threads, sizeof(pthread_t));
+  threads = new pthread_t[num_threads];
   passers = new nb_thread_params*[num_threads];
+  
   std::string nbModelFile = global.nb_model_file;
   bool mFileFlag = false;
   DVec observedClassDist (boost::extents[t.arfHeader->no_of_categories]);

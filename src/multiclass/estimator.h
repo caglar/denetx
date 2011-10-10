@@ -38,7 +38,7 @@ namespace est
               getProbability(float data) = 0;
     };
 
-    class NormalEstimator : Estimator
+    class NormalEstimator : public Estimator
     {
       protected:
           /** The sum of the weights */
@@ -62,6 +62,9 @@ namespace est
           /** Normal Constant */
           float NORMAL_CONSTANT;
 
+          /** Check wheter the estimator has already been initialized **/
+          bool isInitializedFlag;
+
       public:
           /**
            * Constructor that takes a precision argument.
@@ -72,7 +75,7 @@ namespace est
            */
           explicit
               NormalEstimator(float precision) :
-                  mSumOfWeights(0), mSumOfValues(0), mSumOfValuesSq(0), mMean(0.0)
+                  mSumOfWeights(0), mSumOfValues(0), mSumOfValuesSq(0), mMean(0.0), isInitializedFlag(true)
         {
             NORMAL_CONSTANT = sqrt(2 * M_PI);
             mPrecision = precision;
@@ -81,11 +84,15 @@ namespace est
 
           NormalEstimator() :
               mSumOfWeights(0), mSumOfValues(0), mSumOfValuesSq(0), mMean(0.0),
-              mPrecision(0.1)
+              mPrecision(0.1), isInitializedFlag(false)
         {
             NORMAL_CONSTANT = sqrt(2 * M_PI);
             mStandardDev = mPrecision / (2 * 3);
         }
+
+          ~NormalEstimator()
+          {
+          }
 
           float
               getSumOfWeights()
@@ -115,6 +122,17 @@ namespace est
               getStandardDev()
               {
                   return this->mStandardDev;
+              }
+
+          bool
+              isInitialized(){
+                  return this->isInitializedFlag;
+              }
+
+          void
+              setInitializedFlag(bool flag)
+              {
+                  this->isInitializedFlag = flag;
               }
 
           void
@@ -257,7 +275,7 @@ namespace est
               }
     };
 
-    class KernelEstimator : Estimator
+    class KernelEstimator : public Estimator
     {
       private:
           /** The small deviation allowed in float comparisons. */
@@ -441,7 +459,7 @@ namespace est
               }
     };
 
-    class DiscreteEstimator : Estimator
+    class DiscreteEstimator : public Estimator
     {
       protected:
           float *mCounts;
