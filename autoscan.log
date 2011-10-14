@@ -1,9 +1,9 @@
 autoscan: warning: missing AC_CHECK_FUNCS([strtol]) wanted by: 
-	src/multiclass/parse_nbmodel.cc:161
+	src/multiclass/parse_nbmodel.cc:158
 autoscan: warning: missing AC_CHECK_HEADERS([syslog.h]) wanted by: 
 	src/multiclass/parse_nbmodel.cc:11
 autoscan: warning: missing AC_FUNC_STRTOD wanted by: 
-	src/multiclass/parse_nbmodel.cc:162
+	src/multiclass/parse_nbmodel.cc:159
 autoscan: warning: missing AC_TYPE_INT64_T wanted by: 
 	src/timsort.h:57
 	src/timsort.h:58

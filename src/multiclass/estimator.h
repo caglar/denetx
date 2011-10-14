@@ -279,7 +279,7 @@ namespace est
     {
       private:
           /** The small deviation allowed in float comparisons. */
-          static const float SMALL = 1e-6;
+          float SMALL;
           /** Vector containing all of the values seen */
           float *mValues;
           /** Vector containing the associated weights */
@@ -295,7 +295,7 @@ namespace est
           /** Whether we can optimise the kernel summation */
           bool mAllWeightsOne;
           /** Maximum percentage error permitted in probability calculations */
-          static const float MAX_ERROR = 0.01;
+          float MAX_ERROR;
 
           /**
            * Execute a binary search to locate the nearest data value
@@ -326,21 +326,24 @@ namespace est
               }
       public:
           explicit
-              KernelEstimator(float precision)
-              {
-                  mValues = new float[50];
-                  mWeights = new float[50];
+              KernelEstimator(float precision):SMALL(1e-6), mValues(new float[50]), mWeights(new float[50]),
+              mNumValues(0), mSumOfWeights(0), mAllWeightsOne(true), mPrecision(precision), MAX_ERROR(0.01)
+        {
+            /*
+               mValues = new float[50];
+               mWeights = new float[50];
 
-                  mNumValues = 0;
-                  mSumOfWeights = 0;
-                  mAllWeightsOne = true;
-                  mPrecision = precision;
-                  // precision cannot be zero
-                  if (mPrecision < SMALL)
-                      mPrecision = SMALL;
-                  // m_StandardDev = 1e10 * m_Precision; // Set the standard deviation initially very wide
-                  mStandardDev = mPrecision / (2 * 3);
-              }
+               mNumValues = 0;
+               mSumOfWeights = 0;
+               mAllWeightsOne = true;
+               mPrecision = precision;
+               */
+            // precision cannot be zero
+            if (mPrecision < SMALL)
+                mPrecision = SMALL;
+            // m_StandardDev = 1e10 * m_Precision; // Set the standard deviation initially very wide
+            mStandardDev = mPrecision / (2 * 3);
+        }
 
           /**
            * Add a new data value to the current estimator.

@@ -6,6 +6,7 @@
 
 #include "parse_primitives.h"
 #include <string.h>
+#include <ctype.h>
 #include <iostream>
 #include "utils.h"
 
@@ -32,6 +33,7 @@ tokenize(char delim, substring s, v_array<substring>& ret)
     }
 }
 
+/*
 int
 isspace(int c)
 {
@@ -40,6 +42,7 @@ isspace(int c)
     }
     return 0;
 }
+*/
 
 char *
 trim(char *str)

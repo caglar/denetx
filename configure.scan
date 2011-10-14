@@ -11,6 +11,8 @@ AC_PROG_CXX
 AC_PROG_CC
 
 # Checks for libraries.
+# FIXME: Replace `main' with a function in `-ltcmalloc':
+AC_CHECK_LIB([tcmalloc], [main])
 # FIXME: Replace `main' with a function in `-ltinyxml':
 AC_CHECK_LIB([tinyxml], [main])
 

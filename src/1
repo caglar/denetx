@@ -65,7 +65,7 @@ nb_thread(void *in)
   }
 
   if (params->vars == NULL) {
-    params->vars = new nb_vars();
+     params->vars = new nb_vars();
   }
 
   if ((params->vars->observedClassDist.size() != no_of_cats) && (no_of_cats
@@ -215,10 +215,10 @@ nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
       }
       if (type == NUMERIC)
         (dynamic_cast<NumAttrObserver *> (params->vars->attributeObservers[fCount]))->observeAttributeClass (
-                                                                                                             f->x, ld.label, ex->global_weight);
+                                                                                                            f->x, ld.label, ex->global_weight);
       else if (type == NOMINAL)
         (dynamic_cast<NomAttrObserver *> (params->vars->attributeObservers[fCount]))->observeAttributeClass (
-                                                                                                             f->x, ld.label, ex->global_weight);
+                                                                                                            f->x, ld.label, ex->global_weight);
     }
   }
   //pthread_mutex_unlock (&trainMutex);
@@ -279,14 +279,10 @@ joinThreadData(nb_vars *tvars, arfheader *arfHeader) {
       for (size_t  j = 0; j < tvars->observedClassDist.size(); j++) {
         tvars->observedClassDist[j] += passers[i]->vars->observedClassDist[j];
 
-      }
-      for (size_t j = 0; j < tvars->attributeObservers.size(); j++) {
         if (arfHeader->features[j].type == NUMERIC) {
-          NumAttrObserver numAttrObs = *(dynamic_cast<NumAttrObserver *>(passers[i]->vars->attributeObservers[j]));
-          
+          arfHeader->features[j] = dynamic_cast<NumAttrObserver *>();
         }
         else if (arfHeader->features[j].type == NOMINAL) {
-           NomAttrObserver nomAttrObs = *(dynamic_cast<NomAttrObserver *>(passers[i]->vars->attributeObservers[j]));
 
         }
       }
@@ -312,9 +308,9 @@ destroy_nb()
                   passers[0]->vars->noOfObservedExamples);
 
       writeModelFile (passers[0]->vars->observedClassDist,
-                      passers[0]->vars->attributeObservers,
-                      passers[0]->arfHeader, 
-                      nbModelFile);
+                     passers[0]->vars->attributeObservers,
+                     passers[0]->arfHeader, 
+                     nbModelFile);
     }
     c_free(passers[i]);
   }

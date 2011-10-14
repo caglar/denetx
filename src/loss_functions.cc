@@ -16,12 +16,14 @@ class squaredloss : public loss_function {
     squaredloss() {
     }
 
-    float getLoss(float prediction, float label) {
+    float
+      getLoss(float prediction, float label) {
       float example_loss = (prediction - label) * (prediction - label);
       return example_loss;
     }
 
-    float getUpdate(float prediction, float label,float eta_t, float norm) {
+    float
+      getUpdate(float prediction, float label,float eta_t, float norm) {
       if (eta_t < 1e-6){ 
         /* When exp(-eta_t)~= 1 we replace 1-exp(-eta_t) 
          * with its first order Taylor expansion around 0
@@ -32,20 +34,26 @@ class squaredloss : public loss_function {
       return (label - prediction)*(1-exp(-eta_t))/norm;
     }
 
-    float getRevertingWeight(float prediction, float eta_t){
+    float
+      getRevertingWeight(float prediction, float eta_t){
       float t = 0.5*(global.min_label+global.max_label);
       float alternative = (prediction > t) ? global.min_label : global.max_label;
       return log((alternative-prediction)/(alternative-t))/eta_t;
     }
 
-    float getSquareGrad(float prediction, float label) {
+    float
+      getSquareGrad(float prediction, float label) {
       return (prediction - label) * (prediction - label);
     }
-    float first_derivative(float prediction, float label)
+
+    float
+      first_derivative(float prediction, float label)
     {
       return 2. * (prediction-label);
     }
-    float second_derivative(float prediction, float label)
+    
+    float
+      second_derivative(float prediction, float label)
     {
       return 2.;
     } 
@@ -63,11 +71,11 @@ class classic_squaredloss : public loss_function {
     }
 
     float getUpdate(float prediction, float label,float eta_t, float norm) {
-      return eta_t*(label - prediction)/norm;
+      return eta_t * (label - prediction)/norm;
     }
 
     float getRevertingWeight(float prediction, float eta_t){
-      float t = 0.5*(global.min_label+global.max_label);
+      float t = 0.5 * (global.min_label+global.max_label);
       float alternative = (prediction > t) ? global.min_label : global.max_label;
       return (t-prediction)/((alternative-prediction)*eta_t);
     }
@@ -101,7 +109,7 @@ class hingeloss : public loss_function {
       if(label*prediction >= label*label) return 0;
       float s1=(label*label-label*prediction)/(label*label);
       float s2=eta_t;
-      return label * (s1<s2 ? s1 : s2)/norm;
+      return label * (s1 < s2 ? s1 : s2) / norm;
     }
 
     float getRevertingWeight(float prediction, float eta_t){

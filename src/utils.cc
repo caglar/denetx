@@ -12,7 +12,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <jemalloc/jemalloc.h>
+//#include <jemalloc/jemalloc.h>
 #include <stdarg.h>
 #include <sys/syslog.h>
 #include <sys/stat.h>
