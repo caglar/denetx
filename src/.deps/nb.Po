@@ -565,13 +565,13 @@ nb.o: multiclass/nb.cc \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/tr1_impl/complex \
  multiclass/attrobs.h multiclass/attrsplitsuggest.h \
  multiclass/split_test.h multiclass/flin.h multiclass/../utils.h \
- multiclass/numattrobs.h \
+ multiclass/evaluation.h multiclass/numattrobs.h \
  /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/cfloat \
  multiclass/estimator.h multiclass/statistics.h multiclass/arraycopy.h \
  multiclass/infogain.h utils.h float_cmp.h multiclass/nomattrobs.h \
- multiclass/parse_nbmodel.h parse_example.h parser.h constant.h \
- sparse_dense.h parse_example.h cache.h multisource.h simple_label.h \
- delay_ring.h
+ multiclass/parse_nbmodel.h multiclass/evaluation.h parse_example.h \
+ parser.h constant.h sparse_dense.h parse_example.h cache.h multisource.h \
+ simple_label.h delay_ring.h
 
 /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/vector:
 
@@ -1863,6 +1863,8 @@ multiclass/flin.h:
 
 multiclass/../utils.h:
 
+multiclass/evaluation.h:
+
 multiclass/numattrobs.h:
 
 /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/cfloat:
@@ -1882,6 +1884,8 @@ float_cmp.h:
 multiclass/nomattrobs.h:
 
 multiclass/parse_nbmodel.h:
+
+multiclass/evaluation.h:
 
 parse_example.h:
 

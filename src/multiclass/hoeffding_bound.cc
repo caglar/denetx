@@ -10,7 +10,7 @@
  *       Revision:  none
  *       Compiler:  gcc
  *
- *         Author:  YOUR NAME (Caglar Gulcehre), 
+ *         Author:  (Caglar Gulcehre),
  *        Company:  TUBITAK ULAKBIM
  *
  * =====================================================================================

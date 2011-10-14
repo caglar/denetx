@@ -12,21 +12,21 @@
 
 class AttributeClassObserver
 {
-public:
-    virtual
-    ~AttributeClassObserver()
-    {
-    }
+  public:
+      virtual
+          ~AttributeClassObserver()
+          {
+          }
 
-    virtual void
-    observeAttributeClass(float attVal, int classVal, float weight) = 0;
+      virtual void
+          observeAttributeClass(float attVal, int classVal, float weight) = 0;
 
-    virtual float
-    probabilityOfAttributeValueGivenClass(float attVal, int classVal) = 0;
+      virtual float
+          probabilityOfAttributeValueGivenClass(float attVal, int classVal) = 0;
 
-    virtual AttrSplitSuggestion
-            *
-            getBestEvaluatedSplitSuggestion(float preSplitTest[],
-                    size_t splitTestSize) = 0;
+      virtual AttrSplitSuggestion
+          *
+          getBestEvaluatedSplitSuggestion(float preSplitTest[],
+                                          size_t splitTestSize) = 0;
 };
 #endif /* ATTROBS_H_ */

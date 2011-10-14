@@ -291,7 +291,7 @@ print_features(regressor &reg, example* &ec)
 void
 print_audit_features(regressor &reg, example* ec)
 {
-    fflush(stdout);
+    fflush( stdout);
     print_result(fileno(stdout), ec->final_prediction, -1, ec->tag);
     fflush(stdout);
     print_features(reg, ec);

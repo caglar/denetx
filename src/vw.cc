@@ -34,7 +34,7 @@
 #include "./parse_arfheader.h"
 
 void
-vw_nb(size_t num_threads, parser *p, po::variables_map vm);
+vw_nb(size_t num_threads, po::variables_map vm);
 
 gd_vars*
 vw(int argc, char *argv[])
@@ -46,7 +46,7 @@ vw(int argc, char *argv[])
 
     gd_vars *vars = reinterpret_cast<gd_vars*> (c_malloc(sizeof(gd_vars)));
 
-    po::options_description desc("VW options");
+    po::options_description desc("denetX options");
 
     po::variables_map vm = parse_args(argc, argv, desc, *vars, regressor1, p,
             final_regressor_name);
@@ -54,7 +54,7 @@ vw(int argc, char *argv[])
     start_parser(num_threads, p);
 
     if (global.naive_bayes) {
-        vw_nb(num_threads, p, vm);
+        vw_nb(num_threads, vm);
     }
     else {
         if (!global.quiet && !vm.count("conjugate_gradient")) {
@@ -112,7 +112,7 @@ vw(int argc, char *argv[])
 }
 
 void
-vw_nb(size_t num_threads, parser *p, po::variables_map vm)
+vw_nb(size_t num_threads, po::variables_map vm)
 {
     //nb_vars *vars = reinterpret_cast<nb_vars*> (c_malloc(sizeof(nb_vars)));
     nb_vars *vars = new nb_vars();

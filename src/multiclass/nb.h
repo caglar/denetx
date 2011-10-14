@@ -17,6 +17,7 @@
 #include "parser.h"
 #include "multiclass/dvec.h"
 #include "multiclass/attrobs.h"
+#include "evaluation.h"
 
 void
 print_result(int f, float res, v_array<char> tag);
@@ -27,7 +28,7 @@ struct nb_vars
     size_t noOfObservedExamples;
     vector<AttributeClassObserver *> attributeObservers;
     float power_t;
-
+    Evaluation *eval;
     nb_vars() :
         observedClassDist(boost::extents[2]), attributeObservers(0), power_t(0)
     {

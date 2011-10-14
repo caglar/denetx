@@ -66,7 +66,6 @@ createModelFileContent(DVec const &observedClassDist,
     std::stringstream str_stream;
 
     for (unsigned int i = 0; i < observedClassDist.size(); i++) {
-        //        str_stream.flush();
         str_stream << i << " " << observedClassDist[i] << std::endl;
         //model_file_content += str_stream.str();
     }
@@ -86,11 +85,9 @@ createModelFileContent(DVec const &observedClassDist,
                 for (auto j = 0; j < classSize; j++) {
                     unsigned int valSize = attValDistPerClass[j].size();
                     for (auto n = 0; n < valSize; n++) {
-                        //str_stream.flush();
                         str_stream << i << " " << NOMINAL << " " << j << " "
                                 << n << " " << attValDistPerClass[j][n]
                                 << std::endl;
-                        //model_file_content = str_stream.str();
                         //model_file_content += i + " " + NOMINAL + " " + j + " " + n
                         //+ " " + attValDistPerClass[j][n] + "\n";
                     }
@@ -99,23 +96,23 @@ createModelFileContent(DVec const &observedClassDist,
             else if (arfAtts[i].type == NUMERIC) {
                 NumAttrObserver *numAttrObs =
                         static_cast<NumAttrObserver *> (attributeObservers[i]);
-                vector<NormalEstimator *> attValDistPerClass =
+                vector<NormalEstimator> attValDistPerClass =
                         numAttrObs->getAttValDistPerClass();
-                printf("size: %d\n",
+                //printf("size: %d\n",\
                         (numAttrObs->getAttValDistPerClass()).size());
                 for (auto j = 0; j < arfHeader->no_of_categories; j++) {
-                    printf("cnt val: %d\n", j);
-                    printf("size: %d\n", attValDistPerClass.size());
+//                    printf("cnt val: %d\n", j);
+//                    printf("size: %d\n", attValDistPerClass.size());
                     NormalEstimator
-                            *nEstimator =
-                                    static_cast<NormalEstimator *> (attValDistPerClass[j]);
-                    if (nEstimator != NULL) {
+                            nEstimator =
+                                    static_cast<NormalEstimator> (attValDistPerClass[j]);
+                    if (nEstimator.isInitialized()) {
                         str_stream << i << " " << NUMERIC << " " << j << " "
-                                << nEstimator->getSumOfWeights() << " "
-                                << nEstimator->getSumOfValues() << " "
-                                << nEstimator->getSumOfValuesSq() << " "
-                                << nEstimator->getMean() << " "
-                                << nEstimator->getStandardDev() << std::endl;
+                                << nEstimator.getSumOfWeights() << " "
+                                << nEstimator.getSumOfValues() << " "
+                                << nEstimator.getSumOfValuesSq() << " "
+                                << nEstimator.getMean() << " "
+                                << nEstimator.getStandardDev() << std::endl;
                     }
                 }
             }
@@ -131,10 +128,10 @@ writeModelFile(DVec const &observedClassDist,
 {
     string modelFileContent = "";
     string tmpFileName = nb_model_file + ".tmp";
-    printf("ObservedClassDist val 0: %f, ObservedClassDist val 1: %f",
-            observedClassDist[0], observedClassDist[1]);
+ //  printf("ObservedClassDist val 0: %f, ObservedClassDist val 1: %f",\
+          observedClassDist[0], observedClassDist[1]);
 
-    printf("tmpFileName: %s, nbmodelfile: %s\n", tmpFileName.c_str(),
+ // printf("tmpFileName: %s, nbmodelfile: %s\n", tmpFileName.c_str(),\
             nb_model_file.c_str());
 
     if (c_does_file_exist(nb_model_file.c_str())) {
@@ -249,7 +246,7 @@ parseAttributeObserverModelLine(const char *line, size_t no_of_classes)
                         nEst->setSumOfValues(sumOfValues);
                         nEst->setSumOfWeights(sumOfWeights);
                         nEst->setSumOfWeights(sumOfValuesSq);
-                        ((NumAttrObserver *) attObserver)->addNewValDist(nEst,
+                        ((NumAttrObserver *) attObserver)->addNewValDist(*nEst,
                                 classNo);
                         break;
                     default:
@@ -297,11 +294,11 @@ readModelFile(DVec &observedClassDist,
 
     while (fgets(contents, MAX_SIZE, fp) != NULL) {
         contents = c_trim(contents);
-        printf("My contents: %s\n", contents);
+        //printf("My contents: %s\n", contents);
         if (!attrStartFlag) {
             //if (strcmp(c_trim(contents), pSeperator) == 0) {
             if (c_contains(contents, pSeperator)) {
-                printf("Ben bir ceviz agaciyim");
+          //      printf("Ben bir ceviz agaciyim");
                 attrStartFlag = true;
                 /*attributeObservers.assign(
                         attNo,

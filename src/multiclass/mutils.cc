@@ -27,6 +27,7 @@ fsum(Vector_t vec)
   }
   return sum;
 }
+
 /*
 float
 InvSqrt(float x)

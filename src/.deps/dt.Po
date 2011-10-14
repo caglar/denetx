@@ -1,3 +1,0 @@
-dt.o: multiclass/dt.cc multiclass/dt.h
-
-multiclass/dt.h:

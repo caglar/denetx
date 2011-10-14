@@ -61,7 +61,8 @@ am_denetX_OBJECTS = lda.$(OBJEXT) parser.$(OBJEXT) \
 	parse_primitives.$(OBJEXT) float_cmp.$(OBJEXT) vw.$(OBJEXT) \
 	main.$(OBJEXT) infogain.$(OBJEXT) arraycopy.$(OBJEXT) \
 	htnb.$(OBJEXT) statistics.$(OBJEXT) mutils.$(OBJEXT) \
-	dvec.$(OBJEXT) parse_nbmodel.$(OBJEXT) nb.$(OBJEXT)
+	evaluation.$(OBJEXT) dvec.$(OBJEXT) parse_nbmodel.$(OBJEXT) \
+	nb.$(OBJEXT)
 denetX_OBJECTS = $(am_denetX_OBJECTS)
 denetX_LDADD = $(LDADD)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)
@@ -178,17 +179,15 @@ BOOST_LIBRARY = /usr/local/lib
 STD = -std=c++0x
 ARCH = -march=native
 OPTIM_FLAGS = -O4 -ffast-math -fno-strict-aliasing -fomit-frame-pointer -funroll-loops -fmodulo-sched -foptimize-register-move -freciprocal-math -ffinite-math-only -fbranch-target-load-optimize
-DEBUG_FLAGS = -g -ggdb -DNDEBUG -fno-inline -Weffc++
+DEBUG_FLAGS = -g -Wextra -ggdb -DNDEBUG -fno-inline #-p
 
 # for normal fast execution.
 #AM_CXXFLAGS= -W -Wall $(STD) $(ARCH) $(OPTIM_FLAGS) -D_FILE_OFFSET_BITS=64 -I $(BOOST_INCLUDE) #-ltcmalloc
 # for debug purposes
 AM_CXXFLAGS = -W -Wall $(STD) $(ARCH) $(OPTIM_FLAGS) $(DEBUG_FLAGS) -D_FILE_OFFSET_BITS=64 -I $(BOOST_INCLUDE) #-ltcmalloc
 AM_LDFLAGS = $(LIBS) -DUSE_RESTRICT
-denetX_SOURCES = lda.cc parser.cc sparse_dense.cc cache.cc gd.cc parse_regressor.cc unique_sort.cc loss_functions.cc cg.cc global_data.cc multisource.cc parse_args.cc utils.cc sender.cc  hash.cc message_relay.cc network.cc parse_example.cc parse_arfheader.cc simple_label.cc delay_ring.cc io.cc noop.cc parse_primitives.cc float_cmp.cc vw.cc main.cc  multiclass/infogain.cc multiclass/arraycopy.cc multiclass/htnb.cc multiclass/statistics.cc multiclass/mutils.cc multiclass/dvec.cc multiclass/parse_nbmodel.cc multiclass/nb.cc timsort.h multiclass/ht.h
+denetX_SOURCES = lda.cc parser.cc sparse_dense.cc cache.cc gd.cc parse_regressor.cc unique_sort.cc loss_functions.cc cg.cc global_data.cc multisource.cc parse_args.cc utils.cc sender.cc  hash.cc message_relay.cc network.cc parse_example.cc parse_arfheader.cc simple_label.cc delay_ring.cc io.cc noop.cc parse_primitives.cc float_cmp.cc vw.cc main.cc  multiclass/infogain.cc multiclass/arraycopy.cc multiclass/htnb.cc multiclass/statistics.cc multiclass/mutils.cc multiclass/evaluation.cc multiclass/dvec.cc multiclass/parse_nbmodel.cc multiclass/nb.cc timsort.h multiclass/ht.h 
 active_interactor_SOURCES = active_interactor.cc utils.cc
-
-#offset_tree_SOURCES= utils.cc hash.cc io.cc parse_regressor.cc parse_primitives.cc cache.cc sparse_dense.cc parse_example.cc parse_args.cc gd.cc parser.cc offset_tree.cc loss_functions.cc offset_tree.cc
 METASOURCES = AUTO
 all: all-am
 
@@ -280,6 +279,7 @@ include ./$(DEPDIR)/cache.Po
 include ./$(DEPDIR)/cg.Po
 include ./$(DEPDIR)/delay_ring.Po
 include ./$(DEPDIR)/dvec.Po
+include ./$(DEPDIR)/evaluation.Po
 include ./$(DEPDIR)/float_cmp.Po
 include ./$(DEPDIR)/gd.Po
 include ./$(DEPDIR)/global_data.Po
@@ -394,6 +394,20 @@ mutils.obj: multiclass/mutils.cc
 #	source='multiclass/mutils.cc' object='mutils.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o mutils.obj `if test -f 'multiclass/mutils.cc'; then $(CYGPATH_W) 'multiclass/mutils.cc'; else $(CYGPATH_W) '$(srcdir)/multiclass/mutils.cc'; fi`
+
+evaluation.o: multiclass/evaluation.cc
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT evaluation.o -MD -MP -MF $(DEPDIR)/evaluation.Tpo -c -o evaluation.o `test -f 'multiclass/evaluation.cc' || echo '$(srcdir)/'`multiclass/evaluation.cc
+	$(am__mv) $(DEPDIR)/evaluation.Tpo $(DEPDIR)/evaluation.Po
+#	source='multiclass/evaluation.cc' object='evaluation.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o evaluation.o `test -f 'multiclass/evaluation.cc' || echo '$(srcdir)/'`multiclass/evaluation.cc
+
+evaluation.obj: multiclass/evaluation.cc
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT evaluation.obj -MD -MP -MF $(DEPDIR)/evaluation.Tpo -c -o evaluation.obj `if test -f 'multiclass/evaluation.cc'; then $(CYGPATH_W) 'multiclass/evaluation.cc'; else $(CYGPATH_W) '$(srcdir)/multiclass/evaluation.cc'; fi`
+	$(am__mv) $(DEPDIR)/evaluation.Tpo $(DEPDIR)/evaluation.Po
+#	source='multiclass/evaluation.cc' object='evaluation.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o evaluation.obj `if test -f 'multiclass/evaluation.cc'; then $(CYGPATH_W) 'multiclass/evaluation.cc'; else $(CYGPATH_W) '$(srcdir)/multiclass/evaluation.cc'; fi`
 
 dvec.o: multiclass/dvec.cc
 	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT dvec.o -MD -MP -MF $(DEPDIR)/dvec.Tpo -c -o dvec.o `test -f 'multiclass/dvec.cc' || echo '$(srcdir)/'`multiclass/dvec.cc
@@ -637,6 +651,12 @@ uninstall-am: uninstall-binPROGRAMS
 
 clean-local:
 	-rm -f *~
+
+.PHONY: move
+
+move:
+	-mv $(bin_PROGRAMS) ../build
+	-mv *.o ../build
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

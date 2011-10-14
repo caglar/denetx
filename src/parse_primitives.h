@@ -60,7 +60,8 @@ zero_copy_float_of_substring(substring s)
 inline double
 double_of_substring(substring s)
 {
-    return atof(string(s.start, s.end - s.start).c_str());
+    const char *substr = string(s.start, s.end - s.start).c_str();
+    return atof(substr);
 }
 
 inline int

@@ -39,6 +39,9 @@ struct gd_thread_params
 };
 
 float
+InvSqrt(float x);
+
+float
 final_prediction(float ret, size_t num_features, float &norm);
 
 float

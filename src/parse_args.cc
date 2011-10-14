@@ -47,7 +47,7 @@ parse_args(int argc, char *argv[],
             "regularization",
             po::value<float>(&global.regularization)->default_value(0.001),
             "minimize weight magnitude")("corrective",
-            "turn on corrective updates")("train_data,td",
+            "turn on corrective updates")("training_data",
             po::value<string>()->default_value(""),
             "Training data set for supervised learning.")("data,d",
             po::value<string>()->default_value(""), "Example Set")("daemon",
@@ -163,9 +163,9 @@ parse_args(int argc, char *argv[],
 
     po::variables_map vm;
 
-    po::store(
-            po::command_line_parser(argc, argv). options(desc).positional(p).run(),
-            vm);
+//    po::store(po::command_line_parser(argc, argv).options(desc).positional(p).run(), vm);
+    po::store(po::command_line_parser(argc, argv).style(po::command_line_style::default_style^po::command_line_style::allow_guessing).options(desc).positional(p).run(), vm);
+
     po::notify(vm);
 
     global.weighted_unlabeled_examples = par->t;
