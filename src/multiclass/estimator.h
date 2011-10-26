@@ -75,7 +75,11 @@ namespace est
            */
           explicit
               NormalEstimator(float precision) :
-                  mSumOfWeights(0), mSumOfValues(0), mSumOfValuesSq(0), mMean(0.0), isInitializedFlag(true)
+                  mSumOfWeights(0),
+                  mSumOfValues(0),
+                  mSumOfValuesSq(0),
+                  mMean(0.0),
+                  isInitializedFlag(true)
         {
             NORMAL_CONSTANT = sqrt(2 * M_PI);
             mPrecision = precision;
@@ -83,8 +87,12 @@ namespace est
         }
 
           NormalEstimator() :
-              mSumOfWeights(0), mSumOfValues(0), mSumOfValuesSq(0), mMean(0.0),
-              mPrecision(0.1), isInitializedFlag(false)
+              mSumOfWeights(0),
+              mSumOfValues(0),
+              mSumOfValuesSq(0),
+              mMean(0.0),
+              mPrecision(0.1),
+              isInitializedFlag(false)
         {
             NORMAL_CONSTANT = sqrt(2 * M_PI);
             mStandardDev = mPrecision / (2 * 3);
@@ -171,6 +179,64 @@ namespace est
                   this->mStandardDev = stdDev;
               }
 
+          void
+              addToSumOfValues(float value, float weight)
+              {
+                  this->mSumOfValues += value*weight;
+              }
+
+          void
+              addToSumOfWeights(float weight)
+              {
+                  this->mSumOfWeights += weight;
+              }
+
+          void
+              addToSumOfValuesSq(float value, float weight)
+              {
+                  this->mSumOfValuesSq += value*value*weight;
+              }
+
+          void
+              addToSumOfValues(float value)
+              {
+                  this->mSumOfValues += value;
+              }
+
+          void
+              addToSumOfValuesSq(float sqValue)
+              {
+                  this->mSumOfValuesSq += value;
+              }
+
+          void
+              addSimpleValue(float value, float weight)
+              {
+                  addToSumOfValues(value, weight);
+                  addToSumOfWeights(weight);
+                  addToSumOfValuesSq(value, weight);
+              }
+
+          void
+              calculateMean()
+              {
+                  this->mMean = (mSumOfValues / mSumOfWeights);
+              }
+
+          void
+              calculateStdDev()
+              {
+                  float stdDev = sqrt(
+                                      fabs(mSumOfValuesSq - mMean * mSumOfValues)
+                                      / mSumOfWeights);
+                  // If the stdDev ~= 0, we really have no idea of scale yet,
+                  // so stick with the default. Otherwise...
+                  if (stdDev > 1e-10) {
+                      this->mStandardDev = std::max(mPrecision / (2 * 3),
+                                              // allow at most 3sd's within one interval
+                                              stdDev);
+                  }
+              }
           /**
            * Add a new data value to the current estimator.
            *
@@ -196,17 +262,8 @@ namespace est
                   mSumOfValuesSq += data * data * weight;
 
                   if (mSumOfValues > 0.0) {
-                      mMean = mSumOfValues / mSumOfWeights;
-                      float stdDev = sqrt(
-                                          fabs(mSumOfValuesSq - mMean * mSumOfValues)
-                                          / mSumOfWeights);
-                      // If the stdDev ~= 0, we really have no idea of scale yet,
-                      // so stick with the default. Otherwise...
-                      if (stdDev > 1e-10) {
-                          mStandardDev = std::max(mPrecision / (2 * 3),
-                                                  // allow at most 3sd's within one interval
-                                                  stdDev);
-                      }
+                      calculateMean();
+                      calculateStdDev();
                   }
               }
 

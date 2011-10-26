@@ -111,11 +111,9 @@ public:
             }
         }
 
-        //float **distributions = new float*[maxAttValsObserved];
         size_t ySize = resultingDists[0].size();
         Matrix_t distributions(boost::extents[maxAttValsObserved][ySize]);
         for (int i = 0; i < maxAttValsObserved; i++) {
-            //distributions[i] = new float[resultingDists[i].size()];
             resultingDists[i] = distributions[i];
         }
         return distributions;
@@ -142,19 +140,8 @@ public:
 
         size_t notEqualDistSize = notEqualDist.size();
         Matrix_t resultMatrix(boost::extents[2][notEqualDistSize]);
-        /*
-         copy_dvec_to_marray(equalsDist, resultMatrix[0]);
-         copy_dvec_to_marray(notEqualDist, resultMatrix[1]);
-         */
         resultMatrix[0] = equalsDist;
         resultMatrix[1] = notEqualDist;
-        /*
-         float **resultMatrix = new float*[2];
-         for (size_t siz = 0; siz < 2; siz++)
-         resultArray[siz] = new float[notEqualDistSize];
-         copy_dvec_to_array(equalsDist, resultArray[0]);
-         copy_dvec_to_array(notEqualDist, resultArray[1]);
-         */
         return resultMatrix;
     }
 

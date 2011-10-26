@@ -6,24 +6,18 @@
  *
  */
 
-#include <vector>
-#include <string>
-#include <fstream>
-#include <float.h>
+#include <cfloat>
 #include <netdb.h>
 #include <cstring>
 #include <cstdio>
 #include <cstdlib>
+#include <cmath>
 
 #include <pthread.h>
 
-#include <math.h>
-
-#include "multiclass/nb.h"
-#include "multiclass/numattrobs.h"
-#include "multiclass/nomattrobs.h"
-#include "multiclass/parse_nbmodel.h"
-#include "multiclass/evaluation.h"
+#include <vector>
+#include <string>
+#include <fstream>
 
 #include "parse_example.h"
 #include "constant.h"
@@ -34,6 +28,13 @@
 #include "delay_ring.h"
 #include "parse_arfheader.h"
 #include "utils.h"
+
+#include "multiclass/nb.h"
+#include "multiclass/numattrobs.h"
+#include "multiclass/nomattrobs.h"
+#include "multiclass/parse_nbmodel.h"
+#include "multiclass/evaluation.h"
+#include "multiclass/estimator.h"
 
 int no_of_preds = 0;
 
@@ -63,16 +64,13 @@ nb_thread(void *in)
   if (params->vars->eval == NULL) {
     params->vars->eval = new Evaluation();
   }
-
   if (params->vars == NULL) {
     params->vars = new nb_vars();
   }
-
   if ((params->vars->observedClassDist.size() != no_of_cats) && (no_of_cats
                                                                  > 0)) {
     params->vars->observedClassDist.resize(boost::extents[no_of_cats]);
   }
-
   if (params->vars->attributeObservers.size() != no_of_feats && (no_of_feats
                                                                  > 0)) {
     params->vars->attributeObservers.resize(no_of_feats);
@@ -267,27 +265,39 @@ setup_nb (nb_thread_params t)
 
 //pthread_mutex_t createModelFileMutex = PTHREAD_MUTEX_INITIALIZER;
 void 
-joinThreadData(nb_vars *tvars, arfheader *arfHeader) {
+joinThreadData(nb_vars &tvars, arfheader *arfHeader) {
+  float sumOfWeights = 0.0;
+  float sumOfValues = 0.0;
+  float sumOfValuesSq = 0.0;
+
   for (size_t i = 0; i < num_threads; i++) {
     if (passers[i]->vars>noOfObservedExamples > 0) {
-      if (tvars->observedClassDist.size() < (passers[i]->vars->observedClassDist).size()) {
-        tvars->observedClassDist.resize(boost::extents[(passers[i]->vars->attributeObservers).size()]);
+      if (tvars.observedClassDist.size() < (passers[i]->vars->observedClassDist).size()) {
+        tvars.observedClassDist.resize(boost::extents[(passers[i]->vars->attributeObservers).size()]);
       }
-      if (tvars->attributeObservers.size() < (passers[i]->vars->attributeObservers).size()) {
-        tvars->attributeObservers.resize((passers[i]->vars->attributeObservers).size());
+      if (tvars.attributeObservers.size() < (passers[i]->vars->attributeObservers).size()) {
+        tvars.attributeObservers.resize((passers[i]->vars->attributeObservers).size());
       }
-      for (size_t  j = 0; j < tvars->observedClassDist.size(); j++) {
-        tvars->observedClassDist[j] += passers[i]->vars->observedClassDist[j];
-
+      for (size_t  j = 0; j < tvars.observedClassDist.size(); j++) {
+        tvars.observedClassDist[j] += passers[i]->vars->observedClassDist[j];
       }
-      for (size_t j = 0; j < tvars->attributeObservers.size(); j++) {
+      for (size_t j = 0; j < tvars.attributeObservers.size(); j++) {
         if (arfHeader->features[j].type == NUMERIC) {
           NumAttrObserver numAttrObs = *(dynamic_cast<NumAttrObserver *>(passers[i]->vars->attributeObservers[j]));
-          
+          vector <NormalEstimator>attValDistPerClass = numAttrObs.getAttValDistPerClass();
+
+          for (size_t i = 0; i < attValDistPerClass.size(); i++) {
+            (tvars.attributeObservers[j].getAttValDistPerClass()[i]).addToSumOfValues(attValDistPerClass[i].getSumOfValues());
+            (tvars.attributeObservers[j].getAttValDistPerClass()[i]).addToSumOfWeights(attValDistPerClass[i].getSumOfWeight());
+            (tvars.attributeObservers[j].getAttValDistPerClass()[i]).addToSumOfValuesSq(attValDistPerClass[i].getSumOfValuesSq());
+            if (j == (tvars.attributeObservers.size() - 1)) {
+              (tvars.attributeObservers[j].getAttValDistPerClass()[i]).calculateMean();
+              (tvars.attributeObservers[j].getAttValDistPerClass()[i]).calculateStdDev();
+            }
+          }
         }
         else if (arfHeader->features[j].type == NOMINAL) {
-           NomAttrObserver nomAttrObs = *(dynamic_cast<NomAttrObserver *>(passers[i]->vars->attributeObservers[j]));
-
+          NomAttrObserver nomAttrObs = *(dynamic_cast<NomAttrObserver *>(passers[i]->vars->attributeObservers[j]));
         }
       }
     }
@@ -300,24 +310,27 @@ destroy_nb()
   std::string nbModelFile = global.nb_model_file;
   Evaluation eval;
   nb_vars merged_tdata;
+  eval.joinEvaluation(merged_tdata, passers[0]->arfHeader);
+
+  if (nbModelFile.size() > 0 && i == 0) {
+    cout << "No of observed examples: "
+      << merged_tdata.noOfObservedExamples << endl;
+
+    scale_vals (merged_tdata.observedClassDist,
+                merged_tdata.noOfObservedExamples);
+
+    writeModelFile (merged_tdata.observedClassDist,
+                    merged_tdata.attributeObservers,
+                    passers[0]->arfHeader, 
+                    nbModelFile);
+  }
+
   for (size_t i = 0; i < num_threads; i++) {
     cout << "Thread " << i << " exiting" << endl;
     pthread_join(threads[i], NULL);
-    eval.joinEvaluation(passers[i]->vars, passers[i]->arfHeader);
-    if (nbModelFile.size() > 0 && i == 0) {
-      cout << "No of observed examples: "
-        << passers[0]->vars->noOfObservedExamples << endl;
-
-      scale_vals (passers[0]->vars->observedClassDist,
-                  passers[0]->vars->noOfObservedExamples);
-
-      writeModelFile (passers[0]->vars->observedClassDist,
-                      passers[0]->vars->attributeObservers,
-                      passers[0]->arfHeader, 
-                      nbModelFile);
-    }
     c_free(passers[i]);
   }
+
   if (eval.getError()) {
     cout << "Error: " << eval.getError() << endl;
   }

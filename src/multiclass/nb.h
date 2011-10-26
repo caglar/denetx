@@ -15,9 +15,10 @@
 #include "parse_regressor.h"
 #include "parse_arfheader.h"
 #include "parser.h"
+
 #include "multiclass/dvec.h"
 #include "multiclass/attrobs.h"
-#include "evaluation.h"
+#include "multiclass/evaluation.h"
 
 void
 print_result(int f, float res, v_array<char> tag);
@@ -30,9 +31,8 @@ struct nb_vars
     float power_t;
     Evaluation *eval;
     nb_vars() :
-        observedClassDist(boost::extents[2]), attributeObservers(0), power_t(0)
+        observedClassDist (boost::extents[2]), attributeObservers (0), power_t (0)
     {
-
     }
 
     void
