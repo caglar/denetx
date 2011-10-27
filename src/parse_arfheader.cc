@@ -62,7 +62,7 @@ parseArfHeader(TiXmlNode* parent, arfheader *arfHeader)
 //    TiXmlText* text;
     int t = parent->Type();
 
-    if (t == TiXmlNode::ELEMENT) {
+    if (t == TiXmlNode::TINYXML_ELEMENT) {
         char *elemName = (char *) parent->Value();
         setElement(parent->ToElement(), elemName, arfHeader);
     }

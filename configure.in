@@ -1,7 +1,7 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_PREREQ([2.67])
+AC_PREREQ([2.68])
 AC_INIT([denetX],[VERSION],[caglar@ulakbim.gov.tr])
 AM_INIT_AUTOMAKE([1.10 -Wall no-define])
 

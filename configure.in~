@@ -2,13 +2,16 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.67])
-AC_INIT([denetX], [VERSION], [caglar@ulakbim.gov.tr])
+AC_INIT([denetX],[VERSION],[caglar@ulakbim.gov.tr])
 AM_INIT_AUTOMAKE([1.10 -Wall no-define])
 
 AC_CONFIG_SRCDIR([src/constant.h])
 AC_CONFIG_HEADERS([config.h])
 
 # Checks for programs.
+if test -z $CXXFLAGS; then
+      CXXFLAGS=''
+    fi
 AC_PROG_CXX
 AC_PROG_CC
 

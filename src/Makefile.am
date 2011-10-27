@@ -1,4 +1,4 @@
-COMPILER= g++-4.5
+COMPILER= g++-4.6
 LIBS= -l boost_program_options -l pthread -l z -ltinyxml
 BOOST_INCLUDE= /usr/local/include
 BOOST_LIBRARY= /usr/local/lib

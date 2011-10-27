@@ -48,6 +48,9 @@ void
 scale_vals(DVec& dvec, float sval);
 
 void
+sumDVecs(DVec first, DVec &second);
+
+void
 normalize(DVec& dvec);
 
 int

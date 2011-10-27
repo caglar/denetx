@@ -173,7 +173,7 @@ target_alias =
 top_build_prefix = ../
 top_builddir = ..
 top_srcdir = ..
-COMPILER = g++-4.5
+COMPILER = g++-4.6
 BOOST_INCLUDE = /usr/local/include
 BOOST_LIBRARY = /usr/local/lib
 STD = -std=c++0x

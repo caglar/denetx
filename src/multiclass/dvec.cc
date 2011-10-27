@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include <algorithm>
+#include <functional>
 #include <map>
 #include <boost/multi_array.hpp>
 
@@ -19,6 +20,8 @@
 using std::copy;
 using std::max_element;
 using std::min_element;
+using std::transform;
+using std::plus;
 
 bool
 val_cmp(const DVec::value_type &i1, const DVec::value_type &i2);
@@ -38,18 +41,18 @@ copy_dvec_to_array(const DVec &dvec, float *val)
 }
 
 template<typename T>
-    void
-    copy_dvec_to_stl_ds(const DVec &dvec, T &vec)
-    {
-        copy(dvec.begin(), dvec.end(), vec.begin());
-    }
+void
+copy_dvec_to_stl_ds(const DVec &dvec, T &vec)
+{
+    copy(dvec.begin(), dvec.end(), vec.begin());
+}
 
 template<typename T>
-    void
-    copy_stl_ds_to_dvec(DVec &dvec, const T &vec)
-    {
-        copy(vec.begin(), vec.end(), dvec.begin());
-    }
+void
+copy_stl_ds_to_dvec(DVec &dvec, const T &vec)
+{
+    copy(vec.begin(), vec.end(), dvec.begin());
+}
 
 bool
 val_cmp(const DVec::value_type& i1, const DVec::value_type& i2)
@@ -151,4 +154,10 @@ normalize(DVec& dvec)
             scale_vals(dvec, sum);
         }
     }
+}
+
+void
+sumDVecs(DVec first, DVec &second)
+{
+    transform(first.begin(), first.end(), second.begin(), second.begin(), plus<double>());
 }

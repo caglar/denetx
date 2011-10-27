@@ -1,41 +1,44 @@
-arraycopy.o: multiclass/arraycopy.cc \
- /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/cstring \
- /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/i686-pc-linux-gnu/bits/c++config.h \
- /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/i686-pc-linux-gnu/bits/os_defines.h \
- /usr/include/features.h /usr/include/bits/predefs.h \
- /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
- /usr/include/gnu/stubs.h /usr/include/gnu/stubs-32.h \
- /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/i686-pc-linux-gnu/bits/cpu_defines.h \
- /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/cstddef \
- /usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/include/stddef.h \
- /usr/include/string.h /usr/include/xlocale.h multiclass/arraycopy.h
+arraycopy.o: multiclass/arraycopy.cc /usr/include/c++/4.6/cstring \
+ /usr/include/c++/4.6/i686-linux-gnu/./bits/c++config.h \
+ /usr/include/c++/4.6/i686-linux-gnu/./bits/os_defines.h \
+ /usr/include/features.h /usr/include/i386-linux-gnu/bits/predefs.h \
+ /usr/include/i386-linux-gnu/sys/cdefs.h \
+ /usr/include/i386-linux-gnu/bits/wordsize.h \
+ /usr/include/i386-linux-gnu/gnu/stubs.h \
+ /usr/include/i386-linux-gnu/gnu/stubs-32.h \
+ /usr/include/c++/4.6/i686-linux-gnu/./bits/cpu_defines.h \
+ /usr/include/string.h /usr/lib/gcc/i686-linux-gnu/4.6.1/include/stddef.h \
+ /usr/include/xlocale.h /usr/include/i386-linux-gnu/bits/string3.h \
+ multiclass/arraycopy.h /usr/include/c++/4.6/cstddef
 
-/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/cstring:
+/usr/include/c++/4.6/cstring:
 
-/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/i686-pc-linux-gnu/bits/c++config.h:
+/usr/include/c++/4.6/i686-linux-gnu/./bits/c++config.h:
 
-/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/i686-pc-linux-gnu/bits/os_defines.h:
+/usr/include/c++/4.6/i686-linux-gnu/./bits/os_defines.h:
 
 /usr/include/features.h:
 
-/usr/include/bits/predefs.h:
+/usr/include/i386-linux-gnu/bits/predefs.h:
 
-/usr/include/sys/cdefs.h:
+/usr/include/i386-linux-gnu/sys/cdefs.h:
 
-/usr/include/bits/wordsize.h:
+/usr/include/i386-linux-gnu/bits/wordsize.h:
 
-/usr/include/gnu/stubs.h:
+/usr/include/i386-linux-gnu/gnu/stubs.h:
 
-/usr/include/gnu/stubs-32.h:
+/usr/include/i386-linux-gnu/gnu/stubs-32.h:
 
-/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/i686-pc-linux-gnu/bits/cpu_defines.h:
-
-/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/../../../../include/c++/4.4.4/cstddef:
-
-/usr/local/lib/gcc/i686-pc-linux-gnu/4.4.4/include/stddef.h:
+/usr/include/c++/4.6/i686-linux-gnu/./bits/cpu_defines.h:
 
 /usr/include/string.h:
 
+/usr/lib/gcc/i686-linux-gnu/4.6.1/include/stddef.h:
+
 /usr/include/xlocale.h:
 
+/usr/include/i386-linux-gnu/bits/string3.h:
+
 multiclass/arraycopy.h:
+
+/usr/include/c++/4.6/cstddef:

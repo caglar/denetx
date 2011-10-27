@@ -79,7 +79,7 @@ createModelFileContent(DVec const &observedClassDist,
                         dynamic_cast<NomAttrObserver *> (attributeObservers[i]);
 
                 vector<DVec> attValDistPerClass =
-                        nomAttrObs->getattValDistPerClass();
+                        nomAttrObs->getAttValDistPerClass();
 
                 unsigned int classSize = attValDistPerClass.size();
                 for (auto j = 0; j < classSize; j++) {

@@ -265,43 +265,50 @@ setup_nb (nb_thread_params t)
 
 //pthread_mutex_t createModelFileMutex = PTHREAD_MUTEX_INITIALIZER;
 void 
-joinThreadData(nb_vars &tvars, arfheader *arfHeader) {
+joinThreadData(nb_vars &tvars, arfheader *arfHeader, size_t tnum) {
   float sumOfWeights = 0.0;
   float sumOfValues = 0.0;
   float sumOfValuesSq = 0.0;
 
-  for (size_t i = 0; i < num_threads; i++) {
-    if (passers[i]->vars>noOfObservedExamples > 0) {
-      if (tvars.observedClassDist.size() < (passers[i]->vars->observedClassDist).size()) {
-        tvars.observedClassDist.resize(boost::extents[(passers[i]->vars->attributeObservers).size()]);
-      }
-      if (tvars.attributeObservers.size() < (passers[i]->vars->attributeObservers).size()) {
-        tvars.attributeObservers.resize((passers[i]->vars->attributeObservers).size());
-      }
-      for (size_t  j = 0; j < tvars.observedClassDist.size(); j++) {
-        tvars.observedClassDist[j] += passers[i]->vars->observedClassDist[j];
-      }
-      for (size_t j = 0; j < tvars.attributeObservers.size(); j++) {
-        if (arfHeader->features[j].type == NUMERIC) {
-          NumAttrObserver numAttrObs = *(dynamic_cast<NumAttrObserver *>(passers[i]->vars->attributeObservers[j]));
-          vector <NormalEstimator>attValDistPerClass = numAttrObs.getAttValDistPerClass();
-
-          for (size_t i = 0; i < attValDistPerClass.size(); i++) {
-            (tvars.attributeObservers[j].getAttValDistPerClass()[i]).addToSumOfValues(attValDistPerClass[i].getSumOfValues());
-            (tvars.attributeObservers[j].getAttValDistPerClass()[i]).addToSumOfWeights(attValDistPerClass[i].getSumOfWeight());
-            (tvars.attributeObservers[j].getAttValDistPerClass()[i]).addToSumOfValuesSq(attValDistPerClass[i].getSumOfValuesSq());
-            if (j == (tvars.attributeObservers.size() - 1)) {
-              (tvars.attributeObservers[j].getAttValDistPerClass()[i]).calculateMean();
-              (tvars.attributeObservers[j].getAttValDistPerClass()[i]).calculateStdDev();
-            }
+  //    for (size_t i = 0; i < num_threads; i++) {
+  if (passers[tnum]->vars->noOfObservedExamples > 0) {
+    if (tvars.observedClassDist.size() < (passers[tnum]->vars->observedClassDist).size()) {
+      tvars.observedClassDist.resize(boost::extents[(passers[tnum]->vars->attributeObservers).size()]);
+    }
+    if (tvars.attributeObservers.size() < (passers[tnum]->vars->attributeObservers).size()) {
+      tvars.attributeObservers.resize((passers[tnum]->vars->attributeObservers).size());
+    }
+    for (size_t  j = 0; j < tvars.observedClassDist.size(); j++) {
+      tvars.observedClassDist[j] += passers[tnum]->vars->observedClassDist[j];
+    }
+    for (size_t j = 0; j < tvars.attributeObservers.size(); j++) {
+      if (arfHeader->features[j].type == NUMERIC) {
+        NumAttrObserver numAttrObs = *(dynamic_cast<NumAttrObserver *>(passers[tnum]->vars->attributeObservers[j]));
+        vector <NormalEstimator>attValDistPerClass = numAttrObs.getAttValDistPerClass();
+        NumAttrObserver * attributeObserver = (dynamic_cast<NumAttrObserver *>(tvars.attributeObservers[j]));
+        for (size_t i = 0; i < attValDistPerClass.size(); i++) {
+          (attributeObserver->getAttValDistPerClass()[i]).addToSumOfValues(attValDistPerClass[i].getSumOfValues());
+          (attributeObserver->getAttValDistPerClass()[i]).addToSumOfWeights(attValDistPerClass[i].getSumOfWeights());
+          (attributeObserver->getAttValDistPerClass()[i]).addToSumOfValuesSq(attValDistPerClass[i].getSumOfValuesSq());
+          if (j == (tvars.attributeObservers.size() - 1)) {
+            (attributeObserver->getAttValDistPerClass()[i]).calculateMean();
+            (attributeObserver->getAttValDistPerClass()[i]).calculateStdDev();
           }
         }
-        else if (arfHeader->features[j].type == NOMINAL) {
-          NomAttrObserver nomAttrObs = *(dynamic_cast<NomAttrObserver *>(passers[i]->vars->attributeObservers[j]));
+      }
+      else if (arfHeader->features[j].type == NOMINAL) {
+        NomAttrObserver nomAttrObs = *(dynamic_cast<NomAttrObserver *>(passers[tnum]->vars->attributeObservers[j]));
+        vector<DVec> attValDistPerClass = nomAttrObs.getAttValDistPerClass();
+        NomAttrObserver *attributeObserver = (dynamic_cast<NomAttrObserver *>(tvars.attributeObservers[j]));
+        for (size_t i = 0; i < attValDistPerClass.size(); i++) {
+          sumDVecs(attValDistPerClass[i], attributeObserver->getAttValDistPerClass()[i]);
+          attributeObserver->addMissingWeightsObserved(nomAttrObs.getMissingWeightsObserved());
+          attributeObserver->addTotalClassWeightsObserved(nomAttrObs.getTotalClassWeightsObserved());
         }
       }
     }
   }
+  //    }
 }
 
 void
@@ -310,24 +317,28 @@ destroy_nb()
   std::string nbModelFile = global.nb_model_file;
   Evaluation eval;
   nb_vars merged_tdata;
-  eval.joinEvaluation(merged_tdata, passers[0]->arfHeader);
-
-  if (nbModelFile.size() > 0 && i == 0) {
-    cout << "No of observed examples: "
-      << merged_tdata.noOfObservedExamples << endl;
-
-    scale_vals (merged_tdata.observedClassDist,
-                merged_tdata.noOfObservedExamples);
-
-    writeModelFile (merged_tdata.observedClassDist,
-                    merged_tdata.attributeObservers,
-                    passers[0]->arfHeader, 
-                    nbModelFile);
-  }
+  arfheader *arfHeader = new arfheader(*(passers[0]->arfHeader));
+  //eval.joinEvaluation(merged_tdata, passers[0]->arfHeader);
 
   for (size_t i = 0; i < num_threads; i++) {
     cout << "Thread " << i << " exiting" << endl;
     pthread_join(threads[i], NULL);
+
+    joinThreadData(merged_tdata, arfHeader, i);
+
+    if (nbModelFile.size() > 0 && i == 0) {
+      cout << "No of observed examples: "
+        << merged_tdata.noOfObservedExamples << endl;
+
+      scale_vals (merged_tdata.observedClassDist,
+                  merged_tdata.noOfObservedExamples);
+
+      writeModelFile (merged_tdata.observedClassDist,
+                      merged_tdata.attributeObservers,
+                      arfHeader,
+                      nbModelFile);
+    }
+
     c_free(passers[i]);
   }
 

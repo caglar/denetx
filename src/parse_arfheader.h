@@ -51,6 +51,15 @@ struct arfheader
         taskName(""), no_of_features(0), no_of_categories(0)
     {
     }
+
+    arfheader (const arfheader& rhs)
+    {
+        taskName = rhs.taskName;
+        features = rhs.features;
+        no_of_features = rhs.no_of_features;
+        categories = rhs.categories;
+        no_of_categories = rhs.no_of_categories;
+    }
 };
 
 arfheader *

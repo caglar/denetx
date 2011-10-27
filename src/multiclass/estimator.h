@@ -206,7 +206,7 @@ namespace est
           void
               addToSumOfValuesSq(float sqValue)
               {
-                  this->mSumOfValuesSq += value;
+                  this->mSumOfValuesSq += sqValue;
               }
 
           void
