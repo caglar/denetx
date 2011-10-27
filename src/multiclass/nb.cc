@@ -266,11 +266,6 @@ setup_nb (nb_thread_params t)
 //pthread_mutex_t createModelFileMutex = PTHREAD_MUTEX_INITIALIZER;
 void 
 joinThreadData(nb_vars &tvars, arfheader *arfHeader, size_t tnum) {
-  float sumOfWeights = 0.0;
-  float sumOfValues = 0.0;
-  float sumOfValuesSq = 0.0;
-
-  //    for (size_t i = 0; i < num_threads; i++) {
   if (passers[tnum]->vars->noOfObservedExamples > 0) {
     if (tvars.observedClassDist.size() < (passers[tnum]->vars->observedClassDist).size()) {
       tvars.observedClassDist.resize(boost::extents[(passers[tnum]->vars->attributeObservers).size()]);
@@ -308,7 +303,6 @@ joinThreadData(nb_vars &tvars, arfheader *arfHeader, size_t tnum) {
       }
     }
   }
-  //    }
 }
 
 void
