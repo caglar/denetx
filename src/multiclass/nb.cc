@@ -318,21 +318,22 @@ destroy_nb()
     cout << "Thread " << i << " exiting" << endl;
     pthread_join(threads[i], NULL);
 
-    joinThreadData(merged_tdata, arfHeader, i);
+    if (num_threads > 1) {
+      joinThreadData(merged_tdata, arfHeader, i);
 
-    if (nbModelFile.size() > 0 && i == 0) {
-      cout << "No of observed examples: "
-        << merged_tdata.noOfObservedExamples << endl;
+      if (nbModelFile.size() > 0 && i == 0) {
+        cout << "No of observed examples: "
+          << merged_tdata.noOfObservedExamples << endl;
+        
+        scale_vals (merged_tdata.observedClassDist,
+                    merged_tdata.noOfObservedExamples);
 
-      scale_vals (merged_tdata.observedClassDist,
-                  merged_tdata.noOfObservedExamples);
-
-      writeModelFile (merged_tdata.observedClassDist,
-                      merged_tdata.attributeObservers,
-                      arfHeader,
-                      nbModelFile);
+        writeModelFile (merged_tdata.observedClassDist,
+                        merged_tdata.attributeObservers,
+                        arfHeader,
+                        nbModelFile);
+      }
     }
-
     c_free(passers[i]);
   }
 

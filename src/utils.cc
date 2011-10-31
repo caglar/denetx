@@ -434,6 +434,11 @@ c_contains(const char *s1, const char *s2)
                 result = true;
             }
         }
+        else if (c_strlen(s1) == c_strlen(s2)) {
+          if (strcmp(s1, s2) == 0) {
+              result = true;
+          }
+        }
     }
     return result;
 }

@@ -38,7 +38,7 @@ unsigned int buf_read(io_buf &i, char* &pointer, int n)
 }
 
 size_t readto(io_buf &i, char* &pointer, char terminal)
-{//Return a pointer to the bytes before the terminal.  Must be less than the buffer size.
+{ //Return a pointer to the bytes before the terminal.  Must be less than the buffer size.
   pointer = i.space.end;
   while (pointer != i.endloaded && *pointer != terminal)
     pointer++;
