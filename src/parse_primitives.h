@@ -44,7 +44,15 @@ print_substring(substring s)
 inline float
 float_of_substring(substring s)
 {
-    return atof(string(s.start, s.end - s.start).c_str());
+  char* endptr = s.end;
+  float f = strtof(s.start,&endptr);
+  if (endptr == s.start && s.start != s.end)
+    {
+      std::cout << "error: " << std::string(s.start, s.end-s.start).c_str() << " is not a float" << std::endl;
+      f = 0;
+    }
+  return f;
+
 }
 
 inline float
@@ -60,8 +68,15 @@ zero_copy_float_of_substring(substring s)
 inline double
 double_of_substring(substring s)
 {
-    const char *substr = string(s.start, s.end - s.start).c_str();
-    return atof(substr);
+  char* endptr = s.end;
+  float f = strtod(s.start,&endptr);
+  if (endptr == s.start && s.start != s.end)
+    {
+      std::cout << "error: " << std::string(s.start, s.end-s.start).c_str() << " is not a double" << std::endl;
+      f = 0;
+    }
+  return f;
+
 }
 
 inline int
@@ -79,7 +94,7 @@ ulong_of_substring(substring s)
 inline unsigned long
 ss_length(substring s)
 {
-    return (s.end - s.start);
+  return (s.end - s.start);
 }
 
 #endif

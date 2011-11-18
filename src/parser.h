@@ -20,6 +20,7 @@ struct label_parser {
   size_t (*read_cached_label)(void*, io_buf& cache);
   void (*delete_label)(void*);
   float (*get_weight)(void*);
+  float (*get_initial)(void*);
   size_t label_size;
 };
 
@@ -31,14 +32,13 @@ struct parser {
   v_array<substring> name;
 
   const label_parser* lp;
-  float t;
 
   io_buf* input; //Input source(s)
   int (*reader)(parser* p, void* ae);
   hash_func_t hasher;
   bool resettable; //Whether or not the input can be reset.
   io_buf* output; //Where to output the cache.
-  bool write_cache; 
+  bool write_cache;
   bool sort_features;
   bool sorted_cache;
 
@@ -47,8 +47,11 @@ struct parser {
   v_array<size_t> counts; //partial examples received from sources
   size_t finished_count;//the number of finished examples;
   int label_sock;
+  int bound_sock;
   int max_fd;
 };
+
+const size_t constant_namespace = 128;
 
 parser* new_parser(const label_parser* lp);
 #include <boost/program_options.hpp>

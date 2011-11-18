@@ -47,7 +47,9 @@ global_data.o: global_data.cc /usr/include/pthread.h \
  /usr/include/c++/4.6/bits/functional_hash.h \
  /usr/include/c++/4.6/bits/hash_bytes.h \
  /usr/include/c++/4.6/bits/range_access.h \
- /usr/include/c++/4.6/bits/vector.tcc v_array.h /usr/include/stdlib.h \
+ /usr/include/c++/4.6/bits/vector.tcc \
+ /usr/lib/gcc/i686-linux-gnu/4.6.1/include/stdint.h /usr/include/stdint.h \
+ /usr/include/i386-linux-gnu/bits/wchar.h v_array.h /usr/include/stdlib.h \
  /usr/include/i386-linux-gnu/bits/waitflags.h \
  /usr/include/i386-linux-gnu/bits/waitstatus.h \
  /usr/include/i386-linux-gnu/sys/types.h \
@@ -61,9 +63,7 @@ global_data.o: global_data.cc /usr/include/pthread.h \
  /usr/include/c++/4.6/bits/stringfwd.h \
  /usr/include/c++/4.6/bits/char_traits.h \
  /usr/include/c++/4.6/bits/postypes.h /usr/include/c++/4.6/cwchar \
- /usr/include/i386-linux-gnu/bits/wchar.h \
  /usr/include/i386-linux-gnu/bits/wchar2.h /usr/include/c++/4.6/cstdint \
- /usr/lib/gcc/i686-linux-gnu/4.6.1/include/stdint.h /usr/include/stdint.h \
  /usr/include/c++/4.6/bits/localefwd.h \
  /usr/include/c++/4.6/i686-linux-gnu/./bits/c++locale.h \
  /usr/include/c++/4.6/clocale /usr/include/locale.h \
@@ -503,6 +503,12 @@ global_data.h:
 
 /usr/include/c++/4.6/bits/vector.tcc:
 
+/usr/lib/gcc/i686-linux-gnu/4.6.1/include/stdint.h:
+
+/usr/include/stdint.h:
+
+/usr/include/i386-linux-gnu/bits/wchar.h:
+
 v_array.h:
 
 /usr/include/stdlib.h:
@@ -543,15 +549,9 @@ loss_functions.h:
 
 /usr/include/c++/4.6/cwchar:
 
-/usr/include/i386-linux-gnu/bits/wchar.h:
-
 /usr/include/i386-linux-gnu/bits/wchar2.h:
 
 /usr/include/c++/4.6/cstdint:
-
-/usr/lib/gcc/i686-linux-gnu/4.6.1/include/stdint.h:
-
-/usr/include/stdint.h:
 
 /usr/include/c++/4.6/bits/localefwd.h:
 

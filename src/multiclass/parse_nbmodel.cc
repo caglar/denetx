@@ -55,11 +55,10 @@ static const string SEPERATOR = "%==%";
  *      The ordering of the data for nominal attributes will be:
  *       attNo,1,classNo,attVal,weight
  */
-
 static void
-createModelFileContent(DVec const &observedClassDist,
-                       vector<AttributeClassObserver *> const &attributeObservers,
-                       arfheader *arfHeader, string& model_file_content)
+         createModelFileContent(DVec const &observedClassDist,
+                                vector<AttributeClassObserver *> const &attributeObservers,
+                                arfheader *arfHeader, string& model_file_content)
 {
   std::map<uint32_t, arffeature> arfAtts = arfHeader->features;
   model_file_content = "";
@@ -76,10 +75,8 @@ createModelFileContent(DVec const &observedClassDist,
       if (arfAtts[i].type == NOMINAL) {
         NomAttrObserver *nomAttrObs =
           dynamic_cast<NomAttrObserver *> (attributeObservers[i]);
-
         vector<DVec> attValDistPerClass =
           nomAttrObs->getAttValDistPerClass();
-
         unsigned int classSize = attValDistPerClass.size();
         for (auto j = 0; j < classSize; j++) {
           unsigned int valSize = attValDistPerClass[j].size();
@@ -151,7 +148,7 @@ parseObservedClassDistModelLine(DVec &observedClassDist, const char *line)
     if (rest != NULL && rest[0] == ' ')
       strcpy(val_chopped, rest + 1);
 
-    weight = strtof(val_chopped, NULL);
+    weight = strtof(val_chopped, (char **)NULL);
     observedClassDist[classVal] = weight;
   }
 }
@@ -164,8 +161,8 @@ parseAttributeObserverModelLine(const char *line, size_t no_of_classes)
 {
   AttributeClassObserver *attObserver = NULL;
   NormalEstimator *nEst = NULL;
-  char * rest;
-  char * ptr;
+  char *rest;
+  char *ptr;
   char *token;
 
   unsigned short int isNominal = 0;
@@ -235,15 +232,17 @@ parseAttributeObserverModelLine(const char *line, size_t no_of_classes)
              mean = atof(token);
              break;
            case 7:
-             standardDev = atof(token);
-             nEst = new NormalEstimator(no_of_classes);
-             nEst->setMean(mean);
-             nEst->setStandardDev(standardDev);
-             nEst->setSumOfValues(sumOfValues);
-             nEst->setSumOfWeights(sumOfWeights);
-             nEst->setSumOfWeights(sumOfValuesSq);
-             ((NumAttrObserver *) attObserver)->addNewValDist(*nEst,
-                                                              classNo);
+             standardDev = strtod(token, (char **) NULL);
+             {
+               nEst = new NormalEstimator(no_of_classes);
+               nEst->setMean(mean);
+               nEst->setStandardDev(standardDev);
+               nEst->setSumOfValues(sumOfValues);
+               nEst->setSumOfWeights(sumOfWeights);
+               nEst->setSumOfWeights(sumOfValuesSq);
+               ((NumAttrObserver *) attObserver)->addNewValDist(*nEst,
+                                                                classNo);
+             }
              break;
            default:
              break;

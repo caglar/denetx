@@ -7,6 +7,7 @@
 
 char*
 bufread_simple_label(label_data* ld, char* c);
+
 char*
 bufcache_simple_label(label_data* ld, char* c);
 
@@ -19,6 +20,9 @@ cache_simple_label(void* v, io_buf& cache);
 void
 default_simple_label(void* v);
 
+float
+get_initial(void* v);
+
 void
 parse_simple_label(void* v, v_array<substring>& words);
 
@@ -29,8 +33,13 @@ float
 get_weight(void* v);
 
 const label_parser simple_label =
-    { default_simple_label, parse_simple_label, cache_simple_label,
-            read_cached_simple_label, delete_simple_label, get_weight,
-            sizeof(label_data) };
+    { default_simple_label,
+      parse_simple_label,
+      cache_simple_label,
+      read_cached_simple_label,
+      delete_simple_label,
+      get_weight,
+      get_initial,
+      sizeof(label_data) };
 
 #endif

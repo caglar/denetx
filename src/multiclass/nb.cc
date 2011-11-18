@@ -51,7 +51,6 @@ pthread_mutex_t initMutex = PTHREAD_MUTEX_INITIALIZER;
 void *
 nb_thread(void *in)
 {
-
   nb_thread_params* params = static_cast<nb_thread_params*> (in);
   size_t thread_num = params->thread_num;
   example* ec = NULL;
@@ -59,18 +58,19 @@ nb_thread(void *in)
   size_t no_of_cats = params->arfHeader->no_of_categories;
   size_t no_of_feats = params->arfHeader->no_of_features;
 
-  printf("No of cats: %u, no of feats: %u \n", no_of_cats, no_of_feats);
-
   if (params->vars->eval == NULL) {
     params->vars->eval = new Evaluation();
   }
+
   if (params->vars == NULL) {
     params->vars = new nb_vars();
   }
+
   if ((params->vars->observedClassDist.size() != no_of_cats) && (no_of_cats
                                                                  > 0)) {
     params->vars->observedClassDist.resize(boost::extents[no_of_cats]);
   }
+
   if (params->vars->attributeObservers.size() != no_of_feats && (no_of_feats
                                                                  > 0)) {
     params->vars->attributeObservers.resize(no_of_feats);
@@ -78,7 +78,6 @@ nb_thread(void *in)
 
   while (true) {
     cout << "Thread num: " << thread_num << endl;
-    // this is a poor man's select operation.
     if ((ec = get_delay_example(thread_num)) != NULL)//nonblocking
     {
       nb_train_on_example(ec, params->arfHeader, thread_num, params);
@@ -96,7 +95,7 @@ nb_thread(void *in)
         label_data ld;
         ld.label = (static_cast<label_data *> (ec->ld))->label;
         ld.weight = (static_cast<label_data *> (ec->ld))->weight;
-
+        
         if (global.training && (ld.label != FLT_MAX)) {
           nb_train_on_example(ec, params->arfHeader, thread_num,
                               params);
@@ -105,9 +104,9 @@ nb_thread(void *in)
         else {
           params->predictions = naive_bayes_predict(ec, thread_num,
                                                     params);
-          DVec predVec;
-          copy_array_elements(predVec, params->predictions, no_of_cats);
-          ((Evaluation *)params->vars->eval)->evaluateModel(ec, predVec);
+//          DVec predVec;
+//          copy_array_elements(predVec, params->predictions, no_of_cats);
+//          ((Evaluation *)params->vars->eval)->evaluateModel(ec, predVec);
         }
       }
     }
@@ -154,15 +153,17 @@ naive_bayes_predict(example* ex, size_t thread_num, nb_thread_params* params)
            / observedClassSum);
       for (size_t *i = (ex->indices.begin); i != (ex->indices.end); i++) {
         int c = 0;
-        for (feature *f = ex->subsets[*i][thread_num]; f
-             != ex->subsets[*i][thread_num + 1]; f++) {
-          AttributeClassObserver *obs =
-            params->vars->attributeObservers[c];
-          feature f = ex->atomics[*i][thread_num];
-          if ((obs != NULL) && !(isnan(f.x))) {
+        for (feature *f = ex->subsets[*i][thread_num]; (f != ex->subsets[*i][thread_num + 1] && c < arfHeader->no_of_features); f++) {
+          AttributeClassObserver *obs = NULL;
+          if ((arfHeader->features[f->weight_index]).type == NUMERIC)
+            obs = dynamic_cast<NumAttrObserver *>(params->vars->attributeObservers[c]);
+          else
+            obs = dynamic_cast<NomAttrObserver *>(params->vars->attributeObservers[c]);
+
+          if ((obs != NULL) && !(isnan(f->x))) {
             classVotes[classIndex]
               *= obs->probabilityOfAttributeValueGivenClass(
-                                                            f.x, classIndex);
+                                                            f->x, classIndex);
           }
           c++;
         }
@@ -237,8 +238,8 @@ setup_nb (nb_thread_params t)
   std::string nbModelFile = global.nb_model_file;
   bool mFileFlag = false;
   DVec observedClassDist (boost::extents[t.arfHeader->no_of_categories]);
-  vector<AttributeClassObserver *> attributeObservers(
-                                                      t.arfHeader->no_of_features);
+  vector<AttributeClassObserver *> attributeObservers;
+  attributeObservers.resize(t.arfHeader->no_of_features);
 
   if (nbModelFile.size() > 0) {
     if (c_does_file_exist(nbModelFile.c_str()) && c_get_file_size(
@@ -251,6 +252,7 @@ setup_nb (nb_thread_params t)
     }
   }
 
+  cout << " Size: " << attributeObservers.size() << endl;
   for (size_t i = 0; i < num_threads; i++) {
     passers[i] = new nb_thread_params[1];
     *(passers[i]) = t;
@@ -263,8 +265,7 @@ setup_nb (nb_thread_params t)
   }
 }
 
-//pthread_mutex_t createModelFileMutex = PTHREAD_MUTEX_INITIALIZER;
-void 
+void
 joinThreadData(nb_vars &tvars, arfheader *arfHeader, size_t tnum) {
   if (passers[tnum]->vars->noOfObservedExamples > 0) {
     if (tvars.observedClassDist.size() < (passers[tnum]->vars->observedClassDist).size()) {
@@ -312,7 +313,6 @@ destroy_nb()
   Evaluation eval;
   nb_vars merged_tdata;
   arfheader *arfHeader = new arfheader(*(passers[0]->arfHeader));
-  //eval.joinEvaluation(merged_tdata, passers[0]->arfHeader);
 
   for (size_t i = 0; i < num_threads; i++) {
     cout << "Thread " << i << " exiting" << endl;
@@ -324,7 +324,6 @@ destroy_nb()
       if (nbModelFile.size() > 0 && i == 0) {
         cout << "No of observed examples: "
           << merged_tdata.noOfObservedExamples << endl;
-        
         scale_vals (merged_tdata.observedClassDist,
                     merged_tdata.noOfObservedExamples);
 

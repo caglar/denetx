@@ -36,8 +36,8 @@ class squaredloss : public loss_function {
 
     float
       getRevertingWeight(float prediction, float eta_t){
-      float t = 0.5*(global.min_label+global.max_label);
-      float alternative = (prediction > t) ? global.min_label : global.max_label;
+      float t = 0.5*(global.sd->min_label+global.sd->max_label);
+      float alternative = (prediction > t) ? global.sd->min_label : global.sd->max_label;
       return log((alternative-prediction)/(alternative-t))/eta_t;
     }
 
@@ -75,8 +75,8 @@ class classic_squaredloss : public loss_function {
     }
 
     float getRevertingWeight(float prediction, float eta_t){
-      float t = 0.5 * (global.min_label+global.max_label);
-      float alternative = (prediction > t) ? global.min_label : global.max_label;
+      float t = 0.5 * (global.sd->min_label+global.sd->max_label);
+      float alternative = (prediction > t) ? global.sd->min_label : global.sd->max_label;
       return (t-prediction)/((alternative-prediction)*eta_t);
     }
 
@@ -223,7 +223,7 @@ class quantileloss : public loss_function {
 
     float getRevertingWeight(float prediction, float eta_t){
       float v,t;
-      t = 0.5*(global.min_label+global.max_label);
+      t = 0.5*(global.sd->min_label+global.sd->max_label);
       if(prediction > t)
         v = -(1-tau);
       else
@@ -259,8 +259,8 @@ loss_function* getLossFunction(string funcName, double function_parameter) {
   } else if(funcName.compare("hinge") == 0) {
     return new hingeloss();
   } else if(funcName.compare("logistic") == 0) {
-    global.min_label = -100;
-    global.max_label = 100;
+    global.sd->min_label = -100;
+    global.sd->max_label = 100;
     return new logloss();
   } else if(funcName.compare("quantile") == 0 || funcName.compare("pinball") == 0 || funcName.compare("absolute") == 0) {
     return new quantileloss(function_parameter);

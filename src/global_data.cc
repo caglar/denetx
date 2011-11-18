@@ -6,7 +6,9 @@
 #include "message_relay.h"
 
 global_data global;
-string version = "5.1";
+string version = "1.0"; //Old was 5.1 && Added some changes from 6.0
+pthread_mutex_t output_lock = PTHREAD_MUTEX_INITIALIZER;
+pthread_cond_t output_done = PTHREAD_COND_INITIALIZER;
 
 void binary_print_result(int f, float res, float weight, v_array<char> tag)
 {
@@ -89,9 +91,9 @@ void print_lda_result(int f, float* res, float weight, v_array<char> tag)
 
 void set_mm(double label)
 {
-  global.min_label = min(global.min_label, label);
+  global.sd->min_label = min(global.sd->min_label, label);
   if (label != FLT_MAX)
-    global.max_label = max(global.max_label, label);
+    global.sd->max_label = max(global.sd->max_label, label);
 }
 
 void noop_mm(double label)

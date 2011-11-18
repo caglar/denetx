@@ -18,18 +18,17 @@ size_t
 hashstring(substring s, unsigned long h)
 {
   size_t ret = 0;
-  //remove whitespace characters
-  while (*s.start <= 0x20 && s.start != s.end)
-    s.start++;
-  while (*s.end - 1 <= 0x20 && s.start != s.end)
-    s.end--;
+  //trim leading whitespace
+  for(; *(s.start) <= 0x20 && s.start < s.end; s.start++);
+  //trim trailing white space
+  for(; *(s.end-1) <= 0x20 && s.end > s.start; s.end--);
 
   char *p = s.start;
   while (p != s.end)
     if (isdigit(*p))
       ret = 10 * ret + *(p++) - '0';
     else
-      return uniform_hash((unsigned char *) s.start, s.end - s.start, h);
+      return uniform_hash((unsigned char *)s.start, s.end - s.start, h);
 
   return ret + h;
 }
@@ -37,7 +36,7 @@ hashstring(substring s, unsigned long h)
 size_t
 hashall(substring s, unsigned long h)
 {
-  return uniform_hash((unsigned char *) s.start, s.end - s.start, h);
+  return uniform_hash((unsigned char *)s.start, s.end - s.start, h);
 }
 
 hash_func_t
@@ -201,7 +200,7 @@ read_features(parser* p, void* ex)
 
       size_t word_hash = (p->hasher(p->name[0], channel_hash)) & mask;
       feature f =
-      { v, word_hash };
+      { v, (uint32_t)word_hash };
       ae->sum_feat_sq[index] += v * v;
       push(ae->atomics[index], f);
     }

@@ -33,17 +33,6 @@ tokenize(char delim, substring s, v_array<substring>& ret)
     }
 }
 
-/*
-int
-isspace(int c)
-{
-    if (c == 0x20) {
-        return 1;
-    }
-    return 0;
-}
-*/
-
 char *
 trim(char *str)
 {

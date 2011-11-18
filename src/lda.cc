@@ -346,8 +346,8 @@ void start_lda(gd_thread_params t)
       float score = lda_loop(&v[d*global.lda], weights, examples[d],t.vars->power_t);
       if (global.audit)
         print_audit_features(reg, examples[d]);
-      global.sum_loss -= score;
-      global.sum_loss_since_last_dump -= score;
+      global.sd->sum_loss -= score;
+      global.sd->sum_loss_since_last_dump -= score;
       finish_example(examples[d]);
     }
 

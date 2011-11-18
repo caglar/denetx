@@ -33,7 +33,6 @@ class NumAttrObserver : public AttributeClassObserver
       DVec minValueObservedPerClass;
       DVec maxValueObservedPerClass;
       vector <NormalEstimator> attValDistPerClass;
-
       unsigned int mNoOfClasses;
       unsigned int numBins;
 

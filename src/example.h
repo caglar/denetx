@@ -10,6 +10,8 @@ struct label_data
 {
     float label;
     float weight;
+    float initial;
+
 };
 
 struct feature

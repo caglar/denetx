@@ -7,10 +7,11 @@ embodied in the content of this file are licensed under the BSD
 #ifndef GLOBAL_DATA_H
 #define GLOBAL_DATA_H
 #include <vector>
+#include <stdint.h>
 #include "v_array.h"
 #include "parse_regressor.h"
-
-using namespace std;
+using std::string;
+using std::vector;
 
 extern string version;
 
@@ -19,11 +20,39 @@ struct int_pair {
   int id;
 };
 
+struct shared_data {
+  size_t queries;
+
+  uint64_t example_number;
+  uint64_t total_features;
+
+  float t;
+  double weighted_examples;
+  double weighted_unlabeled_examples;
+  double old_weighted_examples;
+  double weighted_labels;
+  double sum_loss;
+  double sum_loss_since_last_dump;
+  float dump_interval;// when should I update for the user.
+  double gravity;
+  double contraction;
+  double min_label;//minimum label encountered
+  double max_label;//maximum label encountered
+};
+
+
 struct global_data {
+  shared_data* sd;
+
   size_t thread_bits; // log_2 of the number of threads.
   size_t partition_bits; // log_2 of the number of partitions of features.
   size_t num_bits; // log_2 of the number of features.
   bool default_bits;
+
+  bool daemon;
+  size_t num_children;
+
+  bool save_per_pass;
 
   bool backprop;
   bool corrective;
@@ -31,6 +60,10 @@ struct global_data {
   float global_multiplier;
   float active_c0;
   float initial_weight;
+
+  bool bfgs;
+  bool hessian_on;
+  int m;
 
   bool conjugate_gradient;
   float regularization;
@@ -43,7 +76,15 @@ struct global_data {
   bool kernel_estimator;
   bool hoeffding_tree;
 
+  string per_feature_regularizer_input;
+  string per_feature_regularizer_output;
+  string per_feature_regularizer_text;
+
   size_t minibatch;
+  size_t ring_size;
+
+  uint64_t parsed_examples; // The index of the parsed example.
+  uint64_t local_example_number;
 
   size_t pass_length;
   size_t numpasses;
@@ -64,8 +105,10 @@ struct global_data {
   bool adaptive;//Should I use adaptive individual learning rates?
   bool random_weights;
 
-  double min_label;//minimum label encountered
-  double max_label;//maximum label encountered
+  bool add_constant;
+  bool nonormalize;
+  bool binary_label;
+
 
   size_t lda;
   float lda_alpha;
@@ -78,28 +121,24 @@ struct global_data {
   size_t num_partitions () { return 1 << partition_bits; };
   size_t length () { return 1 << num_bits; };
 
+  size_t rank;
+
   //Prediction output
-  v_array<int_pair> final_prediction_sink; // set to send global predictions to.
+  v_array<size_t> final_prediction_sink; // set to send global predictions to.
   int raw_prediction; // file descriptors for text output.
   int local_prediction;  //file descriptor to send local prediction to.
   size_t unique_id; //unique id for each node in the network, id == 0 means extra io.
+  size_t total; //total number of nodes
+  size_t node; //node id number
 
   void (*print)(int,float,float,v_array<char>);
   loss_function* loss;
 
   char* program_name;
 
-  //runtime accounting variables. 
+  //runtime accounting variables.
   long long int example_number;
   double initial_t;
-  double weighted_examples;
-  double weighted_unlabeled_examples;
-  double old_weighted_examples;
-  double weighted_labels;
-  size_t total_features;
-  double sum_loss;
-  double sum_loss_since_last_dump;
-  float dump_interval;// when should I update for the user.
   float eta;//learning rate control.
   float eta_decay_rate;
   regressor* reg;
@@ -113,6 +152,12 @@ void binary_print_result(int f, float res, float weight, v_array<char> tag);
 void noop_mm(double label);
 void print_lda_result(int f, float* res, float weight, v_array<char> tag);
 
-const size_t ring_size = 1 << 11;
+extern pthread_mutex_t output_lock;
+extern pthread_cond_t output_done;
+
+extern pthread_mutex_t output_lock;
+extern pthread_cond_t output_done;
+
+
 
 #endif
