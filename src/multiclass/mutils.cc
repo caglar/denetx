@@ -28,6 +28,23 @@ fsum(Vector_t vec)
   return sum;
 }
 
+int
+fmax_idx(float *vals, size_t a_size)
+{
+  float max = vals[0];
+  int ret_idx = 0;
+  if (a_size >= 2)
+  {
+    for (int i = 1; i < a_size; i++) {
+      if (fmaxf(max, vals[i]) != max){
+        max = vals[i];
+        ret_idx = i;
+      }
+    }
+  }
+  return ret_idx;
+}
+
 /*
 float
 InvSqrt(float x)

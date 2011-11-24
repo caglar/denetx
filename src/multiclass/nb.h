@@ -4,7 +4,6 @@
  *  Created on: Apr 1, 2011
  *      Author: caglar
  */
-
 #ifndef NB_H_
 #define NB_H_
 
@@ -46,7 +45,9 @@ struct nb_thread_params
 {
     nb_vars* vars;
     arfheader* arfHeader;
+    string rrd_file_path;
     size_t thread_num;
+    size_t step_size;
     float* predictions;
 };
 

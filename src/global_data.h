@@ -47,6 +47,8 @@ struct global_data {
   size_t thread_bits; // log_2 of the number of threads.
   size_t partition_bits; // log_2 of the number of partitions of features.
   size_t num_bits; // log_2 of the number of features.
+  size_t rrd_step_size; //step size in seconds.
+
   bool default_bits;
 
   bool daemon;
@@ -71,6 +73,7 @@ struct global_data {
 
   string arfxml_path;
   string nb_model_file;
+  string rrd_file_path;
 
   bool naive_bayes;
   bool kernel_estimator;

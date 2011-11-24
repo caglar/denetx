@@ -17,8 +17,7 @@
 struct htnb_vars
 {
   float power_t;
-  htnb_vars()
-  {};
+  htnb_vars(){};
   void init()
   {
     power_t = 0.;

@@ -26,10 +26,11 @@ size_t mesg = 0;
 void
 initialize_delay_ring()
 {
-  if (global.local_prediction > 0 && (global.unique_id == 0
-                                      || global.backprop 
-                                      | global.corrective
-                                      || global.delayed_global))
+  if (global.local_prediction > 0 
+      && (global.unique_id == 0
+      || global.backprop 
+      || global.corrective
+      || global.delayed_global))
     mesg = 1;
   size_t nt = global.num_threads() + mesg;
   if (global.backprop || global.delayed_global || global.corrective)
@@ -65,11 +66,11 @@ thread_done(size_t thread)
   pthread_mutex_lock(&delay);
   ret
     = (delay_indices[thread] == local_index || global.delayed_global)
-    && (!(global.backprop || global.delayed_global
-          || global.corrective) || global.local_prediction
-        <= 0 || (delay_indices[thread + 1
-                 + global.num_threads()] == global_index
-                 && global_index == local_index));
+    && (!(global.backprop 
+          || global.delayed_global
+          || global.corrective) 
+          || global.local_prediction <= 0 
+          || (delay_indices[thread + 1 + global.num_threads()] == global_index && global_index == local_index));
   pthread_mutex_unlock(&delay);
   return ret;
 }
@@ -137,7 +138,7 @@ blocking_get_delay_example(size_t thread)
 {
   size_t index = delay_indices[thread] % global.ring_size;
   pthread_mutex_lock(&delay);
-  while (delay_ring[index] == NULL)
+  while(delay_ring[index] == NULL)
     pthread_cond_wait(&delay_nonempty, &delay);
   pthread_mutex_unlock(&delay);
   return return_example(thread);
@@ -147,7 +148,8 @@ void
 delay_example(example* ex, size_t count)
 {
   size_t delay_count = count + mesg;
-  if ((global.backprop || global.corrective) && global.local_prediction > 0)
+  if ((global.backprop || global.corrective) 
+      && global.local_prediction > 0)
     delay_count += count;
 
   if (delay_count == 0) {

@@ -1,9 +1,22 @@
 autoscan: warning: missing AC_CHECK_FUNCS([strtol]) wanted by: 
-	src/multiclass/parse_nbmodel.cc:158
+	src/multiclass/parse_nbmodel.cc:146
 autoscan: warning: missing AC_CHECK_HEADERS([syslog.h]) wanted by: 
 	src/multiclass/parse_nbmodel.cc:11
+autoscan: warning: missing AC_FUNC_FORK wanted by: 
+	src/parser.cc:361
+	src/parser.cc:363
+	src/parser.cc:392
+	test/parser.cc:368
+	test/parser.cc:370
+	test/parser.cc:399
+autoscan: warning: missing AC_FUNC_MMAP wanted by: 
+	src/parser.cc:336
+	src/parser.cc:349
+	test/parser.cc:343
+	test/parser.cc:356
 autoscan: warning: missing AC_FUNC_STRTOD wanted by: 
-	src/multiclass/parse_nbmodel.cc:159
+	src/parse_primitives.h:72
+	src/multiclass/parse_nbmodel.cc:235
 autoscan: warning: missing AC_TYPE_INT64_T wanted by: 
 	src/timsort.h:57
 	src/timsort.h:58
@@ -32,7 +45,20 @@ autoscan: warning: missing AC_TYPE_INT64_T wanted by:
 	src/timsort.h:389
 	src/timsort.h:441
 	src/timsort.h:442
+autoscan: warning: missing AC_TYPE_PID_T wanted by: 
+	src/parser.cc:380
+	test/parser.cc:387
 autoscan: warning: missing AC_TYPE_UINT64_T wanted by: 
+	src/parser.cc:45
+	src/parser.cc:835
+	src/parser.cc:835
 	src/timsort.h:39
 	src/timsort.h:223
 	src/timsort.h:228
+	src/global_data.h:26
+	src/global_data.h:27
+	src/global_data.h:89
+	src/global_data.h:90
+	test/parser.cc:38
+	test/parser.cc:860
+	test/parser.cc:860

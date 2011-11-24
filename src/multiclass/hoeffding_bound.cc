@@ -19,8 +19,8 @@
 #include <cmath>
 #include "multiclass/mutils.h"
 
-float 
-computeHoeffdingBound (float range, float confidence, float n) 
+float
+computeHoeffdingBound (float range, float confidence, float n)
 {
   return InvSqrt(((range * range) * log(1.0/ confidence)) / (2 * n));
 }

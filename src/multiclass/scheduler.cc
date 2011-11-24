@@ -1,7 +1,7 @@
 /*
  * =====================================================================================
  *
- *       Filename:  test_sched.cc
+ *       Filename:  scheduler.cc
  *
  *    Description:  A basic interval scheduler.
 
@@ -32,18 +32,19 @@
  */
 struct itimerval it;
 
-void
+sighandler_t
 start_scheduler(void (*s_handler)(int), unsigned int stepsize, unsigned int delaytime)
 {
   char buffer[BUFSIZ];
-
+  sighandler_t __handler = NULL;
   it.it_value.tv_sec     = delaytime;       /* start in 1 second */
   it.it_value.tv_usec    = 0;
   it.it_interval.tv_sec  = stepsize;       /* repeat every 5 seconds */
   it.it_interval.tv_usec = 0;
 
   if ( s_handler != NULL ) {
-    signal(SIGALRM, s_handler); /* Install the handler */
+    __handler = signal(SIGALRM, s_handler); /* Install the handler */
   }
-  setitimer(ITIMER_REAL, &it, NULL);/* turn on interval timer */
+  setitimer(ITIMER_REAL, &it, NULL); /* turn on interval timer */
+  return __handler;
 }

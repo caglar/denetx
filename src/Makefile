@@ -60,9 +60,9 @@ am_denetX_OBJECTS = lda.$(OBJEXT) parser.$(OBJEXT) \
 	delay_ring.$(OBJEXT) io.$(OBJEXT) noop.$(OBJEXT) \
 	parse_primitives.$(OBJEXT) float_cmp.$(OBJEXT) vw.$(OBJEXT) \
 	main.$(OBJEXT) infogain.$(OBJEXT) arraycopy.$(OBJEXT) \
-	htnb.$(OBJEXT) statistics.$(OBJEXT) mutils.$(OBJEXT) \
-	evaluation.$(OBJEXT) dvec.$(OBJEXT) parse_nbmodel.$(OBJEXT) \
-	nb.$(OBJEXT)
+	mutils.$(OBJEXT) rrd_wrapper.$(OBJEXT) scheduler.$(OBJEXT) \
+	htnb.$(OBJEXT) statistics.$(OBJEXT) evaluation.$(OBJEXT) \
+	dvec.$(OBJEXT) parse_nbmodel.$(OBJEXT) nb.$(OBJEXT)
 denetX_OBJECTS = $(am_denetX_OBJECTS)
 denetX_LDADD = $(LDADD)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)
@@ -113,7 +113,7 @@ INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
 LDFLAGS = 
 LIBOBJS = 
-LIBS = -l boost_program_options -l pthread -l z -ltinyxml
+LIBS = -l boost_program_options -l pthread -l z -ltinyxml -lrrd
 LTLIBOBJS = 
 MAKEINFO = ${SHELL} /home/caglar/Codes/c++/myprojs/googleproj/denetx/missing --run makeinfo
 MKDIR_P = /bin/mkdir -p
@@ -173,20 +173,20 @@ target_alias =
 top_build_prefix = ../
 top_builddir = ..
 top_srcdir = ..
-COMPILER = g++-4.6
+COMPILER = g++-4.4
 BOOST_INCLUDE = /usr/local/include
 BOOST_LIBRARY = /usr/local/lib
 STD = -std=c++0x
 ARCH = -march=native
 OPTIM_FLAGS = -O4 -ffast-math -fno-strict-aliasing -fomit-frame-pointer -funroll-loops -fmodulo-sched -foptimize-register-move -freciprocal-math -ffinite-math-only -fbranch-target-load-optimize
-DEBUG_FLAGS = -g -Wextra -ggdb -DNDEBUG -fno-inline #-p
+DEBUG_FLAGS = -g -Wextra -DNDEBUG -fno-inline #-p
 
 # for normal fast execution.
 #AM_CXXFLAGS= -W -Wall $(STD) $(ARCH) $(OPTIM_FLAGS) -D_FILE_OFFSET_BITS=64 -I $(BOOST_INCLUDE) #-ltcmalloc
 # for debug purposes
 AM_CXXFLAGS = -W -Wall $(STD) $(ARCH) $(OPTIM_FLAGS) $(DEBUG_FLAGS) -D_FILE_OFFSET_BITS=64 -I $(BOOST_INCLUDE) #-ltcmalloc
 AM_LDFLAGS = $(LIBS) -DUSE_RESTRICT
-denetX_SOURCES = lda.cc parser.cc sparse_dense.cc cache.cc gd.cc parse_regressor.cc unique_sort.cc loss_functions.cc cg.cc global_data.cc multisource.cc parse_args.cc utils.cc sender.cc  hash.cc message_relay.cc network.cc parse_example.cc parse_arfheader.cc simple_label.cc delay_ring.cc io.cc noop.cc parse_primitives.cc float_cmp.cc vw.cc main.cc  multiclass/infogain.cc multiclass/arraycopy.cc multiclass/htnb.cc multiclass/statistics.cc multiclass/mutils.cc multiclass/evaluation.cc multiclass/dvec.cc multiclass/parse_nbmodel.cc multiclass/nb.cc timsort.h multiclass/ht.h 
+denetX_SOURCES = lda.cc parser.cc sparse_dense.cc cache.cc gd.cc parse_regressor.cc unique_sort.cc loss_functions.cc cg.cc global_data.cc multisource.cc parse_args.cc utils.cc sender.cc  hash.cc message_relay.cc network.cc parse_example.cc parse_arfheader.cc simple_label.cc delay_ring.cc io.cc noop.cc parse_primitives.cc float_cmp.cc vw.cc main.cc  multiclass/infogain.cc multiclass/arraycopy.cc multiclass/mutils.cc multiclass/rrd_wrapper.cc multiclass/scheduler.cc multiclass/htnb.cc multiclass/statistics.cc multiclass/evaluation.cc multiclass/dvec.cc multiclass/parse_nbmodel.cc multiclass/nb.cc timsort.h multiclass/ht.h
 active_interactor_SOURCES = active_interactor.cc utils.cc
 METASOURCES = AUTO
 all: all-am
@@ -303,6 +303,8 @@ include ./$(DEPDIR)/parse_nbmodel.Po
 include ./$(DEPDIR)/parse_primitives.Po
 include ./$(DEPDIR)/parse_regressor.Po
 include ./$(DEPDIR)/parser.Po
+include ./$(DEPDIR)/rrd_wrapper.Po
+include ./$(DEPDIR)/scheduler.Po
 include ./$(DEPDIR)/sender.Po
 include ./$(DEPDIR)/simple_label.Po
 include ./$(DEPDIR)/sparse_dense.Po
@@ -353,6 +355,48 @@ arraycopy.obj: multiclass/arraycopy.cc
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o arraycopy.obj `if test -f 'multiclass/arraycopy.cc'; then $(CYGPATH_W) 'multiclass/arraycopy.cc'; else $(CYGPATH_W) '$(srcdir)/multiclass/arraycopy.cc'; fi`
 
+mutils.o: multiclass/mutils.cc
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT mutils.o -MD -MP -MF $(DEPDIR)/mutils.Tpo -c -o mutils.o `test -f 'multiclass/mutils.cc' || echo '$(srcdir)/'`multiclass/mutils.cc
+	$(am__mv) $(DEPDIR)/mutils.Tpo $(DEPDIR)/mutils.Po
+#	source='multiclass/mutils.cc' object='mutils.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o mutils.o `test -f 'multiclass/mutils.cc' || echo '$(srcdir)/'`multiclass/mutils.cc
+
+mutils.obj: multiclass/mutils.cc
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT mutils.obj -MD -MP -MF $(DEPDIR)/mutils.Tpo -c -o mutils.obj `if test -f 'multiclass/mutils.cc'; then $(CYGPATH_W) 'multiclass/mutils.cc'; else $(CYGPATH_W) '$(srcdir)/multiclass/mutils.cc'; fi`
+	$(am__mv) $(DEPDIR)/mutils.Tpo $(DEPDIR)/mutils.Po
+#	source='multiclass/mutils.cc' object='mutils.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o mutils.obj `if test -f 'multiclass/mutils.cc'; then $(CYGPATH_W) 'multiclass/mutils.cc'; else $(CYGPATH_W) '$(srcdir)/multiclass/mutils.cc'; fi`
+
+rrd_wrapper.o: multiclass/rrd_wrapper.cc
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT rrd_wrapper.o -MD -MP -MF $(DEPDIR)/rrd_wrapper.Tpo -c -o rrd_wrapper.o `test -f 'multiclass/rrd_wrapper.cc' || echo '$(srcdir)/'`multiclass/rrd_wrapper.cc
+	$(am__mv) $(DEPDIR)/rrd_wrapper.Tpo $(DEPDIR)/rrd_wrapper.Po
+#	source='multiclass/rrd_wrapper.cc' object='rrd_wrapper.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o rrd_wrapper.o `test -f 'multiclass/rrd_wrapper.cc' || echo '$(srcdir)/'`multiclass/rrd_wrapper.cc
+
+rrd_wrapper.obj: multiclass/rrd_wrapper.cc
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT rrd_wrapper.obj -MD -MP -MF $(DEPDIR)/rrd_wrapper.Tpo -c -o rrd_wrapper.obj `if test -f 'multiclass/rrd_wrapper.cc'; then $(CYGPATH_W) 'multiclass/rrd_wrapper.cc'; else $(CYGPATH_W) '$(srcdir)/multiclass/rrd_wrapper.cc'; fi`
+	$(am__mv) $(DEPDIR)/rrd_wrapper.Tpo $(DEPDIR)/rrd_wrapper.Po
+#	source='multiclass/rrd_wrapper.cc' object='rrd_wrapper.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o rrd_wrapper.obj `if test -f 'multiclass/rrd_wrapper.cc'; then $(CYGPATH_W) 'multiclass/rrd_wrapper.cc'; else $(CYGPATH_W) '$(srcdir)/multiclass/rrd_wrapper.cc'; fi`
+
+scheduler.o: multiclass/scheduler.cc
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT scheduler.o -MD -MP -MF $(DEPDIR)/scheduler.Tpo -c -o scheduler.o `test -f 'multiclass/scheduler.cc' || echo '$(srcdir)/'`multiclass/scheduler.cc
+	$(am__mv) $(DEPDIR)/scheduler.Tpo $(DEPDIR)/scheduler.Po
+#	source='multiclass/scheduler.cc' object='scheduler.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o scheduler.o `test -f 'multiclass/scheduler.cc' || echo '$(srcdir)/'`multiclass/scheduler.cc
+
+scheduler.obj: multiclass/scheduler.cc
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT scheduler.obj -MD -MP -MF $(DEPDIR)/scheduler.Tpo -c -o scheduler.obj `if test -f 'multiclass/scheduler.cc'; then $(CYGPATH_W) 'multiclass/scheduler.cc'; else $(CYGPATH_W) '$(srcdir)/multiclass/scheduler.cc'; fi`
+	$(am__mv) $(DEPDIR)/scheduler.Tpo $(DEPDIR)/scheduler.Po
+#	source='multiclass/scheduler.cc' object='scheduler.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o scheduler.obj `if test -f 'multiclass/scheduler.cc'; then $(CYGPATH_W) 'multiclass/scheduler.cc'; else $(CYGPATH_W) '$(srcdir)/multiclass/scheduler.cc'; fi`
+
 htnb.o: multiclass/htnb.cc
 	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT htnb.o -MD -MP -MF $(DEPDIR)/htnb.Tpo -c -o htnb.o `test -f 'multiclass/htnb.cc' || echo '$(srcdir)/'`multiclass/htnb.cc
 	$(am__mv) $(DEPDIR)/htnb.Tpo $(DEPDIR)/htnb.Po
@@ -380,20 +424,6 @@ statistics.obj: multiclass/statistics.cc
 #	source='multiclass/statistics.cc' object='statistics.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o statistics.obj `if test -f 'multiclass/statistics.cc'; then $(CYGPATH_W) 'multiclass/statistics.cc'; else $(CYGPATH_W) '$(srcdir)/multiclass/statistics.cc'; fi`
-
-mutils.o: multiclass/mutils.cc
-	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT mutils.o -MD -MP -MF $(DEPDIR)/mutils.Tpo -c -o mutils.o `test -f 'multiclass/mutils.cc' || echo '$(srcdir)/'`multiclass/mutils.cc
-	$(am__mv) $(DEPDIR)/mutils.Tpo $(DEPDIR)/mutils.Po
-#	source='multiclass/mutils.cc' object='mutils.o' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o mutils.o `test -f 'multiclass/mutils.cc' || echo '$(srcdir)/'`multiclass/mutils.cc
-
-mutils.obj: multiclass/mutils.cc
-	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT mutils.obj -MD -MP -MF $(DEPDIR)/mutils.Tpo -c -o mutils.obj `if test -f 'multiclass/mutils.cc'; then $(CYGPATH_W) 'multiclass/mutils.cc'; else $(CYGPATH_W) '$(srcdir)/multiclass/mutils.cc'; fi`
-	$(am__mv) $(DEPDIR)/mutils.Tpo $(DEPDIR)/mutils.Po
-#	source='multiclass/mutils.cc' object='mutils.obj' libtool=no \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o mutils.obj `if test -f 'multiclass/mutils.cc'; then $(CYGPATH_W) 'multiclass/mutils.cc'; else $(CYGPATH_W) '$(srcdir)/multiclass/mutils.cc'; fi`
 
 evaluation.o: multiclass/evaluation.cc
 	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT evaluation.o -MD -MP -MF $(DEPDIR)/evaluation.Tpo -c -o evaluation.o `test -f 'multiclass/evaluation.cc' || echo '$(srcdir)/'`multiclass/evaluation.cc

@@ -63,6 +63,8 @@ parse_args(int argc, char *argv[],
     ("bit_precision,b", po::value<size_t>(), "number of bits in the feature table")
     ("backprop", "turn on delayed backprop")
     ("cache,c", "Use a cache.  The default is <data>.cache")
+    ("rrd", po::value<string>()->default_value(""), "RRD file path.")
+    ("step", po::value<size_t>(), "RRD step size in seconds.")
     ("cache_file", po::value<vector<string> >(), "The location(s) of cache_file.")
     ("compressed", "use gzip format whenever appropriate. If a cache file is being created, this option creates a compressed cache file. A mixture of raw-text & compressed inputs are supported if this option is on")
     ("conjugate_gradient", "use conjugate gradient based optimization")
@@ -143,13 +145,14 @@ parse_args(int argc, char *argv[],
 
   global.naive_bayes = false;
   global.kernel_estimator = false;
-
+  global.ring_size = 1<<8;
   global.adaptive = false;
   global.audit = false;
   global.active = false;
   global.active_simulation = false;
   global.reg = &r;
   global.save_per_pass = false;
+  global.rrd_file_path = "";
 
   po::positional_options_description p;
   // Be friendly: if -d was left out, treat positional param as data file
@@ -193,6 +196,11 @@ parse_args(int argc, char *argv[],
   if (vm.count("corrective")) {
     global.corrective = true;
     cout << "enabling corrective updates" << endl;
+  }
+
+  if (vm.count("minibatch")) {
+     size_t minibatch2 = next_pow2(global.minibatch);
+     global.ring_size = global.ring_size > minibatch2 ? global.ring_size : minibatch2;
   }
 
   if (vm.count("delayed_global")) {
@@ -398,6 +406,12 @@ parse_args(int argc, char *argv[],
 
   if (vm.count("nb_model"))
     global.nb_model_file = vm["nb_model"].as<string> ();
+
+  if (vm.count("rrd"))
+    global.rrd_file_path = vm["rrd"].as<string> ();
+
+  if (vm.count("step"))
+    global.rrd_step_size = vm["step"].as<size_t> ();
 
   if (vm.count("predictions")) {
     if (!global.quiet)

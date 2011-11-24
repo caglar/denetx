@@ -68,8 +68,6 @@ class Node {
       float*
           getObservedClassDist()
           {
-          //    float observedClassesDist[noOfObservations];
-           //   copy_dvec_to_array(observedClassDist, observedClassesDist);
               return observedClassDist;
           }
 
@@ -260,14 +258,14 @@ class LearningNode : public HNode
               int classVal = static_cast<int>(ld->label);
               float weight = ld->weight;
               observedClassDist[classVal] += weight;
-//              add_to_val(classVal, observedClassDist, weight);
               if (ActiveLearningState) {
                   for (auto i = *(ex->indices.begin); i != *(ex->indices.end); i++) {
                       AttributeClassObserver *attrCObserver = AttributeObservers[i];
                       feature f = ex->atomics[i][thread_num];
                       if (attrCObserver == NULL) {
                           fType type = arfHeader->features[f.weight_index].type;
-                          attrCObserver = ((type == NUMERIC) ? (AttributeClassObserver *) new NumAttrObserver(static_cast<unsigned int>(noOfObservations)) : (AttributeClassObserver *) new NomAttrObserver());
+                          attrCObserver = ((type == NUMERIC) ? (AttributeClassObserver *) new NumAttrObserver(static_cast<unsigned int>(noOfObservations)) :
+                                           (AttributeClassObserver *) new NomAttrObserver());
                           AttributeObservers[i] = attrCObserver;
                       }
                       attrCObserver->observeAttributeClass(f.x, classVal, weight);
@@ -323,8 +321,6 @@ class LearningNode : public HNode
           getBestSplitSuggestions()
           {
               vector<AttrSplitSuggestion *> bestSuggestions;
-              //float *preSplitDist = new float[noOfObservations];
-              //copy_dvec_to_array(observedClassDist, preSplitDist);
               for (auto i = 0; i<AttributeObservers.size(); i++) {
                   AttributeClassObserver *attrCObs = AttributeObservers[i];
                   if (attrCObs != NULL) {
@@ -355,8 +351,6 @@ class HoeffdingTree
               if (lNode != NULL && !(lNode->observedClassDistributionIsPure())) {
                   vector<AttrSplitSuggestion*> bestSplitSuggestions = lNode->getBestSplitSuggestions();
                   size_t bss_size = bestSplitSuggestions.size();
-                  //tim_sort(bestSplitSuggestions, bss_size);
-
                   stable_sort(bestSplitSuggestions.begin(), bestSplitSuggestions.end());
                   bool shouldSplit = false;
                   if (bss_size < 2) {
@@ -375,7 +369,7 @@ class HoeffdingTree
                               deactivateLearningNode(lNode, sNode, parentIndex);
                           } else {
                               SplitNode *newSplit = new SplitNode(splitDecision->splitTest, lNode->getObservedClassDist(), lNode->getNoOfObservations());
-
+                              
                               for (int i = 0; i < (splitDecision->numSplits); i++) {
                                   bool enableActiveLearning = true;
                                   int classObsSize = (splitDecision->resultingClassDistribution[i]).size();
@@ -384,7 +378,7 @@ class HoeffdingTree
                                   LearningNode *newChild = new LearningNode(classObservations, classObsSize, this->arfHeader, enableActiveLearning);
                                   newSplit->setChild(i, newChild);
                               }
-
+                              
                               this->activeLeafNodeCount--;
                               this->decisionNodeCount++;
                               this->activeLeafNodeCount += splitDecision->numSplits;
@@ -459,6 +453,7 @@ class HoeffdingTree
               if (treeRoot != NULL) {
                   FoundNode *fNode = treeRoot->filterInstanceToLeaf(NULL, -1);
                   Node *leafNode = dynamic_cast<Node *>(fNode->hNode);
+
                   if (leafNode == NULL) {
                       leafNode = fNode->sParent;
                   }

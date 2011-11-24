@@ -14,6 +14,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <string>
 
 #include "./parse_regressor.h"
 #include "./parse_example.h"
@@ -117,12 +118,14 @@ vw_nb(size_t num_threads, po::variables_map vm)
     //nb_vars *vars = reinterpret_cast<nb_vars*> (c_malloc(sizeof(nb_vars)));
     nb_vars *vars = new nb_vars();
     arfheader* arfHead = NULL;
+    string rrd_file_path = "";
+    size_t step_size = 1;
+
     if (global.arfxml_path.size() > 0) {
         arfHead = parseARFXFile(global.arfxml_path.c_str());
         std::cout << "No of categories is: " << arfHead->no_of_categories
                 << std::endl;
-    }
-    else {
+    } else {
         std::cerr << "file name is: " << global.arfxml_path.c_str() << endl;
         std::cerr << "Error arfxml path is empty." << std::endl;
         exit( EXIT_FAILURE);
@@ -132,13 +135,24 @@ vw_nb(size_t num_threads, po::variables_map vm)
         std::cerr << "arfXML file is empty!" << std::endl;
         exit( EXIT_FAILURE);
     }
+    
+    if (global.rrd_file_path.size() > 0) {
+      rrd_file_path = global.rrd_file_path;
+      std::cout << "RRD file path is: " << global.rrd_file_path << std::endl;
+    } else {
+        std::cerr << "RRD file path is empty!" << std::endl;
+    }
+    
+    if (global.rrd_step_size > 0) {
+      step_size = global.rrd_step_size;
+      std::cout << "RRD step size is: " << global.rrd_step_size << std::endl;
+    }
 
     float* predictions = reinterpret_cast<float *> (c_malloc(
             sizeof(float) * (arfHead->no_of_categories)));
     vars->attributeObservers.resize(arfHead->no_of_features);
     vars->observedClassDist.resize(boost::extents[arfHead->no_of_categories]);
-    nb_thread_params t =
-        { vars, arfHead, num_threads, predictions };
+    nb_thread_params t = { vars, arfHead, rrd_file_path, step_size, num_threads, predictions };
 
     vars->init();
     initialize_delay_ring();

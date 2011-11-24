@@ -36,7 +36,7 @@ static DVec observedClassDist;
 static vector<AttributeClassObserver *> attributeObservers;
 
 void *
-htnb_thread(void *in)
+htnb_thread (void *in)
 {
     htnb_thread_params* params = (htnb_thread_params*) in;
     size_t thread_num = params->thread_num;
@@ -75,7 +75,7 @@ htnb_thread(void *in)
 }
 
 float*
-htnb_predict(example* ex, size_t thread_num, htnb_thread_params* params)
+htnb_predict (example* ex, size_t thread_num, htnb_thread_params* params)
 {
 
     size_t voteSize = observedClassDist.size();
@@ -107,7 +107,7 @@ htnb_predict(example* ex, size_t thread_num, htnb_thread_params* params)
 }
 
 void
-htnb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num)
+htnb_train_on_example (example* ex, arfheader *arfHeader, size_t thread_num)
 {
     for (size_t i = *(ex->indices.begin); (i = !(ex->indices.end)); i++) {
         AttributeClassObserver *obs = attributeObservers[i];
@@ -141,7 +141,7 @@ static htnb_thread_params** passers;
 static size_t num_threads;
 
 void
-setup_htnb(htnb_thread_params t)
+setup_htnb (htnb_thread_params t)
 {
     num_threads = t.thread_num;
     threads = (pthread_t*) c_calloc(num_threads, sizeof(pthread_t));
@@ -168,7 +168,7 @@ destroy_htnb()
 }
 
 static void
-finish_example(example* ec)
+finish_example (example* ec)
 {
     pthread_mutex_lock(&ec->lock);
     if (--ec->threads_to_finish == 0) {

@@ -8,25 +8,31 @@
 #include <rrd.h>
 
 const size_t MAX_PARAM_SIZE = 128;
-
+const size_t MAX_STEP_SIZE = 1000;
 using std::vector;
 
 bool
-create_rrd(const char *rrd_filepath, const vector<arfcategory> &categories)
+create_rrd(const char *rrd_filepath, const vector<arfcategory> &categories, unsigned int step_size)
 {
   bool createFlag = true;
   size_t no_of_ds = categories.size();
   const int no_begin_params = 6;
   const int no_end_params = 8;
+  char ssize[5];
   const int argc = no_begin_params + no_end_params + no_of_ds;
   int rrd_ret;
-
+  if (step_size <= MAX_STEP_SIZE) {
+    sprintf(ssize, "%u", step_size);
+  } else {
+    perror("Illegal step size amount is entered, default step size 300 is being used.\n");
+    sprintf(ssize, "%u", 300);
+  }
   char **rrd_argv = (char **) malloc( sizeof(char *) * argc);
   const char *ds_begin = "DS:";
   const char *ds_end = ":COUNTER:600:U:U";
   const char *rrd_begin[no_begin_params] = {
     "create", rrd_filepath,
-    "--step", "300",
+    "--step", ssize,
     "--start", "0"
   };
 
@@ -77,7 +83,7 @@ create_rrd(const char *rrd_filepath, const vector<arfcategory> &categories)
 }
 
 bool
-update_rrd(const char *rrd_filepath, const vector<int> &predictions)
+update_rrd(const char *rrd_filepath, vector<int> &predictions)
 {
   bool updateflag = true;
   const int rrd_argc = 3;
@@ -93,6 +99,7 @@ update_rrd(const char *rrd_filepath, const vector<int> &predictions)
   for (size_t i = 0; i < predictions.size(); i++) {
     char *val = (char *) malloc(MaxValSize); 
     sprintf(val, ":%d", predictions[i]);
+    predictions[i] = 0;
     if ((strlen(val) + strlen(rrd_argv[2])) >= MAX_PARAM_SIZE) {
       perror("Illegal val size");
       return false;

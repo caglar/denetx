@@ -1,8 +1,8 @@
 /*
  * nb.cc
  *
- *  Created on: Apr 1, 2011
- *      Author: caglar
+ * Created on: Apr 1, 2011
+ * Author: caglar
  *
  */
 
@@ -13,6 +13,7 @@
 #include <cstdlib>
 #include <cmath>
 
+#include <semaphore.h>
 #include <pthread.h>
 
 #include <vector>
@@ -28,6 +29,8 @@
 #include "delay_ring.h"
 #include "parse_arfheader.h"
 #include "utils.h"
+#include "rrd_wrapper.h"
+#include "scheduler.h"
 
 #include "multiclass/nb.h"
 #include "multiclass/numattrobs.h"
@@ -35,13 +38,29 @@
 #include "multiclass/parse_nbmodel.h"
 #include "multiclass/evaluation.h"
 #include "multiclass/estimator.h"
+#include "multiclass/mutils.h"
 
 int no_of_preds = 0;
 
 static void
-finish_example(example* ec);
+finish_example (example* ec);
 
 pthread_mutex_t initMutex = PTHREAD_MUTEX_INITIALIZER;
+static sem_t __semAlarm;
+static sighandler_t __handler = NULL;
+vector<int> predictions;
+string rrdFilePath;
+
+static void
+sig_handler (int sig)
+{
+  if (sig == SIGALRM) {
+    sem_post(&__semAlarm); //Unlock the semaphore
+    update_rrd(rrdFilePath.c_str(), predictions);
+    sem_post(&__semAlarm);
+  } else if (__handler)
+    __handler(sig);
+}
 
 /*
  *NB thread function.
@@ -49,7 +68,7 @@ pthread_mutex_t initMutex = PTHREAD_MUTEX_INITIALIZER;
  *@param in The threads parameter
  */
 void *
-nb_thread(void *in)
+nb_thread (void *in)
 {
   nb_thread_params* params = static_cast<nb_thread_params*> (in);
   size_t thread_num = params->thread_num;
@@ -61,16 +80,13 @@ nb_thread(void *in)
   if (params->vars->eval == NULL) {
     params->vars->eval = new Evaluation();
   }
-
   if (params->vars == NULL) {
     params->vars = new nb_vars();
   }
-
   if ((params->vars->observedClassDist.size() != no_of_cats) && (no_of_cats
                                                                  > 0)) {
     params->vars->observedClassDist.resize(boost::extents[no_of_cats]);
   }
-
   if (params->vars->attributeObservers.size() != no_of_feats && (no_of_feats
                                                                  > 0)) {
     params->vars->attributeObservers.resize(no_of_feats);
@@ -95,18 +111,13 @@ nb_thread(void *in)
         label_data ld;
         ld.label = (static_cast<label_data *> (ec->ld))->label;
         ld.weight = (static_cast<label_data *> (ec->ld))->weight;
-        
+
         if (global.training && (ld.label != FLT_MAX)) {
-          nb_train_on_example(ec, params->arfHeader, thread_num,
-                              params);
+          nb_train_on_example(ec, params->arfHeader, thread_num, params);
           finish_example(ec);
         }
         else {
-          params->predictions = naive_bayes_predict(ec, thread_num,
-                                                    params);
-//          DVec predVec;
-//          copy_array_elements(predVec, params->predictions, no_of_cats);
-//          ((Evaluation *)params->vars->eval)->evaluateModel(ec, predVec);
+          params->predictions = naive_bayes_predict(ec, thread_num, params);
         }
       }
     }
@@ -121,13 +132,12 @@ nb_thread(void *in)
   return NULL;
 }
 
-float*
-naive_bayes_predict(example* ex, size_t thread_num, nb_thread_params* params)
+float *
+naive_bayes_predict (example* ex, size_t thread_num, nb_thread_params* params)
 {
   no_of_preds++;
 
-  cout << "I am the predictor " << no_of_preds << endl;
-
+  //cout << "I am the predictor " << no_of_preds << endl;
   size_t voteSize = params->vars->observedClassDist.size() - 1;
   float *classVotes = new float[voteSize];
 
@@ -142,11 +152,11 @@ naive_bayes_predict(example* ex, size_t thread_num, nb_thread_params* params)
     cout << "Predictor is in training" << endl;
     nb_train_on_example(ex, arfHeader, thread_num, params);
   }
+
   if (ex == NULL || arfHeader == NULL) {
-    std::cerr << "Warning in nb.cc:77, ex or arfheader can't be null"
-      << std::endl;
-  }
-  else {
+    std::cerr << "Warning in nb.cc:77, ex or arfheader can't be null"  << std::endl;
+    exit(EXIT_FAILURE);
+  } else {
     for (size_t classIndex = 0; classIndex < voteSize; classIndex++) {
       classVotes[classIndex]
         = (params->vars->observedClassDist[classIndex]
@@ -159,7 +169,6 @@ naive_bayes_predict(example* ex, size_t thread_num, nb_thread_params* params)
             obs = dynamic_cast<NumAttrObserver *>(params->vars->attributeObservers[c]);
           else
             obs = dynamic_cast<NomAttrObserver *>(params->vars->attributeObservers[c]);
-
           if ((obs != NULL) && !(isnan(f->x))) {
             classVotes[classIndex]
               *= obs->probabilityOfAttributeValueGivenClass(
@@ -169,6 +178,8 @@ naive_bayes_predict(example* ex, size_t thread_num, nb_thread_params* params)
         }
       }
     }
+    int classIdx = fmax_idx(classVotes, voteSize);
+    predictions[classIdx]++;
   }
   return classVotes;
 }
@@ -176,7 +187,7 @@ naive_bayes_predict(example* ex, size_t thread_num, nb_thread_params* params)
 pthread_mutex_t trainMutex = PTHREAD_MUTEX_INITIALIZER;
 
 void
-nb_train_on_example(example* ex, arfheader *arfHeader, size_t thread_num,
+nb_train_on_example (example* ex, arfheader *arfHeader, size_t thread_num,
                     nb_thread_params* params)
 {
   fType type = UNKNOWN;
@@ -231,6 +242,7 @@ void
 setup_nb (nb_thread_params t)
 {
   num_threads = t.thread_num;
+  unsigned int step_size = (unsigned int) t.step_size;
 
   threads = new pthread_t[num_threads];
   passers = new nb_thread_params*[num_threads];
@@ -252,6 +264,14 @@ setup_nb (nb_thread_params t)
     }
   }
 
+  rrdFilePath = t.rrd_file_path;
+
+  if (!c_does_file_exist(rrdFilePath.c_str())) {
+    __handler = start_scheduler(sig_handler, step_size);
+    create_rrd(rrdFilePath.c_str(), t.arfHeader->categories, step_size);
+  }
+
+  predictions.resize(t.arfHeader->no_of_categories);
   cout << " Size: " << attributeObservers.size() << endl;
   for (size_t i = 0; i < num_threads; i++) {
     passers[i] = new nb_thread_params[1];
@@ -266,7 +286,7 @@ setup_nb (nb_thread_params t)
 }
 
 void
-joinThreadData(nb_vars &tvars, arfheader *arfHeader, size_t tnum) {
+joinThreadData (nb_vars &tvars, arfheader *arfHeader, size_t tnum) {
   if (passers[tnum]->vars->noOfObservedExamples > 0) {
     if (tvars.observedClassDist.size() < (passers[tnum]->vars->observedClassDist).size()) {
       tvars.observedClassDist.resize(boost::extents[(passers[tnum]->vars->attributeObservers).size()]);
@@ -344,7 +364,7 @@ destroy_nb()
 }
 
 static void
-finish_example(example* ec)
+finish_example (example* ec)
 {
   pthread_mutex_lock(&ec->lock);
   if (--ec->threads_to_finish == 0) {
