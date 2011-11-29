@@ -369,7 +369,6 @@ class HoeffdingTree
                               deactivateLearningNode(lNode, sNode, parentIndex);
                           } else {
                               SplitNode *newSplit = new SplitNode(splitDecision->splitTest, lNode->getObservedClassDist(), lNode->getNoOfObservations());
-                              
                               for (int i = 0; i < (splitDecision->numSplits); i++) {
                                   bool enableActiveLearning = true;
                                   int classObsSize = (splitDecision->resultingClassDistribution[i]).size();
@@ -378,7 +377,6 @@ class HoeffdingTree
                                   LearningNode *newChild = new LearningNode(classObservations, classObsSize, this->arfHeader, enableActiveLearning);
                                   newSplit->setChild(i, newChild);
                               }
-                              
                               this->activeLeafNodeCount--;
                               this->decisionNodeCount++;
                               this->activeLeafNodeCount += splitDecision->numSplits;

@@ -353,9 +353,9 @@ destroy_nb()
                         nbModelFile);
       }
     }
-    c_free(passers[i]);
+   // c_free(passers[i]);
   }
-
+  delete []passers;
   if (eval.getError()) {
     cout << "Error: " << eval.getError() << endl;
   }

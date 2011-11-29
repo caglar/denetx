@@ -384,7 +384,7 @@ namespace est
       public:
           explicit
               KernelEstimator(float precision):SMALL(1e-6), mValues(new float[50]), mWeights(new float[50]),
-              mNumValues(0), mSumOfWeights(0), mAllWeightsOne(true), mPrecision(precision), MAX_ERROR(0.01)
+              mNumValues(0), mSumOfWeights(0), mPrecision(precision), mAllWeightsOne(true), MAX_ERROR(0.01)
         {
             /*
                mValues = new float[50];
