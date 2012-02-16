@@ -250,7 +250,7 @@ void merge_in(example* ec, size_t document)
     feature* f = ec->subsets[*i][0];
     for (; f != ec->subsets[*i][1]; f++)
     {
-      index_triple temp = {document,*f};
+      index_triple temp = {document, *f};
       push(merge_set[next_index], temp);
     }
     next_index++;

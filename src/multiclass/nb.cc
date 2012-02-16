@@ -137,7 +137,6 @@ naive_bayes_predict (example* ex, size_t thread_num, nb_thread_params* params)
 {
   no_of_preds++;
 
-  //cout << "I am the predictor " << no_of_preds << endl;
   size_t voteSize = params->vars->observedClassDist.size() - 1;
   float *classVotes = new float[voteSize];
 
@@ -353,7 +352,6 @@ destroy_nb()
                         nbModelFile);
       }
     }
-   // c_free(passers[i]);
   }
   delete []passers;
   if (eval.getError()) {
